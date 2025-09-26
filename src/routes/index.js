@@ -10,9 +10,11 @@ import adapterRoutes from "../adapter/adapterRoutes.js";
 import cloudinaryRoutes from "./cloudinaryRoutes.js";
 import orderRoutes from "./orderRoutes.js";
 import posSalesRoutes from "./posSalesRoutes.js";
+import hybridRoutes from "./hybridRoutes.js";
 
 const router = Router();
 
+// Rutas tradicionales (compatibilidad)
 router.use("/auth", authRoutes);
 router.use("/product", productRoutes);
 router.use("/sale", saleRoutes);
@@ -24,5 +26,8 @@ router.use("/adapter", adapterRoutes);
 router.use("/image", cloudinaryRoutes);
 router.use("/order", orderRoutes);
 router.use("/pos-sales", posSalesRoutes);
+
+// Nuevas rutas híbridas optimizadas para cache
+router.use("/", hybridRoutes);
 
 export default router;

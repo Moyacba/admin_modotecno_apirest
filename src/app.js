@@ -43,7 +43,7 @@ app.use(express.json());
 
 // Configurar logging según el entorno
 const isProduction = process.env.NODE_ENV === 'production';
-app.use(morgan(isProduction ? 'combined' : 'dev'));
+app.use(morgan(isProduction ? 'dev' : 'dev'));
 
 // Rutas
 app.use("/api", router);
