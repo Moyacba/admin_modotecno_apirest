@@ -1,0 +1,58 @@
+// prisma/schema.prisma
+
+datasource dbOld {
+  provider = "mongodb"
+  url      = env("DATABASE_URL_OLD")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "./dbOld"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+model servicios {
+  id          String    @id @default(auto()) @map("_id") @dbOld.ObjectId
+  cliente     String?
+  telefono1   String?
+  telefono2   String?
+  obsCliente  String?
+  categoria   String?
+  marca       String?
+  motivo      String?
+  total       Float?
+  pagos       Json?
+  obsProducto String?
+  contrasenia Json?
+  sim         String?
+  sd          String?
+  acc         Json?
+  dato1       Json?
+  dato2       Json?
+  dato3       Json?
+  estado      String?
+  obsTecnico  String?
+  fechaEstado Json?
+  fechaIn     DateTime?
+  fechaOut    DateTime?
+
+  @@index([cliente, telefono1, marca], map: "old_service_search_index")
+}
+
+model productos {
+  id               String    @id @default(auto()) @map("_id") @dbOld.ObjectId
+  codigo           Int?
+  categoria        String?
+  producto         String?
+  precioCompra     Float?
+  precioVenta      Json?
+  stock            Json?
+  proveedor        String?
+  detalles         String?
+  atributos        Json?
+  img              String?
+  fechaPrecioVenta String?
+  fecha            DateTime?
+
+  @@index([producto], map: "old_product_search_index")
+}

@@ -1,0 +1,437 @@
+// schema.prisma
+
+// Configure the datasource to connect to MongoDB
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "./db"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+// Model for a product (main product that can have variants)
+model Product {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  barcode        String?
+  sku            String
+  name           String
+  description    String
+  category       String
+  brand          String
+  provider       String
+  costPrice      Float
+  salePrice      Float
+  promoPrice     Float
+  percentPrice   Float
+  stock          Int
+  minStock       Int              @default(0)
+  images         String[]
+  specifications Json?
+  hasVariants    Boolean          @default(false)
+  variants       ProductVariant[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+}
+
+// Model for product variants
+model ProductVariant {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  productId      String    @db.ObjectId
+  product        Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  barcode        String?
+  sku            String
+  name           String    // Ej: "Funda Silicone Case Rosa"
+  description    String?
+  color          String?   // Atributo específico para color
+  design         String?   // Atributo específico para diseño
+  size           String?   // Atributo específico para talla
+  material       String?   // Atributo específico para material
+  costPrice      Float
+  salePrice      Float
+  promoPrice     Float?
+  percentPrice   Float?
+  stock          Int
+  minStock       Int       @default(0)
+  images         String[]
+  specifications Json?
+  isActive       Boolean   @default(true)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+// Model for a customer
+model Customer {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  firstName       String
+  lastName        String
+  email           String   @unique
+  password        String
+  address         Json
+  phone           String
+  purchaseHistory String[]
+  serviceHistory  String[]
+}
+
+// Model for a sale
+model Sale {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  customerId String
+  details    String
+  date       DateTime
+  products   Json
+  total      Float
+  discount   Float
+  payments   Json?
+}
+
+model Expense {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  product    String
+  details    String?
+  amount     Float
+  method     String?
+  date       DateTime
+  category   String?
+  categoryId Int?
+}
+
+// Model for a cashflow
+
+// Enums para categorizar datos
+enum InteractionType {
+  VIEW
+  ADD_TO_CART
+  REMOVE_FROM_CART
+  PURCHASE
+  WISHLIST
+  SEARCH
+}
+
+enum FeedbackType {
+  ORDER
+  SERVICE
+  WEBSITE
+  PRODUCT
+  OTHER
+}
+
+enum CommunicationChannel {
+  EMAIL
+  SMS
+  WHATSAPP
+  PHONE
+  PUSH_NOTIFICATION
+}
+
+enum DeviceStatus {
+  FUNCIONANDO
+  CON_FALLAS
+  NO_ENCIENDE
+  PANTALLA_ROTA
+  BATERIA_DAÑADA
+  MOJADO
+  OTROS
+}
+
+enum CustomerSegment {
+  VIP
+  FRECUENTE
+  OCASIONAL
+  NUEVO
+  INACTIVO
+}
+
+// Modelo de Comprador (Buyer)
+model Buyer {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  
+  // Información Personal Básica
+  nombre    String
+  apellido  String?
+  email     String     @unique
+  dni       String?
+  cuit      String?    // CUIT/CUIL opcional
+  telefono  String?
+  whatsapp  String?    // Número de WhatsApp específico
+  fecha_nacimiento DateTime?
+  
+  // Dirección(es) del cliente
+  direccion String
+  
+  // Información de Marketing y Adquisición
+  acquisition_channel String?  // ej: "google_ads", "facebook", "referido", "organico"
+  utm_source          String?
+  utm_medium          String?
+  utm_campaign        String?
+  utm_content         String?
+  utm_term            String?
+  
+  // Preferencias de Comunicación
+  communication_preferences CommunicationPreferences?
+  
+  // Segmentación y Tags
+  segment   CustomerSegment @default(NUEVO)
+  tags      String[]        // Tags personalizables
+  
+  // Metadatos
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  last_interaction DateTime?
+  
+  // Relaciones existentes
+  orders    Order[]
+  posSales  POSSale[]
+  
+  // Nuevas relaciones para recopilación de datos
+  devices         CustomerDevice[]
+  interactions    ProductInteraction[]
+  browsingEvents  BrowsingEvent[]
+  feedback        Feedback[]
+  services        Service[] @relation("CustomerServices")
+}
+
+// Modelo para preferencias de comunicación
+model CommunicationPreferences {
+  id               String  @id @default(auto()) @map("_id") @db.ObjectId
+  buyerId          String  @unique @db.ObjectId
+  buyer            Buyer   @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+  
+  email_marketing     Boolean @default(true)
+  email_transaccional Boolean @default(true)
+  sms_marketing       Boolean @default(false)
+  sms_transaccional   Boolean @default(true)
+  whatsapp_marketing  Boolean @default(true)
+  whatsapp_transaccional Boolean @default(true)
+  llamadas_comerciales Boolean @default(false)
+  
+  preferred_channel CommunicationChannel @default(EMAIL)
+  best_contact_time String? // ej: "mañana", "tarde", "noche"
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Modelo para dispositivos registrados por cliente
+model CustomerDevice {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  buyerId     String  @db.ObjectId
+  buyer       Buyer   @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+  
+  // Información del dispositivo
+  marca       String
+  modelo      String
+  numero_serie String?
+  imei        String?
+  color       String?
+  capacidad   String?
+  
+  // Estado y observaciones
+  fecha_compra DateTime?
+  lugar_compra String?
+  precio_compra Float?
+  
+  // Garantía
+  tiene_garantia Boolean @default(false)
+  garantia_hasta DateTime?
+  
+  // Metadatos
+  is_active   Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relación con servicios
+  services    Service[] @relation("DeviceServices")
+}
+
+// Modelo para interacciones con productos (vistas, carrito, etc.)
+model ProductInteraction {
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  buyerId     String      @db.ObjectId
+  buyer       Buyer       @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+  
+  productoId  String
+  productoName String
+  tipo        InteractionType
+  
+  // Contexto de la interacción
+  session_id  String?
+  user_agent  String?
+  ip_address  String?
+  referrer    String?
+  
+  // Datos adicionales (como cantidad en carrito)
+  quantity    Int?
+  price_at_interaction Float?
+  
+  createdAt   DateTime @default(now())
+}
+
+// Modelo para eventos de navegación en el e-commerce
+model BrowsingEvent {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  buyerId     String? @db.ObjectId
+  buyer       Buyer?  @relation(fields: [buyerId], references: [id], onDelete: SetNull)
+  
+  // Información de la sesión
+  session_id  String
+  page_url    String
+  page_title  String?
+  time_spent  Int?    // segundos en la página
+  
+  // Información técnica
+  user_agent  String?
+  ip_address  String?
+  referrer    String?
+  device_type String? // mobile, desktop, tablet
+  
+  createdAt   DateTime @default(now())
+}
+
+// Modelo para feedback y encuestas
+model Feedback {
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  buyerId     String      @db.ObjectId
+  buyer       Buyer       @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+  
+  tipo        FeedbackType
+  rating      Int?        // 1-5 estrellas
+  comentario  String?     // Texto libre del feedback
+  
+  // Contexto del feedback
+  related_order_id String?
+  related_service_id String?
+  related_product_id String?
+  
+  // Respuesta del equipo
+  respuesta   String?
+  respondido_por String?
+  fecha_respuesta DateTime?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Modelo de Orden (Order)
+model Order {
+  id                      String        @id @default(auto()) @map("_id") @db.ObjectId
+  buyerId                 String
+  buyer                   Buyer         @relation(fields: [buyerId], references: [id])
+  fecha_creacion          DateTime      @default(now())
+  monto_total             Int           // en centavos
+  estado                  String        // PENDIENTE_PAGO, PAGADO, ENVIADO, COMPLETADO, CANCELADO
+  metodo_pago             String
+  info_envio              Json?
+  id_transaccion_pasarela String?
+  detalles                OrderDetail[]
+}
+
+// Modelo de Detalle de Orden (OrderDetail)
+model OrderDetail {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  orderId             String
+  order               Order    @relation(fields: [orderId], references: [id])
+  productoId          String
+  productoName        String
+  cantidad            Int
+  precio_unitario_al_momento_de_compra Int
+}
+
+// Modelo de Venta POS (POSSale)
+model POSSale {
+  id                      String        @id @default(auto()) @map("_id") @db.ObjectId
+  buyerId                 String        @db.ObjectId
+  buyer                   Buyer         @relation(fields: [buyerId], references: [id])
+  fecha_creacion          DateTime      @default(now())
+  monto_total             Int           // en centavos
+  estado                  String        // COMPLETADO
+  metodo_pago             Json?         // [{method: "cash", amount: 2000}, {method: "qr", amount: 2000}]
+  detalles                POSSaleDetail[]
+}
+
+// Modelo de Detalle de Venta POS (POSSaleDetail)
+model POSSaleDetail {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  posSaleId           String   @db.ObjectId
+  posSale             POSSale  @relation(fields: [posSaleId], references: [id])
+  productoId          String
+  productoName        String
+  cantidad            Int
+  precio_unitario_al_momento_de_compra Int // en centavos
+}
+
+// Modelo de Servicio Técnico extendido
+model Service {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  
+  // Relaciones con cliente y dispositivo
+  buyerId  String?   @db.ObjectId
+  buyer    Buyer?    @relation("CustomerServices", fields: [buyerId], references: [id], onDelete: SetNull)
+  
+  customerDeviceId String? @db.ObjectId
+  customerDevice   CustomerDevice? @relation("DeviceServices", fields: [customerDeviceId], references: [id], onDelete: SetNull)
+  
+  // Información del dispositivo (si no está registrado)
+  device   Json      // información del dispositivo
+  client   Json      // información del cliente (para retrocompatibilidad)
+  
+  // Estados del servicio
+  state    String    // Estados: INGRESADO, EN_DIAGNOSTICO, PRESUPUESTADO, etc.
+  
+  // Información técnica detallada
+  diagnostico String?
+  estado_dispositivo_al_ingresar DeviceStatus?
+  observaciones String?
+  
+  // Reparación y piezas
+  repair   String    // descripción de la reparación
+  piezas   Json?     // array de piezas utilizadas con precios
+  
+  // Información financiera
+  total    Float
+  discount Float?
+  
+  // Fechas importantes
+  date     DateTime  // fecha de ingreso
+  dateOut  DateTime? // fecha de entrega
+  fecha_presupuesto DateTime?
+  fecha_aprobacion DateTime?
+  
+  // Garantía de reparación
+  garantia_hasta DateTime?
+  observaciones_garantia String?
+  
+  // Pagos
+  payments Json?
+}
+
+model Cashflow {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  active          Boolean
+  openDate        DateTime
+  closeDate       DateTime?
+  openingBalance  Float
+  total           Float
+  expenses        Float
+  cashSales       Float
+  cashServices    Float
+  digitalSales    Float
+  digitalServices Float
+  observations    String
+}
+
+model User {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  username String?
+  email    String  @unique
+  password String
+  avatar   String?
+  sucursal String?
+}
+
+type PaymentMethod {
+  amount Float
+  method String
+}
