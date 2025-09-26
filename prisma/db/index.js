@@ -438,7 +438,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Proyectos\\modotecnoERP\\bkndmtweb\\prisma\\db",
+      "value": "D:\\Proyectos\\modotecnoERP\\adminMTapirest\\prisma\\db",
       "fromEnvVar": null
     },
     "config": {
@@ -456,7 +456,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Proyectos\\modotecnoERP\\bkndmtweb\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Proyectos\\modotecnoERP\\adminMTapirest\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
