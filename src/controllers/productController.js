@@ -234,3 +234,134 @@ export const deleteProduct = async (req, res) => {
     res.status(500).json({ error: "Error deleting product" });
   }
 };
+
+// ========================================
+// ENDPOINTS PARA STOCK EN TIEMPO REAL
+// ========================================
+
+/**
+ * Validar stock de múltiples productos
+ * POST /api/product/validate-stock
+ * Body: { items: [{ id: string, quantity: number }] }
+ */
+export const validateStock = async (req, res) => {
+  try {
+    const { items } = req.body;
+
+    // Validar que items sea un array válido
+    if (!Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ 
+        error: 'Se requiere un array de items con id y quantity',
+        valid: false
+      });
+    }
+
+    // Validar estructura de cada item
+    for (const item of items) {
+      if (!item.id || typeof item.quantity !== 'number' || item.quantity <= 0) {
+        return res.status(400).json({ 
+          error: 'Cada item debe tener id (string) y quantity (número positivo)',
+          valid: false
+        });
+      }
+    }
+
+    const errors = [];
+
+    // Verificar stock para cada producto
+    for (const item of items) {
+      const product = await prisma.product.findUnique({
+        where: { id: item.id },
+        select: { 
+          id: true, 
+          name: true, 
+          stock: true,
+          hasVariants: true 
+        }
+      });
+
+      if (!product) {
+        errors.push({
+          productId: item.id,
+          productName: 'Producto no encontrado',
+          requested: item.quantity,
+          available: 0
+        });
+        continue;
+      }
+
+      // Verificar si tiene suficiente stock
+      if (product.stock < item.quantity) {
+        errors.push({
+          productId: product.id,
+          productName: product.name,
+          requested: item.quantity,
+          available: product.stock
+        });
+      }
+    }
+
+    // Retornar resultado de validación
+    return res.status(200).json({
+      valid: errors.length === 0,
+      errors: errors.length > 0 ? errors : undefined
+    });
+
+  } catch (error) {
+    console.error('Error validando stock:', error);
+    return res.status(500).json({ 
+      error: 'Error interno del servidor',
+      valid: false
+    });
+  }
+};
+
+/**
+ * Obtener stock de múltiples productos en batch
+ * POST /api/product/stock-batch
+ * Body: { ids: [string] }
+ */
+export const getStockBatch = async (req, res) => {
+  try {
+    const { ids } = req.body;
+
+    // Validar que ids sea un array válido
+    if (!Array.isArray(ids) || ids.length === 0) {
+      return res.status(400).json({ 
+        error: 'Se requiere un array de IDs de productos',
+        products: []
+      });
+    }
+
+    // Obtener productos con su stock
+    const products = await prisma.product.findMany({
+      where: { 
+        id: { in: ids } 
+      },
+      select: { 
+        id: true, 
+        stock: true 
+      }
+    });
+
+    // Si se solicitaron IDs que no existen, agregar con stock 0
+    const foundIds = products.map(p => p.id);
+    const missingIds = ids.filter(id => !foundIds.includes(id));
+    
+    const allProducts = [
+      ...products,
+      ...missingIds.map(id => ({ id, stock: 0 }))
+    ];
+
+    return res.status(200).json({ 
+      products: allProducts 
+    });
+
+  } catch (error) {
+    console.error('Error obteniendo stock en batch:', error);
+    return res.status(500).json({ 
+      error: 'Error interno del servidor',
+      products: []
+    });
+  }
+};

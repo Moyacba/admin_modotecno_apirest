@@ -6,6 +6,8 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
+  validateStock,
+  getStockBatch,
 } from "../controllers/productController.js ";
 
 import {
@@ -19,7 +21,17 @@ import {
 
 const router = express.Router();
 
-// Rutas de productos principales
+// ========================================
+// RUTAS DE STOCK EN TIEMPO REAL (NUEVAS)
+// ========================================
+// IMPORTANTE: Estas rutas deben estar ANTES de las rutas con :id
+// para evitar que Express las confunda con parámetros dinámicos
+router.post("/validate-stock", validateStock);
+router.post("/stock-batch", getStockBatch);
+
+// ========================================
+// RUTAS DE PRODUCTOS PRINCIPALES
+// ========================================
 router.get("/", getProducts);
 router.get("/:id", getProductById);
 router.post("/", createProduct);

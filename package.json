@@ -16,7 +16,8 @@
     "start:prod": "NODE_ENV=production pnpm start",
     "healthcheck": "node -e \"console.log('Health check passed')\"",
     "lint": "echo 'Linting not configured yet'",
-    "test": "echo 'Tests not configured yet'"
+    "test": "echo 'Tests not configured yet'",
+    "test:stock": "node test-stock-endpoints.js"
   },
   "keywords": [],
   "author": "",

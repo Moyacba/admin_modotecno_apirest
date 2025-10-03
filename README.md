@@ -119,6 +119,66 @@ Elimina un producto.
 
 ---
 
+### POST `/product/validate-stock` 🆕
+Valida si hay stock suficiente para múltiples productos.
+
+- **Body (JSON):**
+  ```json
+  {
+    "items": [
+      { "id": "producto-id", "quantity": 2 }
+    ]
+  }
+  ```
+- **Response:**
+  - `200 OK`: 
+    ```json
+    {
+      "valid": true
+    }
+    ```
+    O si hay errores:
+    ```json
+    {
+      "valid": false,
+      "errors": [
+        {
+          "productId": "...",
+          "productName": "...",
+          "requested": 5,
+          "available": 3
+        }
+      ]
+    }
+    ```
+  - `400 Bad Request`: Datos inválidos
+
+---
+
+### POST `/product/stock-batch` 🆕
+Obtiene el stock de múltiples productos en una sola petición.
+
+- **Body (JSON):**
+  ```json
+  {
+    "ids": ["producto-id-1", "producto-id-2"]
+  }
+  ```
+- **Response:**
+  - `200 OK`:
+    ```json
+    {
+      "products": [
+        { "id": "producto-id-1", "stock": 15 },
+        { "id": "producto-id-2", "stock": 0 }
+      ]
+    }
+    ```
+
+**📄 Documentación completa:** Ver [STOCK_ENDPOINTS.md](./STOCK_ENDPOINTS.md)
+
+---
+
 ## Ventas (`/sale`)
 
 ### GET `/sale`
