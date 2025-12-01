@@ -301,11 +301,34 @@ exports.Prisma.OrderScalarFieldEnum = {
   id: 'id',
   buyerId: 'buyerId',
   fecha_creacion: 'fecha_creacion',
+  fecha_pagado: 'fecha_pagado',
+  fecha_enviado: 'fecha_enviado',
+  fecha_entregado: 'fecha_entregado',
   monto_total: 'monto_total',
+  subtotal: 'subtotal',
+  descuento_aplicado: 'descuento_aplicado',
+  costo_envio: 'costo_envio',
   estado: 'estado',
   metodo_pago: 'metodo_pago',
+  id_transaccion_pasarela: 'id_transaccion_pasarela',
   info_envio: 'info_envio',
-  id_transaccion_pasarela: 'id_transaccion_pasarela'
+  provincia: 'provincia',
+  codigo_postal: 'codigo_postal',
+  tiempo_estimado_envio: 'tiempo_estimado_envio',
+  canal_venta: 'canal_venta',
+  utm_source: 'utm_source',
+  utm_medium: 'utm_medium',
+  utm_campaign: 'utm_campaign',
+  utm_content: 'utm_content',
+  utm_term: 'utm_term',
+  cupon_aplicado: 'cupon_aplicado',
+  session_id: 'session_id',
+  device_type: 'device_type',
+  user_agent: 'user_agent',
+  ip_address: 'ip_address',
+  tiempo_desde_primer_producto_agregado: 'tiempo_desde_primer_producto_agregado',
+  cantidad_productos_vistos: 'cantidad_productos_vistos',
+  abandono_carrito_previo: 'abandono_carrito_previo'
 };
 
 exports.Prisma.OrderDetailScalarFieldEnum = {
@@ -322,6 +345,7 @@ exports.Prisma.POSSaleScalarFieldEnum = {
   buyerId: 'buyerId',
   fecha_creacion: 'fecha_creacion',
   monto_total: 'monto_total',
+  descuento: 'descuento',
   estado: 'estado',
   metodo_pago: 'metodo_pago'
 };

@@ -57,6 +57,7 @@ export const createPOSSale = async (req, res) => {
     buyer,
     monto_total,
     metodo_pago,
+    descuento,
     productos
   } = req.body;
 
@@ -260,6 +261,7 @@ export const createPOSSale = async (req, res) => {
           monto_total,
           estado: "COMPLETADO",
           metodo_pago,
+          descuento,
           detalles: {
             create: productos.map(producto => ({
               productoId: producto.id,

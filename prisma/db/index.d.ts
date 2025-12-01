@@ -14935,82 +14935,240 @@ export namespace Prisma {
 
   export type OrderAvgAggregateOutputType = {
     monto_total: number | null
+    subtotal: number | null
+    descuento_aplicado: number | null
+    costo_envio: number | null
+    tiempo_desde_primer_producto_agregado: number | null
+    cantidad_productos_vistos: number | null
   }
 
   export type OrderSumAggregateOutputType = {
     monto_total: number | null
+    subtotal: number | null
+    descuento_aplicado: number | null
+    costo_envio: number | null
+    tiempo_desde_primer_producto_agregado: number | null
+    cantidad_productos_vistos: number | null
   }
 
   export type OrderMinAggregateOutputType = {
     id: string | null
     buyerId: string | null
     fecha_creacion: Date | null
+    fecha_pagado: Date | null
+    fecha_enviado: Date | null
+    fecha_entregado: Date | null
     monto_total: number | null
+    subtotal: number | null
+    descuento_aplicado: number | null
+    costo_envio: number | null
     estado: string | null
     metodo_pago: string | null
     id_transaccion_pasarela: string | null
+    provincia: string | null
+    codigo_postal: string | null
+    tiempo_estimado_envio: string | null
+    canal_venta: string | null
+    utm_source: string | null
+    utm_medium: string | null
+    utm_campaign: string | null
+    utm_content: string | null
+    utm_term: string | null
+    cupon_aplicado: string | null
+    session_id: string | null
+    device_type: string | null
+    user_agent: string | null
+    ip_address: string | null
+    tiempo_desde_primer_producto_agregado: number | null
+    cantidad_productos_vistos: number | null
+    abandono_carrito_previo: boolean | null
   }
 
   export type OrderMaxAggregateOutputType = {
     id: string | null
     buyerId: string | null
     fecha_creacion: Date | null
+    fecha_pagado: Date | null
+    fecha_enviado: Date | null
+    fecha_entregado: Date | null
     monto_total: number | null
+    subtotal: number | null
+    descuento_aplicado: number | null
+    costo_envio: number | null
     estado: string | null
     metodo_pago: string | null
     id_transaccion_pasarela: string | null
+    provincia: string | null
+    codigo_postal: string | null
+    tiempo_estimado_envio: string | null
+    canal_venta: string | null
+    utm_source: string | null
+    utm_medium: string | null
+    utm_campaign: string | null
+    utm_content: string | null
+    utm_term: string | null
+    cupon_aplicado: string | null
+    session_id: string | null
+    device_type: string | null
+    user_agent: string | null
+    ip_address: string | null
+    tiempo_desde_primer_producto_agregado: number | null
+    cantidad_productos_vistos: number | null
+    abandono_carrito_previo: boolean | null
   }
 
   export type OrderCountAggregateOutputType = {
     id: number
     buyerId: number
     fecha_creacion: number
+    fecha_pagado: number
+    fecha_enviado: number
+    fecha_entregado: number
     monto_total: number
+    subtotal: number
+    descuento_aplicado: number
+    costo_envio: number
     estado: number
     metodo_pago: number
-    info_envio: number
     id_transaccion_pasarela: number
+    info_envio: number
+    provincia: number
+    codigo_postal: number
+    tiempo_estimado_envio: number
+    canal_venta: number
+    utm_source: number
+    utm_medium: number
+    utm_campaign: number
+    utm_content: number
+    utm_term: number
+    cupon_aplicado: number
+    session_id: number
+    device_type: number
+    user_agent: number
+    ip_address: number
+    tiempo_desde_primer_producto_agregado: number
+    cantidad_productos_vistos: number
+    abandono_carrito_previo: number
     _all: number
   }
 
 
   export type OrderAvgAggregateInputType = {
     monto_total?: true
+    subtotal?: true
+    descuento_aplicado?: true
+    costo_envio?: true
+    tiempo_desde_primer_producto_agregado?: true
+    cantidad_productos_vistos?: true
   }
 
   export type OrderSumAggregateInputType = {
     monto_total?: true
+    subtotal?: true
+    descuento_aplicado?: true
+    costo_envio?: true
+    tiempo_desde_primer_producto_agregado?: true
+    cantidad_productos_vistos?: true
   }
 
   export type OrderMinAggregateInputType = {
     id?: true
     buyerId?: true
     fecha_creacion?: true
+    fecha_pagado?: true
+    fecha_enviado?: true
+    fecha_entregado?: true
     monto_total?: true
+    subtotal?: true
+    descuento_aplicado?: true
+    costo_envio?: true
     estado?: true
     metodo_pago?: true
     id_transaccion_pasarela?: true
+    provincia?: true
+    codigo_postal?: true
+    tiempo_estimado_envio?: true
+    canal_venta?: true
+    utm_source?: true
+    utm_medium?: true
+    utm_campaign?: true
+    utm_content?: true
+    utm_term?: true
+    cupon_aplicado?: true
+    session_id?: true
+    device_type?: true
+    user_agent?: true
+    ip_address?: true
+    tiempo_desde_primer_producto_agregado?: true
+    cantidad_productos_vistos?: true
+    abandono_carrito_previo?: true
   }
 
   export type OrderMaxAggregateInputType = {
     id?: true
     buyerId?: true
     fecha_creacion?: true
+    fecha_pagado?: true
+    fecha_enviado?: true
+    fecha_entregado?: true
     monto_total?: true
+    subtotal?: true
+    descuento_aplicado?: true
+    costo_envio?: true
     estado?: true
     metodo_pago?: true
     id_transaccion_pasarela?: true
+    provincia?: true
+    codigo_postal?: true
+    tiempo_estimado_envio?: true
+    canal_venta?: true
+    utm_source?: true
+    utm_medium?: true
+    utm_campaign?: true
+    utm_content?: true
+    utm_term?: true
+    cupon_aplicado?: true
+    session_id?: true
+    device_type?: true
+    user_agent?: true
+    ip_address?: true
+    tiempo_desde_primer_producto_agregado?: true
+    cantidad_productos_vistos?: true
+    abandono_carrito_previo?: true
   }
 
   export type OrderCountAggregateInputType = {
     id?: true
     buyerId?: true
     fecha_creacion?: true
+    fecha_pagado?: true
+    fecha_enviado?: true
+    fecha_entregado?: true
     monto_total?: true
+    subtotal?: true
+    descuento_aplicado?: true
+    costo_envio?: true
     estado?: true
     metodo_pago?: true
-    info_envio?: true
     id_transaccion_pasarela?: true
+    info_envio?: true
+    provincia?: true
+    codigo_postal?: true
+    tiempo_estimado_envio?: true
+    canal_venta?: true
+    utm_source?: true
+    utm_medium?: true
+    utm_campaign?: true
+    utm_content?: true
+    utm_term?: true
+    cupon_aplicado?: true
+    session_id?: true
+    device_type?: true
+    user_agent?: true
+    ip_address?: true
+    tiempo_desde_primer_producto_agregado?: true
+    cantidad_productos_vistos?: true
+    abandono_carrito_previo?: true
     _all?: true
   }
 
@@ -15104,11 +15262,34 @@ export namespace Prisma {
     id: string
     buyerId: string
     fecha_creacion: Date
+    fecha_pagado: Date | null
+    fecha_enviado: Date | null
+    fecha_entregado: Date | null
     monto_total: number
+    subtotal: number | null
+    descuento_aplicado: number
+    costo_envio: number
     estado: string
     metodo_pago: string
-    info_envio: JsonValue | null
     id_transaccion_pasarela: string | null
+    info_envio: JsonValue | null
+    provincia: string | null
+    codigo_postal: string | null
+    tiempo_estimado_envio: string | null
+    canal_venta: string
+    utm_source: string | null
+    utm_medium: string | null
+    utm_campaign: string | null
+    utm_content: string | null
+    utm_term: string | null
+    cupon_aplicado: string | null
+    session_id: string | null
+    device_type: string | null
+    user_agent: string | null
+    ip_address: string | null
+    tiempo_desde_primer_producto_agregado: number | null
+    cantidad_productos_vistos: number | null
+    abandono_carrito_previo: boolean
     _count: OrderCountAggregateOutputType | null
     _avg: OrderAvgAggregateOutputType | null
     _sum: OrderSumAggregateOutputType | null
@@ -15134,11 +15315,34 @@ export namespace Prisma {
     id?: boolean
     buyerId?: boolean
     fecha_creacion?: boolean
+    fecha_pagado?: boolean
+    fecha_enviado?: boolean
+    fecha_entregado?: boolean
     monto_total?: boolean
+    subtotal?: boolean
+    descuento_aplicado?: boolean
+    costo_envio?: boolean
     estado?: boolean
     metodo_pago?: boolean
-    info_envio?: boolean
     id_transaccion_pasarela?: boolean
+    info_envio?: boolean
+    provincia?: boolean
+    codigo_postal?: boolean
+    tiempo_estimado_envio?: boolean
+    canal_venta?: boolean
+    utm_source?: boolean
+    utm_medium?: boolean
+    utm_campaign?: boolean
+    utm_content?: boolean
+    utm_term?: boolean
+    cupon_aplicado?: boolean
+    session_id?: boolean
+    device_type?: boolean
+    user_agent?: boolean
+    ip_address?: boolean
+    tiempo_desde_primer_producto_agregado?: boolean
+    cantidad_productos_vistos?: boolean
+    abandono_carrito_previo?: boolean
     buyer?: boolean | BuyerDefaultArgs<ExtArgs>
     detalles?: boolean | Order$detallesArgs<ExtArgs>
     _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
@@ -15150,14 +15354,37 @@ export namespace Prisma {
     id?: boolean
     buyerId?: boolean
     fecha_creacion?: boolean
+    fecha_pagado?: boolean
+    fecha_enviado?: boolean
+    fecha_entregado?: boolean
     monto_total?: boolean
+    subtotal?: boolean
+    descuento_aplicado?: boolean
+    costo_envio?: boolean
     estado?: boolean
     metodo_pago?: boolean
-    info_envio?: boolean
     id_transaccion_pasarela?: boolean
+    info_envio?: boolean
+    provincia?: boolean
+    codigo_postal?: boolean
+    tiempo_estimado_envio?: boolean
+    canal_venta?: boolean
+    utm_source?: boolean
+    utm_medium?: boolean
+    utm_campaign?: boolean
+    utm_content?: boolean
+    utm_term?: boolean
+    cupon_aplicado?: boolean
+    session_id?: boolean
+    device_type?: boolean
+    user_agent?: boolean
+    ip_address?: boolean
+    tiempo_desde_primer_producto_agregado?: boolean
+    cantidad_productos_vistos?: boolean
+    abandono_carrito_previo?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "fecha_creacion" | "monto_total" | "estado" | "metodo_pago" | "info_envio" | "id_transaccion_pasarela", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "fecha_creacion" | "fecha_pagado" | "fecha_enviado" | "fecha_entregado" | "monto_total" | "subtotal" | "descuento_aplicado" | "costo_envio" | "estado" | "metodo_pago" | "id_transaccion_pasarela" | "info_envio" | "provincia" | "codigo_postal" | "tiempo_estimado_envio" | "canal_venta" | "utm_source" | "utm_medium" | "utm_campaign" | "utm_content" | "utm_term" | "cupon_aplicado" | "session_id" | "device_type" | "user_agent" | "ip_address" | "tiempo_desde_primer_producto_agregado" | "cantidad_productos_vistos" | "abandono_carrito_previo", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     buyer?: boolean | BuyerDefaultArgs<ExtArgs>
     detalles?: boolean | Order$detallesArgs<ExtArgs>
@@ -15174,11 +15401,34 @@ export namespace Prisma {
       id: string
       buyerId: string
       fecha_creacion: Date
+      fecha_pagado: Date | null
+      fecha_enviado: Date | null
+      fecha_entregado: Date | null
       monto_total: number
+      subtotal: number | null
+      descuento_aplicado: number
+      costo_envio: number
       estado: string
       metodo_pago: string
-      info_envio: Prisma.JsonValue | null
       id_transaccion_pasarela: string | null
+      info_envio: Prisma.JsonValue | null
+      provincia: string | null
+      codigo_postal: string | null
+      tiempo_estimado_envio: string | null
+      canal_venta: string
+      utm_source: string | null
+      utm_medium: string | null
+      utm_campaign: string | null
+      utm_content: string | null
+      utm_term: string | null
+      cupon_aplicado: string | null
+      session_id: string | null
+      device_type: string | null
+      user_agent: string | null
+      ip_address: string | null
+      tiempo_desde_primer_producto_agregado: number | null
+      cantidad_productos_vistos: number | null
+      abandono_carrito_previo: boolean
     }, ExtArgs["result"]["order"]>
     composites: {}
   }
@@ -15576,11 +15826,34 @@ export namespace Prisma {
     readonly id: FieldRef<"Order", 'String'>
     readonly buyerId: FieldRef<"Order", 'String'>
     readonly fecha_creacion: FieldRef<"Order", 'DateTime'>
+    readonly fecha_pagado: FieldRef<"Order", 'DateTime'>
+    readonly fecha_enviado: FieldRef<"Order", 'DateTime'>
+    readonly fecha_entregado: FieldRef<"Order", 'DateTime'>
     readonly monto_total: FieldRef<"Order", 'Int'>
+    readonly subtotal: FieldRef<"Order", 'Int'>
+    readonly descuento_aplicado: FieldRef<"Order", 'Float'>
+    readonly costo_envio: FieldRef<"Order", 'Float'>
     readonly estado: FieldRef<"Order", 'String'>
     readonly metodo_pago: FieldRef<"Order", 'String'>
-    readonly info_envio: FieldRef<"Order", 'Json'>
     readonly id_transaccion_pasarela: FieldRef<"Order", 'String'>
+    readonly info_envio: FieldRef<"Order", 'Json'>
+    readonly provincia: FieldRef<"Order", 'String'>
+    readonly codigo_postal: FieldRef<"Order", 'String'>
+    readonly tiempo_estimado_envio: FieldRef<"Order", 'String'>
+    readonly canal_venta: FieldRef<"Order", 'String'>
+    readonly utm_source: FieldRef<"Order", 'String'>
+    readonly utm_medium: FieldRef<"Order", 'String'>
+    readonly utm_campaign: FieldRef<"Order", 'String'>
+    readonly utm_content: FieldRef<"Order", 'String'>
+    readonly utm_term: FieldRef<"Order", 'String'>
+    readonly cupon_aplicado: FieldRef<"Order", 'String'>
+    readonly session_id: FieldRef<"Order", 'String'>
+    readonly device_type: FieldRef<"Order", 'String'>
+    readonly user_agent: FieldRef<"Order", 'String'>
+    readonly ip_address: FieldRef<"Order", 'String'>
+    readonly tiempo_desde_primer_producto_agregado: FieldRef<"Order", 'Int'>
+    readonly cantidad_productos_vistos: FieldRef<"Order", 'Int'>
+    readonly abandono_carrito_previo: FieldRef<"Order", 'Boolean'>
   }
     
 
@@ -17035,10 +17308,12 @@ export namespace Prisma {
 
   export type POSSaleAvgAggregateOutputType = {
     monto_total: number | null
+    descuento: number | null
   }
 
   export type POSSaleSumAggregateOutputType = {
     monto_total: number | null
+    descuento: number | null
   }
 
   export type POSSaleMinAggregateOutputType = {
@@ -17046,6 +17321,7 @@ export namespace Prisma {
     buyerId: string | null
     fecha_creacion: Date | null
     monto_total: number | null
+    descuento: number | null
     estado: string | null
   }
 
@@ -17054,6 +17330,7 @@ export namespace Prisma {
     buyerId: string | null
     fecha_creacion: Date | null
     monto_total: number | null
+    descuento: number | null
     estado: string | null
   }
 
@@ -17062,6 +17339,7 @@ export namespace Prisma {
     buyerId: number
     fecha_creacion: number
     monto_total: number
+    descuento: number
     estado: number
     metodo_pago: number
     _all: number
@@ -17070,10 +17348,12 @@ export namespace Prisma {
 
   export type POSSaleAvgAggregateInputType = {
     monto_total?: true
+    descuento?: true
   }
 
   export type POSSaleSumAggregateInputType = {
     monto_total?: true
+    descuento?: true
   }
 
   export type POSSaleMinAggregateInputType = {
@@ -17081,6 +17361,7 @@ export namespace Prisma {
     buyerId?: true
     fecha_creacion?: true
     monto_total?: true
+    descuento?: true
     estado?: true
   }
 
@@ -17089,6 +17370,7 @@ export namespace Prisma {
     buyerId?: true
     fecha_creacion?: true
     monto_total?: true
+    descuento?: true
     estado?: true
   }
 
@@ -17097,6 +17379,7 @@ export namespace Prisma {
     buyerId?: true
     fecha_creacion?: true
     monto_total?: true
+    descuento?: true
     estado?: true
     metodo_pago?: true
     _all?: true
@@ -17193,6 +17476,7 @@ export namespace Prisma {
     buyerId: string
     fecha_creacion: Date
     monto_total: number
+    descuento: number
     estado: string
     metodo_pago: JsonValue | null
     _count: POSSaleCountAggregateOutputType | null
@@ -17221,6 +17505,7 @@ export namespace Prisma {
     buyerId?: boolean
     fecha_creacion?: boolean
     monto_total?: boolean
+    descuento?: boolean
     estado?: boolean
     metodo_pago?: boolean
     buyer?: boolean | BuyerDefaultArgs<ExtArgs>
@@ -17235,11 +17520,12 @@ export namespace Prisma {
     buyerId?: boolean
     fecha_creacion?: boolean
     monto_total?: boolean
+    descuento?: boolean
     estado?: boolean
     metodo_pago?: boolean
   }
 
-  export type POSSaleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "fecha_creacion" | "monto_total" | "estado" | "metodo_pago", ExtArgs["result"]["pOSSale"]>
+  export type POSSaleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "fecha_creacion" | "monto_total" | "descuento" | "estado" | "metodo_pago", ExtArgs["result"]["pOSSale"]>
   export type POSSaleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     buyer?: boolean | BuyerDefaultArgs<ExtArgs>
     detalles?: boolean | POSSale$detallesArgs<ExtArgs>
@@ -17257,6 +17543,7 @@ export namespace Prisma {
       buyerId: string
       fecha_creacion: Date
       monto_total: number
+      descuento: number
       estado: string
       metodo_pago: Prisma.JsonValue | null
     }, ExtArgs["result"]["pOSSale"]>
@@ -17657,6 +17944,7 @@ export namespace Prisma {
     readonly buyerId: FieldRef<"POSSale", 'String'>
     readonly fecha_creacion: FieldRef<"POSSale", 'DateTime'>
     readonly monto_total: FieldRef<"POSSale", 'Int'>
+    readonly descuento: FieldRef<"POSSale", 'Int'>
     readonly estado: FieldRef<"POSSale", 'String'>
     readonly metodo_pago: FieldRef<"POSSale", 'Json'>
   }
@@ -22542,11 +22830,34 @@ export namespace Prisma {
     id: 'id',
     buyerId: 'buyerId',
     fecha_creacion: 'fecha_creacion',
+    fecha_pagado: 'fecha_pagado',
+    fecha_enviado: 'fecha_enviado',
+    fecha_entregado: 'fecha_entregado',
     monto_total: 'monto_total',
+    subtotal: 'subtotal',
+    descuento_aplicado: 'descuento_aplicado',
+    costo_envio: 'costo_envio',
     estado: 'estado',
     metodo_pago: 'metodo_pago',
+    id_transaccion_pasarela: 'id_transaccion_pasarela',
     info_envio: 'info_envio',
-    id_transaccion_pasarela: 'id_transaccion_pasarela'
+    provincia: 'provincia',
+    codigo_postal: 'codigo_postal',
+    tiempo_estimado_envio: 'tiempo_estimado_envio',
+    canal_venta: 'canal_venta',
+    utm_source: 'utm_source',
+    utm_medium: 'utm_medium',
+    utm_campaign: 'utm_campaign',
+    utm_content: 'utm_content',
+    utm_term: 'utm_term',
+    cupon_aplicado: 'cupon_aplicado',
+    session_id: 'session_id',
+    device_type: 'device_type',
+    user_agent: 'user_agent',
+    ip_address: 'ip_address',
+    tiempo_desde_primer_producto_agregado: 'tiempo_desde_primer_producto_agregado',
+    cantidad_productos_vistos: 'cantidad_productos_vistos',
+    abandono_carrito_previo: 'abandono_carrito_previo'
   };
 
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
@@ -22569,6 +22880,7 @@ export namespace Prisma {
     buyerId: 'buyerId',
     fecha_creacion: 'fecha_creacion',
     monto_total: 'monto_total',
+    descuento: 'descuento',
     estado: 'estado',
     metodo_pago: 'metodo_pago'
   };
@@ -23931,11 +24243,34 @@ export namespace Prisma {
     id?: StringFilter<"Order"> | string
     buyerId?: StringFilter<"Order"> | string
     fecha_creacion?: DateTimeFilter<"Order"> | Date | string
+    fecha_pagado?: DateTimeNullableFilter<"Order"> | Date | string | null
+    fecha_enviado?: DateTimeNullableFilter<"Order"> | Date | string | null
+    fecha_entregado?: DateTimeNullableFilter<"Order"> | Date | string | null
     monto_total?: IntFilter<"Order"> | number
+    subtotal?: IntNullableFilter<"Order"> | number | null
+    descuento_aplicado?: FloatFilter<"Order"> | number
+    costo_envio?: FloatFilter<"Order"> | number
     estado?: StringFilter<"Order"> | string
     metodo_pago?: StringFilter<"Order"> | string
-    info_envio?: JsonNullableFilter<"Order">
     id_transaccion_pasarela?: StringNullableFilter<"Order"> | string | null
+    info_envio?: JsonNullableFilter<"Order">
+    provincia?: StringNullableFilter<"Order"> | string | null
+    codigo_postal?: StringNullableFilter<"Order"> | string | null
+    tiempo_estimado_envio?: StringNullableFilter<"Order"> | string | null
+    canal_venta?: StringFilter<"Order"> | string
+    utm_source?: StringNullableFilter<"Order"> | string | null
+    utm_medium?: StringNullableFilter<"Order"> | string | null
+    utm_campaign?: StringNullableFilter<"Order"> | string | null
+    utm_content?: StringNullableFilter<"Order"> | string | null
+    utm_term?: StringNullableFilter<"Order"> | string | null
+    cupon_aplicado?: StringNullableFilter<"Order"> | string | null
+    session_id?: StringNullableFilter<"Order"> | string | null
+    device_type?: StringNullableFilter<"Order"> | string | null
+    user_agent?: StringNullableFilter<"Order"> | string | null
+    ip_address?: StringNullableFilter<"Order"> | string | null
+    tiempo_desde_primer_producto_agregado?: IntNullableFilter<"Order"> | number | null
+    cantidad_productos_vistos?: IntNullableFilter<"Order"> | number | null
+    abandono_carrito_previo?: BoolFilter<"Order"> | boolean
     buyer?: XOR<BuyerScalarRelationFilter, BuyerWhereInput>
     detalles?: OrderDetailListRelationFilter
   }
@@ -23944,11 +24279,34 @@ export namespace Prisma {
     id?: SortOrder
     buyerId?: SortOrder
     fecha_creacion?: SortOrder
+    fecha_pagado?: SortOrder
+    fecha_enviado?: SortOrder
+    fecha_entregado?: SortOrder
     monto_total?: SortOrder
+    subtotal?: SortOrder
+    descuento_aplicado?: SortOrder
+    costo_envio?: SortOrder
     estado?: SortOrder
     metodo_pago?: SortOrder
-    info_envio?: SortOrder
     id_transaccion_pasarela?: SortOrder
+    info_envio?: SortOrder
+    provincia?: SortOrder
+    codigo_postal?: SortOrder
+    tiempo_estimado_envio?: SortOrder
+    canal_venta?: SortOrder
+    utm_source?: SortOrder
+    utm_medium?: SortOrder
+    utm_campaign?: SortOrder
+    utm_content?: SortOrder
+    utm_term?: SortOrder
+    cupon_aplicado?: SortOrder
+    session_id?: SortOrder
+    device_type?: SortOrder
+    user_agent?: SortOrder
+    ip_address?: SortOrder
+    tiempo_desde_primer_producto_agregado?: SortOrder
+    cantidad_productos_vistos?: SortOrder
+    abandono_carrito_previo?: SortOrder
     buyer?: BuyerOrderByWithRelationInput
     detalles?: OrderDetailOrderByRelationAggregateInput
   }
@@ -23960,11 +24318,34 @@ export namespace Prisma {
     NOT?: OrderWhereInput | OrderWhereInput[]
     buyerId?: StringFilter<"Order"> | string
     fecha_creacion?: DateTimeFilter<"Order"> | Date | string
+    fecha_pagado?: DateTimeNullableFilter<"Order"> | Date | string | null
+    fecha_enviado?: DateTimeNullableFilter<"Order"> | Date | string | null
+    fecha_entregado?: DateTimeNullableFilter<"Order"> | Date | string | null
     monto_total?: IntFilter<"Order"> | number
+    subtotal?: IntNullableFilter<"Order"> | number | null
+    descuento_aplicado?: FloatFilter<"Order"> | number
+    costo_envio?: FloatFilter<"Order"> | number
     estado?: StringFilter<"Order"> | string
     metodo_pago?: StringFilter<"Order"> | string
-    info_envio?: JsonNullableFilter<"Order">
     id_transaccion_pasarela?: StringNullableFilter<"Order"> | string | null
+    info_envio?: JsonNullableFilter<"Order">
+    provincia?: StringNullableFilter<"Order"> | string | null
+    codigo_postal?: StringNullableFilter<"Order"> | string | null
+    tiempo_estimado_envio?: StringNullableFilter<"Order"> | string | null
+    canal_venta?: StringFilter<"Order"> | string
+    utm_source?: StringNullableFilter<"Order"> | string | null
+    utm_medium?: StringNullableFilter<"Order"> | string | null
+    utm_campaign?: StringNullableFilter<"Order"> | string | null
+    utm_content?: StringNullableFilter<"Order"> | string | null
+    utm_term?: StringNullableFilter<"Order"> | string | null
+    cupon_aplicado?: StringNullableFilter<"Order"> | string | null
+    session_id?: StringNullableFilter<"Order"> | string | null
+    device_type?: StringNullableFilter<"Order"> | string | null
+    user_agent?: StringNullableFilter<"Order"> | string | null
+    ip_address?: StringNullableFilter<"Order"> | string | null
+    tiempo_desde_primer_producto_agregado?: IntNullableFilter<"Order"> | number | null
+    cantidad_productos_vistos?: IntNullableFilter<"Order"> | number | null
+    abandono_carrito_previo?: BoolFilter<"Order"> | boolean
     buyer?: XOR<BuyerScalarRelationFilter, BuyerWhereInput>
     detalles?: OrderDetailListRelationFilter
   }, "id">
@@ -23973,11 +24354,34 @@ export namespace Prisma {
     id?: SortOrder
     buyerId?: SortOrder
     fecha_creacion?: SortOrder
+    fecha_pagado?: SortOrder
+    fecha_enviado?: SortOrder
+    fecha_entregado?: SortOrder
     monto_total?: SortOrder
+    subtotal?: SortOrder
+    descuento_aplicado?: SortOrder
+    costo_envio?: SortOrder
     estado?: SortOrder
     metodo_pago?: SortOrder
-    info_envio?: SortOrder
     id_transaccion_pasarela?: SortOrder
+    info_envio?: SortOrder
+    provincia?: SortOrder
+    codigo_postal?: SortOrder
+    tiempo_estimado_envio?: SortOrder
+    canal_venta?: SortOrder
+    utm_source?: SortOrder
+    utm_medium?: SortOrder
+    utm_campaign?: SortOrder
+    utm_content?: SortOrder
+    utm_term?: SortOrder
+    cupon_aplicado?: SortOrder
+    session_id?: SortOrder
+    device_type?: SortOrder
+    user_agent?: SortOrder
+    ip_address?: SortOrder
+    tiempo_desde_primer_producto_agregado?: SortOrder
+    cantidad_productos_vistos?: SortOrder
+    abandono_carrito_previo?: SortOrder
     _count?: OrderCountOrderByAggregateInput
     _avg?: OrderAvgOrderByAggregateInput
     _max?: OrderMaxOrderByAggregateInput
@@ -23992,11 +24396,34 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Order"> | string
     buyerId?: StringWithAggregatesFilter<"Order"> | string
     fecha_creacion?: DateTimeWithAggregatesFilter<"Order"> | Date | string
+    fecha_pagado?: DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
+    fecha_enviado?: DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
+    fecha_entregado?: DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
     monto_total?: IntWithAggregatesFilter<"Order"> | number
+    subtotal?: IntNullableWithAggregatesFilter<"Order"> | number | null
+    descuento_aplicado?: FloatWithAggregatesFilter<"Order"> | number
+    costo_envio?: FloatWithAggregatesFilter<"Order"> | number
     estado?: StringWithAggregatesFilter<"Order"> | string
     metodo_pago?: StringWithAggregatesFilter<"Order"> | string
-    info_envio?: JsonNullableWithAggregatesFilter<"Order">
     id_transaccion_pasarela?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    info_envio?: JsonNullableWithAggregatesFilter<"Order">
+    provincia?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    codigo_postal?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    tiempo_estimado_envio?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    canal_venta?: StringWithAggregatesFilter<"Order"> | string
+    utm_source?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    utm_medium?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    utm_campaign?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    utm_content?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    utm_term?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    cupon_aplicado?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    session_id?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    device_type?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    user_agent?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    ip_address?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    tiempo_desde_primer_producto_agregado?: IntNullableWithAggregatesFilter<"Order"> | number | null
+    cantidad_productos_vistos?: IntNullableWithAggregatesFilter<"Order"> | number | null
+    abandono_carrito_previo?: BoolWithAggregatesFilter<"Order"> | boolean
   }
 
   export type OrderDetailWhereInput = {
@@ -24069,6 +24496,7 @@ export namespace Prisma {
     buyerId?: StringFilter<"POSSale"> | string
     fecha_creacion?: DateTimeFilter<"POSSale"> | Date | string
     monto_total?: IntFilter<"POSSale"> | number
+    descuento?: IntFilter<"POSSale"> | number
     estado?: StringFilter<"POSSale"> | string
     metodo_pago?: JsonNullableFilter<"POSSale">
     buyer?: XOR<BuyerScalarRelationFilter, BuyerWhereInput>
@@ -24080,6 +24508,7 @@ export namespace Prisma {
     buyerId?: SortOrder
     fecha_creacion?: SortOrder
     monto_total?: SortOrder
+    descuento?: SortOrder
     estado?: SortOrder
     metodo_pago?: SortOrder
     buyer?: BuyerOrderByWithRelationInput
@@ -24094,6 +24523,7 @@ export namespace Prisma {
     buyerId?: StringFilter<"POSSale"> | string
     fecha_creacion?: DateTimeFilter<"POSSale"> | Date | string
     monto_total?: IntFilter<"POSSale"> | number
+    descuento?: IntFilter<"POSSale"> | number
     estado?: StringFilter<"POSSale"> | string
     metodo_pago?: JsonNullableFilter<"POSSale">
     buyer?: XOR<BuyerScalarRelationFilter, BuyerWhereInput>
@@ -24105,6 +24535,7 @@ export namespace Prisma {
     buyerId?: SortOrder
     fecha_creacion?: SortOrder
     monto_total?: SortOrder
+    descuento?: SortOrder
     estado?: SortOrder
     metodo_pago?: SortOrder
     _count?: POSSaleCountOrderByAggregateInput
@@ -24122,6 +24553,7 @@ export namespace Prisma {
     buyerId?: StringWithAggregatesFilter<"POSSale"> | string
     fecha_creacion?: DateTimeWithAggregatesFilter<"POSSale"> | Date | string
     monto_total?: IntWithAggregatesFilter<"POSSale"> | number
+    descuento?: IntWithAggregatesFilter<"POSSale"> | number
     estado?: StringWithAggregatesFilter<"POSSale"> | string
     metodo_pago?: JsonNullableWithAggregatesFilter<"POSSale">
   }
@@ -25750,11 +26182,34 @@ export namespace Prisma {
   export type OrderCreateInput = {
     id?: string
     fecha_creacion?: Date | string
+    fecha_pagado?: Date | string | null
+    fecha_enviado?: Date | string | null
+    fecha_entregado?: Date | string | null
     monto_total: number
+    subtotal?: number | null
+    descuento_aplicado?: number
+    costo_envio?: number
     estado: string
     metodo_pago: string
-    info_envio?: InputJsonValue | null
     id_transaccion_pasarela?: string | null
+    info_envio?: InputJsonValue | null
+    provincia?: string | null
+    codigo_postal?: string | null
+    tiempo_estimado_envio?: string | null
+    canal_venta?: string
+    utm_source?: string | null
+    utm_medium?: string | null
+    utm_campaign?: string | null
+    utm_content?: string | null
+    utm_term?: string | null
+    cupon_aplicado?: string | null
+    session_id?: string | null
+    device_type?: string | null
+    user_agent?: string | null
+    ip_address?: string | null
+    tiempo_desde_primer_producto_agregado?: number | null
+    cantidad_productos_vistos?: number | null
+    abandono_carrito_previo?: boolean
     buyer: BuyerCreateNestedOneWithoutOrdersInput
     detalles?: OrderDetailCreateNestedManyWithoutOrderInput
   }
@@ -25763,21 +26218,67 @@ export namespace Prisma {
     id?: string
     buyerId: string
     fecha_creacion?: Date | string
+    fecha_pagado?: Date | string | null
+    fecha_enviado?: Date | string | null
+    fecha_entregado?: Date | string | null
     monto_total: number
+    subtotal?: number | null
+    descuento_aplicado?: number
+    costo_envio?: number
     estado: string
     metodo_pago: string
-    info_envio?: InputJsonValue | null
     id_transaccion_pasarela?: string | null
+    info_envio?: InputJsonValue | null
+    provincia?: string | null
+    codigo_postal?: string | null
+    tiempo_estimado_envio?: string | null
+    canal_venta?: string
+    utm_source?: string | null
+    utm_medium?: string | null
+    utm_campaign?: string | null
+    utm_content?: string | null
+    utm_term?: string | null
+    cupon_aplicado?: string | null
+    session_id?: string | null
+    device_type?: string | null
+    user_agent?: string | null
+    ip_address?: string | null
+    tiempo_desde_primer_producto_agregado?: number | null
+    cantidad_productos_vistos?: number | null
+    abandono_carrito_previo?: boolean
     detalles?: OrderDetailUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUpdateInput = {
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    fecha_pagado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_enviado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_entregado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     monto_total?: IntFieldUpdateOperationsInput | number
+    subtotal?: NullableIntFieldUpdateOperationsInput | number | null
+    descuento_aplicado?: FloatFieldUpdateOperationsInput | number
+    costo_envio?: FloatFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: StringFieldUpdateOperationsInput | string
-    info_envio?: InputJsonValue | InputJsonValue | null
     id_transaccion_pasarela?: NullableStringFieldUpdateOperationsInput | string | null
+    info_envio?: InputJsonValue | InputJsonValue | null
+    provincia?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo_postal?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_estimado_envio?: NullableStringFieldUpdateOperationsInput | string | null
+    canal_venta?: StringFieldUpdateOperationsInput | string
+    utm_source?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_medium?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_campaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_content?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_term?: NullableStringFieldUpdateOperationsInput | string | null
+    cupon_aplicado?: NullableStringFieldUpdateOperationsInput | string | null
+    session_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_desde_primer_producto_agregado?: NullableIntFieldUpdateOperationsInput | number | null
+    cantidad_productos_vistos?: NullableIntFieldUpdateOperationsInput | number | null
+    abandono_carrito_previo?: BoolFieldUpdateOperationsInput | boolean
     buyer?: BuyerUpdateOneRequiredWithoutOrdersNestedInput
     detalles?: OrderDetailUpdateManyWithoutOrderNestedInput
   }
@@ -25785,11 +26286,34 @@ export namespace Prisma {
   export type OrderUncheckedUpdateInput = {
     buyerId?: StringFieldUpdateOperationsInput | string
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    fecha_pagado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_enviado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_entregado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     monto_total?: IntFieldUpdateOperationsInput | number
+    subtotal?: NullableIntFieldUpdateOperationsInput | number | null
+    descuento_aplicado?: FloatFieldUpdateOperationsInput | number
+    costo_envio?: FloatFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: StringFieldUpdateOperationsInput | string
-    info_envio?: InputJsonValue | InputJsonValue | null
     id_transaccion_pasarela?: NullableStringFieldUpdateOperationsInput | string | null
+    info_envio?: InputJsonValue | InputJsonValue | null
+    provincia?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo_postal?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_estimado_envio?: NullableStringFieldUpdateOperationsInput | string | null
+    canal_venta?: StringFieldUpdateOperationsInput | string
+    utm_source?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_medium?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_campaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_content?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_term?: NullableStringFieldUpdateOperationsInput | string | null
+    cupon_aplicado?: NullableStringFieldUpdateOperationsInput | string | null
+    session_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_desde_primer_producto_agregado?: NullableIntFieldUpdateOperationsInput | number | null
+    cantidad_productos_vistos?: NullableIntFieldUpdateOperationsInput | number | null
+    abandono_carrito_previo?: BoolFieldUpdateOperationsInput | boolean
     detalles?: OrderDetailUncheckedUpdateManyWithoutOrderNestedInput
   }
 
@@ -25797,30 +26321,99 @@ export namespace Prisma {
     id?: string
     buyerId: string
     fecha_creacion?: Date | string
+    fecha_pagado?: Date | string | null
+    fecha_enviado?: Date | string | null
+    fecha_entregado?: Date | string | null
     monto_total: number
+    subtotal?: number | null
+    descuento_aplicado?: number
+    costo_envio?: number
     estado: string
     metodo_pago: string
-    info_envio?: InputJsonValue | null
     id_transaccion_pasarela?: string | null
+    info_envio?: InputJsonValue | null
+    provincia?: string | null
+    codigo_postal?: string | null
+    tiempo_estimado_envio?: string | null
+    canal_venta?: string
+    utm_source?: string | null
+    utm_medium?: string | null
+    utm_campaign?: string | null
+    utm_content?: string | null
+    utm_term?: string | null
+    cupon_aplicado?: string | null
+    session_id?: string | null
+    device_type?: string | null
+    user_agent?: string | null
+    ip_address?: string | null
+    tiempo_desde_primer_producto_agregado?: number | null
+    cantidad_productos_vistos?: number | null
+    abandono_carrito_previo?: boolean
   }
 
   export type OrderUpdateManyMutationInput = {
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    fecha_pagado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_enviado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_entregado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     monto_total?: IntFieldUpdateOperationsInput | number
+    subtotal?: NullableIntFieldUpdateOperationsInput | number | null
+    descuento_aplicado?: FloatFieldUpdateOperationsInput | number
+    costo_envio?: FloatFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: StringFieldUpdateOperationsInput | string
-    info_envio?: InputJsonValue | InputJsonValue | null
     id_transaccion_pasarela?: NullableStringFieldUpdateOperationsInput | string | null
+    info_envio?: InputJsonValue | InputJsonValue | null
+    provincia?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo_postal?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_estimado_envio?: NullableStringFieldUpdateOperationsInput | string | null
+    canal_venta?: StringFieldUpdateOperationsInput | string
+    utm_source?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_medium?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_campaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_content?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_term?: NullableStringFieldUpdateOperationsInput | string | null
+    cupon_aplicado?: NullableStringFieldUpdateOperationsInput | string | null
+    session_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_desde_primer_producto_agregado?: NullableIntFieldUpdateOperationsInput | number | null
+    cantidad_productos_vistos?: NullableIntFieldUpdateOperationsInput | number | null
+    abandono_carrito_previo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type OrderUncheckedUpdateManyInput = {
     buyerId?: StringFieldUpdateOperationsInput | string
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    fecha_pagado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_enviado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_entregado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     monto_total?: IntFieldUpdateOperationsInput | number
+    subtotal?: NullableIntFieldUpdateOperationsInput | number | null
+    descuento_aplicado?: FloatFieldUpdateOperationsInput | number
+    costo_envio?: FloatFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: StringFieldUpdateOperationsInput | string
-    info_envio?: InputJsonValue | InputJsonValue | null
     id_transaccion_pasarela?: NullableStringFieldUpdateOperationsInput | string | null
+    info_envio?: InputJsonValue | InputJsonValue | null
+    provincia?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo_postal?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_estimado_envio?: NullableStringFieldUpdateOperationsInput | string | null
+    canal_venta?: StringFieldUpdateOperationsInput | string
+    utm_source?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_medium?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_campaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_content?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_term?: NullableStringFieldUpdateOperationsInput | string | null
+    cupon_aplicado?: NullableStringFieldUpdateOperationsInput | string | null
+    session_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_desde_primer_producto_agregado?: NullableIntFieldUpdateOperationsInput | number | null
+    cantidad_productos_vistos?: NullableIntFieldUpdateOperationsInput | number | null
+    abandono_carrito_previo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type OrderDetailCreateInput = {
@@ -25885,6 +26478,7 @@ export namespace Prisma {
     id?: string
     fecha_creacion?: Date | string
     monto_total: number
+    descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
     buyer: BuyerCreateNestedOneWithoutPosSalesInput
@@ -25896,6 +26490,7 @@ export namespace Prisma {
     buyerId: string
     fecha_creacion?: Date | string
     monto_total: number
+    descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
     detalles?: POSSaleDetailUncheckedCreateNestedManyWithoutPosSaleInput
@@ -25904,6 +26499,7 @@ export namespace Prisma {
   export type POSSaleUpdateInput = {
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
     monto_total?: IntFieldUpdateOperationsInput | number
+    descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
     buyer?: BuyerUpdateOneRequiredWithoutPosSalesNestedInput
@@ -25914,6 +26510,7 @@ export namespace Prisma {
     buyerId?: StringFieldUpdateOperationsInput | string
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
     monto_total?: IntFieldUpdateOperationsInput | number
+    descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
     detalles?: POSSaleDetailUncheckedUpdateManyWithoutPosSaleNestedInput
@@ -25924,6 +26521,7 @@ export namespace Prisma {
     buyerId: string
     fecha_creacion?: Date | string
     monto_total: number
+    descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
   }
@@ -25931,6 +26529,7 @@ export namespace Prisma {
   export type POSSaleUpdateManyMutationInput = {
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
     monto_total?: IntFieldUpdateOperationsInput | number
+    descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
   }
@@ -25939,6 +26538,7 @@ export namespace Prisma {
     buyerId?: StringFieldUpdateOperationsInput | string
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
     monto_total?: IntFieldUpdateOperationsInput | number
+    descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
   }
@@ -27425,39 +28025,118 @@ export namespace Prisma {
     id?: SortOrder
     buyerId?: SortOrder
     fecha_creacion?: SortOrder
+    fecha_pagado?: SortOrder
+    fecha_enviado?: SortOrder
+    fecha_entregado?: SortOrder
     monto_total?: SortOrder
+    subtotal?: SortOrder
+    descuento_aplicado?: SortOrder
+    costo_envio?: SortOrder
     estado?: SortOrder
     metodo_pago?: SortOrder
-    info_envio?: SortOrder
     id_transaccion_pasarela?: SortOrder
+    info_envio?: SortOrder
+    provincia?: SortOrder
+    codigo_postal?: SortOrder
+    tiempo_estimado_envio?: SortOrder
+    canal_venta?: SortOrder
+    utm_source?: SortOrder
+    utm_medium?: SortOrder
+    utm_campaign?: SortOrder
+    utm_content?: SortOrder
+    utm_term?: SortOrder
+    cupon_aplicado?: SortOrder
+    session_id?: SortOrder
+    device_type?: SortOrder
+    user_agent?: SortOrder
+    ip_address?: SortOrder
+    tiempo_desde_primer_producto_agregado?: SortOrder
+    cantidad_productos_vistos?: SortOrder
+    abandono_carrito_previo?: SortOrder
   }
 
   export type OrderAvgOrderByAggregateInput = {
     monto_total?: SortOrder
+    subtotal?: SortOrder
+    descuento_aplicado?: SortOrder
+    costo_envio?: SortOrder
+    tiempo_desde_primer_producto_agregado?: SortOrder
+    cantidad_productos_vistos?: SortOrder
   }
 
   export type OrderMaxOrderByAggregateInput = {
     id?: SortOrder
     buyerId?: SortOrder
     fecha_creacion?: SortOrder
+    fecha_pagado?: SortOrder
+    fecha_enviado?: SortOrder
+    fecha_entregado?: SortOrder
     monto_total?: SortOrder
+    subtotal?: SortOrder
+    descuento_aplicado?: SortOrder
+    costo_envio?: SortOrder
     estado?: SortOrder
     metodo_pago?: SortOrder
     id_transaccion_pasarela?: SortOrder
+    provincia?: SortOrder
+    codigo_postal?: SortOrder
+    tiempo_estimado_envio?: SortOrder
+    canal_venta?: SortOrder
+    utm_source?: SortOrder
+    utm_medium?: SortOrder
+    utm_campaign?: SortOrder
+    utm_content?: SortOrder
+    utm_term?: SortOrder
+    cupon_aplicado?: SortOrder
+    session_id?: SortOrder
+    device_type?: SortOrder
+    user_agent?: SortOrder
+    ip_address?: SortOrder
+    tiempo_desde_primer_producto_agregado?: SortOrder
+    cantidad_productos_vistos?: SortOrder
+    abandono_carrito_previo?: SortOrder
   }
 
   export type OrderMinOrderByAggregateInput = {
     id?: SortOrder
     buyerId?: SortOrder
     fecha_creacion?: SortOrder
+    fecha_pagado?: SortOrder
+    fecha_enviado?: SortOrder
+    fecha_entregado?: SortOrder
     monto_total?: SortOrder
+    subtotal?: SortOrder
+    descuento_aplicado?: SortOrder
+    costo_envio?: SortOrder
     estado?: SortOrder
     metodo_pago?: SortOrder
     id_transaccion_pasarela?: SortOrder
+    provincia?: SortOrder
+    codigo_postal?: SortOrder
+    tiempo_estimado_envio?: SortOrder
+    canal_venta?: SortOrder
+    utm_source?: SortOrder
+    utm_medium?: SortOrder
+    utm_campaign?: SortOrder
+    utm_content?: SortOrder
+    utm_term?: SortOrder
+    cupon_aplicado?: SortOrder
+    session_id?: SortOrder
+    device_type?: SortOrder
+    user_agent?: SortOrder
+    ip_address?: SortOrder
+    tiempo_desde_primer_producto_agregado?: SortOrder
+    cantidad_productos_vistos?: SortOrder
+    abandono_carrito_previo?: SortOrder
   }
 
   export type OrderSumOrderByAggregateInput = {
     monto_total?: SortOrder
+    subtotal?: SortOrder
+    descuento_aplicado?: SortOrder
+    costo_envio?: SortOrder
+    tiempo_desde_primer_producto_agregado?: SortOrder
+    cantidad_productos_vistos?: SortOrder
   }
 
   export type OrderScalarRelationFilter = {
@@ -27517,12 +28196,14 @@ export namespace Prisma {
     buyerId?: SortOrder
     fecha_creacion?: SortOrder
     monto_total?: SortOrder
+    descuento?: SortOrder
     estado?: SortOrder
     metodo_pago?: SortOrder
   }
 
   export type POSSaleAvgOrderByAggregateInput = {
     monto_total?: SortOrder
+    descuento?: SortOrder
   }
 
   export type POSSaleMaxOrderByAggregateInput = {
@@ -27530,6 +28211,7 @@ export namespace Prisma {
     buyerId?: SortOrder
     fecha_creacion?: SortOrder
     monto_total?: SortOrder
+    descuento?: SortOrder
     estado?: SortOrder
   }
 
@@ -27538,11 +28220,13 @@ export namespace Prisma {
     buyerId?: SortOrder
     fecha_creacion?: SortOrder
     monto_total?: SortOrder
+    descuento?: SortOrder
     estado?: SortOrder
   }
 
   export type POSSaleSumOrderByAggregateInput = {
     monto_total?: SortOrder
+    descuento?: SortOrder
   }
 
   export type POSSaleScalarRelationFilter = {
@@ -29153,22 +29837,68 @@ export namespace Prisma {
   export type OrderCreateWithoutBuyerInput = {
     id?: string
     fecha_creacion?: Date | string
+    fecha_pagado?: Date | string | null
+    fecha_enviado?: Date | string | null
+    fecha_entregado?: Date | string | null
     monto_total: number
+    subtotal?: number | null
+    descuento_aplicado?: number
+    costo_envio?: number
     estado: string
     metodo_pago: string
-    info_envio?: InputJsonValue | null
     id_transaccion_pasarela?: string | null
+    info_envio?: InputJsonValue | null
+    provincia?: string | null
+    codigo_postal?: string | null
+    tiempo_estimado_envio?: string | null
+    canal_venta?: string
+    utm_source?: string | null
+    utm_medium?: string | null
+    utm_campaign?: string | null
+    utm_content?: string | null
+    utm_term?: string | null
+    cupon_aplicado?: string | null
+    session_id?: string | null
+    device_type?: string | null
+    user_agent?: string | null
+    ip_address?: string | null
+    tiempo_desde_primer_producto_agregado?: number | null
+    cantidad_productos_vistos?: number | null
+    abandono_carrito_previo?: boolean
     detalles?: OrderDetailCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutBuyerInput = {
     id?: string
     fecha_creacion?: Date | string
+    fecha_pagado?: Date | string | null
+    fecha_enviado?: Date | string | null
+    fecha_entregado?: Date | string | null
     monto_total: number
+    subtotal?: number | null
+    descuento_aplicado?: number
+    costo_envio?: number
     estado: string
     metodo_pago: string
-    info_envio?: InputJsonValue | null
     id_transaccion_pasarela?: string | null
+    info_envio?: InputJsonValue | null
+    provincia?: string | null
+    codigo_postal?: string | null
+    tiempo_estimado_envio?: string | null
+    canal_venta?: string
+    utm_source?: string | null
+    utm_medium?: string | null
+    utm_campaign?: string | null
+    utm_content?: string | null
+    utm_term?: string | null
+    cupon_aplicado?: string | null
+    session_id?: string | null
+    device_type?: string | null
+    user_agent?: string | null
+    ip_address?: string | null
+    tiempo_desde_primer_producto_agregado?: number | null
+    cantidad_productos_vistos?: number | null
+    abandono_carrito_previo?: boolean
     detalles?: OrderDetailUncheckedCreateNestedManyWithoutOrderInput
   }
 
@@ -29185,6 +29915,7 @@ export namespace Prisma {
     id?: string
     fecha_creacion?: Date | string
     monto_total: number
+    descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
     detalles?: POSSaleDetailCreateNestedManyWithoutPosSaleInput
@@ -29194,6 +29925,7 @@ export namespace Prisma {
     id?: string
     fecha_creacion?: Date | string
     monto_total: number
+    descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
     detalles?: POSSaleDetailUncheckedCreateNestedManyWithoutPosSaleInput
@@ -29481,11 +30213,34 @@ export namespace Prisma {
     id?: StringFilter<"Order"> | string
     buyerId?: StringFilter<"Order"> | string
     fecha_creacion?: DateTimeFilter<"Order"> | Date | string
+    fecha_pagado?: DateTimeNullableFilter<"Order"> | Date | string | null
+    fecha_enviado?: DateTimeNullableFilter<"Order"> | Date | string | null
+    fecha_entregado?: DateTimeNullableFilter<"Order"> | Date | string | null
     monto_total?: IntFilter<"Order"> | number
+    subtotal?: IntNullableFilter<"Order"> | number | null
+    descuento_aplicado?: FloatFilter<"Order"> | number
+    costo_envio?: FloatFilter<"Order"> | number
     estado?: StringFilter<"Order"> | string
     metodo_pago?: StringFilter<"Order"> | string
-    info_envio?: JsonNullableFilter<"Order">
     id_transaccion_pasarela?: StringNullableFilter<"Order"> | string | null
+    info_envio?: JsonNullableFilter<"Order">
+    provincia?: StringNullableFilter<"Order"> | string | null
+    codigo_postal?: StringNullableFilter<"Order"> | string | null
+    tiempo_estimado_envio?: StringNullableFilter<"Order"> | string | null
+    canal_venta?: StringFilter<"Order"> | string
+    utm_source?: StringNullableFilter<"Order"> | string | null
+    utm_medium?: StringNullableFilter<"Order"> | string | null
+    utm_campaign?: StringNullableFilter<"Order"> | string | null
+    utm_content?: StringNullableFilter<"Order"> | string | null
+    utm_term?: StringNullableFilter<"Order"> | string | null
+    cupon_aplicado?: StringNullableFilter<"Order"> | string | null
+    session_id?: StringNullableFilter<"Order"> | string | null
+    device_type?: StringNullableFilter<"Order"> | string | null
+    user_agent?: StringNullableFilter<"Order"> | string | null
+    ip_address?: StringNullableFilter<"Order"> | string | null
+    tiempo_desde_primer_producto_agregado?: IntNullableFilter<"Order"> | number | null
+    cantidad_productos_vistos?: IntNullableFilter<"Order"> | number | null
+    abandono_carrito_previo?: BoolFilter<"Order"> | boolean
   }
 
   export type POSSaleUpsertWithWhereUniqueWithoutBuyerInput = {
@@ -29512,6 +30267,7 @@ export namespace Prisma {
     buyerId?: StringFilter<"POSSale"> | string
     fecha_creacion?: DateTimeFilter<"POSSale"> | Date | string
     monto_total?: IntFilter<"POSSale"> | number
+    descuento?: IntFilter<"POSSale"> | number
     estado?: StringFilter<"POSSale"> | string
     metodo_pago?: JsonNullableFilter<"POSSale">
   }
@@ -30651,11 +31407,34 @@ export namespace Prisma {
   export type OrderCreateWithoutDetallesInput = {
     id?: string
     fecha_creacion?: Date | string
+    fecha_pagado?: Date | string | null
+    fecha_enviado?: Date | string | null
+    fecha_entregado?: Date | string | null
     monto_total: number
+    subtotal?: number | null
+    descuento_aplicado?: number
+    costo_envio?: number
     estado: string
     metodo_pago: string
-    info_envio?: InputJsonValue | null
     id_transaccion_pasarela?: string | null
+    info_envio?: InputJsonValue | null
+    provincia?: string | null
+    codigo_postal?: string | null
+    tiempo_estimado_envio?: string | null
+    canal_venta?: string
+    utm_source?: string | null
+    utm_medium?: string | null
+    utm_campaign?: string | null
+    utm_content?: string | null
+    utm_term?: string | null
+    cupon_aplicado?: string | null
+    session_id?: string | null
+    device_type?: string | null
+    user_agent?: string | null
+    ip_address?: string | null
+    tiempo_desde_primer_producto_agregado?: number | null
+    cantidad_productos_vistos?: number | null
+    abandono_carrito_previo?: boolean
     buyer: BuyerCreateNestedOneWithoutOrdersInput
   }
 
@@ -30663,11 +31442,34 @@ export namespace Prisma {
     id?: string
     buyerId: string
     fecha_creacion?: Date | string
+    fecha_pagado?: Date | string | null
+    fecha_enviado?: Date | string | null
+    fecha_entregado?: Date | string | null
     monto_total: number
+    subtotal?: number | null
+    descuento_aplicado?: number
+    costo_envio?: number
     estado: string
     metodo_pago: string
-    info_envio?: InputJsonValue | null
     id_transaccion_pasarela?: string | null
+    info_envio?: InputJsonValue | null
+    provincia?: string | null
+    codigo_postal?: string | null
+    tiempo_estimado_envio?: string | null
+    canal_venta?: string
+    utm_source?: string | null
+    utm_medium?: string | null
+    utm_campaign?: string | null
+    utm_content?: string | null
+    utm_term?: string | null
+    cupon_aplicado?: string | null
+    session_id?: string | null
+    device_type?: string | null
+    user_agent?: string | null
+    ip_address?: string | null
+    tiempo_desde_primer_producto_agregado?: number | null
+    cantidad_productos_vistos?: number | null
+    abandono_carrito_previo?: boolean
   }
 
   export type OrderCreateOrConnectWithoutDetallesInput = {
@@ -30688,22 +31490,68 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutDetallesInput = {
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    fecha_pagado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_enviado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_entregado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     monto_total?: IntFieldUpdateOperationsInput | number
+    subtotal?: NullableIntFieldUpdateOperationsInput | number | null
+    descuento_aplicado?: FloatFieldUpdateOperationsInput | number
+    costo_envio?: FloatFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: StringFieldUpdateOperationsInput | string
-    info_envio?: InputJsonValue | InputJsonValue | null
     id_transaccion_pasarela?: NullableStringFieldUpdateOperationsInput | string | null
+    info_envio?: InputJsonValue | InputJsonValue | null
+    provincia?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo_postal?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_estimado_envio?: NullableStringFieldUpdateOperationsInput | string | null
+    canal_venta?: StringFieldUpdateOperationsInput | string
+    utm_source?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_medium?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_campaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_content?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_term?: NullableStringFieldUpdateOperationsInput | string | null
+    cupon_aplicado?: NullableStringFieldUpdateOperationsInput | string | null
+    session_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_desde_primer_producto_agregado?: NullableIntFieldUpdateOperationsInput | number | null
+    cantidad_productos_vistos?: NullableIntFieldUpdateOperationsInput | number | null
+    abandono_carrito_previo?: BoolFieldUpdateOperationsInput | boolean
     buyer?: BuyerUpdateOneRequiredWithoutOrdersNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutDetallesInput = {
     buyerId?: StringFieldUpdateOperationsInput | string
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    fecha_pagado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_enviado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_entregado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     monto_total?: IntFieldUpdateOperationsInput | number
+    subtotal?: NullableIntFieldUpdateOperationsInput | number | null
+    descuento_aplicado?: FloatFieldUpdateOperationsInput | number
+    costo_envio?: FloatFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: StringFieldUpdateOperationsInput | string
-    info_envio?: InputJsonValue | InputJsonValue | null
     id_transaccion_pasarela?: NullableStringFieldUpdateOperationsInput | string | null
+    info_envio?: InputJsonValue | InputJsonValue | null
+    provincia?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo_postal?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_estimado_envio?: NullableStringFieldUpdateOperationsInput | string | null
+    canal_venta?: StringFieldUpdateOperationsInput | string
+    utm_source?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_medium?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_campaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_content?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_term?: NullableStringFieldUpdateOperationsInput | string | null
+    cupon_aplicado?: NullableStringFieldUpdateOperationsInput | string | null
+    session_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_desde_primer_producto_agregado?: NullableIntFieldUpdateOperationsInput | number | null
+    cantidad_productos_vistos?: NullableIntFieldUpdateOperationsInput | number | null
+    abandono_carrito_previo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BuyerCreateWithoutPosSalesInput = {
@@ -30901,6 +31749,7 @@ export namespace Prisma {
     id?: string
     fecha_creacion?: Date | string
     monto_total: number
+    descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
     buyer: BuyerCreateNestedOneWithoutPosSalesInput
@@ -30911,6 +31760,7 @@ export namespace Prisma {
     buyerId: string
     fecha_creacion?: Date | string
     monto_total: number
+    descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
   }
@@ -30934,6 +31784,7 @@ export namespace Prisma {
   export type POSSaleUpdateWithoutDetallesInput = {
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
     monto_total?: IntFieldUpdateOperationsInput | number
+    descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
     buyer?: BuyerUpdateOneRequiredWithoutPosSalesNestedInput
@@ -30943,6 +31794,7 @@ export namespace Prisma {
     buyerId?: StringFieldUpdateOperationsInput | string
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
     monto_total?: IntFieldUpdateOperationsInput | number
+    descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
   }
@@ -31267,17 +32119,41 @@ export namespace Prisma {
   export type OrderCreateManyBuyerInput = {
     id?: string
     fecha_creacion?: Date | string
+    fecha_pagado?: Date | string | null
+    fecha_enviado?: Date | string | null
+    fecha_entregado?: Date | string | null
     monto_total: number
+    subtotal?: number | null
+    descuento_aplicado?: number
+    costo_envio?: number
     estado: string
     metodo_pago: string
-    info_envio?: InputJsonValue | null
     id_transaccion_pasarela?: string | null
+    info_envio?: InputJsonValue | null
+    provincia?: string | null
+    codigo_postal?: string | null
+    tiempo_estimado_envio?: string | null
+    canal_venta?: string
+    utm_source?: string | null
+    utm_medium?: string | null
+    utm_campaign?: string | null
+    utm_content?: string | null
+    utm_term?: string | null
+    cupon_aplicado?: string | null
+    session_id?: string | null
+    device_type?: string | null
+    user_agent?: string | null
+    ip_address?: string | null
+    tiempo_desde_primer_producto_agregado?: number | null
+    cantidad_productos_vistos?: number | null
+    abandono_carrito_previo?: boolean
   }
 
   export type POSSaleCreateManyBuyerInput = {
     id?: string
     fecha_creacion?: Date | string
     monto_total: number
+    descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
   }
@@ -31366,36 +32242,106 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutBuyerInput = {
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    fecha_pagado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_enviado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_entregado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     monto_total?: IntFieldUpdateOperationsInput | number
+    subtotal?: NullableIntFieldUpdateOperationsInput | number | null
+    descuento_aplicado?: FloatFieldUpdateOperationsInput | number
+    costo_envio?: FloatFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: StringFieldUpdateOperationsInput | string
-    info_envio?: InputJsonValue | InputJsonValue | null
     id_transaccion_pasarela?: NullableStringFieldUpdateOperationsInput | string | null
+    info_envio?: InputJsonValue | InputJsonValue | null
+    provincia?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo_postal?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_estimado_envio?: NullableStringFieldUpdateOperationsInput | string | null
+    canal_venta?: StringFieldUpdateOperationsInput | string
+    utm_source?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_medium?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_campaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_content?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_term?: NullableStringFieldUpdateOperationsInput | string | null
+    cupon_aplicado?: NullableStringFieldUpdateOperationsInput | string | null
+    session_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_desde_primer_producto_agregado?: NullableIntFieldUpdateOperationsInput | number | null
+    cantidad_productos_vistos?: NullableIntFieldUpdateOperationsInput | number | null
+    abandono_carrito_previo?: BoolFieldUpdateOperationsInput | boolean
     detalles?: OrderDetailUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutBuyerInput = {
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    fecha_pagado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_enviado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_entregado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     monto_total?: IntFieldUpdateOperationsInput | number
+    subtotal?: NullableIntFieldUpdateOperationsInput | number | null
+    descuento_aplicado?: FloatFieldUpdateOperationsInput | number
+    costo_envio?: FloatFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: StringFieldUpdateOperationsInput | string
-    info_envio?: InputJsonValue | InputJsonValue | null
     id_transaccion_pasarela?: NullableStringFieldUpdateOperationsInput | string | null
+    info_envio?: InputJsonValue | InputJsonValue | null
+    provincia?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo_postal?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_estimado_envio?: NullableStringFieldUpdateOperationsInput | string | null
+    canal_venta?: StringFieldUpdateOperationsInput | string
+    utm_source?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_medium?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_campaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_content?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_term?: NullableStringFieldUpdateOperationsInput | string | null
+    cupon_aplicado?: NullableStringFieldUpdateOperationsInput | string | null
+    session_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_desde_primer_producto_agregado?: NullableIntFieldUpdateOperationsInput | number | null
+    cantidad_productos_vistos?: NullableIntFieldUpdateOperationsInput | number | null
+    abandono_carrito_previo?: BoolFieldUpdateOperationsInput | boolean
     detalles?: OrderDetailUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateManyWithoutBuyerInput = {
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    fecha_pagado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_enviado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_entregado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     monto_total?: IntFieldUpdateOperationsInput | number
+    subtotal?: NullableIntFieldUpdateOperationsInput | number | null
+    descuento_aplicado?: FloatFieldUpdateOperationsInput | number
+    costo_envio?: FloatFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: StringFieldUpdateOperationsInput | string
-    info_envio?: InputJsonValue | InputJsonValue | null
     id_transaccion_pasarela?: NullableStringFieldUpdateOperationsInput | string | null
+    info_envio?: InputJsonValue | InputJsonValue | null
+    provincia?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo_postal?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_estimado_envio?: NullableStringFieldUpdateOperationsInput | string | null
+    canal_venta?: StringFieldUpdateOperationsInput | string
+    utm_source?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_medium?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_campaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_content?: NullableStringFieldUpdateOperationsInput | string | null
+    utm_term?: NullableStringFieldUpdateOperationsInput | string | null
+    cupon_aplicado?: NullableStringFieldUpdateOperationsInput | string | null
+    session_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_address?: NullableStringFieldUpdateOperationsInput | string | null
+    tiempo_desde_primer_producto_agregado?: NullableIntFieldUpdateOperationsInput | number | null
+    cantidad_productos_vistos?: NullableIntFieldUpdateOperationsInput | number | null
+    abandono_carrito_previo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type POSSaleUpdateWithoutBuyerInput = {
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
     monto_total?: IntFieldUpdateOperationsInput | number
+    descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
     detalles?: POSSaleDetailUpdateManyWithoutPosSaleNestedInput
@@ -31404,6 +32350,7 @@ export namespace Prisma {
   export type POSSaleUncheckedUpdateWithoutBuyerInput = {
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
     monto_total?: IntFieldUpdateOperationsInput | number
+    descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
     detalles?: POSSaleDetailUncheckedUpdateManyWithoutPosSaleNestedInput
@@ -31412,6 +32359,7 @@ export namespace Prisma {
   export type POSSaleUncheckedUpdateManyWithoutBuyerInput = {
     fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
     monto_total?: IntFieldUpdateOperationsInput | number
+    descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
   }

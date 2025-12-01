@@ -1,6 +1,81 @@
 import { PrismaClient } from "db";
 const prisma = new PrismaClient();
 
+/**
+ * Calcula un score de relevancia para ordenar resultados de búsqueda
+ * Mayor score = más relevante
+ */
+const calculateSearchScore = (product, searchKeyword) => {
+  const keyword = searchKeyword.toLowerCase().trim();
+  const productName = product.name.toLowerCase();
+  const productSku = (product.sku || '').toLowerCase();
+  
+  let score = 0;
+  
+  // 1. Coincidencia exacta del nombre completo (máxima prioridad)
+  if (productName === keyword) {
+    score += 1000;
+  }
+  
+  // 2. El nombre empieza con el keyword
+  else if (productName.startsWith(keyword)) {
+    score += 500;
+  }
+  
+  // 3. El keyword está contenido como frase exacta
+  else if (productName.includes(keyword)) {
+    score += 300;
+  }
+  
+  // 4. Scoring por palabras individuales
+  const keywordWords = keyword.split(/\s+/).filter(w => w.length > 0);
+  const productWords = productName.split(/\s+/).filter(w => w.length > 0);
+  
+  // Contar cuántas palabras del keyword están en el producto
+  let matchedWords = 0;
+  let exactWordMatches = 0;
+  let wordOrderBonus = 0;
+  
+  keywordWords.forEach((kw, index) => {
+    const productIndex = productWords.findIndex(pw => pw.includes(kw));
+    if (productIndex !== -1) {
+      matchedWords++;
+      // Bonus si la palabra está en la misma posición relativa
+      if (productIndex === index) {
+        wordOrderBonus += 20;
+      }
+      // Bonus si es coincidencia exacta de palabra
+      if (productWords[productIndex] === kw) {
+        exactWordMatches++;
+      }
+    }
+  });
+  
+  score += matchedWords * 50;
+  score += exactWordMatches * 30;
+  score += wordOrderBonus;
+  
+  // 5. Penalizar si el producto tiene muchas palabras extra
+  const extraWords = productWords.length - keywordWords.length;
+  if (extraWords > 0) {
+    score -= extraWords * 10;
+  }
+  
+  // 6. Bonus si el SKU coincide
+  if (productSku === keyword) {
+    score += 800;
+  } else if (productSku.includes(keyword)) {
+    score += 100;
+  }
+  
+  // 7. Bonus por longitud similar (evita que "iPhone 15 Pro Max" sea mejor que "iPhone 15 Pro")
+  const lengthDiff = Math.abs(productName.length - keyword.length);
+  const lengthPenalty = Math.min(lengthDiff * 2, 100);
+  score -= lengthPenalty;
+  
+  return score;
+};
+
 // Obtener todos los productos (incluyendo variantes en búsqueda)
 export const getProducts = async (req, res) => {
   try {
@@ -32,37 +107,76 @@ export const getProducts = async (req, res) => {
       let totalCount = await prisma.product.count({ where: andWhere });
 
       if (totalCount > 0) {
-        const products = await prisma.product.findMany({
+        // Obtener TODOS los resultados para poder ordenarlos por score
+        const allProducts = await prisma.product.findMany({
           where: andWhere,
-          skip,
-          take: pageSize,
           include: includeVariants ? {
             variants: {
               where: { isActive: true },
               orderBy: { createdAt: 'desc' },
             }
           } : undefined,
-          orderBy: { createdAt: 'desc' },
         });
-        return res.status(200).json({ products, totalCount });
+        
+        // Calcular score y ordenar por relevancia
+        const productsWithScore = allProducts.map(product => ({
+          ...product,
+          _score: calculateSearchScore(product, keyword)
+        }));
+        
+        productsWithScore.sort((a, b) => {
+          // Primero por score (descendente)
+          if (b._score !== a._score) {
+            return b._score - a._score;
+          }
+          // Si tienen el mismo score, por fecha de creación
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+        
+        // Aplicar paginación después del ordenamiento
+        const paginatedProducts = productsWithScore
+          .slice(skip, skip + pageSize)
+          .map(({ _score, ...product }) => product); // Remover el score del resultado
+        
+        return res.status(200).json({ products: paginatedProducts, totalCount });
       }
 
       // Si no hay resultados con AND, usar OR
       const orWhere = { ...where, OR: keywordConditions.flatMap(c => c.OR) };
       totalCount = await prisma.product.count({ where: orWhere });
-      const products = await prisma.product.findMany({
+      
+      // Obtener TODOS los resultados para poder ordenarlos por score
+      const allProducts = await prisma.product.findMany({
         where: orWhere,
-        skip,
-        take: pageSize,
         include: includeVariants ? {
           variants: {
             where: { isActive: true },
             orderBy: { createdAt: 'desc' },
           }
         } : undefined,
-        orderBy: { createdAt: 'desc' },
       });
-      return res.status(200).json({ products, totalCount });
+      
+      // Calcular score y ordenar por relevancia
+      const productsWithScore = allProducts.map(product => ({
+        ...product,
+        _score: calculateSearchScore(product, keyword)
+      }));
+      
+      productsWithScore.sort((a, b) => {
+        // Primero por score (descendente)
+        if (b._score !== a._score) {
+          return b._score - a._score;
+        }
+        // Si tienen el mismo score, por fecha de creación
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
+      
+      // Aplicar paginación después del ordenamiento
+      const paginatedProducts = productsWithScore
+        .slice(skip, skip + pageSize)
+        .map(({ _score, ...product }) => product); // Remover el score del resultado
+      
+      return res.status(200).json({ products: paginatedProducts, totalCount });
     }
 
     // Si no hay keyword, solo filtrar por categoría (si existe)

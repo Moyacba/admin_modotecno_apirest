@@ -68,7 +68,7 @@ app.get("/example", (req, res) => {
 // Middleware para manejar errores
 app.use(handleErrors);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 const server = app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
   console.log(`🌐 Entorno: ${process.env.NODE_ENV || 'development'}`);

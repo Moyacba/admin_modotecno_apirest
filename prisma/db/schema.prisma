@@ -316,16 +316,55 @@ model Feedback {
 
 // Modelo de Orden (Order)
 model Order {
-  id                      String        @id @default(auto()) @map("_id") @db.ObjectId
-  buyerId                 String
-  buyer                   Buyer         @relation(fields: [buyerId], references: [id])
-  fecha_creacion          DateTime      @default(now())
-  monto_total             Int // en centavos
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  buyerId String @db.ObjectId
+  buyer   Buyer  @relation(fields: [buyerId], references: [id])
+
+  // Fechas y estado
+  fecha_creacion  DateTime  @default(now())
+  fecha_pagado    DateTime? // Cuándo se pagó efectivamente
+  fecha_enviado   DateTime?
+  fecha_entregado DateTime?
+
+  // Montos
+  monto_total        Int // en centavos
+  subtotal           Int? // sin envío ni descuentos
+  descuento_aplicado Float @default(0)
+  costo_envio        Float @default(0)
+
+  // Estado y pagos
   estado                  String // PENDIENTE_PAGO, PAGADO, ENVIADO, COMPLETADO, CANCELADO
   metodo_pago             String
-  info_envio              Json?
   id_transaccion_pasarela String?
-  detalles                OrderDetail[]
+
+  // Información de envío
+  info_envio            Json?
+  provincia             String?
+  codigo_postal         String?
+  tiempo_estimado_envio String?
+
+  // Canal y marketing
+  canal_venta    String  @default("ECOMMERCE")
+  utm_source     String?
+  utm_medium     String?
+  utm_campaign   String?
+  utm_content    String?
+  utm_term       String?
+  cupon_aplicado String?
+
+  // Tracking técnico
+  session_id  String?
+  device_type String? // mobile, desktop, tablet
+  user_agent  String?
+  ip_address  String?
+
+  // Comportamiento del usuario
+  tiempo_desde_primer_producto_agregado Int? // en segundos
+  cantidad_productos_vistos             Int?
+  abandono_carrito_previo               Boolean @default(false)
+
+  // Relaciones
+  detalles OrderDetail[]
 }
 
 // Modelo de Detalle de Orden (OrderDetail)
@@ -346,6 +385,7 @@ model POSSale {
   buyer          Buyer           @relation(fields: [buyerId], references: [id])
   fecha_creacion DateTime        @default(now())
   monto_total    Int // en centavos
+  descuento      Int // en centavos
   estado         String // COMPLETADO
   metodo_pago    Json? // [{method: "cash", amount: 2000}, {method: "qr", amount: 2000}]
   detalles       POSSaleDetail[]

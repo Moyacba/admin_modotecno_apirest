@@ -8,7 +8,7 @@ export const createOrder = async (req, res) => {
   try {
     // Validar y sanitizar entrada
     let productName = '';
-    const { buyer, items, metodo_pago, info_envio } = validateOrderInput(req.body);
+    const { buyer, items, metodo_pago, info_envio, tracking, envio, descuento } = validateOrderInput(req.body);
 
     // Verificar existencia de productos y stock
     const productosDB = await prisma.product.findMany({
@@ -17,39 +17,86 @@ export const createOrder = async (req, res) => {
     if (productosDB.length !== items.length) {
       return res.status(400).json({ error: 'Producto inexistente.' });
     }
-    // Recalcular total y verificar stock
-    let monto_total = 0;
+    
+    // Recalcular subtotal y verificar stock
+    let subtotal = 0;
     for (const item of items) {
       const prod = productosDB.find(p => p.id === item.id);
       if (!prod || prod.stock < item.cantidad) {
         return res.status(400).json({ error: `Stock insuficiente para ${prod?.name || item.id}` });
       }
-      monto_total += prod.salePrice * item.cantidad;
+      subtotal += prod.salePrice * item.cantidad;
     }
+    
+    // Calcular monto total (subtotal - descuento + envío)
+    const costo_envio = envio?.costo_envio || 0;
+    const descuento_aplicado = descuento?.descuento_aplicado || 0;
+    const monto_total = subtotal - descuento_aplicado + costo_envio;
 
-    // Crear o buscar comprador
+    // Crear o buscar comprador con datos de marketing si vienen
     let comprador = await prisma.buyer.findUnique({ where: { email: buyer.email } });
     if (!comprador) {
-      comprador = await prisma.buyer.create({ data: buyer });
+      const buyerData = {
+        ...buyer,
+        // Agregar UTMs al buyer si es primera vez y vienen en tracking
+        utm_source: tracking?.utm_source || undefined,
+        utm_medium: tracking?.utm_medium || undefined,
+        utm_campaign: tracking?.utm_campaign || undefined,
+        utm_content: tracking?.utm_content || undefined,
+        utm_term: tracking?.utm_term || undefined,
+      };
+      comprador = await prisma.buyer.create({ data: buyerData });
     }
+
+    // Preparar datos de la orden con todos los campos de tracking
+    const orderData = {
+      buyerId: comprador.id,
+      monto_total,
+      subtotal,
+      descuento_aplicado,
+      costo_envio,
+      estado: 'PENDIENTE_PAGO',
+      metodo_pago,
+      info_envio,
+      
+      // Información de envío
+      provincia: envio?.provincia || null,
+      codigo_postal: envio?.codigo_postal || null,
+      tiempo_estimado_envio: envio?.tiempo_estimado_envio || null,
+      
+      // Marketing y canal
+      canal_venta: 'ECOMMERCE',
+      utm_source: tracking?.utm_source || null,
+      utm_medium: tracking?.utm_medium || null,
+      utm_campaign: tracking?.utm_campaign || null,
+      utm_content: tracking?.utm_content || null,
+      utm_term: tracking?.utm_term || null,
+      cupon_aplicado: descuento?.cupon_aplicado || null,
+      
+      // Tracking técnico
+      session_id: tracking?.session_id || null,
+      device_type: tracking?.device_type || null,
+      user_agent: tracking?.user_agent || null,
+      ip_address: req.ip || req.headers['x-forwarded-for'] || req.connection.remoteAddress || null,
+      
+      // Comportamiento
+      tiempo_desde_primer_producto_agregado: tracking?.tiempo_desde_primer_producto_agregado || null,
+      cantidad_productos_vistos: tracking?.cantidad_productos_vistos || null,
+      abandono_carrito_previo: tracking?.abandono_carrito_previo || false,
+      
+      detalles: {
+        create: items.map(item => ({
+          productoId: item.id,
+          cantidad: item.cantidad,
+          productoName: productosDB.find(p => p.id === item.id).name,
+          precio_unitario_al_momento_de_compra: productosDB.find(p => p.id === item.id).salePrice
+        }))
+      }
+    };
 
     // Crear orden en estado PENDIENTE_PAGO
     const order = await prisma.order.create({
-      data: {
-        buyerId: comprador.id,
-        monto_total,
-        estado: 'PENDIENTE_PAGO',
-        metodo_pago,
-        info_envio,
-        detalles: {
-          create: items.map(item => ({
-            productoId: item.id,
-            cantidad: item.cantidad,
-            productoName: productosDB.find(p => p.id === item.id).name,
-            precio_unitario_al_momento_de_compra: productosDB.find(p => p.id === item.id).salePrice
-          }))
-        }
-      },
+      data: orderData,
       include: { detalles: true, buyer: true }
     });
 
