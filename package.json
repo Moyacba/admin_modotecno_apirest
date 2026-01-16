@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "generate:db": "npx prisma generate --schema=./prisma/schema.prisma",
+    "generate:db": "pnpm exec prisma generate --schema=./prisma/schema.prisma",
     "build": "pnpm run generate:db",
     "postbuild": "echo 'Build completed successfully'",
     "prebuild": "echo 'Starting build process...'",
