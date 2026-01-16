@@ -8,6 +8,7 @@ import {
   deleteService,
   deliveryService,
   getServiceByQuery,
+  enterWarranty,
 } from "../controllers/serviceController.js";
 
 const router = express.Router();
@@ -27,6 +28,9 @@ router.post("/", createService);
 // Crear un nuevo servicio
 router.post("/delivery/:id", deliveryService);
 router.put("/delivery/:id", deliveryService);
+
+// Registrar ingreso por garantía
+router.put("/warranty/:id", enterWarranty);
 
 // Actualizar un servicio
 router.put("/:id", updateService);

@@ -17,7 +17,9 @@ router.get("/", getExpenses);
 router.get("/:id", getExpenseById);
 
 // Crear un nuevo gasto
-router.post("/", createExpense);
+// Crear un nuevo gasto
+import { upload } from "../controllers/cloudinaryController.js";
+router.post("/", upload.single("ticket"), createExpense);
 
 // Actualizar un gasto
 router.put("/:id", updateExpense);

@@ -13,27 +13,33 @@ export const upload = multer({
   limits: { fileSize: 15728640 }, // 15MB
 });
 
-const uploadParams = {
-  folder: "news",
-  transformation: [{ width: 1024, height: 1024, crop: "fill" }],
+export const uploadBuffer = (buffer, folder = "news") => {
+  return new Promise((resolve, reject) => {
+    const uploadParams = {
+      folder: folder,
+      transformation: [{ width: 1024, height: 1024, crop: "fill" }],
+    };
+
+    cloudinary.uploader
+      .upload_stream(uploadParams, (error, uploadResult) => {
+        if (error) return reject(error);
+        return resolve(uploadResult);
+      })
+      .end(buffer);
+  });
 };
 
 export const uploadImage = async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "No image file provided" });
+  }
   const { buffer } = req.file;
   try {
-    new Promise((resolve) => {
-      cloudinary.uploader
-        .upload_stream(uploadParams, (error, uploadResult) => {
-          if (error) throw error;
-          return resolve(uploadResult);
-        })
-        .end(buffer);
-    }).then((uploadResult) => {
-      console.log(
-        `Buffer upload_stream wth promise success - ${uploadResult.public_id}`
-      );
-      res.status(201).json(uploadResult.secure_url);
-    });
+    const uploadResult = await uploadBuffer(buffer);
+    console.log(
+      `Buffer upload_stream wth promise success - ${uploadResult.public_id}`
+    );
+    res.status(201).json(uploadResult.secure_url);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error uploading image" });

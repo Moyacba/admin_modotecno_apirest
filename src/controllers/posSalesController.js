@@ -106,7 +106,7 @@ export const createPOSSale = async (req, res) => {
     if (buyerId) {
       // Cliente existente - usar el ID proporcionado
       finalBuyerId = buyerId;
-      
+
       // Verificar que el buyer existe
       buyerData = await prisma.buyer.findUnique({
         where: { id: finalBuyerId }
@@ -120,7 +120,7 @@ export const createPOSSale = async (req, res) => {
       try {
         // Generar email único si no se proporciona uno específico
         let uniqueEmail = buyer.email || 'sinregistrar@modotecno.com';
-        
+
         if (uniqueEmail === 'sinregistrar@modotecno.com') {
           // Generar un email único basado en timestamp y nombre
           const timestamp = Date.now();
@@ -157,13 +157,13 @@ export const createPOSSale = async (req, res) => {
         }
       } catch (createError) {
         console.error("Error creating buyer:", createError);
-        
+
         // Si aún falla por email duplicado, intentar con un email más único
         if (createError.code === 'P2002' && createError.meta?.target === 'Buyer_email_key') {
           try {
             const uniqueId = Math.random().toString(36).substring(2, 15);
             const uniqueEmail = `sinregistrar_${uniqueId}@modotecno.com`;
-            
+
             buyerData = await prisma.buyer.create({
               data: {
                 nombre: buyer.nombre,
@@ -252,6 +252,15 @@ export const createPOSSale = async (req, res) => {
       });
     }
 
+    // Buscar si hay una sesión de caja abierta
+    const activeSession = await prisma.cashRegisterSession.findFirst({
+      where: { status: "OPEN" }
+    });
+
+    if (!activeSession) {
+      return res.status(400).json({ error: "Debe abrir la caja antes de realizar una venta." });
+    }
+
     // Usar transacción para garantizar consistencia
     const result = await prisma.$transaction(async (tx) => {
       // Crear la venta POS con sus detalles
@@ -262,6 +271,7 @@ export const createPOSSale = async (req, res) => {
           estado: "COMPLETADO",
           metodo_pago,
           descuento,
+          cashRegisterSessionId: activeSession?.id, // Vincular a la sesión si existe
           detalles: {
             create: productos.map(producto => ({
               productoId: producto.id,
@@ -291,7 +301,7 @@ export const createPOSSale = async (req, res) => {
           });
         }
       }
-      
+
       return newSale;
     });
 

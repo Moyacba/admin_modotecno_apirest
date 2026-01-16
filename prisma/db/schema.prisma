@@ -85,6 +85,9 @@ model Sale {
   total      Float
   discount   Float
   payments   Json?
+
+  cashRegisterSessionId String?              @db.ObjectId
+  cashRegisterSession   CashRegisterSession? @relation(fields: [cashRegisterSessionId], references: [id])
 }
 
 model Expense {
@@ -96,6 +99,11 @@ model Expense {
   date       DateTime
   category   String?
   categoryId Int?
+  provider   String?
+  ticketUrl  String?
+
+  cashRegisterSessionId String?              @db.ObjectId
+  cashRegisterSession   CashRegisterSession? @relation(fields: [cashRegisterSessionId], references: [id])
 }
 
 // Model for a cashflow
@@ -142,6 +150,18 @@ enum CustomerSegment {
   OCASIONAL
   NUEVO
   INACTIVO
+}
+
+enum CashMovementType {
+  INGRESO_MANUAL
+  RETIRO_MANUAL
+  GASTO
+  VENTA
+}
+
+enum SessionStatus {
+  OPEN
+  CLOSED
 }
 
 // Modelo de Comprador (Buyer)
@@ -389,6 +409,9 @@ model POSSale {
   estado         String // COMPLETADO
   metodo_pago    Json? // [{method: "cash", amount: 2000}, {method: "qr", amount: 2000}]
   detalles       POSSaleDetail[]
+
+  cashRegisterSessionId String?              @db.ObjectId
+  cashRegisterSession   CashRegisterSession? @relation(fields: [cashRegisterSessionId], references: [id])
 }
 
 // Modelo de Detalle de Venta POS (POSSaleDetail)
@@ -447,19 +470,45 @@ model Service {
   payments Json?
 }
 
-model Cashflow {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
-  active          Boolean
-  openDate        DateTime
-  closeDate       DateTime?
-  openingBalance  Float
-  total           Float
-  expenses        Float
-  cashSales       Float
-  cashServices    Float
-  digitalSales    Float
-  digitalServices Float
-  observations    String
+model CashRegisterSession {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  openedAt DateTime  @default(now())
+  closedAt DateTime?
+
+  initialCash Float // Monto inicial en caja al abrir
+
+  // Datos calculados al cierre (snapshot)
+  finalCashCalculated Float? // Lo que el sistema dice que debería haber en efectivo
+  finalCashCounted    Float? // Lo que el usuario cuenta físicamente
+  difference          Float? // Diferencia
+
+  status SessionStatus @default(OPEN)
+
+  openedBy String? // ID o Nombre del usuario
+  closedBy String?
+
+  observations String?
+
+  // Relaciones
+  movements CashMovement[]
+  sales     POSSale[]
+  expenses  Expense[]
+
+  // Nota: Podríamos linkear ventas web (Sale) si quisiéramos, pero por ahora POSSale es lo crítico de caja.
+  salesWeb Sale[]
+}
+
+model CashMovement {
+  id                    String              @id @default(auto()) @map("_id") @db.ObjectId
+  cashRegisterSessionId String              @db.ObjectId
+  cashRegisterSession   CashRegisterSession @relation(fields: [cashRegisterSessionId], references: [id])
+
+  type        CashMovementType
+  amount      Float
+  description String
+  date        DateTime         @default(now())
+
+  userId String? // Quién hizo el movimiento
 }
 
 model User {

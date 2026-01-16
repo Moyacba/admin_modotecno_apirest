@@ -11,6 +11,7 @@ import cloudinaryRoutes from "./cloudinaryRoutes.js";
 import orderRoutes from "./orderRoutes.js";
 import posSalesRoutes from "./posSalesRoutes.js";
 import hybridRoutes from "./hybridRoutes.js";
+import cashRegisterRoutes from "./cashRegisterRoutes.js";
 
 const router = Router();
 
@@ -26,6 +27,7 @@ router.use("/adapter", adapterRoutes);
 router.use("/image", cloudinaryRoutes);
 router.use("/order", orderRoutes);
 router.use("/pos-sales", posSalesRoutes);
+router.use("/cash-register", cashRegisterRoutes);
 
 // Nuevas rutas híbridas optimizadas para cache
 router.use("/", hybridRoutes);

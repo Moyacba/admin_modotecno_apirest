@@ -94,10 +94,15 @@ export type POSSaleDetail = $Result.DefaultSelection<Prisma.$POSSaleDetailPayloa
  */
 export type Service = $Result.DefaultSelection<Prisma.$ServicePayload>
 /**
- * Model Cashflow
+ * Model CashRegisterSession
  * 
  */
-export type Cashflow = $Result.DefaultSelection<Prisma.$CashflowPayload>
+export type CashRegisterSession = $Result.DefaultSelection<Prisma.$CashRegisterSessionPayload>
+/**
+ * Model CashMovement
+ * 
+ */
+export type CashMovement = $Result.DefaultSelection<Prisma.$CashMovementPayload>
 /**
  * Model User
  * 
@@ -165,6 +170,24 @@ export const CustomerSegment: {
 
 export type CustomerSegment = (typeof CustomerSegment)[keyof typeof CustomerSegment]
 
+
+export const CashMovementType: {
+  INGRESO_MANUAL: 'INGRESO_MANUAL',
+  RETIRO_MANUAL: 'RETIRO_MANUAL',
+  GASTO: 'GASTO',
+  VENTA: 'VENTA'
+};
+
+export type CashMovementType = (typeof CashMovementType)[keyof typeof CashMovementType]
+
+
+export const SessionStatus: {
+  OPEN: 'OPEN',
+  CLOSED: 'CLOSED'
+};
+
+export type SessionStatus = (typeof SessionStatus)[keyof typeof SessionStatus]
+
 }
 
 export type InteractionType = $Enums.InteractionType
@@ -186,6 +209,14 @@ export const DeviceStatus: typeof $Enums.DeviceStatus
 export type CustomerSegment = $Enums.CustomerSegment
 
 export const CustomerSegment: typeof $Enums.CustomerSegment
+
+export type CashMovementType = $Enums.CashMovementType
+
+export const CashMovementType: typeof $Enums.CashMovementType
+
+export type SessionStatus = $Enums.SessionStatus
+
+export const SessionStatus: typeof $Enums.SessionStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -440,14 +471,24 @@ export class PrismaClient<
   get service(): Prisma.ServiceDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.cashflow`: Exposes CRUD operations for the **Cashflow** model.
+   * `prisma.cashRegisterSession`: Exposes CRUD operations for the **CashRegisterSession** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Cashflows
-    * const cashflows = await prisma.cashflow.findMany()
+    * // Fetch zero or more CashRegisterSessions
+    * const cashRegisterSessions = await prisma.cashRegisterSession.findMany()
     * ```
     */
-  get cashflow(): Prisma.CashflowDelegate<ExtArgs, ClientOptions>;
+  get cashRegisterSession(): Prisma.CashRegisterSessionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.cashMovement`: Exposes CRUD operations for the **CashMovement** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CashMovements
+    * const cashMovements = await prisma.cashMovement.findMany()
+    * ```
+    */
+  get cashMovement(): Prisma.CashMovementDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -914,7 +955,8 @@ export namespace Prisma {
     POSSale: 'POSSale',
     POSSaleDetail: 'POSSaleDetail',
     Service: 'Service',
-    Cashflow: 'Cashflow',
+    CashRegisterSession: 'CashRegisterSession',
+    CashMovement: 'CashMovement',
     User: 'User'
   };
 
@@ -934,7 +976,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "product" | "productVariant" | "customer" | "sale" | "expense" | "buyer" | "communicationPreferences" | "customerDevice" | "productInteraction" | "browsingEvent" | "feedback" | "order" | "orderDetail" | "pOSSale" | "pOSSaleDetail" | "service" | "cashflow" | "user"
+      modelProps: "product" | "productVariant" | "customer" | "sale" | "expense" | "buyer" | "communicationPreferences" | "customerDevice" | "productInteraction" | "browsingEvent" | "feedback" | "order" | "orderDetail" | "pOSSale" | "pOSSaleDetail" | "service" | "cashRegisterSession" | "cashMovement" | "user"
       txIsolationLevel: never
     }
     model: {
@@ -2122,77 +2164,151 @@ export namespace Prisma {
           }
         }
       }
-      Cashflow: {
-        payload: Prisma.$CashflowPayload<ExtArgs>
-        fields: Prisma.CashflowFieldRefs
+      CashRegisterSession: {
+        payload: Prisma.$CashRegisterSessionPayload<ExtArgs>
+        fields: Prisma.CashRegisterSessionFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.CashflowFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CashflowPayload> | null
+            args: Prisma.CashRegisterSessionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashRegisterSessionPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.CashflowFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CashflowPayload>
+            args: Prisma.CashRegisterSessionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashRegisterSessionPayload>
           }
           findFirst: {
-            args: Prisma.CashflowFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CashflowPayload> | null
+            args: Prisma.CashRegisterSessionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashRegisterSessionPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.CashflowFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CashflowPayload>
+            args: Prisma.CashRegisterSessionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashRegisterSessionPayload>
           }
           findMany: {
-            args: Prisma.CashflowFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CashflowPayload>[]
+            args: Prisma.CashRegisterSessionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashRegisterSessionPayload>[]
           }
           create: {
-            args: Prisma.CashflowCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CashflowPayload>
+            args: Prisma.CashRegisterSessionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashRegisterSessionPayload>
           }
           createMany: {
-            args: Prisma.CashflowCreateManyArgs<ExtArgs>
+            args: Prisma.CashRegisterSessionCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.CashflowDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CashflowPayload>
+            args: Prisma.CashRegisterSessionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashRegisterSessionPayload>
           }
           update: {
-            args: Prisma.CashflowUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CashflowPayload>
+            args: Prisma.CashRegisterSessionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashRegisterSessionPayload>
           }
           deleteMany: {
-            args: Prisma.CashflowDeleteManyArgs<ExtArgs>
+            args: Prisma.CashRegisterSessionDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.CashflowUpdateManyArgs<ExtArgs>
+            args: Prisma.CashRegisterSessionUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.CashflowUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CashflowPayload>
+            args: Prisma.CashRegisterSessionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashRegisterSessionPayload>
           }
           aggregate: {
-            args: Prisma.CashflowAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateCashflow>
+            args: Prisma.CashRegisterSessionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCashRegisterSession>
           }
           groupBy: {
-            args: Prisma.CashflowGroupByArgs<ExtArgs>
-            result: $Utils.Optional<CashflowGroupByOutputType>[]
+            args: Prisma.CashRegisterSessionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CashRegisterSessionGroupByOutputType>[]
           }
           findRaw: {
-            args: Prisma.CashflowFindRawArgs<ExtArgs>
+            args: Prisma.CashRegisterSessionFindRawArgs<ExtArgs>
             result: JsonObject
           }
           aggregateRaw: {
-            args: Prisma.CashflowAggregateRawArgs<ExtArgs>
+            args: Prisma.CashRegisterSessionAggregateRawArgs<ExtArgs>
             result: JsonObject
           }
           count: {
-            args: Prisma.CashflowCountArgs<ExtArgs>
-            result: $Utils.Optional<CashflowCountAggregateOutputType> | number
+            args: Prisma.CashRegisterSessionCountArgs<ExtArgs>
+            result: $Utils.Optional<CashRegisterSessionCountAggregateOutputType> | number
+          }
+        }
+      }
+      CashMovement: {
+        payload: Prisma.$CashMovementPayload<ExtArgs>
+        fields: Prisma.CashMovementFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CashMovementFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashMovementPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CashMovementFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashMovementPayload>
+          }
+          findFirst: {
+            args: Prisma.CashMovementFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashMovementPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CashMovementFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashMovementPayload>
+          }
+          findMany: {
+            args: Prisma.CashMovementFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashMovementPayload>[]
+          }
+          create: {
+            args: Prisma.CashMovementCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashMovementPayload>
+          }
+          createMany: {
+            args: Prisma.CashMovementCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CashMovementDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashMovementPayload>
+          }
+          update: {
+            args: Prisma.CashMovementUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashMovementPayload>
+          }
+          deleteMany: {
+            args: Prisma.CashMovementDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CashMovementUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CashMovementUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CashMovementPayload>
+          }
+          aggregate: {
+            args: Prisma.CashMovementAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCashMovement>
+          }
+          groupBy: {
+            args: Prisma.CashMovementGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CashMovementGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.CashMovementFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.CashMovementAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.CashMovementCountArgs<ExtArgs>
+            result: $Utils.Optional<CashMovementCountAggregateOutputType> | number
           }
         }
       }
@@ -2357,7 +2473,8 @@ export namespace Prisma {
     pOSSale?: POSSaleOmit
     pOSSaleDetail?: POSSaleDetailOmit
     service?: ServiceOmit
-    cashflow?: CashflowOmit
+    cashRegisterSession?: CashRegisterSessionOmit
+    cashMovement?: CashMovementOmit
     user?: UserOmit
   }
 
@@ -2654,6 +2771,64 @@ export namespace Prisma {
    */
   export type POSSaleCountOutputTypeCountDetallesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: POSSaleDetailWhereInput
+  }
+
+
+  /**
+   * Count Type CashRegisterSessionCountOutputType
+   */
+
+  export type CashRegisterSessionCountOutputType = {
+    movements: number
+    sales: number
+    expenses: number
+    salesWeb: number
+  }
+
+  export type CashRegisterSessionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    movements?: boolean | CashRegisterSessionCountOutputTypeCountMovementsArgs
+    sales?: boolean | CashRegisterSessionCountOutputTypeCountSalesArgs
+    expenses?: boolean | CashRegisterSessionCountOutputTypeCountExpensesArgs
+    salesWeb?: boolean | CashRegisterSessionCountOutputTypeCountSalesWebArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CashRegisterSessionCountOutputType without action
+   */
+  export type CashRegisterSessionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashRegisterSessionCountOutputType
+     */
+    select?: CashRegisterSessionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CashRegisterSessionCountOutputType without action
+   */
+  export type CashRegisterSessionCountOutputTypeCountMovementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CashMovementWhereInput
+  }
+
+  /**
+   * CashRegisterSessionCountOutputType without action
+   */
+  export type CashRegisterSessionCountOutputTypeCountSalesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: POSSaleWhereInput
+  }
+
+  /**
+   * CashRegisterSessionCountOutputType without action
+   */
+  export type CashRegisterSessionCountOutputTypeCountExpensesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExpenseWhereInput
+  }
+
+  /**
+   * CashRegisterSessionCountOutputType without action
+   */
+  export type CashRegisterSessionCountOutputTypeCountSalesWebArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SaleWhereInput
   }
 
 
@@ -6060,6 +6235,7 @@ export namespace Prisma {
     date: Date | null
     total: number | null
     discount: number | null
+    cashRegisterSessionId: string | null
   }
 
   export type SaleMaxAggregateOutputType = {
@@ -6069,6 +6245,7 @@ export namespace Prisma {
     date: Date | null
     total: number | null
     discount: number | null
+    cashRegisterSessionId: string | null
   }
 
   export type SaleCountAggregateOutputType = {
@@ -6080,6 +6257,7 @@ export namespace Prisma {
     total: number
     discount: number
     payments: number
+    cashRegisterSessionId: number
     _all: number
   }
 
@@ -6101,6 +6279,7 @@ export namespace Prisma {
     date?: true
     total?: true
     discount?: true
+    cashRegisterSessionId?: true
   }
 
   export type SaleMaxAggregateInputType = {
@@ -6110,6 +6289,7 @@ export namespace Prisma {
     date?: true
     total?: true
     discount?: true
+    cashRegisterSessionId?: true
   }
 
   export type SaleCountAggregateInputType = {
@@ -6121,6 +6301,7 @@ export namespace Prisma {
     total?: true
     discount?: true
     payments?: true
+    cashRegisterSessionId?: true
     _all?: true
   }
 
@@ -6219,6 +6400,7 @@ export namespace Prisma {
     total: number
     discount: number
     payments: JsonValue | null
+    cashRegisterSessionId: string | null
     _count: SaleCountAggregateOutputType | null
     _avg: SaleAvgAggregateOutputType | null
     _sum: SaleSumAggregateOutputType | null
@@ -6249,6 +6431,8 @@ export namespace Prisma {
     total?: boolean
     discount?: boolean
     payments?: boolean
+    cashRegisterSessionId?: boolean
+    cashRegisterSession?: boolean | Sale$cashRegisterSessionArgs<ExtArgs>
   }, ExtArgs["result"]["sale"]>
 
 
@@ -6262,13 +6446,19 @@ export namespace Prisma {
     total?: boolean
     discount?: boolean
     payments?: boolean
+    cashRegisterSessionId?: boolean
   }
 
-  export type SaleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customerId" | "details" | "date" | "products" | "total" | "discount" | "payments", ExtArgs["result"]["sale"]>
+  export type SaleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customerId" | "details" | "date" | "products" | "total" | "discount" | "payments" | "cashRegisterSessionId", ExtArgs["result"]["sale"]>
+  export type SaleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    cashRegisterSession?: boolean | Sale$cashRegisterSessionArgs<ExtArgs>
+  }
 
   export type $SalePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Sale"
-    objects: {}
+    objects: {
+      cashRegisterSession: Prisma.$CashRegisterSessionPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       customerId: string
@@ -6278,6 +6468,7 @@ export namespace Prisma {
       total: number
       discount: number
       payments: Prisma.JsonValue | null
+      cashRegisterSessionId: string | null
     }, ExtArgs["result"]["sale"]>
     composites: {}
   }
@@ -6641,6 +6832,7 @@ export namespace Prisma {
    */
   export interface Prisma__SaleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    cashRegisterSession<T extends Sale$cashRegisterSessionArgs<ExtArgs> = {}>(args?: Subset<T, Sale$cashRegisterSessionArgs<ExtArgs>>): Prisma__CashRegisterSessionClient<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6678,6 +6870,7 @@ export namespace Prisma {
     readonly total: FieldRef<"Sale", 'Float'>
     readonly discount: FieldRef<"Sale", 'Float'>
     readonly payments: FieldRef<"Sale", 'Json'>
+    readonly cashRegisterSessionId: FieldRef<"Sale", 'String'>
   }
     
 
@@ -6694,6 +6887,10 @@ export namespace Prisma {
      * Omit specific fields from the Sale
      */
     omit?: SaleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SaleInclude<ExtArgs> | null
     /**
      * Filter, which Sale to fetch.
      */
@@ -6713,6 +6910,10 @@ export namespace Prisma {
      */
     omit?: SaleOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SaleInclude<ExtArgs> | null
+    /**
      * Filter, which Sale to fetch.
      */
     where: SaleWhereUniqueInput
@@ -6730,6 +6931,10 @@ export namespace Prisma {
      * Omit specific fields from the Sale
      */
     omit?: SaleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SaleInclude<ExtArgs> | null
     /**
      * Filter, which Sale to fetch.
      */
@@ -6779,6 +6984,10 @@ export namespace Prisma {
      */
     omit?: SaleOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SaleInclude<ExtArgs> | null
+    /**
      * Filter, which Sale to fetch.
      */
     where?: SaleWhereInput
@@ -6827,6 +7036,10 @@ export namespace Prisma {
      */
     omit?: SaleOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SaleInclude<ExtArgs> | null
+    /**
      * Filter, which Sales to fetch.
      */
     where?: SaleWhereInput
@@ -6870,6 +7083,10 @@ export namespace Prisma {
      */
     omit?: SaleOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SaleInclude<ExtArgs> | null
+    /**
      * The data needed to create a Sale.
      */
     data: XOR<SaleCreateInput, SaleUncheckedCreateInput>
@@ -6897,6 +7114,10 @@ export namespace Prisma {
      * Omit specific fields from the Sale
      */
     omit?: SaleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SaleInclude<ExtArgs> | null
     /**
      * The data needed to update a Sale.
      */
@@ -6938,6 +7159,10 @@ export namespace Prisma {
      */
     omit?: SaleOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SaleInclude<ExtArgs> | null
+    /**
      * The filter to search for the Sale to update in case it exists.
      */
     where: SaleWhereUniqueInput
@@ -6963,6 +7188,10 @@ export namespace Prisma {
      * Omit specific fields from the Sale
      */
     omit?: SaleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SaleInclude<ExtArgs> | null
     /**
      * Filter which Sale to delete.
      */
@@ -7012,6 +7241,25 @@ export namespace Prisma {
   }
 
   /**
+   * Sale.cashRegisterSession
+   */
+  export type Sale$cashRegisterSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashRegisterSession
+     */
+    select?: CashRegisterSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashRegisterSession
+     */
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashRegisterSessionInclude<ExtArgs> | null
+    where?: CashRegisterSessionWhereInput
+  }
+
+  /**
    * Sale without action
    */
   export type SaleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7023,6 +7271,10 @@ export namespace Prisma {
      * Omit specific fields from the Sale
      */
     omit?: SaleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SaleInclude<ExtArgs> | null
   }
 
 
@@ -7057,6 +7309,9 @@ export namespace Prisma {
     date: Date | null
     category: string | null
     categoryId: number | null
+    provider: string | null
+    ticketUrl: string | null
+    cashRegisterSessionId: string | null
   }
 
   export type ExpenseMaxAggregateOutputType = {
@@ -7068,6 +7323,9 @@ export namespace Prisma {
     date: Date | null
     category: string | null
     categoryId: number | null
+    provider: string | null
+    ticketUrl: string | null
+    cashRegisterSessionId: string | null
   }
 
   export type ExpenseCountAggregateOutputType = {
@@ -7079,6 +7337,9 @@ export namespace Prisma {
     date: number
     category: number
     categoryId: number
+    provider: number
+    ticketUrl: number
+    cashRegisterSessionId: number
     _all: number
   }
 
@@ -7102,6 +7363,9 @@ export namespace Prisma {
     date?: true
     category?: true
     categoryId?: true
+    provider?: true
+    ticketUrl?: true
+    cashRegisterSessionId?: true
   }
 
   export type ExpenseMaxAggregateInputType = {
@@ -7113,6 +7377,9 @@ export namespace Prisma {
     date?: true
     category?: true
     categoryId?: true
+    provider?: true
+    ticketUrl?: true
+    cashRegisterSessionId?: true
   }
 
   export type ExpenseCountAggregateInputType = {
@@ -7124,6 +7391,9 @@ export namespace Prisma {
     date?: true
     category?: true
     categoryId?: true
+    provider?: true
+    ticketUrl?: true
+    cashRegisterSessionId?: true
     _all?: true
   }
 
@@ -7222,6 +7492,9 @@ export namespace Prisma {
     date: Date
     category: string | null
     categoryId: number | null
+    provider: string | null
+    ticketUrl: string | null
+    cashRegisterSessionId: string | null
     _count: ExpenseCountAggregateOutputType | null
     _avg: ExpenseAvgAggregateOutputType | null
     _sum: ExpenseSumAggregateOutputType | null
@@ -7252,6 +7525,10 @@ export namespace Prisma {
     date?: boolean
     category?: boolean
     categoryId?: boolean
+    provider?: boolean
+    ticketUrl?: boolean
+    cashRegisterSessionId?: boolean
+    cashRegisterSession?: boolean | Expense$cashRegisterSessionArgs<ExtArgs>
   }, ExtArgs["result"]["expense"]>
 
 
@@ -7265,13 +7542,21 @@ export namespace Prisma {
     date?: boolean
     category?: boolean
     categoryId?: boolean
+    provider?: boolean
+    ticketUrl?: boolean
+    cashRegisterSessionId?: boolean
   }
 
-  export type ExpenseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "product" | "details" | "amount" | "method" | "date" | "category" | "categoryId", ExtArgs["result"]["expense"]>
+  export type ExpenseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "product" | "details" | "amount" | "method" | "date" | "category" | "categoryId" | "provider" | "ticketUrl" | "cashRegisterSessionId", ExtArgs["result"]["expense"]>
+  export type ExpenseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    cashRegisterSession?: boolean | Expense$cashRegisterSessionArgs<ExtArgs>
+  }
 
   export type $ExpensePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Expense"
-    objects: {}
+    objects: {
+      cashRegisterSession: Prisma.$CashRegisterSessionPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       product: string
@@ -7281,6 +7566,9 @@ export namespace Prisma {
       date: Date
       category: string | null
       categoryId: number | null
+      provider: string | null
+      ticketUrl: string | null
+      cashRegisterSessionId: string | null
     }, ExtArgs["result"]["expense"]>
     composites: {}
   }
@@ -7644,6 +7932,7 @@ export namespace Prisma {
    */
   export interface Prisma__ExpenseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    cashRegisterSession<T extends Expense$cashRegisterSessionArgs<ExtArgs> = {}>(args?: Subset<T, Expense$cashRegisterSessionArgs<ExtArgs>>): Prisma__CashRegisterSessionClient<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7681,6 +7970,9 @@ export namespace Prisma {
     readonly date: FieldRef<"Expense", 'DateTime'>
     readonly category: FieldRef<"Expense", 'String'>
     readonly categoryId: FieldRef<"Expense", 'Int'>
+    readonly provider: FieldRef<"Expense", 'String'>
+    readonly ticketUrl: FieldRef<"Expense", 'String'>
+    readonly cashRegisterSessionId: FieldRef<"Expense", 'String'>
   }
     
 
@@ -7697,6 +7989,10 @@ export namespace Prisma {
      * Omit specific fields from the Expense
      */
     omit?: ExpenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExpenseInclude<ExtArgs> | null
     /**
      * Filter, which Expense to fetch.
      */
@@ -7716,6 +8012,10 @@ export namespace Prisma {
      */
     omit?: ExpenseOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExpenseInclude<ExtArgs> | null
+    /**
      * Filter, which Expense to fetch.
      */
     where: ExpenseWhereUniqueInput
@@ -7733,6 +8033,10 @@ export namespace Prisma {
      * Omit specific fields from the Expense
      */
     omit?: ExpenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExpenseInclude<ExtArgs> | null
     /**
      * Filter, which Expense to fetch.
      */
@@ -7782,6 +8086,10 @@ export namespace Prisma {
      */
     omit?: ExpenseOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExpenseInclude<ExtArgs> | null
+    /**
      * Filter, which Expense to fetch.
      */
     where?: ExpenseWhereInput
@@ -7830,6 +8138,10 @@ export namespace Prisma {
      */
     omit?: ExpenseOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExpenseInclude<ExtArgs> | null
+    /**
      * Filter, which Expenses to fetch.
      */
     where?: ExpenseWhereInput
@@ -7873,6 +8185,10 @@ export namespace Prisma {
      */
     omit?: ExpenseOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExpenseInclude<ExtArgs> | null
+    /**
      * The data needed to create a Expense.
      */
     data: XOR<ExpenseCreateInput, ExpenseUncheckedCreateInput>
@@ -7900,6 +8216,10 @@ export namespace Prisma {
      * Omit specific fields from the Expense
      */
     omit?: ExpenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExpenseInclude<ExtArgs> | null
     /**
      * The data needed to update a Expense.
      */
@@ -7941,6 +8261,10 @@ export namespace Prisma {
      */
     omit?: ExpenseOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExpenseInclude<ExtArgs> | null
+    /**
      * The filter to search for the Expense to update in case it exists.
      */
     where: ExpenseWhereUniqueInput
@@ -7966,6 +8290,10 @@ export namespace Prisma {
      * Omit specific fields from the Expense
      */
     omit?: ExpenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExpenseInclude<ExtArgs> | null
     /**
      * Filter which Expense to delete.
      */
@@ -8015,6 +8343,25 @@ export namespace Prisma {
   }
 
   /**
+   * Expense.cashRegisterSession
+   */
+  export type Expense$cashRegisterSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashRegisterSession
+     */
+    select?: CashRegisterSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashRegisterSession
+     */
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashRegisterSessionInclude<ExtArgs> | null
+    where?: CashRegisterSessionWhereInput
+  }
+
+  /**
    * Expense without action
    */
   export type ExpenseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8026,6 +8373,10 @@ export namespace Prisma {
      * Omit specific fields from the Expense
      */
     omit?: ExpenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExpenseInclude<ExtArgs> | null
   }
 
 
@@ -17323,6 +17674,7 @@ export namespace Prisma {
     monto_total: number | null
     descuento: number | null
     estado: string | null
+    cashRegisterSessionId: string | null
   }
 
   export type POSSaleMaxAggregateOutputType = {
@@ -17332,6 +17684,7 @@ export namespace Prisma {
     monto_total: number | null
     descuento: number | null
     estado: string | null
+    cashRegisterSessionId: string | null
   }
 
   export type POSSaleCountAggregateOutputType = {
@@ -17342,6 +17695,7 @@ export namespace Prisma {
     descuento: number
     estado: number
     metodo_pago: number
+    cashRegisterSessionId: number
     _all: number
   }
 
@@ -17363,6 +17717,7 @@ export namespace Prisma {
     monto_total?: true
     descuento?: true
     estado?: true
+    cashRegisterSessionId?: true
   }
 
   export type POSSaleMaxAggregateInputType = {
@@ -17372,6 +17727,7 @@ export namespace Prisma {
     monto_total?: true
     descuento?: true
     estado?: true
+    cashRegisterSessionId?: true
   }
 
   export type POSSaleCountAggregateInputType = {
@@ -17382,6 +17738,7 @@ export namespace Prisma {
     descuento?: true
     estado?: true
     metodo_pago?: true
+    cashRegisterSessionId?: true
     _all?: true
   }
 
@@ -17479,6 +17836,7 @@ export namespace Prisma {
     descuento: number
     estado: string
     metodo_pago: JsonValue | null
+    cashRegisterSessionId: string | null
     _count: POSSaleCountAggregateOutputType | null
     _avg: POSSaleAvgAggregateOutputType | null
     _sum: POSSaleSumAggregateOutputType | null
@@ -17508,8 +17866,10 @@ export namespace Prisma {
     descuento?: boolean
     estado?: boolean
     metodo_pago?: boolean
+    cashRegisterSessionId?: boolean
     buyer?: boolean | BuyerDefaultArgs<ExtArgs>
     detalles?: boolean | POSSale$detallesArgs<ExtArgs>
+    cashRegisterSession?: boolean | POSSale$cashRegisterSessionArgs<ExtArgs>
     _count?: boolean | POSSaleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pOSSale"]>
 
@@ -17523,12 +17883,14 @@ export namespace Prisma {
     descuento?: boolean
     estado?: boolean
     metodo_pago?: boolean
+    cashRegisterSessionId?: boolean
   }
 
-  export type POSSaleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "fecha_creacion" | "monto_total" | "descuento" | "estado" | "metodo_pago", ExtArgs["result"]["pOSSale"]>
+  export type POSSaleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "fecha_creacion" | "monto_total" | "descuento" | "estado" | "metodo_pago" | "cashRegisterSessionId", ExtArgs["result"]["pOSSale"]>
   export type POSSaleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     buyer?: boolean | BuyerDefaultArgs<ExtArgs>
     detalles?: boolean | POSSale$detallesArgs<ExtArgs>
+    cashRegisterSession?: boolean | POSSale$cashRegisterSessionArgs<ExtArgs>
     _count?: boolean | POSSaleCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -17537,6 +17899,7 @@ export namespace Prisma {
     objects: {
       buyer: Prisma.$BuyerPayload<ExtArgs>
       detalles: Prisma.$POSSaleDetailPayload<ExtArgs>[]
+      cashRegisterSession: Prisma.$CashRegisterSessionPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -17546,6 +17909,7 @@ export namespace Prisma {
       descuento: number
       estado: string
       metodo_pago: Prisma.JsonValue | null
+      cashRegisterSessionId: string | null
     }, ExtArgs["result"]["pOSSale"]>
     composites: {}
   }
@@ -17911,6 +18275,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     buyer<T extends BuyerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BuyerDefaultArgs<ExtArgs>>): Prisma__BuyerClient<$Result.GetResult<Prisma.$BuyerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     detalles<T extends POSSale$detallesArgs<ExtArgs> = {}>(args?: Subset<T, POSSale$detallesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$POSSaleDetailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    cashRegisterSession<T extends POSSale$cashRegisterSessionArgs<ExtArgs> = {}>(args?: Subset<T, POSSale$cashRegisterSessionArgs<ExtArgs>>): Prisma__CashRegisterSessionClient<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -17947,6 +18312,7 @@ export namespace Prisma {
     readonly descuento: FieldRef<"POSSale", 'Int'>
     readonly estado: FieldRef<"POSSale", 'String'>
     readonly metodo_pago: FieldRef<"POSSale", 'Json'>
+    readonly cashRegisterSessionId: FieldRef<"POSSale", 'String'>
   }
     
 
@@ -18338,6 +18704,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: POSSaleDetailScalarFieldEnum | POSSaleDetailScalarFieldEnum[]
+  }
+
+  /**
+   * POSSale.cashRegisterSession
+   */
+  export type POSSale$cashRegisterSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashRegisterSession
+     */
+    select?: CashRegisterSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashRegisterSession
+     */
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashRegisterSessionInclude<ExtArgs> | null
+    where?: CashRegisterSessionWhereInput
   }
 
   /**
@@ -19426,6 +19811,8 @@ export namespace Prisma {
     fecha_aprobacion: Date | null
     garantia_hasta: Date | null
     observaciones_garantia: string | null
+    warrantyReturnDate: Date | null
+    warrantyReturnReason: string | null
   }
 
   export type ServiceMaxAggregateOutputType = {
@@ -19445,6 +19832,8 @@ export namespace Prisma {
     fecha_aprobacion: Date | null
     garantia_hasta: Date | null
     observaciones_garantia: string | null
+    warrantyReturnDate: Date | null
+    warrantyReturnReason: string | null
   }
 
   export type ServiceCountAggregateOutputType = {
@@ -19467,6 +19856,8 @@ export namespace Prisma {
     fecha_aprobacion: number
     garantia_hasta: number
     observaciones_garantia: number
+    warrantyReturnDate: number
+    warrantyReturnReason: number
     payments: number
     _all: number
   }
@@ -19499,6 +19890,8 @@ export namespace Prisma {
     fecha_aprobacion?: true
     garantia_hasta?: true
     observaciones_garantia?: true
+    warrantyReturnDate?: true
+    warrantyReturnReason?: true
   }
 
   export type ServiceMaxAggregateInputType = {
@@ -19518,6 +19911,8 @@ export namespace Prisma {
     fecha_aprobacion?: true
     garantia_hasta?: true
     observaciones_garantia?: true
+    warrantyReturnDate?: true
+    warrantyReturnReason?: true
   }
 
   export type ServiceCountAggregateInputType = {
@@ -19540,6 +19935,8 @@ export namespace Prisma {
     fecha_aprobacion?: true
     garantia_hasta?: true
     observaciones_garantia?: true
+    warrantyReturnDate?: true
+    warrantyReturnReason?: true
     payments?: true
     _all?: true
   }
@@ -19650,6 +20047,8 @@ export namespace Prisma {
     fecha_aprobacion: Date | null
     garantia_hasta: Date | null
     observaciones_garantia: string | null
+    warrantyReturnDate: Date | null
+    warrantyReturnReason: string | null
     payments: JsonValue | null
     _count: ServiceCountAggregateOutputType | null
     _avg: ServiceAvgAggregateOutputType | null
@@ -19692,6 +20091,8 @@ export namespace Prisma {
     fecha_aprobacion?: boolean
     garantia_hasta?: boolean
     observaciones_garantia?: boolean
+    warrantyReturnDate?: boolean
+    warrantyReturnReason?: boolean
     payments?: boolean
     buyer?: boolean | Service$buyerArgs<ExtArgs>
     customerDevice?: boolean | Service$customerDeviceArgs<ExtArgs>
@@ -19719,10 +20120,12 @@ export namespace Prisma {
     fecha_aprobacion?: boolean
     garantia_hasta?: boolean
     observaciones_garantia?: boolean
+    warrantyReturnDate?: boolean
+    warrantyReturnReason?: boolean
     payments?: boolean
   }
 
-  export type ServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "customerDeviceId" | "device" | "client" | "state" | "diagnostico" | "estado_dispositivo_al_ingresar" | "observaciones" | "repair" | "piezas" | "total" | "discount" | "date" | "dateOut" | "fecha_presupuesto" | "fecha_aprobacion" | "garantia_hasta" | "observaciones_garantia" | "payments", ExtArgs["result"]["service"]>
+  export type ServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "customerDeviceId" | "device" | "client" | "state" | "diagnostico" | "estado_dispositivo_al_ingresar" | "observaciones" | "repair" | "piezas" | "total" | "discount" | "date" | "dateOut" | "fecha_presupuesto" | "fecha_aprobacion" | "garantia_hasta" | "observaciones_garantia" | "warrantyReturnDate" | "warrantyReturnReason" | "payments", ExtArgs["result"]["service"]>
   export type ServiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     buyer?: boolean | Service$buyerArgs<ExtArgs>
     customerDevice?: boolean | Service$customerDeviceArgs<ExtArgs>
@@ -19754,6 +20157,8 @@ export namespace Prisma {
       fecha_aprobacion: Date | null
       garantia_hasta: Date | null
       observaciones_garantia: string | null
+      warrantyReturnDate: Date | null
+      warrantyReturnReason: string | null
       payments: Prisma.JsonValue | null
     }, ExtArgs["result"]["service"]>
     composites: {}
@@ -20168,6 +20573,8 @@ export namespace Prisma {
     readonly fecha_aprobacion: FieldRef<"Service", 'DateTime'>
     readonly garantia_hasta: FieldRef<"Service", 'DateTime'>
     readonly observaciones_garantia: FieldRef<"Service", 'String'>
+    readonly warrantyReturnDate: FieldRef<"Service", 'DateTime'>
+    readonly warrantyReturnReason: FieldRef<"Service", 'String'>
     readonly payments: FieldRef<"Service", 'Json'>
   }
     
@@ -20596,457 +21003,452 @@ export namespace Prisma {
 
 
   /**
-   * Model Cashflow
+   * Model CashRegisterSession
    */
 
-  export type AggregateCashflow = {
-    _count: CashflowCountAggregateOutputType | null
-    _avg: CashflowAvgAggregateOutputType | null
-    _sum: CashflowSumAggregateOutputType | null
-    _min: CashflowMinAggregateOutputType | null
-    _max: CashflowMaxAggregateOutputType | null
+  export type AggregateCashRegisterSession = {
+    _count: CashRegisterSessionCountAggregateOutputType | null
+    _avg: CashRegisterSessionAvgAggregateOutputType | null
+    _sum: CashRegisterSessionSumAggregateOutputType | null
+    _min: CashRegisterSessionMinAggregateOutputType | null
+    _max: CashRegisterSessionMaxAggregateOutputType | null
   }
 
-  export type CashflowAvgAggregateOutputType = {
-    openingBalance: number | null
-    total: number | null
-    expenses: number | null
-    cashSales: number | null
-    cashServices: number | null
-    digitalSales: number | null
-    digitalServices: number | null
+  export type CashRegisterSessionAvgAggregateOutputType = {
+    initialCash: number | null
+    finalCashCalculated: number | null
+    finalCashCounted: number | null
+    difference: number | null
   }
 
-  export type CashflowSumAggregateOutputType = {
-    openingBalance: number | null
-    total: number | null
-    expenses: number | null
-    cashSales: number | null
-    cashServices: number | null
-    digitalSales: number | null
-    digitalServices: number | null
+  export type CashRegisterSessionSumAggregateOutputType = {
+    initialCash: number | null
+    finalCashCalculated: number | null
+    finalCashCounted: number | null
+    difference: number | null
   }
 
-  export type CashflowMinAggregateOutputType = {
+  export type CashRegisterSessionMinAggregateOutputType = {
     id: string | null
-    active: boolean | null
-    openDate: Date | null
-    closeDate: Date | null
-    openingBalance: number | null
-    total: number | null
-    expenses: number | null
-    cashSales: number | null
-    cashServices: number | null
-    digitalSales: number | null
-    digitalServices: number | null
+    openedAt: Date | null
+    closedAt: Date | null
+    initialCash: number | null
+    finalCashCalculated: number | null
+    finalCashCounted: number | null
+    difference: number | null
+    status: $Enums.SessionStatus | null
+    openedBy: string | null
+    closedBy: string | null
     observations: string | null
   }
 
-  export type CashflowMaxAggregateOutputType = {
+  export type CashRegisterSessionMaxAggregateOutputType = {
     id: string | null
-    active: boolean | null
-    openDate: Date | null
-    closeDate: Date | null
-    openingBalance: number | null
-    total: number | null
-    expenses: number | null
-    cashSales: number | null
-    cashServices: number | null
-    digitalSales: number | null
-    digitalServices: number | null
+    openedAt: Date | null
+    closedAt: Date | null
+    initialCash: number | null
+    finalCashCalculated: number | null
+    finalCashCounted: number | null
+    difference: number | null
+    status: $Enums.SessionStatus | null
+    openedBy: string | null
+    closedBy: string | null
     observations: string | null
   }
 
-  export type CashflowCountAggregateOutputType = {
+  export type CashRegisterSessionCountAggregateOutputType = {
     id: number
-    active: number
-    openDate: number
-    closeDate: number
-    openingBalance: number
-    total: number
-    expenses: number
-    cashSales: number
-    cashServices: number
-    digitalSales: number
-    digitalServices: number
+    openedAt: number
+    closedAt: number
+    initialCash: number
+    finalCashCalculated: number
+    finalCashCounted: number
+    difference: number
+    status: number
+    openedBy: number
+    closedBy: number
     observations: number
     _all: number
   }
 
 
-  export type CashflowAvgAggregateInputType = {
-    openingBalance?: true
-    total?: true
-    expenses?: true
-    cashSales?: true
-    cashServices?: true
-    digitalSales?: true
-    digitalServices?: true
+  export type CashRegisterSessionAvgAggregateInputType = {
+    initialCash?: true
+    finalCashCalculated?: true
+    finalCashCounted?: true
+    difference?: true
   }
 
-  export type CashflowSumAggregateInputType = {
-    openingBalance?: true
-    total?: true
-    expenses?: true
-    cashSales?: true
-    cashServices?: true
-    digitalSales?: true
-    digitalServices?: true
+  export type CashRegisterSessionSumAggregateInputType = {
+    initialCash?: true
+    finalCashCalculated?: true
+    finalCashCounted?: true
+    difference?: true
   }
 
-  export type CashflowMinAggregateInputType = {
+  export type CashRegisterSessionMinAggregateInputType = {
     id?: true
-    active?: true
-    openDate?: true
-    closeDate?: true
-    openingBalance?: true
-    total?: true
-    expenses?: true
-    cashSales?: true
-    cashServices?: true
-    digitalSales?: true
-    digitalServices?: true
+    openedAt?: true
+    closedAt?: true
+    initialCash?: true
+    finalCashCalculated?: true
+    finalCashCounted?: true
+    difference?: true
+    status?: true
+    openedBy?: true
+    closedBy?: true
     observations?: true
   }
 
-  export type CashflowMaxAggregateInputType = {
+  export type CashRegisterSessionMaxAggregateInputType = {
     id?: true
-    active?: true
-    openDate?: true
-    closeDate?: true
-    openingBalance?: true
-    total?: true
-    expenses?: true
-    cashSales?: true
-    cashServices?: true
-    digitalSales?: true
-    digitalServices?: true
+    openedAt?: true
+    closedAt?: true
+    initialCash?: true
+    finalCashCalculated?: true
+    finalCashCounted?: true
+    difference?: true
+    status?: true
+    openedBy?: true
+    closedBy?: true
     observations?: true
   }
 
-  export type CashflowCountAggregateInputType = {
+  export type CashRegisterSessionCountAggregateInputType = {
     id?: true
-    active?: true
-    openDate?: true
-    closeDate?: true
-    openingBalance?: true
-    total?: true
-    expenses?: true
-    cashSales?: true
-    cashServices?: true
-    digitalSales?: true
-    digitalServices?: true
+    openedAt?: true
+    closedAt?: true
+    initialCash?: true
+    finalCashCalculated?: true
+    finalCashCounted?: true
+    difference?: true
+    status?: true
+    openedBy?: true
+    closedBy?: true
     observations?: true
     _all?: true
   }
 
-  export type CashflowAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Cashflow to aggregate.
+     * Filter which CashRegisterSession to aggregate.
      */
-    where?: CashflowWhereInput
+    where?: CashRegisterSessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Cashflows to fetch.
+     * Determine the order of CashRegisterSessions to fetch.
      */
-    orderBy?: CashflowOrderByWithRelationInput | CashflowOrderByWithRelationInput[]
+    orderBy?: CashRegisterSessionOrderByWithRelationInput | CashRegisterSessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: CashflowWhereUniqueInput
+    cursor?: CashRegisterSessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Cashflows from the position of the cursor.
+     * Take `±n` CashRegisterSessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Cashflows.
+     * Skip the first `n` CashRegisterSessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Cashflows
+     * Count returned CashRegisterSessions
     **/
-    _count?: true | CashflowCountAggregateInputType
+    _count?: true | CashRegisterSessionCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: CashflowAvgAggregateInputType
+    _avg?: CashRegisterSessionAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: CashflowSumAggregateInputType
+    _sum?: CashRegisterSessionSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: CashflowMinAggregateInputType
+    _min?: CashRegisterSessionMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: CashflowMaxAggregateInputType
+    _max?: CashRegisterSessionMaxAggregateInputType
   }
 
-  export type GetCashflowAggregateType<T extends CashflowAggregateArgs> = {
-        [P in keyof T & keyof AggregateCashflow]: P extends '_count' | 'count'
+  export type GetCashRegisterSessionAggregateType<T extends CashRegisterSessionAggregateArgs> = {
+        [P in keyof T & keyof AggregateCashRegisterSession]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateCashflow[P]>
-      : GetScalarType<T[P], AggregateCashflow[P]>
+        : GetScalarType<T[P], AggregateCashRegisterSession[P]>
+      : GetScalarType<T[P], AggregateCashRegisterSession[P]>
   }
 
 
 
 
-  export type CashflowGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CashflowWhereInput
-    orderBy?: CashflowOrderByWithAggregationInput | CashflowOrderByWithAggregationInput[]
-    by: CashflowScalarFieldEnum[] | CashflowScalarFieldEnum
-    having?: CashflowScalarWhereWithAggregatesInput
+  export type CashRegisterSessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CashRegisterSessionWhereInput
+    orderBy?: CashRegisterSessionOrderByWithAggregationInput | CashRegisterSessionOrderByWithAggregationInput[]
+    by: CashRegisterSessionScalarFieldEnum[] | CashRegisterSessionScalarFieldEnum
+    having?: CashRegisterSessionScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: CashflowCountAggregateInputType | true
-    _avg?: CashflowAvgAggregateInputType
-    _sum?: CashflowSumAggregateInputType
-    _min?: CashflowMinAggregateInputType
-    _max?: CashflowMaxAggregateInputType
+    _count?: CashRegisterSessionCountAggregateInputType | true
+    _avg?: CashRegisterSessionAvgAggregateInputType
+    _sum?: CashRegisterSessionSumAggregateInputType
+    _min?: CashRegisterSessionMinAggregateInputType
+    _max?: CashRegisterSessionMaxAggregateInputType
   }
 
-  export type CashflowGroupByOutputType = {
+  export type CashRegisterSessionGroupByOutputType = {
     id: string
-    active: boolean
-    openDate: Date
-    closeDate: Date | null
-    openingBalance: number
-    total: number
-    expenses: number
-    cashSales: number
-    cashServices: number
-    digitalSales: number
-    digitalServices: number
-    observations: string
-    _count: CashflowCountAggregateOutputType | null
-    _avg: CashflowAvgAggregateOutputType | null
-    _sum: CashflowSumAggregateOutputType | null
-    _min: CashflowMinAggregateOutputType | null
-    _max: CashflowMaxAggregateOutputType | null
+    openedAt: Date
+    closedAt: Date | null
+    initialCash: number
+    finalCashCalculated: number | null
+    finalCashCounted: number | null
+    difference: number | null
+    status: $Enums.SessionStatus
+    openedBy: string | null
+    closedBy: string | null
+    observations: string | null
+    _count: CashRegisterSessionCountAggregateOutputType | null
+    _avg: CashRegisterSessionAvgAggregateOutputType | null
+    _sum: CashRegisterSessionSumAggregateOutputType | null
+    _min: CashRegisterSessionMinAggregateOutputType | null
+    _max: CashRegisterSessionMaxAggregateOutputType | null
   }
 
-  type GetCashflowGroupByPayload<T extends CashflowGroupByArgs> = Prisma.PrismaPromise<
+  type GetCashRegisterSessionGroupByPayload<T extends CashRegisterSessionGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<CashflowGroupByOutputType, T['by']> &
+      PickEnumerable<CashRegisterSessionGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof CashflowGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof CashRegisterSessionGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], CashflowGroupByOutputType[P]>
-            : GetScalarType<T[P], CashflowGroupByOutputType[P]>
+              : GetScalarType<T[P], CashRegisterSessionGroupByOutputType[P]>
+            : GetScalarType<T[P], CashRegisterSessionGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type CashflowSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type CashRegisterSessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    active?: boolean
-    openDate?: boolean
-    closeDate?: boolean
-    openingBalance?: boolean
-    total?: boolean
-    expenses?: boolean
-    cashSales?: boolean
-    cashServices?: boolean
-    digitalSales?: boolean
-    digitalServices?: boolean
+    openedAt?: boolean
+    closedAt?: boolean
+    initialCash?: boolean
+    finalCashCalculated?: boolean
+    finalCashCounted?: boolean
+    difference?: boolean
+    status?: boolean
+    openedBy?: boolean
+    closedBy?: boolean
     observations?: boolean
-  }, ExtArgs["result"]["cashflow"]>
+    movements?: boolean | CashRegisterSession$movementsArgs<ExtArgs>
+    sales?: boolean | CashRegisterSession$salesArgs<ExtArgs>
+    expenses?: boolean | CashRegisterSession$expensesArgs<ExtArgs>
+    salesWeb?: boolean | CashRegisterSession$salesWebArgs<ExtArgs>
+    _count?: boolean | CashRegisterSessionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["cashRegisterSession"]>
 
 
 
-  export type CashflowSelectScalar = {
+  export type CashRegisterSessionSelectScalar = {
     id?: boolean
-    active?: boolean
-    openDate?: boolean
-    closeDate?: boolean
-    openingBalance?: boolean
-    total?: boolean
-    expenses?: boolean
-    cashSales?: boolean
-    cashServices?: boolean
-    digitalSales?: boolean
-    digitalServices?: boolean
+    openedAt?: boolean
+    closedAt?: boolean
+    initialCash?: boolean
+    finalCashCalculated?: boolean
+    finalCashCounted?: boolean
+    difference?: boolean
+    status?: boolean
+    openedBy?: boolean
+    closedBy?: boolean
     observations?: boolean
   }
 
-  export type CashflowOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "active" | "openDate" | "closeDate" | "openingBalance" | "total" | "expenses" | "cashSales" | "cashServices" | "digitalSales" | "digitalServices" | "observations", ExtArgs["result"]["cashflow"]>
+  export type CashRegisterSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "openedAt" | "closedAt" | "initialCash" | "finalCashCalculated" | "finalCashCounted" | "difference" | "status" | "openedBy" | "closedBy" | "observations", ExtArgs["result"]["cashRegisterSession"]>
+  export type CashRegisterSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    movements?: boolean | CashRegisterSession$movementsArgs<ExtArgs>
+    sales?: boolean | CashRegisterSession$salesArgs<ExtArgs>
+    expenses?: boolean | CashRegisterSession$expensesArgs<ExtArgs>
+    salesWeb?: boolean | CashRegisterSession$salesWebArgs<ExtArgs>
+    _count?: boolean | CashRegisterSessionCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
-  export type $CashflowPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Cashflow"
-    objects: {}
+  export type $CashRegisterSessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CashRegisterSession"
+    objects: {
+      movements: Prisma.$CashMovementPayload<ExtArgs>[]
+      sales: Prisma.$POSSalePayload<ExtArgs>[]
+      expenses: Prisma.$ExpensePayload<ExtArgs>[]
+      salesWeb: Prisma.$SalePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      active: boolean
-      openDate: Date
-      closeDate: Date | null
-      openingBalance: number
-      total: number
-      expenses: number
-      cashSales: number
-      cashServices: number
-      digitalSales: number
-      digitalServices: number
-      observations: string
-    }, ExtArgs["result"]["cashflow"]>
+      openedAt: Date
+      closedAt: Date | null
+      initialCash: number
+      finalCashCalculated: number | null
+      finalCashCounted: number | null
+      difference: number | null
+      status: $Enums.SessionStatus
+      openedBy: string | null
+      closedBy: string | null
+      observations: string | null
+    }, ExtArgs["result"]["cashRegisterSession"]>
     composites: {}
   }
 
-  type CashflowGetPayload<S extends boolean | null | undefined | CashflowDefaultArgs> = $Result.GetResult<Prisma.$CashflowPayload, S>
+  type CashRegisterSessionGetPayload<S extends boolean | null | undefined | CashRegisterSessionDefaultArgs> = $Result.GetResult<Prisma.$CashRegisterSessionPayload, S>
 
-  type CashflowCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<CashflowFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: CashflowCountAggregateInputType | true
+  type CashRegisterSessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CashRegisterSessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CashRegisterSessionCountAggregateInputType | true
     }
 
-  export interface CashflowDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Cashflow'], meta: { name: 'Cashflow' } }
+  export interface CashRegisterSessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CashRegisterSession'], meta: { name: 'CashRegisterSession' } }
     /**
-     * Find zero or one Cashflow that matches the filter.
-     * @param {CashflowFindUniqueArgs} args - Arguments to find a Cashflow
+     * Find zero or one CashRegisterSession that matches the filter.
+     * @param {CashRegisterSessionFindUniqueArgs} args - Arguments to find a CashRegisterSession
      * @example
-     * // Get one Cashflow
-     * const cashflow = await prisma.cashflow.findUnique({
+     * // Get one CashRegisterSession
+     * const cashRegisterSession = await prisma.cashRegisterSession.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends CashflowFindUniqueArgs>(args: SelectSubset<T, CashflowFindUniqueArgs<ExtArgs>>): Prisma__CashflowClient<$Result.GetResult<Prisma.$CashflowPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends CashRegisterSessionFindUniqueArgs>(args: SelectSubset<T, CashRegisterSessionFindUniqueArgs<ExtArgs>>): Prisma__CashRegisterSessionClient<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Cashflow that matches the filter or throw an error with `error.code='P2025'`
+     * Find one CashRegisterSession that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {CashflowFindUniqueOrThrowArgs} args - Arguments to find a Cashflow
+     * @param {CashRegisterSessionFindUniqueOrThrowArgs} args - Arguments to find a CashRegisterSession
      * @example
-     * // Get one Cashflow
-     * const cashflow = await prisma.cashflow.findUniqueOrThrow({
+     * // Get one CashRegisterSession
+     * const cashRegisterSession = await prisma.cashRegisterSession.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends CashflowFindUniqueOrThrowArgs>(args: SelectSubset<T, CashflowFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CashflowClient<$Result.GetResult<Prisma.$CashflowPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends CashRegisterSessionFindUniqueOrThrowArgs>(args: SelectSubset<T, CashRegisterSessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CashRegisterSessionClient<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Cashflow that matches the filter.
+     * Find the first CashRegisterSession that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CashflowFindFirstArgs} args - Arguments to find a Cashflow
+     * @param {CashRegisterSessionFindFirstArgs} args - Arguments to find a CashRegisterSession
      * @example
-     * // Get one Cashflow
-     * const cashflow = await prisma.cashflow.findFirst({
+     * // Get one CashRegisterSession
+     * const cashRegisterSession = await prisma.cashRegisterSession.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends CashflowFindFirstArgs>(args?: SelectSubset<T, CashflowFindFirstArgs<ExtArgs>>): Prisma__CashflowClient<$Result.GetResult<Prisma.$CashflowPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends CashRegisterSessionFindFirstArgs>(args?: SelectSubset<T, CashRegisterSessionFindFirstArgs<ExtArgs>>): Prisma__CashRegisterSessionClient<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Cashflow that matches the filter or
+     * Find the first CashRegisterSession that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CashflowFindFirstOrThrowArgs} args - Arguments to find a Cashflow
+     * @param {CashRegisterSessionFindFirstOrThrowArgs} args - Arguments to find a CashRegisterSession
      * @example
-     * // Get one Cashflow
-     * const cashflow = await prisma.cashflow.findFirstOrThrow({
+     * // Get one CashRegisterSession
+     * const cashRegisterSession = await prisma.cashRegisterSession.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends CashflowFindFirstOrThrowArgs>(args?: SelectSubset<T, CashflowFindFirstOrThrowArgs<ExtArgs>>): Prisma__CashflowClient<$Result.GetResult<Prisma.$CashflowPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends CashRegisterSessionFindFirstOrThrowArgs>(args?: SelectSubset<T, CashRegisterSessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__CashRegisterSessionClient<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Cashflows that matches the filter.
+     * Find zero or more CashRegisterSessions that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CashflowFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {CashRegisterSessionFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Cashflows
-     * const cashflows = await prisma.cashflow.findMany()
+     * // Get all CashRegisterSessions
+     * const cashRegisterSessions = await prisma.cashRegisterSession.findMany()
      * 
-     * // Get first 10 Cashflows
-     * const cashflows = await prisma.cashflow.findMany({ take: 10 })
+     * // Get first 10 CashRegisterSessions
+     * const cashRegisterSessions = await prisma.cashRegisterSession.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const cashflowWithIdOnly = await prisma.cashflow.findMany({ select: { id: true } })
+     * const cashRegisterSessionWithIdOnly = await prisma.cashRegisterSession.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends CashflowFindManyArgs>(args?: SelectSubset<T, CashflowFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CashflowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends CashRegisterSessionFindManyArgs>(args?: SelectSubset<T, CashRegisterSessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Cashflow.
-     * @param {CashflowCreateArgs} args - Arguments to create a Cashflow.
+     * Create a CashRegisterSession.
+     * @param {CashRegisterSessionCreateArgs} args - Arguments to create a CashRegisterSession.
      * @example
-     * // Create one Cashflow
-     * const Cashflow = await prisma.cashflow.create({
+     * // Create one CashRegisterSession
+     * const CashRegisterSession = await prisma.cashRegisterSession.create({
      *   data: {
-     *     // ... data to create a Cashflow
+     *     // ... data to create a CashRegisterSession
      *   }
      * })
      * 
      */
-    create<T extends CashflowCreateArgs>(args: SelectSubset<T, CashflowCreateArgs<ExtArgs>>): Prisma__CashflowClient<$Result.GetResult<Prisma.$CashflowPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends CashRegisterSessionCreateArgs>(args: SelectSubset<T, CashRegisterSessionCreateArgs<ExtArgs>>): Prisma__CashRegisterSessionClient<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Cashflows.
-     * @param {CashflowCreateManyArgs} args - Arguments to create many Cashflows.
+     * Create many CashRegisterSessions.
+     * @param {CashRegisterSessionCreateManyArgs} args - Arguments to create many CashRegisterSessions.
      * @example
-     * // Create many Cashflows
-     * const cashflow = await prisma.cashflow.createMany({
+     * // Create many CashRegisterSessions
+     * const cashRegisterSession = await prisma.cashRegisterSession.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends CashflowCreateManyArgs>(args?: SelectSubset<T, CashflowCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends CashRegisterSessionCreateManyArgs>(args?: SelectSubset<T, CashRegisterSessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Cashflow.
-     * @param {CashflowDeleteArgs} args - Arguments to delete one Cashflow.
+     * Delete a CashRegisterSession.
+     * @param {CashRegisterSessionDeleteArgs} args - Arguments to delete one CashRegisterSession.
      * @example
-     * // Delete one Cashflow
-     * const Cashflow = await prisma.cashflow.delete({
+     * // Delete one CashRegisterSession
+     * const CashRegisterSession = await prisma.cashRegisterSession.delete({
      *   where: {
-     *     // ... filter to delete one Cashflow
+     *     // ... filter to delete one CashRegisterSession
      *   }
      * })
      * 
      */
-    delete<T extends CashflowDeleteArgs>(args: SelectSubset<T, CashflowDeleteArgs<ExtArgs>>): Prisma__CashflowClient<$Result.GetResult<Prisma.$CashflowPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends CashRegisterSessionDeleteArgs>(args: SelectSubset<T, CashRegisterSessionDeleteArgs<ExtArgs>>): Prisma__CashRegisterSessionClient<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Cashflow.
-     * @param {CashflowUpdateArgs} args - Arguments to update one Cashflow.
+     * Update one CashRegisterSession.
+     * @param {CashRegisterSessionUpdateArgs} args - Arguments to update one CashRegisterSession.
      * @example
-     * // Update one Cashflow
-     * const cashflow = await prisma.cashflow.update({
+     * // Update one CashRegisterSession
+     * const cashRegisterSession = await prisma.cashRegisterSession.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -21056,30 +21458,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends CashflowUpdateArgs>(args: SelectSubset<T, CashflowUpdateArgs<ExtArgs>>): Prisma__CashflowClient<$Result.GetResult<Prisma.$CashflowPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends CashRegisterSessionUpdateArgs>(args: SelectSubset<T, CashRegisterSessionUpdateArgs<ExtArgs>>): Prisma__CashRegisterSessionClient<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Cashflows.
-     * @param {CashflowDeleteManyArgs} args - Arguments to filter Cashflows to delete.
+     * Delete zero or more CashRegisterSessions.
+     * @param {CashRegisterSessionDeleteManyArgs} args - Arguments to filter CashRegisterSessions to delete.
      * @example
-     * // Delete a few Cashflows
-     * const { count } = await prisma.cashflow.deleteMany({
+     * // Delete a few CashRegisterSessions
+     * const { count } = await prisma.cashRegisterSession.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends CashflowDeleteManyArgs>(args?: SelectSubset<T, CashflowDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends CashRegisterSessionDeleteManyArgs>(args?: SelectSubset<T, CashRegisterSessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Cashflows.
+     * Update zero or more CashRegisterSessions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CashflowUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {CashRegisterSessionUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Cashflows
-     * const cashflow = await prisma.cashflow.updateMany({
+     * // Update many CashRegisterSessions
+     * const cashRegisterSession = await prisma.cashRegisterSession.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -21089,79 +21491,79 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends CashflowUpdateManyArgs>(args: SelectSubset<T, CashflowUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends CashRegisterSessionUpdateManyArgs>(args: SelectSubset<T, CashRegisterSessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Cashflow.
-     * @param {CashflowUpsertArgs} args - Arguments to update or create a Cashflow.
+     * Create or update one CashRegisterSession.
+     * @param {CashRegisterSessionUpsertArgs} args - Arguments to update or create a CashRegisterSession.
      * @example
-     * // Update or create a Cashflow
-     * const cashflow = await prisma.cashflow.upsert({
+     * // Update or create a CashRegisterSession
+     * const cashRegisterSession = await prisma.cashRegisterSession.upsert({
      *   create: {
-     *     // ... data to create a Cashflow
+     *     // ... data to create a CashRegisterSession
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Cashflow we want to update
+     *     // ... the filter for the CashRegisterSession we want to update
      *   }
      * })
      */
-    upsert<T extends CashflowUpsertArgs>(args: SelectSubset<T, CashflowUpsertArgs<ExtArgs>>): Prisma__CashflowClient<$Result.GetResult<Prisma.$CashflowPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends CashRegisterSessionUpsertArgs>(args: SelectSubset<T, CashRegisterSessionUpsertArgs<ExtArgs>>): Prisma__CashRegisterSessionClient<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Cashflows that matches the filter.
-     * @param {CashflowFindRawArgs} args - Select which filters you would like to apply.
+     * Find zero or more CashRegisterSessions that matches the filter.
+     * @param {CashRegisterSessionFindRawArgs} args - Select which filters you would like to apply.
      * @example
-     * const cashflow = await prisma.cashflow.findRaw({
+     * const cashRegisterSession = await prisma.cashRegisterSession.findRaw({
      *   filter: { age: { $gt: 25 } }
      * })
      */
-    findRaw(args?: CashflowFindRawArgs): Prisma.PrismaPromise<JsonObject>
+    findRaw(args?: CashRegisterSessionFindRawArgs): Prisma.PrismaPromise<JsonObject>
 
     /**
-     * Perform aggregation operations on a Cashflow.
-     * @param {CashflowAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * Perform aggregation operations on a CashRegisterSession.
+     * @param {CashRegisterSessionAggregateRawArgs} args - Select which aggregations you would like to apply.
      * @example
-     * const cashflow = await prisma.cashflow.aggregateRaw({
+     * const cashRegisterSession = await prisma.cashRegisterSession.aggregateRaw({
      *   pipeline: [
      *     { $match: { status: "registered" } },
      *     { $group: { _id: "$country", total: { $sum: 1 } } }
      *   ]
      * })
      */
-    aggregateRaw(args?: CashflowAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+    aggregateRaw(args?: CashRegisterSessionAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
 
 
     /**
-     * Count the number of Cashflows.
+     * Count the number of CashRegisterSessions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CashflowCountArgs} args - Arguments to filter Cashflows to count.
+     * @param {CashRegisterSessionCountArgs} args - Arguments to filter CashRegisterSessions to count.
      * @example
-     * // Count the number of Cashflows
-     * const count = await prisma.cashflow.count({
+     * // Count the number of CashRegisterSessions
+     * const count = await prisma.cashRegisterSession.count({
      *   where: {
-     *     // ... the filter for the Cashflows we want to count
+     *     // ... the filter for the CashRegisterSessions we want to count
      *   }
      * })
     **/
-    count<T extends CashflowCountArgs>(
-      args?: Subset<T, CashflowCountArgs>,
+    count<T extends CashRegisterSessionCountArgs>(
+      args?: Subset<T, CashRegisterSessionCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], CashflowCountAggregateOutputType>
+          : GetScalarType<T['select'], CashRegisterSessionCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Cashflow.
+     * Allows you to perform aggregations operations on a CashRegisterSession.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CashflowAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {CashRegisterSessionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -21181,13 +21583,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends CashflowAggregateArgs>(args: Subset<T, CashflowAggregateArgs>): Prisma.PrismaPromise<GetCashflowAggregateType<T>>
+    aggregate<T extends CashRegisterSessionAggregateArgs>(args: Subset<T, CashRegisterSessionAggregateArgs>): Prisma.PrismaPromise<GetCashRegisterSessionAggregateType<T>>
 
     /**
-     * Group by Cashflow.
+     * Group by CashRegisterSession.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CashflowGroupByArgs} args - Group by arguments.
+     * @param {CashRegisterSessionGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -21202,14 +21604,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends CashflowGroupByArgs,
+      T extends CashRegisterSessionGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CashflowGroupByArgs['orderBy'] }
-        : { orderBy?: CashflowGroupByArgs['orderBy'] },
+        ? { orderBy: CashRegisterSessionGroupByArgs['orderBy'] }
+        : { orderBy?: CashRegisterSessionGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -21258,21 +21660,25 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, CashflowGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCashflowGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, CashRegisterSessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCashRegisterSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Cashflow model
+   * Fields of the CashRegisterSession model
    */
-  readonly fields: CashflowFieldRefs;
+  readonly fields: CashRegisterSessionFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Cashflow.
+   * The delegate class that acts as a "Promise-like" for CashRegisterSession.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__CashflowClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__CashRegisterSessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    movements<T extends CashRegisterSession$movementsArgs<ExtArgs> = {}>(args?: Subset<T, CashRegisterSession$movementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sales<T extends CashRegisterSession$salesArgs<ExtArgs> = {}>(args?: Subset<T, CashRegisterSession$salesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$POSSalePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    expenses<T extends CashRegisterSession$expensesArgs<ExtArgs> = {}>(args?: Subset<T, CashRegisterSession$expensesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExpensePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    salesWeb<T extends CashRegisterSession$salesWebArgs<ExtArgs> = {}>(args?: Subset<T, CashRegisterSession$salesWebArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SalePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -21299,330 +21705,365 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Cashflow model
+   * Fields of the CashRegisterSession model
    */
-  interface CashflowFieldRefs {
-    readonly id: FieldRef<"Cashflow", 'String'>
-    readonly active: FieldRef<"Cashflow", 'Boolean'>
-    readonly openDate: FieldRef<"Cashflow", 'DateTime'>
-    readonly closeDate: FieldRef<"Cashflow", 'DateTime'>
-    readonly openingBalance: FieldRef<"Cashflow", 'Float'>
-    readonly total: FieldRef<"Cashflow", 'Float'>
-    readonly expenses: FieldRef<"Cashflow", 'Float'>
-    readonly cashSales: FieldRef<"Cashflow", 'Float'>
-    readonly cashServices: FieldRef<"Cashflow", 'Float'>
-    readonly digitalSales: FieldRef<"Cashflow", 'Float'>
-    readonly digitalServices: FieldRef<"Cashflow", 'Float'>
-    readonly observations: FieldRef<"Cashflow", 'String'>
+  interface CashRegisterSessionFieldRefs {
+    readonly id: FieldRef<"CashRegisterSession", 'String'>
+    readonly openedAt: FieldRef<"CashRegisterSession", 'DateTime'>
+    readonly closedAt: FieldRef<"CashRegisterSession", 'DateTime'>
+    readonly initialCash: FieldRef<"CashRegisterSession", 'Float'>
+    readonly finalCashCalculated: FieldRef<"CashRegisterSession", 'Float'>
+    readonly finalCashCounted: FieldRef<"CashRegisterSession", 'Float'>
+    readonly difference: FieldRef<"CashRegisterSession", 'Float'>
+    readonly status: FieldRef<"CashRegisterSession", 'SessionStatus'>
+    readonly openedBy: FieldRef<"CashRegisterSession", 'String'>
+    readonly closedBy: FieldRef<"CashRegisterSession", 'String'>
+    readonly observations: FieldRef<"CashRegisterSession", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Cashflow findUnique
+   * CashRegisterSession findUnique
    */
-  export type CashflowFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Cashflow
+     * Select specific fields to fetch from the CashRegisterSession
      */
-    select?: CashflowSelect<ExtArgs> | null
+    select?: CashRegisterSessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Cashflow
+     * Omit specific fields from the CashRegisterSession
      */
-    omit?: CashflowOmit<ExtArgs> | null
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
     /**
-     * Filter, which Cashflow to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: CashflowWhereUniqueInput
+    include?: CashRegisterSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which CashRegisterSession to fetch.
+     */
+    where: CashRegisterSessionWhereUniqueInput
   }
 
   /**
-   * Cashflow findUniqueOrThrow
+   * CashRegisterSession findUniqueOrThrow
    */
-  export type CashflowFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Cashflow
+     * Select specific fields to fetch from the CashRegisterSession
      */
-    select?: CashflowSelect<ExtArgs> | null
+    select?: CashRegisterSessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Cashflow
+     * Omit specific fields from the CashRegisterSession
      */
-    omit?: CashflowOmit<ExtArgs> | null
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
     /**
-     * Filter, which Cashflow to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: CashflowWhereUniqueInput
+    include?: CashRegisterSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which CashRegisterSession to fetch.
+     */
+    where: CashRegisterSessionWhereUniqueInput
   }
 
   /**
-   * Cashflow findFirst
+   * CashRegisterSession findFirst
    */
-  export type CashflowFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Cashflow
+     * Select specific fields to fetch from the CashRegisterSession
      */
-    select?: CashflowSelect<ExtArgs> | null
+    select?: CashRegisterSessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Cashflow
+     * Omit specific fields from the CashRegisterSession
      */
-    omit?: CashflowOmit<ExtArgs> | null
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
     /**
-     * Filter, which Cashflow to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: CashflowWhereInput
+    include?: CashRegisterSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which CashRegisterSession to fetch.
+     */
+    where?: CashRegisterSessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Cashflows to fetch.
+     * Determine the order of CashRegisterSessions to fetch.
      */
-    orderBy?: CashflowOrderByWithRelationInput | CashflowOrderByWithRelationInput[]
+    orderBy?: CashRegisterSessionOrderByWithRelationInput | CashRegisterSessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Cashflows.
+     * Sets the position for searching for CashRegisterSessions.
      */
-    cursor?: CashflowWhereUniqueInput
+    cursor?: CashRegisterSessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Cashflows from the position of the cursor.
+     * Take `±n` CashRegisterSessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Cashflows.
+     * Skip the first `n` CashRegisterSessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Cashflows.
+     * Filter by unique combinations of CashRegisterSessions.
      */
-    distinct?: CashflowScalarFieldEnum | CashflowScalarFieldEnum[]
+    distinct?: CashRegisterSessionScalarFieldEnum | CashRegisterSessionScalarFieldEnum[]
   }
 
   /**
-   * Cashflow findFirstOrThrow
+   * CashRegisterSession findFirstOrThrow
    */
-  export type CashflowFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Cashflow
+     * Select specific fields to fetch from the CashRegisterSession
      */
-    select?: CashflowSelect<ExtArgs> | null
+    select?: CashRegisterSessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Cashflow
+     * Omit specific fields from the CashRegisterSession
      */
-    omit?: CashflowOmit<ExtArgs> | null
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
     /**
-     * Filter, which Cashflow to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: CashflowWhereInput
+    include?: CashRegisterSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which CashRegisterSession to fetch.
+     */
+    where?: CashRegisterSessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Cashflows to fetch.
+     * Determine the order of CashRegisterSessions to fetch.
      */
-    orderBy?: CashflowOrderByWithRelationInput | CashflowOrderByWithRelationInput[]
+    orderBy?: CashRegisterSessionOrderByWithRelationInput | CashRegisterSessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Cashflows.
+     * Sets the position for searching for CashRegisterSessions.
      */
-    cursor?: CashflowWhereUniqueInput
+    cursor?: CashRegisterSessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Cashflows from the position of the cursor.
+     * Take `±n` CashRegisterSessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Cashflows.
+     * Skip the first `n` CashRegisterSessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Cashflows.
+     * Filter by unique combinations of CashRegisterSessions.
      */
-    distinct?: CashflowScalarFieldEnum | CashflowScalarFieldEnum[]
+    distinct?: CashRegisterSessionScalarFieldEnum | CashRegisterSessionScalarFieldEnum[]
   }
 
   /**
-   * Cashflow findMany
+   * CashRegisterSession findMany
    */
-  export type CashflowFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Cashflow
+     * Select specific fields to fetch from the CashRegisterSession
      */
-    select?: CashflowSelect<ExtArgs> | null
+    select?: CashRegisterSessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Cashflow
+     * Omit specific fields from the CashRegisterSession
      */
-    omit?: CashflowOmit<ExtArgs> | null
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
     /**
-     * Filter, which Cashflows to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: CashflowWhereInput
+    include?: CashRegisterSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which CashRegisterSessions to fetch.
+     */
+    where?: CashRegisterSessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Cashflows to fetch.
+     * Determine the order of CashRegisterSessions to fetch.
      */
-    orderBy?: CashflowOrderByWithRelationInput | CashflowOrderByWithRelationInput[]
+    orderBy?: CashRegisterSessionOrderByWithRelationInput | CashRegisterSessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Cashflows.
+     * Sets the position for listing CashRegisterSessions.
      */
-    cursor?: CashflowWhereUniqueInput
+    cursor?: CashRegisterSessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Cashflows from the position of the cursor.
+     * Take `±n` CashRegisterSessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Cashflows.
+     * Skip the first `n` CashRegisterSessions.
      */
     skip?: number
-    distinct?: CashflowScalarFieldEnum | CashflowScalarFieldEnum[]
+    distinct?: CashRegisterSessionScalarFieldEnum | CashRegisterSessionScalarFieldEnum[]
   }
 
   /**
-   * Cashflow create
+   * CashRegisterSession create
    */
-  export type CashflowCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Cashflow
+     * Select specific fields to fetch from the CashRegisterSession
      */
-    select?: CashflowSelect<ExtArgs> | null
+    select?: CashRegisterSessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Cashflow
+     * Omit specific fields from the CashRegisterSession
      */
-    omit?: CashflowOmit<ExtArgs> | null
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
     /**
-     * The data needed to create a Cashflow.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<CashflowCreateInput, CashflowUncheckedCreateInput>
+    include?: CashRegisterSessionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CashRegisterSession.
+     */
+    data: XOR<CashRegisterSessionCreateInput, CashRegisterSessionUncheckedCreateInput>
   }
 
   /**
-   * Cashflow createMany
+   * CashRegisterSession createMany
    */
-  export type CashflowCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Cashflows.
+     * The data used to create many CashRegisterSessions.
      */
-    data: CashflowCreateManyInput | CashflowCreateManyInput[]
+    data: CashRegisterSessionCreateManyInput | CashRegisterSessionCreateManyInput[]
   }
 
   /**
-   * Cashflow update
+   * CashRegisterSession update
    */
-  export type CashflowUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Cashflow
+     * Select specific fields to fetch from the CashRegisterSession
      */
-    select?: CashflowSelect<ExtArgs> | null
+    select?: CashRegisterSessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Cashflow
+     * Omit specific fields from the CashRegisterSession
      */
-    omit?: CashflowOmit<ExtArgs> | null
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
     /**
-     * The data needed to update a Cashflow.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<CashflowUpdateInput, CashflowUncheckedUpdateInput>
+    include?: CashRegisterSessionInclude<ExtArgs> | null
     /**
-     * Choose, which Cashflow to update.
+     * The data needed to update a CashRegisterSession.
      */
-    where: CashflowWhereUniqueInput
+    data: XOR<CashRegisterSessionUpdateInput, CashRegisterSessionUncheckedUpdateInput>
+    /**
+     * Choose, which CashRegisterSession to update.
+     */
+    where: CashRegisterSessionWhereUniqueInput
   }
 
   /**
-   * Cashflow updateMany
+   * CashRegisterSession updateMany
    */
-  export type CashflowUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Cashflows.
+     * The data used to update CashRegisterSessions.
      */
-    data: XOR<CashflowUpdateManyMutationInput, CashflowUncheckedUpdateManyInput>
+    data: XOR<CashRegisterSessionUpdateManyMutationInput, CashRegisterSessionUncheckedUpdateManyInput>
     /**
-     * Filter which Cashflows to update
+     * Filter which CashRegisterSessions to update
      */
-    where?: CashflowWhereInput
+    where?: CashRegisterSessionWhereInput
     /**
-     * Limit how many Cashflows to update.
+     * Limit how many CashRegisterSessions to update.
      */
     limit?: number
   }
 
   /**
-   * Cashflow upsert
+   * CashRegisterSession upsert
    */
-  export type CashflowUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Cashflow
+     * Select specific fields to fetch from the CashRegisterSession
      */
-    select?: CashflowSelect<ExtArgs> | null
+    select?: CashRegisterSessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Cashflow
+     * Omit specific fields from the CashRegisterSession
      */
-    omit?: CashflowOmit<ExtArgs> | null
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
     /**
-     * The filter to search for the Cashflow to update in case it exists.
+     * Choose, which related nodes to fetch as well
      */
-    where: CashflowWhereUniqueInput
+    include?: CashRegisterSessionInclude<ExtArgs> | null
     /**
-     * In case the Cashflow found by the `where` argument doesn't exist, create a new Cashflow with this data.
+     * The filter to search for the CashRegisterSession to update in case it exists.
      */
-    create: XOR<CashflowCreateInput, CashflowUncheckedCreateInput>
+    where: CashRegisterSessionWhereUniqueInput
     /**
-     * In case the Cashflow was found with the provided `where` argument, update it with this data.
+     * In case the CashRegisterSession found by the `where` argument doesn't exist, create a new CashRegisterSession with this data.
      */
-    update: XOR<CashflowUpdateInput, CashflowUncheckedUpdateInput>
+    create: XOR<CashRegisterSessionCreateInput, CashRegisterSessionUncheckedCreateInput>
+    /**
+     * In case the CashRegisterSession was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CashRegisterSessionUpdateInput, CashRegisterSessionUncheckedUpdateInput>
   }
 
   /**
-   * Cashflow delete
+   * CashRegisterSession delete
    */
-  export type CashflowDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Cashflow
+     * Select specific fields to fetch from the CashRegisterSession
      */
-    select?: CashflowSelect<ExtArgs> | null
+    select?: CashRegisterSessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Cashflow
+     * Omit specific fields from the CashRegisterSession
      */
-    omit?: CashflowOmit<ExtArgs> | null
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
     /**
-     * Filter which Cashflow to delete.
+     * Choose, which related nodes to fetch as well
      */
-    where: CashflowWhereUniqueInput
+    include?: CashRegisterSessionInclude<ExtArgs> | null
+    /**
+     * Filter which CashRegisterSession to delete.
+     */
+    where: CashRegisterSessionWhereUniqueInput
   }
 
   /**
-   * Cashflow deleteMany
+   * CashRegisterSession deleteMany
    */
-  export type CashflowDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Cashflows to delete
+     * Filter which CashRegisterSessions to delete
      */
-    where?: CashflowWhereInput
+    where?: CashRegisterSessionWhereInput
     /**
-     * Limit how many Cashflows to delete.
+     * Limit how many CashRegisterSessions to delete.
      */
     limit?: number
   }
 
   /**
-   * Cashflow findRaw
+   * CashRegisterSession findRaw
    */
-  export type CashflowFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -21634,9 +22075,9 @@ export namespace Prisma {
   }
 
   /**
-   * Cashflow aggregateRaw
+   * CashRegisterSession aggregateRaw
    */
-  export type CashflowAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSessionAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -21648,17 +22089,1152 @@ export namespace Prisma {
   }
 
   /**
-   * Cashflow without action
+   * CashRegisterSession.movements
    */
-  export type CashflowDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CashRegisterSession$movementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Cashflow
+     * Select specific fields to fetch from the CashMovement
      */
-    select?: CashflowSelect<ExtArgs> | null
+    select?: CashMovementSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Cashflow
+     * Omit specific fields from the CashMovement
      */
-    omit?: CashflowOmit<ExtArgs> | null
+    omit?: CashMovementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashMovementInclude<ExtArgs> | null
+    where?: CashMovementWhereInput
+    orderBy?: CashMovementOrderByWithRelationInput | CashMovementOrderByWithRelationInput[]
+    cursor?: CashMovementWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CashMovementScalarFieldEnum | CashMovementScalarFieldEnum[]
+  }
+
+  /**
+   * CashRegisterSession.sales
+   */
+  export type CashRegisterSession$salesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the POSSale
+     */
+    select?: POSSaleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the POSSale
+     */
+    omit?: POSSaleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: POSSaleInclude<ExtArgs> | null
+    where?: POSSaleWhereInput
+    orderBy?: POSSaleOrderByWithRelationInput | POSSaleOrderByWithRelationInput[]
+    cursor?: POSSaleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: POSSaleScalarFieldEnum | POSSaleScalarFieldEnum[]
+  }
+
+  /**
+   * CashRegisterSession.expenses
+   */
+  export type CashRegisterSession$expensesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Expense
+     */
+    select?: ExpenseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Expense
+     */
+    omit?: ExpenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExpenseInclude<ExtArgs> | null
+    where?: ExpenseWhereInput
+    orderBy?: ExpenseOrderByWithRelationInput | ExpenseOrderByWithRelationInput[]
+    cursor?: ExpenseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExpenseScalarFieldEnum | ExpenseScalarFieldEnum[]
+  }
+
+  /**
+   * CashRegisterSession.salesWeb
+   */
+  export type CashRegisterSession$salesWebArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sale
+     */
+    select?: SaleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sale
+     */
+    omit?: SaleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SaleInclude<ExtArgs> | null
+    where?: SaleWhereInput
+    orderBy?: SaleOrderByWithRelationInput | SaleOrderByWithRelationInput[]
+    cursor?: SaleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SaleScalarFieldEnum | SaleScalarFieldEnum[]
+  }
+
+  /**
+   * CashRegisterSession without action
+   */
+  export type CashRegisterSessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashRegisterSession
+     */
+    select?: CashRegisterSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashRegisterSession
+     */
+    omit?: CashRegisterSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashRegisterSessionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CashMovement
+   */
+
+  export type AggregateCashMovement = {
+    _count: CashMovementCountAggregateOutputType | null
+    _avg: CashMovementAvgAggregateOutputType | null
+    _sum: CashMovementSumAggregateOutputType | null
+    _min: CashMovementMinAggregateOutputType | null
+    _max: CashMovementMaxAggregateOutputType | null
+  }
+
+  export type CashMovementAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type CashMovementSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type CashMovementMinAggregateOutputType = {
+    id: string | null
+    cashRegisterSessionId: string | null
+    type: $Enums.CashMovementType | null
+    amount: number | null
+    description: string | null
+    date: Date | null
+    userId: string | null
+  }
+
+  export type CashMovementMaxAggregateOutputType = {
+    id: string | null
+    cashRegisterSessionId: string | null
+    type: $Enums.CashMovementType | null
+    amount: number | null
+    description: string | null
+    date: Date | null
+    userId: string | null
+  }
+
+  export type CashMovementCountAggregateOutputType = {
+    id: number
+    cashRegisterSessionId: number
+    type: number
+    amount: number
+    description: number
+    date: number
+    userId: number
+    _all: number
+  }
+
+
+  export type CashMovementAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type CashMovementSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type CashMovementMinAggregateInputType = {
+    id?: true
+    cashRegisterSessionId?: true
+    type?: true
+    amount?: true
+    description?: true
+    date?: true
+    userId?: true
+  }
+
+  export type CashMovementMaxAggregateInputType = {
+    id?: true
+    cashRegisterSessionId?: true
+    type?: true
+    amount?: true
+    description?: true
+    date?: true
+    userId?: true
+  }
+
+  export type CashMovementCountAggregateInputType = {
+    id?: true
+    cashRegisterSessionId?: true
+    type?: true
+    amount?: true
+    description?: true
+    date?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type CashMovementAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CashMovement to aggregate.
+     */
+    where?: CashMovementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CashMovements to fetch.
+     */
+    orderBy?: CashMovementOrderByWithRelationInput | CashMovementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CashMovementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CashMovements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CashMovements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CashMovements
+    **/
+    _count?: true | CashMovementCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CashMovementAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CashMovementSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CashMovementMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CashMovementMaxAggregateInputType
+  }
+
+  export type GetCashMovementAggregateType<T extends CashMovementAggregateArgs> = {
+        [P in keyof T & keyof AggregateCashMovement]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCashMovement[P]>
+      : GetScalarType<T[P], AggregateCashMovement[P]>
+  }
+
+
+
+
+  export type CashMovementGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CashMovementWhereInput
+    orderBy?: CashMovementOrderByWithAggregationInput | CashMovementOrderByWithAggregationInput[]
+    by: CashMovementScalarFieldEnum[] | CashMovementScalarFieldEnum
+    having?: CashMovementScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CashMovementCountAggregateInputType | true
+    _avg?: CashMovementAvgAggregateInputType
+    _sum?: CashMovementSumAggregateInputType
+    _min?: CashMovementMinAggregateInputType
+    _max?: CashMovementMaxAggregateInputType
+  }
+
+  export type CashMovementGroupByOutputType = {
+    id: string
+    cashRegisterSessionId: string
+    type: $Enums.CashMovementType
+    amount: number
+    description: string
+    date: Date
+    userId: string | null
+    _count: CashMovementCountAggregateOutputType | null
+    _avg: CashMovementAvgAggregateOutputType | null
+    _sum: CashMovementSumAggregateOutputType | null
+    _min: CashMovementMinAggregateOutputType | null
+    _max: CashMovementMaxAggregateOutputType | null
+  }
+
+  type GetCashMovementGroupByPayload<T extends CashMovementGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CashMovementGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CashMovementGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CashMovementGroupByOutputType[P]>
+            : GetScalarType<T[P], CashMovementGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CashMovementSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    cashRegisterSessionId?: boolean
+    type?: boolean
+    amount?: boolean
+    description?: boolean
+    date?: boolean
+    userId?: boolean
+    cashRegisterSession?: boolean | CashRegisterSessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["cashMovement"]>
+
+
+
+  export type CashMovementSelectScalar = {
+    id?: boolean
+    cashRegisterSessionId?: boolean
+    type?: boolean
+    amount?: boolean
+    description?: boolean
+    date?: boolean
+    userId?: boolean
+  }
+
+  export type CashMovementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cashRegisterSessionId" | "type" | "amount" | "description" | "date" | "userId", ExtArgs["result"]["cashMovement"]>
+  export type CashMovementInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    cashRegisterSession?: boolean | CashRegisterSessionDefaultArgs<ExtArgs>
+  }
+
+  export type $CashMovementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CashMovement"
+    objects: {
+      cashRegisterSession: Prisma.$CashRegisterSessionPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      cashRegisterSessionId: string
+      type: $Enums.CashMovementType
+      amount: number
+      description: string
+      date: Date
+      userId: string | null
+    }, ExtArgs["result"]["cashMovement"]>
+    composites: {}
+  }
+
+  type CashMovementGetPayload<S extends boolean | null | undefined | CashMovementDefaultArgs> = $Result.GetResult<Prisma.$CashMovementPayload, S>
+
+  type CashMovementCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CashMovementFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CashMovementCountAggregateInputType | true
+    }
+
+  export interface CashMovementDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CashMovement'], meta: { name: 'CashMovement' } }
+    /**
+     * Find zero or one CashMovement that matches the filter.
+     * @param {CashMovementFindUniqueArgs} args - Arguments to find a CashMovement
+     * @example
+     * // Get one CashMovement
+     * const cashMovement = await prisma.cashMovement.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CashMovementFindUniqueArgs>(args: SelectSubset<T, CashMovementFindUniqueArgs<ExtArgs>>): Prisma__CashMovementClient<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CashMovement that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CashMovementFindUniqueOrThrowArgs} args - Arguments to find a CashMovement
+     * @example
+     * // Get one CashMovement
+     * const cashMovement = await prisma.cashMovement.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CashMovementFindUniqueOrThrowArgs>(args: SelectSubset<T, CashMovementFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CashMovementClient<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CashMovement that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CashMovementFindFirstArgs} args - Arguments to find a CashMovement
+     * @example
+     * // Get one CashMovement
+     * const cashMovement = await prisma.cashMovement.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CashMovementFindFirstArgs>(args?: SelectSubset<T, CashMovementFindFirstArgs<ExtArgs>>): Prisma__CashMovementClient<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CashMovement that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CashMovementFindFirstOrThrowArgs} args - Arguments to find a CashMovement
+     * @example
+     * // Get one CashMovement
+     * const cashMovement = await prisma.cashMovement.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CashMovementFindFirstOrThrowArgs>(args?: SelectSubset<T, CashMovementFindFirstOrThrowArgs<ExtArgs>>): Prisma__CashMovementClient<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CashMovements that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CashMovementFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CashMovements
+     * const cashMovements = await prisma.cashMovement.findMany()
+     * 
+     * // Get first 10 CashMovements
+     * const cashMovements = await prisma.cashMovement.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const cashMovementWithIdOnly = await prisma.cashMovement.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CashMovementFindManyArgs>(args?: SelectSubset<T, CashMovementFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CashMovement.
+     * @param {CashMovementCreateArgs} args - Arguments to create a CashMovement.
+     * @example
+     * // Create one CashMovement
+     * const CashMovement = await prisma.cashMovement.create({
+     *   data: {
+     *     // ... data to create a CashMovement
+     *   }
+     * })
+     * 
+     */
+    create<T extends CashMovementCreateArgs>(args: SelectSubset<T, CashMovementCreateArgs<ExtArgs>>): Prisma__CashMovementClient<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CashMovements.
+     * @param {CashMovementCreateManyArgs} args - Arguments to create many CashMovements.
+     * @example
+     * // Create many CashMovements
+     * const cashMovement = await prisma.cashMovement.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CashMovementCreateManyArgs>(args?: SelectSubset<T, CashMovementCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a CashMovement.
+     * @param {CashMovementDeleteArgs} args - Arguments to delete one CashMovement.
+     * @example
+     * // Delete one CashMovement
+     * const CashMovement = await prisma.cashMovement.delete({
+     *   where: {
+     *     // ... filter to delete one CashMovement
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CashMovementDeleteArgs>(args: SelectSubset<T, CashMovementDeleteArgs<ExtArgs>>): Prisma__CashMovementClient<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CashMovement.
+     * @param {CashMovementUpdateArgs} args - Arguments to update one CashMovement.
+     * @example
+     * // Update one CashMovement
+     * const cashMovement = await prisma.cashMovement.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CashMovementUpdateArgs>(args: SelectSubset<T, CashMovementUpdateArgs<ExtArgs>>): Prisma__CashMovementClient<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CashMovements.
+     * @param {CashMovementDeleteManyArgs} args - Arguments to filter CashMovements to delete.
+     * @example
+     * // Delete a few CashMovements
+     * const { count } = await prisma.cashMovement.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CashMovementDeleteManyArgs>(args?: SelectSubset<T, CashMovementDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CashMovements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CashMovementUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CashMovements
+     * const cashMovement = await prisma.cashMovement.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CashMovementUpdateManyArgs>(args: SelectSubset<T, CashMovementUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CashMovement.
+     * @param {CashMovementUpsertArgs} args - Arguments to update or create a CashMovement.
+     * @example
+     * // Update or create a CashMovement
+     * const cashMovement = await prisma.cashMovement.upsert({
+     *   create: {
+     *     // ... data to create a CashMovement
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CashMovement we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CashMovementUpsertArgs>(args: SelectSubset<T, CashMovementUpsertArgs<ExtArgs>>): Prisma__CashMovementClient<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CashMovements that matches the filter.
+     * @param {CashMovementFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const cashMovement = await prisma.cashMovement.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: CashMovementFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a CashMovement.
+     * @param {CashMovementAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const cashMovement = await prisma.cashMovement.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: CashMovementAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of CashMovements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CashMovementCountArgs} args - Arguments to filter CashMovements to count.
+     * @example
+     * // Count the number of CashMovements
+     * const count = await prisma.cashMovement.count({
+     *   where: {
+     *     // ... the filter for the CashMovements we want to count
+     *   }
+     * })
+    **/
+    count<T extends CashMovementCountArgs>(
+      args?: Subset<T, CashMovementCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CashMovementCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CashMovement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CashMovementAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CashMovementAggregateArgs>(args: Subset<T, CashMovementAggregateArgs>): Prisma.PrismaPromise<GetCashMovementAggregateType<T>>
+
+    /**
+     * Group by CashMovement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CashMovementGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CashMovementGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CashMovementGroupByArgs['orderBy'] }
+        : { orderBy?: CashMovementGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CashMovementGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCashMovementGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CashMovement model
+   */
+  readonly fields: CashMovementFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CashMovement.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CashMovementClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    cashRegisterSession<T extends CashRegisterSessionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CashRegisterSessionDefaultArgs<ExtArgs>>): Prisma__CashRegisterSessionClient<$Result.GetResult<Prisma.$CashRegisterSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CashMovement model
+   */
+  interface CashMovementFieldRefs {
+    readonly id: FieldRef<"CashMovement", 'String'>
+    readonly cashRegisterSessionId: FieldRef<"CashMovement", 'String'>
+    readonly type: FieldRef<"CashMovement", 'CashMovementType'>
+    readonly amount: FieldRef<"CashMovement", 'Float'>
+    readonly description: FieldRef<"CashMovement", 'String'>
+    readonly date: FieldRef<"CashMovement", 'DateTime'>
+    readonly userId: FieldRef<"CashMovement", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CashMovement findUnique
+   */
+  export type CashMovementFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashMovement
+     */
+    select?: CashMovementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashMovement
+     */
+    omit?: CashMovementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashMovementInclude<ExtArgs> | null
+    /**
+     * Filter, which CashMovement to fetch.
+     */
+    where: CashMovementWhereUniqueInput
+  }
+
+  /**
+   * CashMovement findUniqueOrThrow
+   */
+  export type CashMovementFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashMovement
+     */
+    select?: CashMovementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashMovement
+     */
+    omit?: CashMovementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashMovementInclude<ExtArgs> | null
+    /**
+     * Filter, which CashMovement to fetch.
+     */
+    where: CashMovementWhereUniqueInput
+  }
+
+  /**
+   * CashMovement findFirst
+   */
+  export type CashMovementFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashMovement
+     */
+    select?: CashMovementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashMovement
+     */
+    omit?: CashMovementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashMovementInclude<ExtArgs> | null
+    /**
+     * Filter, which CashMovement to fetch.
+     */
+    where?: CashMovementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CashMovements to fetch.
+     */
+    orderBy?: CashMovementOrderByWithRelationInput | CashMovementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CashMovements.
+     */
+    cursor?: CashMovementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CashMovements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CashMovements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CashMovements.
+     */
+    distinct?: CashMovementScalarFieldEnum | CashMovementScalarFieldEnum[]
+  }
+
+  /**
+   * CashMovement findFirstOrThrow
+   */
+  export type CashMovementFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashMovement
+     */
+    select?: CashMovementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashMovement
+     */
+    omit?: CashMovementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashMovementInclude<ExtArgs> | null
+    /**
+     * Filter, which CashMovement to fetch.
+     */
+    where?: CashMovementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CashMovements to fetch.
+     */
+    orderBy?: CashMovementOrderByWithRelationInput | CashMovementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CashMovements.
+     */
+    cursor?: CashMovementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CashMovements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CashMovements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CashMovements.
+     */
+    distinct?: CashMovementScalarFieldEnum | CashMovementScalarFieldEnum[]
+  }
+
+  /**
+   * CashMovement findMany
+   */
+  export type CashMovementFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashMovement
+     */
+    select?: CashMovementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashMovement
+     */
+    omit?: CashMovementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashMovementInclude<ExtArgs> | null
+    /**
+     * Filter, which CashMovements to fetch.
+     */
+    where?: CashMovementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CashMovements to fetch.
+     */
+    orderBy?: CashMovementOrderByWithRelationInput | CashMovementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CashMovements.
+     */
+    cursor?: CashMovementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CashMovements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CashMovements.
+     */
+    skip?: number
+    distinct?: CashMovementScalarFieldEnum | CashMovementScalarFieldEnum[]
+  }
+
+  /**
+   * CashMovement create
+   */
+  export type CashMovementCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashMovement
+     */
+    select?: CashMovementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashMovement
+     */
+    omit?: CashMovementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashMovementInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CashMovement.
+     */
+    data: XOR<CashMovementCreateInput, CashMovementUncheckedCreateInput>
+  }
+
+  /**
+   * CashMovement createMany
+   */
+  export type CashMovementCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CashMovements.
+     */
+    data: CashMovementCreateManyInput | CashMovementCreateManyInput[]
+  }
+
+  /**
+   * CashMovement update
+   */
+  export type CashMovementUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashMovement
+     */
+    select?: CashMovementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashMovement
+     */
+    omit?: CashMovementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashMovementInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CashMovement.
+     */
+    data: XOR<CashMovementUpdateInput, CashMovementUncheckedUpdateInput>
+    /**
+     * Choose, which CashMovement to update.
+     */
+    where: CashMovementWhereUniqueInput
+  }
+
+  /**
+   * CashMovement updateMany
+   */
+  export type CashMovementUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CashMovements.
+     */
+    data: XOR<CashMovementUpdateManyMutationInput, CashMovementUncheckedUpdateManyInput>
+    /**
+     * Filter which CashMovements to update
+     */
+    where?: CashMovementWhereInput
+    /**
+     * Limit how many CashMovements to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CashMovement upsert
+   */
+  export type CashMovementUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashMovement
+     */
+    select?: CashMovementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashMovement
+     */
+    omit?: CashMovementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashMovementInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CashMovement to update in case it exists.
+     */
+    where: CashMovementWhereUniqueInput
+    /**
+     * In case the CashMovement found by the `where` argument doesn't exist, create a new CashMovement with this data.
+     */
+    create: XOR<CashMovementCreateInput, CashMovementUncheckedCreateInput>
+    /**
+     * In case the CashMovement was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CashMovementUpdateInput, CashMovementUncheckedUpdateInput>
+  }
+
+  /**
+   * CashMovement delete
+   */
+  export type CashMovementDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashMovement
+     */
+    select?: CashMovementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashMovement
+     */
+    omit?: CashMovementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashMovementInclude<ExtArgs> | null
+    /**
+     * Filter which CashMovement to delete.
+     */
+    where: CashMovementWhereUniqueInput
+  }
+
+  /**
+   * CashMovement deleteMany
+   */
+  export type CashMovementDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CashMovements to delete
+     */
+    where?: CashMovementWhereInput
+    /**
+     * Limit how many CashMovements to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CashMovement findRaw
+   */
+  export type CashMovementFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * CashMovement aggregateRaw
+   */
+  export type CashMovementAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * CashMovement without action
+   */
+  export type CashMovementDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashMovement
+     */
+    select?: CashMovementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashMovement
+     */
+    omit?: CashMovementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashMovementInclude<ExtArgs> | null
   }
 
 
@@ -22684,7 +24260,8 @@ export namespace Prisma {
     products: 'products',
     total: 'total',
     discount: 'discount',
-    payments: 'payments'
+    payments: 'payments',
+    cashRegisterSessionId: 'cashRegisterSessionId'
   };
 
   export type SaleScalarFieldEnum = (typeof SaleScalarFieldEnum)[keyof typeof SaleScalarFieldEnum]
@@ -22698,7 +24275,10 @@ export namespace Prisma {
     method: 'method',
     date: 'date',
     category: 'category',
-    categoryId: 'categoryId'
+    categoryId: 'categoryId',
+    provider: 'provider',
+    ticketUrl: 'ticketUrl',
+    cashRegisterSessionId: 'cashRegisterSessionId'
   };
 
   export type ExpenseScalarFieldEnum = (typeof ExpenseScalarFieldEnum)[keyof typeof ExpenseScalarFieldEnum]
@@ -22882,7 +24462,8 @@ export namespace Prisma {
     monto_total: 'monto_total',
     descuento: 'descuento',
     estado: 'estado',
-    metodo_pago: 'metodo_pago'
+    metodo_pago: 'metodo_pago',
+    cashRegisterSessionId: 'cashRegisterSessionId'
   };
 
   export type POSSaleScalarFieldEnum = (typeof POSSaleScalarFieldEnum)[keyof typeof POSSaleScalarFieldEnum]
@@ -22920,28 +24501,42 @@ export namespace Prisma {
     fecha_aprobacion: 'fecha_aprobacion',
     garantia_hasta: 'garantia_hasta',
     observaciones_garantia: 'observaciones_garantia',
+    warrantyReturnDate: 'warrantyReturnDate',
+    warrantyReturnReason: 'warrantyReturnReason',
     payments: 'payments'
   };
 
   export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
 
 
-  export const CashflowScalarFieldEnum: {
+  export const CashRegisterSessionScalarFieldEnum: {
     id: 'id',
-    active: 'active',
-    openDate: 'openDate',
-    closeDate: 'closeDate',
-    openingBalance: 'openingBalance',
-    total: 'total',
-    expenses: 'expenses',
-    cashSales: 'cashSales',
-    cashServices: 'cashServices',
-    digitalSales: 'digitalSales',
-    digitalServices: 'digitalServices',
+    openedAt: 'openedAt',
+    closedAt: 'closedAt',
+    initialCash: 'initialCash',
+    finalCashCalculated: 'finalCashCalculated',
+    finalCashCounted: 'finalCashCounted',
+    difference: 'difference',
+    status: 'status',
+    openedBy: 'openedBy',
+    closedBy: 'closedBy',
     observations: 'observations'
   };
 
-  export type CashflowScalarFieldEnum = (typeof CashflowScalarFieldEnum)[keyof typeof CashflowScalarFieldEnum]
+  export type CashRegisterSessionScalarFieldEnum = (typeof CashRegisterSessionScalarFieldEnum)[keyof typeof CashRegisterSessionScalarFieldEnum]
+
+
+  export const CashMovementScalarFieldEnum: {
+    id: 'id',
+    cashRegisterSessionId: 'cashRegisterSessionId',
+    type: 'type',
+    amount: 'amount',
+    description: 'description',
+    date: 'date',
+    userId: 'userId'
+  };
+
+  export type CashMovementScalarFieldEnum = (typeof CashMovementScalarFieldEnum)[keyof typeof CashMovementScalarFieldEnum]
 
 
   export const UserScalarFieldEnum: {
@@ -23114,6 +24709,34 @@ export namespace Prisma {
    * Reference to a field of type 'DeviceStatus[]'
    */
   export type ListEnumDeviceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeviceStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'SessionStatus'
+   */
+  export type EnumSessionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SessionStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'SessionStatus[]'
+   */
+  export type ListEnumSessionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SessionStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'CashMovementType'
+   */
+  export type EnumCashMovementTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CashMovementType'>
+    
+
+
+  /**
+   * Reference to a field of type 'CashMovementType[]'
+   */
+  export type ListEnumCashMovementTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CashMovementType[]'>
     
   /**
    * Deep Input Types
@@ -23468,6 +25091,8 @@ export namespace Prisma {
     total?: FloatFilter<"Sale"> | number
     discount?: FloatFilter<"Sale"> | number
     payments?: JsonNullableFilter<"Sale">
+    cashRegisterSessionId?: StringNullableFilter<"Sale"> | string | null
+    cashRegisterSession?: XOR<CashRegisterSessionNullableScalarRelationFilter, CashRegisterSessionWhereInput> | null
   }
 
   export type SaleOrderByWithRelationInput = {
@@ -23479,6 +25104,8 @@ export namespace Prisma {
     total?: SortOrder
     discount?: SortOrder
     payments?: SortOrder
+    cashRegisterSessionId?: SortOrder
+    cashRegisterSession?: CashRegisterSessionOrderByWithRelationInput
   }
 
   export type SaleWhereUniqueInput = Prisma.AtLeast<{
@@ -23493,6 +25120,8 @@ export namespace Prisma {
     total?: FloatFilter<"Sale"> | number
     discount?: FloatFilter<"Sale"> | number
     payments?: JsonNullableFilter<"Sale">
+    cashRegisterSessionId?: StringNullableFilter<"Sale"> | string | null
+    cashRegisterSession?: XOR<CashRegisterSessionNullableScalarRelationFilter, CashRegisterSessionWhereInput> | null
   }, "id">
 
   export type SaleOrderByWithAggregationInput = {
@@ -23504,6 +25133,7 @@ export namespace Prisma {
     total?: SortOrder
     discount?: SortOrder
     payments?: SortOrder
+    cashRegisterSessionId?: SortOrder
     _count?: SaleCountOrderByAggregateInput
     _avg?: SaleAvgOrderByAggregateInput
     _max?: SaleMaxOrderByAggregateInput
@@ -23523,6 +25153,7 @@ export namespace Prisma {
     total?: FloatWithAggregatesFilter<"Sale"> | number
     discount?: FloatWithAggregatesFilter<"Sale"> | number
     payments?: JsonNullableWithAggregatesFilter<"Sale">
+    cashRegisterSessionId?: StringNullableWithAggregatesFilter<"Sale"> | string | null
   }
 
   export type ExpenseWhereInput = {
@@ -23537,6 +25168,10 @@ export namespace Prisma {
     date?: DateTimeFilter<"Expense"> | Date | string
     category?: StringNullableFilter<"Expense"> | string | null
     categoryId?: IntNullableFilter<"Expense"> | number | null
+    provider?: StringNullableFilter<"Expense"> | string | null
+    ticketUrl?: StringNullableFilter<"Expense"> | string | null
+    cashRegisterSessionId?: StringNullableFilter<"Expense"> | string | null
+    cashRegisterSession?: XOR<CashRegisterSessionNullableScalarRelationFilter, CashRegisterSessionWhereInput> | null
   }
 
   export type ExpenseOrderByWithRelationInput = {
@@ -23548,6 +25183,10 @@ export namespace Prisma {
     date?: SortOrder
     category?: SortOrder
     categoryId?: SortOrder
+    provider?: SortOrder
+    ticketUrl?: SortOrder
+    cashRegisterSessionId?: SortOrder
+    cashRegisterSession?: CashRegisterSessionOrderByWithRelationInput
   }
 
   export type ExpenseWhereUniqueInput = Prisma.AtLeast<{
@@ -23562,6 +25201,10 @@ export namespace Prisma {
     date?: DateTimeFilter<"Expense"> | Date | string
     category?: StringNullableFilter<"Expense"> | string | null
     categoryId?: IntNullableFilter<"Expense"> | number | null
+    provider?: StringNullableFilter<"Expense"> | string | null
+    ticketUrl?: StringNullableFilter<"Expense"> | string | null
+    cashRegisterSessionId?: StringNullableFilter<"Expense"> | string | null
+    cashRegisterSession?: XOR<CashRegisterSessionNullableScalarRelationFilter, CashRegisterSessionWhereInput> | null
   }, "id">
 
   export type ExpenseOrderByWithAggregationInput = {
@@ -23573,6 +25216,9 @@ export namespace Prisma {
     date?: SortOrder
     category?: SortOrder
     categoryId?: SortOrder
+    provider?: SortOrder
+    ticketUrl?: SortOrder
+    cashRegisterSessionId?: SortOrder
     _count?: ExpenseCountOrderByAggregateInput
     _avg?: ExpenseAvgOrderByAggregateInput
     _max?: ExpenseMaxOrderByAggregateInput
@@ -23592,6 +25238,9 @@ export namespace Prisma {
     date?: DateTimeWithAggregatesFilter<"Expense"> | Date | string
     category?: StringNullableWithAggregatesFilter<"Expense"> | string | null
     categoryId?: IntNullableWithAggregatesFilter<"Expense"> | number | null
+    provider?: StringNullableWithAggregatesFilter<"Expense"> | string | null
+    ticketUrl?: StringNullableWithAggregatesFilter<"Expense"> | string | null
+    cashRegisterSessionId?: StringNullableWithAggregatesFilter<"Expense"> | string | null
   }
 
   export type BuyerWhereInput = {
@@ -24499,8 +26148,10 @@ export namespace Prisma {
     descuento?: IntFilter<"POSSale"> | number
     estado?: StringFilter<"POSSale"> | string
     metodo_pago?: JsonNullableFilter<"POSSale">
+    cashRegisterSessionId?: StringNullableFilter<"POSSale"> | string | null
     buyer?: XOR<BuyerScalarRelationFilter, BuyerWhereInput>
     detalles?: POSSaleDetailListRelationFilter
+    cashRegisterSession?: XOR<CashRegisterSessionNullableScalarRelationFilter, CashRegisterSessionWhereInput> | null
   }
 
   export type POSSaleOrderByWithRelationInput = {
@@ -24511,8 +26162,10 @@ export namespace Prisma {
     descuento?: SortOrder
     estado?: SortOrder
     metodo_pago?: SortOrder
+    cashRegisterSessionId?: SortOrder
     buyer?: BuyerOrderByWithRelationInput
     detalles?: POSSaleDetailOrderByRelationAggregateInput
+    cashRegisterSession?: CashRegisterSessionOrderByWithRelationInput
   }
 
   export type POSSaleWhereUniqueInput = Prisma.AtLeast<{
@@ -24526,8 +26179,10 @@ export namespace Prisma {
     descuento?: IntFilter<"POSSale"> | number
     estado?: StringFilter<"POSSale"> | string
     metodo_pago?: JsonNullableFilter<"POSSale">
+    cashRegisterSessionId?: StringNullableFilter<"POSSale"> | string | null
     buyer?: XOR<BuyerScalarRelationFilter, BuyerWhereInput>
     detalles?: POSSaleDetailListRelationFilter
+    cashRegisterSession?: XOR<CashRegisterSessionNullableScalarRelationFilter, CashRegisterSessionWhereInput> | null
   }, "id">
 
   export type POSSaleOrderByWithAggregationInput = {
@@ -24538,6 +26193,7 @@ export namespace Prisma {
     descuento?: SortOrder
     estado?: SortOrder
     metodo_pago?: SortOrder
+    cashRegisterSessionId?: SortOrder
     _count?: POSSaleCountOrderByAggregateInput
     _avg?: POSSaleAvgOrderByAggregateInput
     _max?: POSSaleMaxOrderByAggregateInput
@@ -24556,6 +26212,7 @@ export namespace Prisma {
     descuento?: IntWithAggregatesFilter<"POSSale"> | number
     estado?: StringWithAggregatesFilter<"POSSale"> | string
     metodo_pago?: JsonNullableWithAggregatesFilter<"POSSale">
+    cashRegisterSessionId?: StringNullableWithAggregatesFilter<"POSSale"> | string | null
   }
 
   export type POSSaleDetailWhereInput = {
@@ -24643,6 +26300,8 @@ export namespace Prisma {
     fecha_aprobacion?: DateTimeNullableFilter<"Service"> | Date | string | null
     garantia_hasta?: DateTimeNullableFilter<"Service"> | Date | string | null
     observaciones_garantia?: StringNullableFilter<"Service"> | string | null
+    warrantyReturnDate?: DateTimeNullableFilter<"Service"> | Date | string | null
+    warrantyReturnReason?: StringNullableFilter<"Service"> | string | null
     payments?: JsonNullableFilter<"Service">
     buyer?: XOR<BuyerNullableScalarRelationFilter, BuyerWhereInput> | null
     customerDevice?: XOR<CustomerDeviceNullableScalarRelationFilter, CustomerDeviceWhereInput> | null
@@ -24668,6 +26327,8 @@ export namespace Prisma {
     fecha_aprobacion?: SortOrder
     garantia_hasta?: SortOrder
     observaciones_garantia?: SortOrder
+    warrantyReturnDate?: SortOrder
+    warrantyReturnReason?: SortOrder
     payments?: SortOrder
     buyer?: BuyerOrderByWithRelationInput
     customerDevice?: CustomerDeviceOrderByWithRelationInput
@@ -24696,6 +26357,8 @@ export namespace Prisma {
     fecha_aprobacion?: DateTimeNullableFilter<"Service"> | Date | string | null
     garantia_hasta?: DateTimeNullableFilter<"Service"> | Date | string | null
     observaciones_garantia?: StringNullableFilter<"Service"> | string | null
+    warrantyReturnDate?: DateTimeNullableFilter<"Service"> | Date | string | null
+    warrantyReturnReason?: StringNullableFilter<"Service"> | string | null
     payments?: JsonNullableFilter<"Service">
     buyer?: XOR<BuyerNullableScalarRelationFilter, BuyerWhereInput> | null
     customerDevice?: XOR<CustomerDeviceNullableScalarRelationFilter, CustomerDeviceWhereInput> | null
@@ -24721,6 +26384,8 @@ export namespace Prisma {
     fecha_aprobacion?: SortOrder
     garantia_hasta?: SortOrder
     observaciones_garantia?: SortOrder
+    warrantyReturnDate?: SortOrder
+    warrantyReturnReason?: SortOrder
     payments?: SortOrder
     _count?: ServiceCountOrderByAggregateInput
     _avg?: ServiceAvgOrderByAggregateInput
@@ -24752,96 +26417,172 @@ export namespace Prisma {
     fecha_aprobacion?: DateTimeNullableWithAggregatesFilter<"Service"> | Date | string | null
     garantia_hasta?: DateTimeNullableWithAggregatesFilter<"Service"> | Date | string | null
     observaciones_garantia?: StringNullableWithAggregatesFilter<"Service"> | string | null
+    warrantyReturnDate?: DateTimeNullableWithAggregatesFilter<"Service"> | Date | string | null
+    warrantyReturnReason?: StringNullableWithAggregatesFilter<"Service"> | string | null
     payments?: JsonNullableWithAggregatesFilter<"Service">
   }
 
-  export type CashflowWhereInput = {
-    AND?: CashflowWhereInput | CashflowWhereInput[]
-    OR?: CashflowWhereInput[]
-    NOT?: CashflowWhereInput | CashflowWhereInput[]
-    id?: StringFilter<"Cashflow"> | string
-    active?: BoolFilter<"Cashflow"> | boolean
-    openDate?: DateTimeFilter<"Cashflow"> | Date | string
-    closeDate?: DateTimeNullableFilter<"Cashflow"> | Date | string | null
-    openingBalance?: FloatFilter<"Cashflow"> | number
-    total?: FloatFilter<"Cashflow"> | number
-    expenses?: FloatFilter<"Cashflow"> | number
-    cashSales?: FloatFilter<"Cashflow"> | number
-    cashServices?: FloatFilter<"Cashflow"> | number
-    digitalSales?: FloatFilter<"Cashflow"> | number
-    digitalServices?: FloatFilter<"Cashflow"> | number
-    observations?: StringFilter<"Cashflow"> | string
+  export type CashRegisterSessionWhereInput = {
+    AND?: CashRegisterSessionWhereInput | CashRegisterSessionWhereInput[]
+    OR?: CashRegisterSessionWhereInput[]
+    NOT?: CashRegisterSessionWhereInput | CashRegisterSessionWhereInput[]
+    id?: StringFilter<"CashRegisterSession"> | string
+    openedAt?: DateTimeFilter<"CashRegisterSession"> | Date | string
+    closedAt?: DateTimeNullableFilter<"CashRegisterSession"> | Date | string | null
+    initialCash?: FloatFilter<"CashRegisterSession"> | number
+    finalCashCalculated?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    finalCashCounted?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    difference?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    status?: EnumSessionStatusFilter<"CashRegisterSession"> | $Enums.SessionStatus
+    openedBy?: StringNullableFilter<"CashRegisterSession"> | string | null
+    closedBy?: StringNullableFilter<"CashRegisterSession"> | string | null
+    observations?: StringNullableFilter<"CashRegisterSession"> | string | null
+    movements?: CashMovementListRelationFilter
+    sales?: POSSaleListRelationFilter
+    expenses?: ExpenseListRelationFilter
+    salesWeb?: SaleListRelationFilter
   }
 
-  export type CashflowOrderByWithRelationInput = {
+  export type CashRegisterSessionOrderByWithRelationInput = {
     id?: SortOrder
-    active?: SortOrder
-    openDate?: SortOrder
-    closeDate?: SortOrder
-    openingBalance?: SortOrder
-    total?: SortOrder
-    expenses?: SortOrder
-    cashSales?: SortOrder
-    cashServices?: SortOrder
-    digitalSales?: SortOrder
-    digitalServices?: SortOrder
+    openedAt?: SortOrder
+    closedAt?: SortOrder
+    initialCash?: SortOrder
+    finalCashCalculated?: SortOrder
+    finalCashCounted?: SortOrder
+    difference?: SortOrder
+    status?: SortOrder
+    openedBy?: SortOrder
+    closedBy?: SortOrder
     observations?: SortOrder
+    movements?: CashMovementOrderByRelationAggregateInput
+    sales?: POSSaleOrderByRelationAggregateInput
+    expenses?: ExpenseOrderByRelationAggregateInput
+    salesWeb?: SaleOrderByRelationAggregateInput
   }
 
-  export type CashflowWhereUniqueInput = Prisma.AtLeast<{
+  export type CashRegisterSessionWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: CashflowWhereInput | CashflowWhereInput[]
-    OR?: CashflowWhereInput[]
-    NOT?: CashflowWhereInput | CashflowWhereInput[]
-    active?: BoolFilter<"Cashflow"> | boolean
-    openDate?: DateTimeFilter<"Cashflow"> | Date | string
-    closeDate?: DateTimeNullableFilter<"Cashflow"> | Date | string | null
-    openingBalance?: FloatFilter<"Cashflow"> | number
-    total?: FloatFilter<"Cashflow"> | number
-    expenses?: FloatFilter<"Cashflow"> | number
-    cashSales?: FloatFilter<"Cashflow"> | number
-    cashServices?: FloatFilter<"Cashflow"> | number
-    digitalSales?: FloatFilter<"Cashflow"> | number
-    digitalServices?: FloatFilter<"Cashflow"> | number
-    observations?: StringFilter<"Cashflow"> | string
+    AND?: CashRegisterSessionWhereInput | CashRegisterSessionWhereInput[]
+    OR?: CashRegisterSessionWhereInput[]
+    NOT?: CashRegisterSessionWhereInput | CashRegisterSessionWhereInput[]
+    openedAt?: DateTimeFilter<"CashRegisterSession"> | Date | string
+    closedAt?: DateTimeNullableFilter<"CashRegisterSession"> | Date | string | null
+    initialCash?: FloatFilter<"CashRegisterSession"> | number
+    finalCashCalculated?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    finalCashCounted?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    difference?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    status?: EnumSessionStatusFilter<"CashRegisterSession"> | $Enums.SessionStatus
+    openedBy?: StringNullableFilter<"CashRegisterSession"> | string | null
+    closedBy?: StringNullableFilter<"CashRegisterSession"> | string | null
+    observations?: StringNullableFilter<"CashRegisterSession"> | string | null
+    movements?: CashMovementListRelationFilter
+    sales?: POSSaleListRelationFilter
+    expenses?: ExpenseListRelationFilter
+    salesWeb?: SaleListRelationFilter
   }, "id">
 
-  export type CashflowOrderByWithAggregationInput = {
+  export type CashRegisterSessionOrderByWithAggregationInput = {
     id?: SortOrder
-    active?: SortOrder
-    openDate?: SortOrder
-    closeDate?: SortOrder
-    openingBalance?: SortOrder
-    total?: SortOrder
-    expenses?: SortOrder
-    cashSales?: SortOrder
-    cashServices?: SortOrder
-    digitalSales?: SortOrder
-    digitalServices?: SortOrder
+    openedAt?: SortOrder
+    closedAt?: SortOrder
+    initialCash?: SortOrder
+    finalCashCalculated?: SortOrder
+    finalCashCounted?: SortOrder
+    difference?: SortOrder
+    status?: SortOrder
+    openedBy?: SortOrder
+    closedBy?: SortOrder
     observations?: SortOrder
-    _count?: CashflowCountOrderByAggregateInput
-    _avg?: CashflowAvgOrderByAggregateInput
-    _max?: CashflowMaxOrderByAggregateInput
-    _min?: CashflowMinOrderByAggregateInput
-    _sum?: CashflowSumOrderByAggregateInput
+    _count?: CashRegisterSessionCountOrderByAggregateInput
+    _avg?: CashRegisterSessionAvgOrderByAggregateInput
+    _max?: CashRegisterSessionMaxOrderByAggregateInput
+    _min?: CashRegisterSessionMinOrderByAggregateInput
+    _sum?: CashRegisterSessionSumOrderByAggregateInput
   }
 
-  export type CashflowScalarWhereWithAggregatesInput = {
-    AND?: CashflowScalarWhereWithAggregatesInput | CashflowScalarWhereWithAggregatesInput[]
-    OR?: CashflowScalarWhereWithAggregatesInput[]
-    NOT?: CashflowScalarWhereWithAggregatesInput | CashflowScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Cashflow"> | string
-    active?: BoolWithAggregatesFilter<"Cashflow"> | boolean
-    openDate?: DateTimeWithAggregatesFilter<"Cashflow"> | Date | string
-    closeDate?: DateTimeNullableWithAggregatesFilter<"Cashflow"> | Date | string | null
-    openingBalance?: FloatWithAggregatesFilter<"Cashflow"> | number
-    total?: FloatWithAggregatesFilter<"Cashflow"> | number
-    expenses?: FloatWithAggregatesFilter<"Cashflow"> | number
-    cashSales?: FloatWithAggregatesFilter<"Cashflow"> | number
-    cashServices?: FloatWithAggregatesFilter<"Cashflow"> | number
-    digitalSales?: FloatWithAggregatesFilter<"Cashflow"> | number
-    digitalServices?: FloatWithAggregatesFilter<"Cashflow"> | number
-    observations?: StringWithAggregatesFilter<"Cashflow"> | string
+  export type CashRegisterSessionScalarWhereWithAggregatesInput = {
+    AND?: CashRegisterSessionScalarWhereWithAggregatesInput | CashRegisterSessionScalarWhereWithAggregatesInput[]
+    OR?: CashRegisterSessionScalarWhereWithAggregatesInput[]
+    NOT?: CashRegisterSessionScalarWhereWithAggregatesInput | CashRegisterSessionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CashRegisterSession"> | string
+    openedAt?: DateTimeWithAggregatesFilter<"CashRegisterSession"> | Date | string
+    closedAt?: DateTimeNullableWithAggregatesFilter<"CashRegisterSession"> | Date | string | null
+    initialCash?: FloatWithAggregatesFilter<"CashRegisterSession"> | number
+    finalCashCalculated?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
+    finalCashCounted?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
+    difference?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
+    status?: EnumSessionStatusWithAggregatesFilter<"CashRegisterSession"> | $Enums.SessionStatus
+    openedBy?: StringNullableWithAggregatesFilter<"CashRegisterSession"> | string | null
+    closedBy?: StringNullableWithAggregatesFilter<"CashRegisterSession"> | string | null
+    observations?: StringNullableWithAggregatesFilter<"CashRegisterSession"> | string | null
+  }
+
+  export type CashMovementWhereInput = {
+    AND?: CashMovementWhereInput | CashMovementWhereInput[]
+    OR?: CashMovementWhereInput[]
+    NOT?: CashMovementWhereInput | CashMovementWhereInput[]
+    id?: StringFilter<"CashMovement"> | string
+    cashRegisterSessionId?: StringFilter<"CashMovement"> | string
+    type?: EnumCashMovementTypeFilter<"CashMovement"> | $Enums.CashMovementType
+    amount?: FloatFilter<"CashMovement"> | number
+    description?: StringFilter<"CashMovement"> | string
+    date?: DateTimeFilter<"CashMovement"> | Date | string
+    userId?: StringNullableFilter<"CashMovement"> | string | null
+    cashRegisterSession?: XOR<CashRegisterSessionScalarRelationFilter, CashRegisterSessionWhereInput>
+  }
+
+  export type CashMovementOrderByWithRelationInput = {
+    id?: SortOrder
+    cashRegisterSessionId?: SortOrder
+    type?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    userId?: SortOrder
+    cashRegisterSession?: CashRegisterSessionOrderByWithRelationInput
+  }
+
+  export type CashMovementWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CashMovementWhereInput | CashMovementWhereInput[]
+    OR?: CashMovementWhereInput[]
+    NOT?: CashMovementWhereInput | CashMovementWhereInput[]
+    cashRegisterSessionId?: StringFilter<"CashMovement"> | string
+    type?: EnumCashMovementTypeFilter<"CashMovement"> | $Enums.CashMovementType
+    amount?: FloatFilter<"CashMovement"> | number
+    description?: StringFilter<"CashMovement"> | string
+    date?: DateTimeFilter<"CashMovement"> | Date | string
+    userId?: StringNullableFilter<"CashMovement"> | string | null
+    cashRegisterSession?: XOR<CashRegisterSessionScalarRelationFilter, CashRegisterSessionWhereInput>
+  }, "id">
+
+  export type CashMovementOrderByWithAggregationInput = {
+    id?: SortOrder
+    cashRegisterSessionId?: SortOrder
+    type?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    userId?: SortOrder
+    _count?: CashMovementCountOrderByAggregateInput
+    _avg?: CashMovementAvgOrderByAggregateInput
+    _max?: CashMovementMaxOrderByAggregateInput
+    _min?: CashMovementMinOrderByAggregateInput
+    _sum?: CashMovementSumOrderByAggregateInput
+  }
+
+  export type CashMovementScalarWhereWithAggregatesInput = {
+    AND?: CashMovementScalarWhereWithAggregatesInput | CashMovementScalarWhereWithAggregatesInput[]
+    OR?: CashMovementScalarWhereWithAggregatesInput[]
+    NOT?: CashMovementScalarWhereWithAggregatesInput | CashMovementScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CashMovement"> | string
+    cashRegisterSessionId?: StringWithAggregatesFilter<"CashMovement"> | string
+    type?: EnumCashMovementTypeWithAggregatesFilter<"CashMovement"> | $Enums.CashMovementType
+    amount?: FloatWithAggregatesFilter<"CashMovement"> | number
+    description?: StringWithAggregatesFilter<"CashMovement"> | string
+    date?: DateTimeWithAggregatesFilter<"CashMovement"> | Date | string
+    userId?: StringNullableWithAggregatesFilter<"CashMovement"> | string | null
   }
 
   export type UserWhereInput = {
@@ -25307,6 +27048,7 @@ export namespace Prisma {
     total: number
     discount: number
     payments?: InputJsonValue | null
+    cashRegisterSession?: CashRegisterSessionCreateNestedOneWithoutSalesWebInput
   }
 
   export type SaleUncheckedCreateInput = {
@@ -25318,6 +27060,7 @@ export namespace Prisma {
     total: number
     discount: number
     payments?: InputJsonValue | null
+    cashRegisterSessionId?: string | null
   }
 
   export type SaleUpdateInput = {
@@ -25328,6 +27071,7 @@ export namespace Prisma {
     total?: FloatFieldUpdateOperationsInput | number
     discount?: FloatFieldUpdateOperationsInput | number
     payments?: InputJsonValue | InputJsonValue | null
+    cashRegisterSession?: CashRegisterSessionUpdateOneWithoutSalesWebNestedInput
   }
 
   export type SaleUncheckedUpdateInput = {
@@ -25338,6 +27082,7 @@ export namespace Prisma {
     total?: FloatFieldUpdateOperationsInput | number
     discount?: FloatFieldUpdateOperationsInput | number
     payments?: InputJsonValue | InputJsonValue | null
+    cashRegisterSessionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SaleCreateManyInput = {
@@ -25349,6 +27094,7 @@ export namespace Prisma {
     total: number
     discount: number
     payments?: InputJsonValue | null
+    cashRegisterSessionId?: string | null
   }
 
   export type SaleUpdateManyMutationInput = {
@@ -25369,6 +27115,7 @@ export namespace Prisma {
     total?: FloatFieldUpdateOperationsInput | number
     discount?: FloatFieldUpdateOperationsInput | number
     payments?: InputJsonValue | InputJsonValue | null
+    cashRegisterSessionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ExpenseCreateInput = {
@@ -25380,6 +27127,9 @@ export namespace Prisma {
     date: Date | string
     category?: string | null
     categoryId?: number | null
+    provider?: string | null
+    ticketUrl?: string | null
+    cashRegisterSession?: CashRegisterSessionCreateNestedOneWithoutExpensesInput
   }
 
   export type ExpenseUncheckedCreateInput = {
@@ -25391,6 +27141,9 @@ export namespace Prisma {
     date: Date | string
     category?: string | null
     categoryId?: number | null
+    provider?: string | null
+    ticketUrl?: string | null
+    cashRegisterSessionId?: string | null
   }
 
   export type ExpenseUpdateInput = {
@@ -25401,6 +27154,9 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
     categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    cashRegisterSession?: CashRegisterSessionUpdateOneWithoutExpensesNestedInput
   }
 
   export type ExpenseUncheckedUpdateInput = {
@@ -25411,6 +27167,9 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
     categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    cashRegisterSessionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ExpenseCreateManyInput = {
@@ -25422,6 +27181,9 @@ export namespace Prisma {
     date: Date | string
     category?: string | null
     categoryId?: number | null
+    provider?: string | null
+    ticketUrl?: string | null
+    cashRegisterSessionId?: string | null
   }
 
   export type ExpenseUpdateManyMutationInput = {
@@ -25432,6 +27194,8 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
     categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ExpenseUncheckedUpdateManyInput = {
@@ -25442,6 +27206,9 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
     categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    cashRegisterSessionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BuyerCreateInput = {
@@ -26483,6 +28250,7 @@ export namespace Prisma {
     metodo_pago?: InputJsonValue | null
     buyer: BuyerCreateNestedOneWithoutPosSalesInput
     detalles?: POSSaleDetailCreateNestedManyWithoutPosSaleInput
+    cashRegisterSession?: CashRegisterSessionCreateNestedOneWithoutSalesInput
   }
 
   export type POSSaleUncheckedCreateInput = {
@@ -26493,6 +28261,7 @@ export namespace Prisma {
     descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
+    cashRegisterSessionId?: string | null
     detalles?: POSSaleDetailUncheckedCreateNestedManyWithoutPosSaleInput
   }
 
@@ -26504,6 +28273,7 @@ export namespace Prisma {
     metodo_pago?: InputJsonValue | InputJsonValue | null
     buyer?: BuyerUpdateOneRequiredWithoutPosSalesNestedInput
     detalles?: POSSaleDetailUpdateManyWithoutPosSaleNestedInput
+    cashRegisterSession?: CashRegisterSessionUpdateOneWithoutSalesNestedInput
   }
 
   export type POSSaleUncheckedUpdateInput = {
@@ -26513,6 +28283,7 @@ export namespace Prisma {
     descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
+    cashRegisterSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     detalles?: POSSaleDetailUncheckedUpdateManyWithoutPosSaleNestedInput
   }
 
@@ -26524,6 +28295,7 @@ export namespace Prisma {
     descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
+    cashRegisterSessionId?: string | null
   }
 
   export type POSSaleUpdateManyMutationInput = {
@@ -26541,6 +28313,7 @@ export namespace Prisma {
     descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
+    cashRegisterSessionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type POSSaleDetailCreateInput = {
@@ -26619,6 +28392,8 @@ export namespace Prisma {
     fecha_aprobacion?: Date | string | null
     garantia_hasta?: Date | string | null
     observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
     buyer?: BuyerCreateNestedOneWithoutServicesInput
     customerDevice?: CustomerDeviceCreateNestedOneWithoutServicesInput
@@ -26644,6 +28419,8 @@ export namespace Prisma {
     fecha_aprobacion?: Date | string | null
     garantia_hasta?: Date | string | null
     observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
   }
 
@@ -26664,6 +28441,8 @@ export namespace Prisma {
     fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
     buyer?: BuyerUpdateOneWithoutServicesNestedInput
     customerDevice?: CustomerDeviceUpdateOneWithoutServicesNestedInput
@@ -26688,6 +28467,8 @@ export namespace Prisma {
     fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
   }
 
@@ -26711,6 +28492,8 @@ export namespace Prisma {
     fecha_aprobacion?: Date | string | null
     garantia_hasta?: Date | string | null
     observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
   }
 
@@ -26731,6 +28514,8 @@ export namespace Prisma {
     fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
   }
 
@@ -26753,108 +28538,184 @@ export namespace Prisma {
     fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
   }
 
-  export type CashflowCreateInput = {
+  export type CashRegisterSessionCreateInput = {
     id?: string
-    active: boolean
-    openDate: Date | string
-    closeDate?: Date | string | null
-    openingBalance: number
-    total: number
-    expenses: number
-    cashSales: number
-    cashServices: number
-    digitalSales: number
-    digitalServices: number
-    observations: string
+    openedAt?: Date | string
+    closedAt?: Date | string | null
+    initialCash: number
+    finalCashCalculated?: number | null
+    finalCashCounted?: number | null
+    difference?: number | null
+    status?: $Enums.SessionStatus
+    openedBy?: string | null
+    closedBy?: string | null
+    observations?: string | null
+    movements?: CashMovementCreateNestedManyWithoutCashRegisterSessionInput
+    sales?: POSSaleCreateNestedManyWithoutCashRegisterSessionInput
+    expenses?: ExpenseCreateNestedManyWithoutCashRegisterSessionInput
+    salesWeb?: SaleCreateNestedManyWithoutCashRegisterSessionInput
   }
 
-  export type CashflowUncheckedCreateInput = {
+  export type CashRegisterSessionUncheckedCreateInput = {
     id?: string
-    active: boolean
-    openDate: Date | string
-    closeDate?: Date | string | null
-    openingBalance: number
-    total: number
-    expenses: number
-    cashSales: number
-    cashServices: number
-    digitalSales: number
-    digitalServices: number
-    observations: string
+    openedAt?: Date | string
+    closedAt?: Date | string | null
+    initialCash: number
+    finalCashCalculated?: number | null
+    finalCashCounted?: number | null
+    difference?: number | null
+    status?: $Enums.SessionStatus
+    openedBy?: string | null
+    closedBy?: string | null
+    observations?: string | null
+    movements?: CashMovementUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+    sales?: POSSaleUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+    expenses?: ExpenseUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+    salesWeb?: SaleUncheckedCreateNestedManyWithoutCashRegisterSessionInput
   }
 
-  export type CashflowUpdateInput = {
-    active?: BoolFieldUpdateOperationsInput | boolean
-    openDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    closeDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    openingBalance?: FloatFieldUpdateOperationsInput | number
-    total?: FloatFieldUpdateOperationsInput | number
-    expenses?: FloatFieldUpdateOperationsInput | number
-    cashSales?: FloatFieldUpdateOperationsInput | number
-    cashServices?: FloatFieldUpdateOperationsInput | number
-    digitalSales?: FloatFieldUpdateOperationsInput | number
-    digitalServices?: FloatFieldUpdateOperationsInput | number
-    observations?: StringFieldUpdateOperationsInput | string
+  export type CashRegisterSessionUpdateInput = {
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    initialCash?: FloatFieldUpdateOperationsInput | number
+    finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
+    difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
+    openedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    observations?: NullableStringFieldUpdateOperationsInput | string | null
+    movements?: CashMovementUpdateManyWithoutCashRegisterSessionNestedInput
+    sales?: POSSaleUpdateManyWithoutCashRegisterSessionNestedInput
+    expenses?: ExpenseUpdateManyWithoutCashRegisterSessionNestedInput
+    salesWeb?: SaleUpdateManyWithoutCashRegisterSessionNestedInput
   }
 
-  export type CashflowUncheckedUpdateInput = {
-    active?: BoolFieldUpdateOperationsInput | boolean
-    openDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    closeDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    openingBalance?: FloatFieldUpdateOperationsInput | number
-    total?: FloatFieldUpdateOperationsInput | number
-    expenses?: FloatFieldUpdateOperationsInput | number
-    cashSales?: FloatFieldUpdateOperationsInput | number
-    cashServices?: FloatFieldUpdateOperationsInput | number
-    digitalSales?: FloatFieldUpdateOperationsInput | number
-    digitalServices?: FloatFieldUpdateOperationsInput | number
-    observations?: StringFieldUpdateOperationsInput | string
+  export type CashRegisterSessionUncheckedUpdateInput = {
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    initialCash?: FloatFieldUpdateOperationsInput | number
+    finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
+    difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
+    openedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    observations?: NullableStringFieldUpdateOperationsInput | string | null
+    movements?: CashMovementUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+    sales?: POSSaleUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+    expenses?: ExpenseUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+    salesWeb?: SaleUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
   }
 
-  export type CashflowCreateManyInput = {
+  export type CashRegisterSessionCreateManyInput = {
     id?: string
-    active: boolean
-    openDate: Date | string
-    closeDate?: Date | string | null
-    openingBalance: number
-    total: number
-    expenses: number
-    cashSales: number
-    cashServices: number
-    digitalSales: number
-    digitalServices: number
-    observations: string
+    openedAt?: Date | string
+    closedAt?: Date | string | null
+    initialCash: number
+    finalCashCalculated?: number | null
+    finalCashCounted?: number | null
+    difference?: number | null
+    status?: $Enums.SessionStatus
+    openedBy?: string | null
+    closedBy?: string | null
+    observations?: string | null
   }
 
-  export type CashflowUpdateManyMutationInput = {
-    active?: BoolFieldUpdateOperationsInput | boolean
-    openDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    closeDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    openingBalance?: FloatFieldUpdateOperationsInput | number
-    total?: FloatFieldUpdateOperationsInput | number
-    expenses?: FloatFieldUpdateOperationsInput | number
-    cashSales?: FloatFieldUpdateOperationsInput | number
-    cashServices?: FloatFieldUpdateOperationsInput | number
-    digitalSales?: FloatFieldUpdateOperationsInput | number
-    digitalServices?: FloatFieldUpdateOperationsInput | number
-    observations?: StringFieldUpdateOperationsInput | string
+  export type CashRegisterSessionUpdateManyMutationInput = {
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    initialCash?: FloatFieldUpdateOperationsInput | number
+    finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
+    difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
+    openedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    observations?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type CashflowUncheckedUpdateManyInput = {
-    active?: BoolFieldUpdateOperationsInput | boolean
-    openDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    closeDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    openingBalance?: FloatFieldUpdateOperationsInput | number
-    total?: FloatFieldUpdateOperationsInput | number
-    expenses?: FloatFieldUpdateOperationsInput | number
-    cashSales?: FloatFieldUpdateOperationsInput | number
-    cashServices?: FloatFieldUpdateOperationsInput | number
-    digitalSales?: FloatFieldUpdateOperationsInput | number
-    digitalServices?: FloatFieldUpdateOperationsInput | number
-    observations?: StringFieldUpdateOperationsInput | string
+  export type CashRegisterSessionUncheckedUpdateManyInput = {
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    initialCash?: FloatFieldUpdateOperationsInput | number
+    finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
+    difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
+    openedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    observations?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CashMovementCreateInput = {
+    id?: string
+    type: $Enums.CashMovementType
+    amount: number
+    description: string
+    date?: Date | string
+    userId?: string | null
+    cashRegisterSession: CashRegisterSessionCreateNestedOneWithoutMovementsInput
+  }
+
+  export type CashMovementUncheckedCreateInput = {
+    id?: string
+    cashRegisterSessionId: string
+    type: $Enums.CashMovementType
+    amount: number
+    description: string
+    date?: Date | string
+    userId?: string | null
+  }
+
+  export type CashMovementUpdateInput = {
+    type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    amount?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashRegisterSession?: CashRegisterSessionUpdateOneRequiredWithoutMovementsNestedInput
+  }
+
+  export type CashMovementUncheckedUpdateInput = {
+    cashRegisterSessionId?: StringFieldUpdateOperationsInput | string
+    type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    amount?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CashMovementCreateManyInput = {
+    id?: string
+    cashRegisterSessionId: string
+    type: $Enums.CashMovementType
+    amount: number
+    description: string
+    date?: Date | string
+    userId?: string | null
+  }
+
+  export type CashMovementUpdateManyMutationInput = {
+    type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    amount?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CashMovementUncheckedUpdateManyInput = {
+    cashRegisterSessionId?: StringFieldUpdateOperationsInput | string
+    type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    amount?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserCreateInput = {
@@ -27376,6 +29237,11 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
+  export type CashRegisterSessionNullableScalarRelationFilter = {
+    is?: CashRegisterSessionWhereInput | null
+    isNot?: CashRegisterSessionWhereInput | null
+  }
+
   export type SaleCountOrderByAggregateInput = {
     id?: SortOrder
     customerId?: SortOrder
@@ -27385,6 +29251,7 @@ export namespace Prisma {
     total?: SortOrder
     discount?: SortOrder
     payments?: SortOrder
+    cashRegisterSessionId?: SortOrder
   }
 
   export type SaleAvgOrderByAggregateInput = {
@@ -27399,6 +29266,7 @@ export namespace Prisma {
     date?: SortOrder
     total?: SortOrder
     discount?: SortOrder
+    cashRegisterSessionId?: SortOrder
   }
 
   export type SaleMinOrderByAggregateInput = {
@@ -27408,6 +29276,7 @@ export namespace Prisma {
     date?: SortOrder
     total?: SortOrder
     discount?: SortOrder
+    cashRegisterSessionId?: SortOrder
   }
 
   export type SaleSumOrderByAggregateInput = {
@@ -27436,6 +29305,9 @@ export namespace Prisma {
     date?: SortOrder
     category?: SortOrder
     categoryId?: SortOrder
+    provider?: SortOrder
+    ticketUrl?: SortOrder
+    cashRegisterSessionId?: SortOrder
   }
 
   export type ExpenseAvgOrderByAggregateInput = {
@@ -27452,6 +29324,9 @@ export namespace Prisma {
     date?: SortOrder
     category?: SortOrder
     categoryId?: SortOrder
+    provider?: SortOrder
+    ticketUrl?: SortOrder
+    cashRegisterSessionId?: SortOrder
   }
 
   export type ExpenseMinOrderByAggregateInput = {
@@ -27463,6 +29338,9 @@ export namespace Prisma {
     date?: SortOrder
     category?: SortOrder
     categoryId?: SortOrder
+    provider?: SortOrder
+    ticketUrl?: SortOrder
+    cashRegisterSessionId?: SortOrder
   }
 
   export type ExpenseSumOrderByAggregateInput = {
@@ -28199,6 +30077,7 @@ export namespace Prisma {
     descuento?: SortOrder
     estado?: SortOrder
     metodo_pago?: SortOrder
+    cashRegisterSessionId?: SortOrder
   }
 
   export type POSSaleAvgOrderByAggregateInput = {
@@ -28213,6 +30092,7 @@ export namespace Prisma {
     monto_total?: SortOrder
     descuento?: SortOrder
     estado?: SortOrder
+    cashRegisterSessionId?: SortOrder
   }
 
   export type POSSaleMinOrderByAggregateInput = {
@@ -28222,6 +30102,7 @@ export namespace Prisma {
     monto_total?: SortOrder
     descuento?: SortOrder
     estado?: SortOrder
+    cashRegisterSessionId?: SortOrder
   }
 
   export type POSSaleSumOrderByAggregateInput = {
@@ -28304,6 +30185,8 @@ export namespace Prisma {
     fecha_aprobacion?: SortOrder
     garantia_hasta?: SortOrder
     observaciones_garantia?: SortOrder
+    warrantyReturnDate?: SortOrder
+    warrantyReturnReason?: SortOrder
     payments?: SortOrder
   }
 
@@ -28329,6 +30212,8 @@ export namespace Prisma {
     fecha_aprobacion?: SortOrder
     garantia_hasta?: SortOrder
     observaciones_garantia?: SortOrder
+    warrantyReturnDate?: SortOrder
+    warrantyReturnReason?: SortOrder
   }
 
   export type ServiceMinOrderByAggregateInput = {
@@ -28348,6 +30233,8 @@ export namespace Prisma {
     fecha_aprobacion?: SortOrder
     garantia_hasta?: SortOrder
     observaciones_garantia?: SortOrder
+    warrantyReturnDate?: SortOrder
+    warrantyReturnReason?: SortOrder
   }
 
   export type ServiceSumOrderByAggregateInput = {
@@ -28366,69 +30253,167 @@ export namespace Prisma {
     isSet?: boolean
   }
 
-  export type CashflowCountOrderByAggregateInput = {
+  export type EnumSessionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SessionStatus | EnumSessionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SessionStatus[] | ListEnumSessionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SessionStatus[] | ListEnumSessionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSessionStatusFilter<$PrismaModel> | $Enums.SessionStatus
+  }
+
+  export type CashMovementListRelationFilter = {
+    every?: CashMovementWhereInput
+    some?: CashMovementWhereInput
+    none?: CashMovementWhereInput
+  }
+
+  export type ExpenseListRelationFilter = {
+    every?: ExpenseWhereInput
+    some?: ExpenseWhereInput
+    none?: ExpenseWhereInput
+  }
+
+  export type SaleListRelationFilter = {
+    every?: SaleWhereInput
+    some?: SaleWhereInput
+    none?: SaleWhereInput
+  }
+
+  export type CashMovementOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ExpenseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SaleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CashRegisterSessionCountOrderByAggregateInput = {
     id?: SortOrder
-    active?: SortOrder
-    openDate?: SortOrder
-    closeDate?: SortOrder
-    openingBalance?: SortOrder
-    total?: SortOrder
-    expenses?: SortOrder
-    cashSales?: SortOrder
-    cashServices?: SortOrder
-    digitalSales?: SortOrder
-    digitalServices?: SortOrder
+    openedAt?: SortOrder
+    closedAt?: SortOrder
+    initialCash?: SortOrder
+    finalCashCalculated?: SortOrder
+    finalCashCounted?: SortOrder
+    difference?: SortOrder
+    status?: SortOrder
+    openedBy?: SortOrder
+    closedBy?: SortOrder
     observations?: SortOrder
   }
 
-  export type CashflowAvgOrderByAggregateInput = {
-    openingBalance?: SortOrder
-    total?: SortOrder
-    expenses?: SortOrder
-    cashSales?: SortOrder
-    cashServices?: SortOrder
-    digitalSales?: SortOrder
-    digitalServices?: SortOrder
+  export type CashRegisterSessionAvgOrderByAggregateInput = {
+    initialCash?: SortOrder
+    finalCashCalculated?: SortOrder
+    finalCashCounted?: SortOrder
+    difference?: SortOrder
   }
 
-  export type CashflowMaxOrderByAggregateInput = {
+  export type CashRegisterSessionMaxOrderByAggregateInput = {
     id?: SortOrder
-    active?: SortOrder
-    openDate?: SortOrder
-    closeDate?: SortOrder
-    openingBalance?: SortOrder
-    total?: SortOrder
-    expenses?: SortOrder
-    cashSales?: SortOrder
-    cashServices?: SortOrder
-    digitalSales?: SortOrder
-    digitalServices?: SortOrder
+    openedAt?: SortOrder
+    closedAt?: SortOrder
+    initialCash?: SortOrder
+    finalCashCalculated?: SortOrder
+    finalCashCounted?: SortOrder
+    difference?: SortOrder
+    status?: SortOrder
+    openedBy?: SortOrder
+    closedBy?: SortOrder
     observations?: SortOrder
   }
 
-  export type CashflowMinOrderByAggregateInput = {
+  export type CashRegisterSessionMinOrderByAggregateInput = {
     id?: SortOrder
-    active?: SortOrder
-    openDate?: SortOrder
-    closeDate?: SortOrder
-    openingBalance?: SortOrder
-    total?: SortOrder
-    expenses?: SortOrder
-    cashSales?: SortOrder
-    cashServices?: SortOrder
-    digitalSales?: SortOrder
-    digitalServices?: SortOrder
+    openedAt?: SortOrder
+    closedAt?: SortOrder
+    initialCash?: SortOrder
+    finalCashCalculated?: SortOrder
+    finalCashCounted?: SortOrder
+    difference?: SortOrder
+    status?: SortOrder
+    openedBy?: SortOrder
+    closedBy?: SortOrder
     observations?: SortOrder
   }
 
-  export type CashflowSumOrderByAggregateInput = {
-    openingBalance?: SortOrder
-    total?: SortOrder
-    expenses?: SortOrder
-    cashSales?: SortOrder
-    cashServices?: SortOrder
-    digitalSales?: SortOrder
-    digitalServices?: SortOrder
+  export type CashRegisterSessionSumOrderByAggregateInput = {
+    initialCash?: SortOrder
+    finalCashCalculated?: SortOrder
+    finalCashCounted?: SortOrder
+    difference?: SortOrder
+  }
+
+  export type EnumSessionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SessionStatus | EnumSessionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SessionStatus[] | ListEnumSessionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SessionStatus[] | ListEnumSessionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSessionStatusWithAggregatesFilter<$PrismaModel> | $Enums.SessionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSessionStatusFilter<$PrismaModel>
+    _max?: NestedEnumSessionStatusFilter<$PrismaModel>
+  }
+
+  export type EnumCashMovementTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CashMovementType | EnumCashMovementTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CashMovementType[] | ListEnumCashMovementTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CashMovementType[] | ListEnumCashMovementTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCashMovementTypeFilter<$PrismaModel> | $Enums.CashMovementType
+  }
+
+  export type CashRegisterSessionScalarRelationFilter = {
+    is?: CashRegisterSessionWhereInput
+    isNot?: CashRegisterSessionWhereInput
+  }
+
+  export type CashMovementCountOrderByAggregateInput = {
+    id?: SortOrder
+    cashRegisterSessionId?: SortOrder
+    type?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type CashMovementAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type CashMovementMaxOrderByAggregateInput = {
+    id?: SortOrder
+    cashRegisterSessionId?: SortOrder
+    type?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type CashMovementMinOrderByAggregateInput = {
+    id?: SortOrder
+    cashRegisterSessionId?: SortOrder
+    type?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type CashMovementSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type EnumCashMovementTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CashMovementType | EnumCashMovementTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CashMovementType[] | ListEnumCashMovementTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CashMovementType[] | ListEnumCashMovementTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCashMovementTypeWithAggregatesFilter<$PrismaModel> | $Enums.CashMovementType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCashMovementTypeFilter<$PrismaModel>
+    _max?: NestedEnumCashMovementTypeFilter<$PrismaModel>
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -28592,6 +30577,28 @@ export namespace Prisma {
     push?: string | string[]
   }
 
+  export type CashRegisterSessionCreateNestedOneWithoutSalesWebInput = {
+    create?: XOR<CashRegisterSessionCreateWithoutSalesWebInput, CashRegisterSessionUncheckedCreateWithoutSalesWebInput>
+    connectOrCreate?: CashRegisterSessionCreateOrConnectWithoutSalesWebInput
+    connect?: CashRegisterSessionWhereUniqueInput
+  }
+
+  export type CashRegisterSessionUpdateOneWithoutSalesWebNestedInput = {
+    create?: XOR<CashRegisterSessionCreateWithoutSalesWebInput, CashRegisterSessionUncheckedCreateWithoutSalesWebInput>
+    connectOrCreate?: CashRegisterSessionCreateOrConnectWithoutSalesWebInput
+    upsert?: CashRegisterSessionUpsertWithoutSalesWebInput
+    disconnect?: boolean
+    delete?: CashRegisterSessionWhereInput | boolean
+    connect?: CashRegisterSessionWhereUniqueInput
+    update?: XOR<XOR<CashRegisterSessionUpdateToOneWithWhereWithoutSalesWebInput, CashRegisterSessionUpdateWithoutSalesWebInput>, CashRegisterSessionUncheckedUpdateWithoutSalesWebInput>
+  }
+
+  export type CashRegisterSessionCreateNestedOneWithoutExpensesInput = {
+    create?: XOR<CashRegisterSessionCreateWithoutExpensesInput, CashRegisterSessionUncheckedCreateWithoutExpensesInput>
+    connectOrCreate?: CashRegisterSessionCreateOrConnectWithoutExpensesInput
+    connect?: CashRegisterSessionWhereUniqueInput
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -28599,6 +30606,16 @@ export namespace Prisma {
     multiply?: number
     divide?: number
     unset?: boolean
+  }
+
+  export type CashRegisterSessionUpdateOneWithoutExpensesNestedInput = {
+    create?: XOR<CashRegisterSessionCreateWithoutExpensesInput, CashRegisterSessionUncheckedCreateWithoutExpensesInput>
+    connectOrCreate?: CashRegisterSessionCreateOrConnectWithoutExpensesInput
+    upsert?: CashRegisterSessionUpsertWithoutExpensesInput
+    disconnect?: boolean
+    delete?: CashRegisterSessionWhereInput | boolean
+    connect?: CashRegisterSessionWhereUniqueInput
+    update?: XOR<XOR<CashRegisterSessionUpdateToOneWithWhereWithoutExpensesInput, CashRegisterSessionUpdateWithoutExpensesInput>, CashRegisterSessionUncheckedUpdateWithoutExpensesInput>
   }
 
   export type BuyerCreatetagsInput = {
@@ -29154,6 +31171,12 @@ export namespace Prisma {
     connect?: POSSaleDetailWhereUniqueInput | POSSaleDetailWhereUniqueInput[]
   }
 
+  export type CashRegisterSessionCreateNestedOneWithoutSalesInput = {
+    create?: XOR<CashRegisterSessionCreateWithoutSalesInput, CashRegisterSessionUncheckedCreateWithoutSalesInput>
+    connectOrCreate?: CashRegisterSessionCreateOrConnectWithoutSalesInput
+    connect?: CashRegisterSessionWhereUniqueInput
+  }
+
   export type POSSaleDetailUncheckedCreateNestedManyWithoutPosSaleInput = {
     create?: XOR<POSSaleDetailCreateWithoutPosSaleInput, POSSaleDetailUncheckedCreateWithoutPosSaleInput> | POSSaleDetailCreateWithoutPosSaleInput[] | POSSaleDetailUncheckedCreateWithoutPosSaleInput[]
     connectOrCreate?: POSSaleDetailCreateOrConnectWithoutPosSaleInput | POSSaleDetailCreateOrConnectWithoutPosSaleInput[]
@@ -29181,6 +31204,16 @@ export namespace Prisma {
     update?: POSSaleDetailUpdateWithWhereUniqueWithoutPosSaleInput | POSSaleDetailUpdateWithWhereUniqueWithoutPosSaleInput[]
     updateMany?: POSSaleDetailUpdateManyWithWhereWithoutPosSaleInput | POSSaleDetailUpdateManyWithWhereWithoutPosSaleInput[]
     deleteMany?: POSSaleDetailScalarWhereInput | POSSaleDetailScalarWhereInput[]
+  }
+
+  export type CashRegisterSessionUpdateOneWithoutSalesNestedInput = {
+    create?: XOR<CashRegisterSessionCreateWithoutSalesInput, CashRegisterSessionUncheckedCreateWithoutSalesInput>
+    connectOrCreate?: CashRegisterSessionCreateOrConnectWithoutSalesInput
+    upsert?: CashRegisterSessionUpsertWithoutSalesInput
+    disconnect?: boolean
+    delete?: CashRegisterSessionWhereInput | boolean
+    connect?: CashRegisterSessionWhereUniqueInput
+    update?: XOR<XOR<CashRegisterSessionUpdateToOneWithWhereWithoutSalesInput, CashRegisterSessionUpdateWithoutSalesInput>, CashRegisterSessionUncheckedUpdateWithoutSalesInput>
   }
 
   export type POSSaleDetailUncheckedUpdateManyWithoutPosSaleNestedInput = {
@@ -29246,6 +31279,196 @@ export namespace Prisma {
     delete?: CustomerDeviceWhereInput | boolean
     connect?: CustomerDeviceWhereUniqueInput
     update?: XOR<XOR<CustomerDeviceUpdateToOneWithWhereWithoutServicesInput, CustomerDeviceUpdateWithoutServicesInput>, CustomerDeviceUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type CashMovementCreateNestedManyWithoutCashRegisterSessionInput = {
+    create?: XOR<CashMovementCreateWithoutCashRegisterSessionInput, CashMovementUncheckedCreateWithoutCashRegisterSessionInput> | CashMovementCreateWithoutCashRegisterSessionInput[] | CashMovementUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: CashMovementCreateOrConnectWithoutCashRegisterSessionInput | CashMovementCreateOrConnectWithoutCashRegisterSessionInput[]
+    createMany?: CashMovementCreateManyCashRegisterSessionInputEnvelope
+    connect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
+  }
+
+  export type POSSaleCreateNestedManyWithoutCashRegisterSessionInput = {
+    create?: XOR<POSSaleCreateWithoutCashRegisterSessionInput, POSSaleUncheckedCreateWithoutCashRegisterSessionInput> | POSSaleCreateWithoutCashRegisterSessionInput[] | POSSaleUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: POSSaleCreateOrConnectWithoutCashRegisterSessionInput | POSSaleCreateOrConnectWithoutCashRegisterSessionInput[]
+    createMany?: POSSaleCreateManyCashRegisterSessionInputEnvelope
+    connect?: POSSaleWhereUniqueInput | POSSaleWhereUniqueInput[]
+  }
+
+  export type ExpenseCreateNestedManyWithoutCashRegisterSessionInput = {
+    create?: XOR<ExpenseCreateWithoutCashRegisterSessionInput, ExpenseUncheckedCreateWithoutCashRegisterSessionInput> | ExpenseCreateWithoutCashRegisterSessionInput[] | ExpenseUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: ExpenseCreateOrConnectWithoutCashRegisterSessionInput | ExpenseCreateOrConnectWithoutCashRegisterSessionInput[]
+    createMany?: ExpenseCreateManyCashRegisterSessionInputEnvelope
+    connect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
+  }
+
+  export type SaleCreateNestedManyWithoutCashRegisterSessionInput = {
+    create?: XOR<SaleCreateWithoutCashRegisterSessionInput, SaleUncheckedCreateWithoutCashRegisterSessionInput> | SaleCreateWithoutCashRegisterSessionInput[] | SaleUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: SaleCreateOrConnectWithoutCashRegisterSessionInput | SaleCreateOrConnectWithoutCashRegisterSessionInput[]
+    createMany?: SaleCreateManyCashRegisterSessionInputEnvelope
+    connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
+  }
+
+  export type CashMovementUncheckedCreateNestedManyWithoutCashRegisterSessionInput = {
+    create?: XOR<CashMovementCreateWithoutCashRegisterSessionInput, CashMovementUncheckedCreateWithoutCashRegisterSessionInput> | CashMovementCreateWithoutCashRegisterSessionInput[] | CashMovementUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: CashMovementCreateOrConnectWithoutCashRegisterSessionInput | CashMovementCreateOrConnectWithoutCashRegisterSessionInput[]
+    createMany?: CashMovementCreateManyCashRegisterSessionInputEnvelope
+    connect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
+  }
+
+  export type POSSaleUncheckedCreateNestedManyWithoutCashRegisterSessionInput = {
+    create?: XOR<POSSaleCreateWithoutCashRegisterSessionInput, POSSaleUncheckedCreateWithoutCashRegisterSessionInput> | POSSaleCreateWithoutCashRegisterSessionInput[] | POSSaleUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: POSSaleCreateOrConnectWithoutCashRegisterSessionInput | POSSaleCreateOrConnectWithoutCashRegisterSessionInput[]
+    createMany?: POSSaleCreateManyCashRegisterSessionInputEnvelope
+    connect?: POSSaleWhereUniqueInput | POSSaleWhereUniqueInput[]
+  }
+
+  export type ExpenseUncheckedCreateNestedManyWithoutCashRegisterSessionInput = {
+    create?: XOR<ExpenseCreateWithoutCashRegisterSessionInput, ExpenseUncheckedCreateWithoutCashRegisterSessionInput> | ExpenseCreateWithoutCashRegisterSessionInput[] | ExpenseUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: ExpenseCreateOrConnectWithoutCashRegisterSessionInput | ExpenseCreateOrConnectWithoutCashRegisterSessionInput[]
+    createMany?: ExpenseCreateManyCashRegisterSessionInputEnvelope
+    connect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
+  }
+
+  export type SaleUncheckedCreateNestedManyWithoutCashRegisterSessionInput = {
+    create?: XOR<SaleCreateWithoutCashRegisterSessionInput, SaleUncheckedCreateWithoutCashRegisterSessionInput> | SaleCreateWithoutCashRegisterSessionInput[] | SaleUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: SaleCreateOrConnectWithoutCashRegisterSessionInput | SaleCreateOrConnectWithoutCashRegisterSessionInput[]
+    createMany?: SaleCreateManyCashRegisterSessionInputEnvelope
+    connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
+  }
+
+  export type EnumSessionStatusFieldUpdateOperationsInput = {
+    set?: $Enums.SessionStatus
+  }
+
+  export type CashMovementUpdateManyWithoutCashRegisterSessionNestedInput = {
+    create?: XOR<CashMovementCreateWithoutCashRegisterSessionInput, CashMovementUncheckedCreateWithoutCashRegisterSessionInput> | CashMovementCreateWithoutCashRegisterSessionInput[] | CashMovementUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: CashMovementCreateOrConnectWithoutCashRegisterSessionInput | CashMovementCreateOrConnectWithoutCashRegisterSessionInput[]
+    upsert?: CashMovementUpsertWithWhereUniqueWithoutCashRegisterSessionInput | CashMovementUpsertWithWhereUniqueWithoutCashRegisterSessionInput[]
+    createMany?: CashMovementCreateManyCashRegisterSessionInputEnvelope
+    set?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
+    disconnect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
+    delete?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
+    connect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
+    update?: CashMovementUpdateWithWhereUniqueWithoutCashRegisterSessionInput | CashMovementUpdateWithWhereUniqueWithoutCashRegisterSessionInput[]
+    updateMany?: CashMovementUpdateManyWithWhereWithoutCashRegisterSessionInput | CashMovementUpdateManyWithWhereWithoutCashRegisterSessionInput[]
+    deleteMany?: CashMovementScalarWhereInput | CashMovementScalarWhereInput[]
+  }
+
+  export type POSSaleUpdateManyWithoutCashRegisterSessionNestedInput = {
+    create?: XOR<POSSaleCreateWithoutCashRegisterSessionInput, POSSaleUncheckedCreateWithoutCashRegisterSessionInput> | POSSaleCreateWithoutCashRegisterSessionInput[] | POSSaleUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: POSSaleCreateOrConnectWithoutCashRegisterSessionInput | POSSaleCreateOrConnectWithoutCashRegisterSessionInput[]
+    upsert?: POSSaleUpsertWithWhereUniqueWithoutCashRegisterSessionInput | POSSaleUpsertWithWhereUniqueWithoutCashRegisterSessionInput[]
+    createMany?: POSSaleCreateManyCashRegisterSessionInputEnvelope
+    set?: POSSaleWhereUniqueInput | POSSaleWhereUniqueInput[]
+    disconnect?: POSSaleWhereUniqueInput | POSSaleWhereUniqueInput[]
+    delete?: POSSaleWhereUniqueInput | POSSaleWhereUniqueInput[]
+    connect?: POSSaleWhereUniqueInput | POSSaleWhereUniqueInput[]
+    update?: POSSaleUpdateWithWhereUniqueWithoutCashRegisterSessionInput | POSSaleUpdateWithWhereUniqueWithoutCashRegisterSessionInput[]
+    updateMany?: POSSaleUpdateManyWithWhereWithoutCashRegisterSessionInput | POSSaleUpdateManyWithWhereWithoutCashRegisterSessionInput[]
+    deleteMany?: POSSaleScalarWhereInput | POSSaleScalarWhereInput[]
+  }
+
+  export type ExpenseUpdateManyWithoutCashRegisterSessionNestedInput = {
+    create?: XOR<ExpenseCreateWithoutCashRegisterSessionInput, ExpenseUncheckedCreateWithoutCashRegisterSessionInput> | ExpenseCreateWithoutCashRegisterSessionInput[] | ExpenseUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: ExpenseCreateOrConnectWithoutCashRegisterSessionInput | ExpenseCreateOrConnectWithoutCashRegisterSessionInput[]
+    upsert?: ExpenseUpsertWithWhereUniqueWithoutCashRegisterSessionInput | ExpenseUpsertWithWhereUniqueWithoutCashRegisterSessionInput[]
+    createMany?: ExpenseCreateManyCashRegisterSessionInputEnvelope
+    set?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
+    disconnect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
+    delete?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
+    connect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
+    update?: ExpenseUpdateWithWhereUniqueWithoutCashRegisterSessionInput | ExpenseUpdateWithWhereUniqueWithoutCashRegisterSessionInput[]
+    updateMany?: ExpenseUpdateManyWithWhereWithoutCashRegisterSessionInput | ExpenseUpdateManyWithWhereWithoutCashRegisterSessionInput[]
+    deleteMany?: ExpenseScalarWhereInput | ExpenseScalarWhereInput[]
+  }
+
+  export type SaleUpdateManyWithoutCashRegisterSessionNestedInput = {
+    create?: XOR<SaleCreateWithoutCashRegisterSessionInput, SaleUncheckedCreateWithoutCashRegisterSessionInput> | SaleCreateWithoutCashRegisterSessionInput[] | SaleUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: SaleCreateOrConnectWithoutCashRegisterSessionInput | SaleCreateOrConnectWithoutCashRegisterSessionInput[]
+    upsert?: SaleUpsertWithWhereUniqueWithoutCashRegisterSessionInput | SaleUpsertWithWhereUniqueWithoutCashRegisterSessionInput[]
+    createMany?: SaleCreateManyCashRegisterSessionInputEnvelope
+    set?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
+    disconnect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
+    delete?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
+    connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
+    update?: SaleUpdateWithWhereUniqueWithoutCashRegisterSessionInput | SaleUpdateWithWhereUniqueWithoutCashRegisterSessionInput[]
+    updateMany?: SaleUpdateManyWithWhereWithoutCashRegisterSessionInput | SaleUpdateManyWithWhereWithoutCashRegisterSessionInput[]
+    deleteMany?: SaleScalarWhereInput | SaleScalarWhereInput[]
+  }
+
+  export type CashMovementUncheckedUpdateManyWithoutCashRegisterSessionNestedInput = {
+    create?: XOR<CashMovementCreateWithoutCashRegisterSessionInput, CashMovementUncheckedCreateWithoutCashRegisterSessionInput> | CashMovementCreateWithoutCashRegisterSessionInput[] | CashMovementUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: CashMovementCreateOrConnectWithoutCashRegisterSessionInput | CashMovementCreateOrConnectWithoutCashRegisterSessionInput[]
+    upsert?: CashMovementUpsertWithWhereUniqueWithoutCashRegisterSessionInput | CashMovementUpsertWithWhereUniqueWithoutCashRegisterSessionInput[]
+    createMany?: CashMovementCreateManyCashRegisterSessionInputEnvelope
+    set?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
+    disconnect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
+    delete?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
+    connect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
+    update?: CashMovementUpdateWithWhereUniqueWithoutCashRegisterSessionInput | CashMovementUpdateWithWhereUniqueWithoutCashRegisterSessionInput[]
+    updateMany?: CashMovementUpdateManyWithWhereWithoutCashRegisterSessionInput | CashMovementUpdateManyWithWhereWithoutCashRegisterSessionInput[]
+    deleteMany?: CashMovementScalarWhereInput | CashMovementScalarWhereInput[]
+  }
+
+  export type POSSaleUncheckedUpdateManyWithoutCashRegisterSessionNestedInput = {
+    create?: XOR<POSSaleCreateWithoutCashRegisterSessionInput, POSSaleUncheckedCreateWithoutCashRegisterSessionInput> | POSSaleCreateWithoutCashRegisterSessionInput[] | POSSaleUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: POSSaleCreateOrConnectWithoutCashRegisterSessionInput | POSSaleCreateOrConnectWithoutCashRegisterSessionInput[]
+    upsert?: POSSaleUpsertWithWhereUniqueWithoutCashRegisterSessionInput | POSSaleUpsertWithWhereUniqueWithoutCashRegisterSessionInput[]
+    createMany?: POSSaleCreateManyCashRegisterSessionInputEnvelope
+    set?: POSSaleWhereUniqueInput | POSSaleWhereUniqueInput[]
+    disconnect?: POSSaleWhereUniqueInput | POSSaleWhereUniqueInput[]
+    delete?: POSSaleWhereUniqueInput | POSSaleWhereUniqueInput[]
+    connect?: POSSaleWhereUniqueInput | POSSaleWhereUniqueInput[]
+    update?: POSSaleUpdateWithWhereUniqueWithoutCashRegisterSessionInput | POSSaleUpdateWithWhereUniqueWithoutCashRegisterSessionInput[]
+    updateMany?: POSSaleUpdateManyWithWhereWithoutCashRegisterSessionInput | POSSaleUpdateManyWithWhereWithoutCashRegisterSessionInput[]
+    deleteMany?: POSSaleScalarWhereInput | POSSaleScalarWhereInput[]
+  }
+
+  export type ExpenseUncheckedUpdateManyWithoutCashRegisterSessionNestedInput = {
+    create?: XOR<ExpenseCreateWithoutCashRegisterSessionInput, ExpenseUncheckedCreateWithoutCashRegisterSessionInput> | ExpenseCreateWithoutCashRegisterSessionInput[] | ExpenseUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: ExpenseCreateOrConnectWithoutCashRegisterSessionInput | ExpenseCreateOrConnectWithoutCashRegisterSessionInput[]
+    upsert?: ExpenseUpsertWithWhereUniqueWithoutCashRegisterSessionInput | ExpenseUpsertWithWhereUniqueWithoutCashRegisterSessionInput[]
+    createMany?: ExpenseCreateManyCashRegisterSessionInputEnvelope
+    set?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
+    disconnect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
+    delete?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
+    connect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
+    update?: ExpenseUpdateWithWhereUniqueWithoutCashRegisterSessionInput | ExpenseUpdateWithWhereUniqueWithoutCashRegisterSessionInput[]
+    updateMany?: ExpenseUpdateManyWithWhereWithoutCashRegisterSessionInput | ExpenseUpdateManyWithWhereWithoutCashRegisterSessionInput[]
+    deleteMany?: ExpenseScalarWhereInput | ExpenseScalarWhereInput[]
+  }
+
+  export type SaleUncheckedUpdateManyWithoutCashRegisterSessionNestedInput = {
+    create?: XOR<SaleCreateWithoutCashRegisterSessionInput, SaleUncheckedCreateWithoutCashRegisterSessionInput> | SaleCreateWithoutCashRegisterSessionInput[] | SaleUncheckedCreateWithoutCashRegisterSessionInput[]
+    connectOrCreate?: SaleCreateOrConnectWithoutCashRegisterSessionInput | SaleCreateOrConnectWithoutCashRegisterSessionInput[]
+    upsert?: SaleUpsertWithWhereUniqueWithoutCashRegisterSessionInput | SaleUpsertWithWhereUniqueWithoutCashRegisterSessionInput[]
+    createMany?: SaleCreateManyCashRegisterSessionInputEnvelope
+    set?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
+    disconnect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
+    delete?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
+    connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
+    update?: SaleUpdateWithWhereUniqueWithoutCashRegisterSessionInput | SaleUpdateWithWhereUniqueWithoutCashRegisterSessionInput[]
+    updateMany?: SaleUpdateManyWithWhereWithoutCashRegisterSessionInput | SaleUpdateManyWithWhereWithoutCashRegisterSessionInput[]
+    deleteMany?: SaleScalarWhereInput | SaleScalarWhereInput[]
+  }
+
+  export type CashRegisterSessionCreateNestedOneWithoutMovementsInput = {
+    create?: XOR<CashRegisterSessionCreateWithoutMovementsInput, CashRegisterSessionUncheckedCreateWithoutMovementsInput>
+    connectOrCreate?: CashRegisterSessionCreateOrConnectWithoutMovementsInput
+    connect?: CashRegisterSessionWhereUniqueInput
+  }
+
+  export type EnumCashMovementTypeFieldUpdateOperationsInput = {
+    set?: $Enums.CashMovementType
+  }
+
+  export type CashRegisterSessionUpdateOneRequiredWithoutMovementsNestedInput = {
+    create?: XOR<CashRegisterSessionCreateWithoutMovementsInput, CashRegisterSessionUncheckedCreateWithoutMovementsInput>
+    connectOrCreate?: CashRegisterSessionCreateOrConnectWithoutMovementsInput
+    upsert?: CashRegisterSessionUpsertWithoutMovementsInput
+    connect?: CashRegisterSessionWhereUniqueInput
+    update?: XOR<XOR<CashRegisterSessionUpdateToOneWithWhereWithoutMovementsInput, CashRegisterSessionUpdateWithoutMovementsInput>, CashRegisterSessionUncheckedUpdateWithoutMovementsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -29599,6 +31822,40 @@ export namespace Prisma {
     isSet?: boolean
   }
 
+  export type NestedEnumSessionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SessionStatus | EnumSessionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SessionStatus[] | ListEnumSessionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SessionStatus[] | ListEnumSessionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSessionStatusFilter<$PrismaModel> | $Enums.SessionStatus
+  }
+
+  export type NestedEnumSessionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SessionStatus | EnumSessionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SessionStatus[] | ListEnumSessionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SessionStatus[] | ListEnumSessionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSessionStatusWithAggregatesFilter<$PrismaModel> | $Enums.SessionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSessionStatusFilter<$PrismaModel>
+    _max?: NestedEnumSessionStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCashMovementTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CashMovementType | EnumCashMovementTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CashMovementType[] | ListEnumCashMovementTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CashMovementType[] | ListEnumCashMovementTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCashMovementTypeFilter<$PrismaModel> | $Enums.CashMovementType
+  }
+
+  export type NestedEnumCashMovementTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CashMovementType | EnumCashMovementTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CashMovementType[] | ListEnumCashMovementTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CashMovementType[] | ListEnumCashMovementTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCashMovementTypeWithAggregatesFilter<$PrismaModel> | $Enums.CashMovementType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCashMovementTypeFilter<$PrismaModel>
+    _max?: NestedEnumCashMovementTypeFilter<$PrismaModel>
+  }
+
   export type ProductVariantCreateWithoutProductInput = {
     id?: string
     barcode?: string | null
@@ -29799,6 +32056,170 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CashRegisterSessionCreateWithoutSalesWebInput = {
+    id?: string
+    openedAt?: Date | string
+    closedAt?: Date | string | null
+    initialCash: number
+    finalCashCalculated?: number | null
+    finalCashCounted?: number | null
+    difference?: number | null
+    status?: $Enums.SessionStatus
+    openedBy?: string | null
+    closedBy?: string | null
+    observations?: string | null
+    movements?: CashMovementCreateNestedManyWithoutCashRegisterSessionInput
+    sales?: POSSaleCreateNestedManyWithoutCashRegisterSessionInput
+    expenses?: ExpenseCreateNestedManyWithoutCashRegisterSessionInput
+  }
+
+  export type CashRegisterSessionUncheckedCreateWithoutSalesWebInput = {
+    id?: string
+    openedAt?: Date | string
+    closedAt?: Date | string | null
+    initialCash: number
+    finalCashCalculated?: number | null
+    finalCashCounted?: number | null
+    difference?: number | null
+    status?: $Enums.SessionStatus
+    openedBy?: string | null
+    closedBy?: string | null
+    observations?: string | null
+    movements?: CashMovementUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+    sales?: POSSaleUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+    expenses?: ExpenseUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+  }
+
+  export type CashRegisterSessionCreateOrConnectWithoutSalesWebInput = {
+    where: CashRegisterSessionWhereUniqueInput
+    create: XOR<CashRegisterSessionCreateWithoutSalesWebInput, CashRegisterSessionUncheckedCreateWithoutSalesWebInput>
+  }
+
+  export type CashRegisterSessionUpsertWithoutSalesWebInput = {
+    update: XOR<CashRegisterSessionUpdateWithoutSalesWebInput, CashRegisterSessionUncheckedUpdateWithoutSalesWebInput>
+    create: XOR<CashRegisterSessionCreateWithoutSalesWebInput, CashRegisterSessionUncheckedCreateWithoutSalesWebInput>
+    where?: CashRegisterSessionWhereInput
+  }
+
+  export type CashRegisterSessionUpdateToOneWithWhereWithoutSalesWebInput = {
+    where?: CashRegisterSessionWhereInput
+    data: XOR<CashRegisterSessionUpdateWithoutSalesWebInput, CashRegisterSessionUncheckedUpdateWithoutSalesWebInput>
+  }
+
+  export type CashRegisterSessionUpdateWithoutSalesWebInput = {
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    initialCash?: FloatFieldUpdateOperationsInput | number
+    finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
+    difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
+    openedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    observations?: NullableStringFieldUpdateOperationsInput | string | null
+    movements?: CashMovementUpdateManyWithoutCashRegisterSessionNestedInput
+    sales?: POSSaleUpdateManyWithoutCashRegisterSessionNestedInput
+    expenses?: ExpenseUpdateManyWithoutCashRegisterSessionNestedInput
+  }
+
+  export type CashRegisterSessionUncheckedUpdateWithoutSalesWebInput = {
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    initialCash?: FloatFieldUpdateOperationsInput | number
+    finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
+    difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
+    openedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    observations?: NullableStringFieldUpdateOperationsInput | string | null
+    movements?: CashMovementUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+    sales?: POSSaleUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+    expenses?: ExpenseUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+  }
+
+  export type CashRegisterSessionCreateWithoutExpensesInput = {
+    id?: string
+    openedAt?: Date | string
+    closedAt?: Date | string | null
+    initialCash: number
+    finalCashCalculated?: number | null
+    finalCashCounted?: number | null
+    difference?: number | null
+    status?: $Enums.SessionStatus
+    openedBy?: string | null
+    closedBy?: string | null
+    observations?: string | null
+    movements?: CashMovementCreateNestedManyWithoutCashRegisterSessionInput
+    sales?: POSSaleCreateNestedManyWithoutCashRegisterSessionInput
+    salesWeb?: SaleCreateNestedManyWithoutCashRegisterSessionInput
+  }
+
+  export type CashRegisterSessionUncheckedCreateWithoutExpensesInput = {
+    id?: string
+    openedAt?: Date | string
+    closedAt?: Date | string | null
+    initialCash: number
+    finalCashCalculated?: number | null
+    finalCashCounted?: number | null
+    difference?: number | null
+    status?: $Enums.SessionStatus
+    openedBy?: string | null
+    closedBy?: string | null
+    observations?: string | null
+    movements?: CashMovementUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+    sales?: POSSaleUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+    salesWeb?: SaleUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+  }
+
+  export type CashRegisterSessionCreateOrConnectWithoutExpensesInput = {
+    where: CashRegisterSessionWhereUniqueInput
+    create: XOR<CashRegisterSessionCreateWithoutExpensesInput, CashRegisterSessionUncheckedCreateWithoutExpensesInput>
+  }
+
+  export type CashRegisterSessionUpsertWithoutExpensesInput = {
+    update: XOR<CashRegisterSessionUpdateWithoutExpensesInput, CashRegisterSessionUncheckedUpdateWithoutExpensesInput>
+    create: XOR<CashRegisterSessionCreateWithoutExpensesInput, CashRegisterSessionUncheckedCreateWithoutExpensesInput>
+    where?: CashRegisterSessionWhereInput
+  }
+
+  export type CashRegisterSessionUpdateToOneWithWhereWithoutExpensesInput = {
+    where?: CashRegisterSessionWhereInput
+    data: XOR<CashRegisterSessionUpdateWithoutExpensesInput, CashRegisterSessionUncheckedUpdateWithoutExpensesInput>
+  }
+
+  export type CashRegisterSessionUpdateWithoutExpensesInput = {
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    initialCash?: FloatFieldUpdateOperationsInput | number
+    finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
+    difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
+    openedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    observations?: NullableStringFieldUpdateOperationsInput | string | null
+    movements?: CashMovementUpdateManyWithoutCashRegisterSessionNestedInput
+    sales?: POSSaleUpdateManyWithoutCashRegisterSessionNestedInput
+    salesWeb?: SaleUpdateManyWithoutCashRegisterSessionNestedInput
+  }
+
+  export type CashRegisterSessionUncheckedUpdateWithoutExpensesInput = {
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    initialCash?: FloatFieldUpdateOperationsInput | number
+    finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
+    difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
+    openedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    observations?: NullableStringFieldUpdateOperationsInput | string | null
+    movements?: CashMovementUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+    sales?: POSSaleUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+    salesWeb?: SaleUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+  }
+
   export type CommunicationPreferencesCreateWithoutBuyerInput = {
     id?: string
     email_marketing?: boolean
@@ -29919,6 +32340,7 @@ export namespace Prisma {
     estado: string
     metodo_pago?: InputJsonValue | null
     detalles?: POSSaleDetailCreateNestedManyWithoutPosSaleInput
+    cashRegisterSession?: CashRegisterSessionCreateNestedOneWithoutSalesInput
   }
 
   export type POSSaleUncheckedCreateWithoutBuyerInput = {
@@ -29928,6 +32350,7 @@ export namespace Prisma {
     descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
+    cashRegisterSessionId?: string | null
     detalles?: POSSaleDetailUncheckedCreateNestedManyWithoutPosSaleInput
   }
 
@@ -30116,6 +32539,8 @@ export namespace Prisma {
     fecha_aprobacion?: Date | string | null
     garantia_hasta?: Date | string | null
     observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
     customerDevice?: CustomerDeviceCreateNestedOneWithoutServicesInput
   }
@@ -30139,6 +32564,8 @@ export namespace Prisma {
     fecha_aprobacion?: Date | string | null
     garantia_hasta?: Date | string | null
     observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
   }
 
@@ -30270,6 +32697,7 @@ export namespace Prisma {
     descuento?: IntFilter<"POSSale"> | number
     estado?: StringFilter<"POSSale"> | string
     metodo_pago?: JsonNullableFilter<"POSSale">
+    cashRegisterSessionId?: StringNullableFilter<"POSSale"> | string | null
   }
 
   export type CustomerDeviceUpsertWithWhereUniqueWithoutBuyerInput = {
@@ -30451,6 +32879,8 @@ export namespace Prisma {
     fecha_aprobacion?: DateTimeNullableFilter<"Service"> | Date | string | null
     garantia_hasta?: DateTimeNullableFilter<"Service"> | Date | string | null
     observaciones_garantia?: StringNullableFilter<"Service"> | string | null
+    warrantyReturnDate?: DateTimeNullableFilter<"Service"> | Date | string | null
+    warrantyReturnReason?: StringNullableFilter<"Service"> | string | null
     payments?: JsonNullableFilter<"Service">
   }
 
@@ -30677,6 +33107,8 @@ export namespace Prisma {
     fecha_aprobacion?: Date | string | null
     garantia_hasta?: Date | string | null
     observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
     buyer?: BuyerCreateNestedOneWithoutServicesInput
   }
@@ -30700,6 +33132,8 @@ export namespace Prisma {
     fecha_aprobacion?: Date | string | null
     garantia_hasta?: Date | string | null
     observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
   }
 
@@ -31646,6 +34080,45 @@ export namespace Prisma {
     data: POSSaleDetailCreateManyPosSaleInput | POSSaleDetailCreateManyPosSaleInput[]
   }
 
+  export type CashRegisterSessionCreateWithoutSalesInput = {
+    id?: string
+    openedAt?: Date | string
+    closedAt?: Date | string | null
+    initialCash: number
+    finalCashCalculated?: number | null
+    finalCashCounted?: number | null
+    difference?: number | null
+    status?: $Enums.SessionStatus
+    openedBy?: string | null
+    closedBy?: string | null
+    observations?: string | null
+    movements?: CashMovementCreateNestedManyWithoutCashRegisterSessionInput
+    expenses?: ExpenseCreateNestedManyWithoutCashRegisterSessionInput
+    salesWeb?: SaleCreateNestedManyWithoutCashRegisterSessionInput
+  }
+
+  export type CashRegisterSessionUncheckedCreateWithoutSalesInput = {
+    id?: string
+    openedAt?: Date | string
+    closedAt?: Date | string | null
+    initialCash: number
+    finalCashCalculated?: number | null
+    finalCashCounted?: number | null
+    difference?: number | null
+    status?: $Enums.SessionStatus
+    openedBy?: string | null
+    closedBy?: string | null
+    observations?: string | null
+    movements?: CashMovementUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+    expenses?: ExpenseUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+    salesWeb?: SaleUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+  }
+
+  export type CashRegisterSessionCreateOrConnectWithoutSalesInput = {
+    where: CashRegisterSessionWhereUniqueInput
+    create: XOR<CashRegisterSessionCreateWithoutSalesInput, CashRegisterSessionUncheckedCreateWithoutSalesInput>
+  }
+
   export type BuyerUpsertWithoutPosSalesInput = {
     update: XOR<BuyerUpdateWithoutPosSalesInput, BuyerUncheckedUpdateWithoutPosSalesInput>
     create: XOR<BuyerCreateWithoutPosSalesInput, BuyerUncheckedCreateWithoutPosSalesInput>
@@ -31745,6 +34218,49 @@ export namespace Prisma {
     precio_unitario_al_momento_de_compra?: IntFilter<"POSSaleDetail"> | number
   }
 
+  export type CashRegisterSessionUpsertWithoutSalesInput = {
+    update: XOR<CashRegisterSessionUpdateWithoutSalesInput, CashRegisterSessionUncheckedUpdateWithoutSalesInput>
+    create: XOR<CashRegisterSessionCreateWithoutSalesInput, CashRegisterSessionUncheckedCreateWithoutSalesInput>
+    where?: CashRegisterSessionWhereInput
+  }
+
+  export type CashRegisterSessionUpdateToOneWithWhereWithoutSalesInput = {
+    where?: CashRegisterSessionWhereInput
+    data: XOR<CashRegisterSessionUpdateWithoutSalesInput, CashRegisterSessionUncheckedUpdateWithoutSalesInput>
+  }
+
+  export type CashRegisterSessionUpdateWithoutSalesInput = {
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    initialCash?: FloatFieldUpdateOperationsInput | number
+    finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
+    difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
+    openedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    observations?: NullableStringFieldUpdateOperationsInput | string | null
+    movements?: CashMovementUpdateManyWithoutCashRegisterSessionNestedInput
+    expenses?: ExpenseUpdateManyWithoutCashRegisterSessionNestedInput
+    salesWeb?: SaleUpdateManyWithoutCashRegisterSessionNestedInput
+  }
+
+  export type CashRegisterSessionUncheckedUpdateWithoutSalesInput = {
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    initialCash?: FloatFieldUpdateOperationsInput | number
+    finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
+    difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
+    openedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    observations?: NullableStringFieldUpdateOperationsInput | string | null
+    movements?: CashMovementUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+    expenses?: ExpenseUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+    salesWeb?: SaleUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+  }
+
   export type POSSaleCreateWithoutDetallesInput = {
     id?: string
     fecha_creacion?: Date | string
@@ -31753,6 +34269,7 @@ export namespace Prisma {
     estado: string
     metodo_pago?: InputJsonValue | null
     buyer: BuyerCreateNestedOneWithoutPosSalesInput
+    cashRegisterSession?: CashRegisterSessionCreateNestedOneWithoutSalesInput
   }
 
   export type POSSaleUncheckedCreateWithoutDetallesInput = {
@@ -31763,6 +34280,7 @@ export namespace Prisma {
     descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
+    cashRegisterSessionId?: string | null
   }
 
   export type POSSaleCreateOrConnectWithoutDetallesInput = {
@@ -31788,6 +34306,7 @@ export namespace Prisma {
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
     buyer?: BuyerUpdateOneRequiredWithoutPosSalesNestedInput
+    cashRegisterSession?: CashRegisterSessionUpdateOneWithoutSalesNestedInput
   }
 
   export type POSSaleUncheckedUpdateWithoutDetallesInput = {
@@ -31797,6 +34316,7 @@ export namespace Prisma {
     descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
+    cashRegisterSessionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BuyerCreateWithoutServicesInput = {
@@ -32027,6 +34547,321 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CashMovementCreateWithoutCashRegisterSessionInput = {
+    id?: string
+    type: $Enums.CashMovementType
+    amount: number
+    description: string
+    date?: Date | string
+    userId?: string | null
+  }
+
+  export type CashMovementUncheckedCreateWithoutCashRegisterSessionInput = {
+    id?: string
+    type: $Enums.CashMovementType
+    amount: number
+    description: string
+    date?: Date | string
+    userId?: string | null
+  }
+
+  export type CashMovementCreateOrConnectWithoutCashRegisterSessionInput = {
+    where: CashMovementWhereUniqueInput
+    create: XOR<CashMovementCreateWithoutCashRegisterSessionInput, CashMovementUncheckedCreateWithoutCashRegisterSessionInput>
+  }
+
+  export type CashMovementCreateManyCashRegisterSessionInputEnvelope = {
+    data: CashMovementCreateManyCashRegisterSessionInput | CashMovementCreateManyCashRegisterSessionInput[]
+  }
+
+  export type POSSaleCreateWithoutCashRegisterSessionInput = {
+    id?: string
+    fecha_creacion?: Date | string
+    monto_total: number
+    descuento: number
+    estado: string
+    metodo_pago?: InputJsonValue | null
+    buyer: BuyerCreateNestedOneWithoutPosSalesInput
+    detalles?: POSSaleDetailCreateNestedManyWithoutPosSaleInput
+  }
+
+  export type POSSaleUncheckedCreateWithoutCashRegisterSessionInput = {
+    id?: string
+    buyerId: string
+    fecha_creacion?: Date | string
+    monto_total: number
+    descuento: number
+    estado: string
+    metodo_pago?: InputJsonValue | null
+    detalles?: POSSaleDetailUncheckedCreateNestedManyWithoutPosSaleInput
+  }
+
+  export type POSSaleCreateOrConnectWithoutCashRegisterSessionInput = {
+    where: POSSaleWhereUniqueInput
+    create: XOR<POSSaleCreateWithoutCashRegisterSessionInput, POSSaleUncheckedCreateWithoutCashRegisterSessionInput>
+  }
+
+  export type POSSaleCreateManyCashRegisterSessionInputEnvelope = {
+    data: POSSaleCreateManyCashRegisterSessionInput | POSSaleCreateManyCashRegisterSessionInput[]
+  }
+
+  export type ExpenseCreateWithoutCashRegisterSessionInput = {
+    id?: string
+    product: string
+    details?: string | null
+    amount: number
+    method?: string | null
+    date: Date | string
+    category?: string | null
+    categoryId?: number | null
+    provider?: string | null
+    ticketUrl?: string | null
+  }
+
+  export type ExpenseUncheckedCreateWithoutCashRegisterSessionInput = {
+    id?: string
+    product: string
+    details?: string | null
+    amount: number
+    method?: string | null
+    date: Date | string
+    category?: string | null
+    categoryId?: number | null
+    provider?: string | null
+    ticketUrl?: string | null
+  }
+
+  export type ExpenseCreateOrConnectWithoutCashRegisterSessionInput = {
+    where: ExpenseWhereUniqueInput
+    create: XOR<ExpenseCreateWithoutCashRegisterSessionInput, ExpenseUncheckedCreateWithoutCashRegisterSessionInput>
+  }
+
+  export type ExpenseCreateManyCashRegisterSessionInputEnvelope = {
+    data: ExpenseCreateManyCashRegisterSessionInput | ExpenseCreateManyCashRegisterSessionInput[]
+  }
+
+  export type SaleCreateWithoutCashRegisterSessionInput = {
+    id?: string
+    customerId: string
+    details: string
+    date: Date | string
+    products: InputJsonValue
+    total: number
+    discount: number
+    payments?: InputJsonValue | null
+  }
+
+  export type SaleUncheckedCreateWithoutCashRegisterSessionInput = {
+    id?: string
+    customerId: string
+    details: string
+    date: Date | string
+    products: InputJsonValue
+    total: number
+    discount: number
+    payments?: InputJsonValue | null
+  }
+
+  export type SaleCreateOrConnectWithoutCashRegisterSessionInput = {
+    where: SaleWhereUniqueInput
+    create: XOR<SaleCreateWithoutCashRegisterSessionInput, SaleUncheckedCreateWithoutCashRegisterSessionInput>
+  }
+
+  export type SaleCreateManyCashRegisterSessionInputEnvelope = {
+    data: SaleCreateManyCashRegisterSessionInput | SaleCreateManyCashRegisterSessionInput[]
+  }
+
+  export type CashMovementUpsertWithWhereUniqueWithoutCashRegisterSessionInput = {
+    where: CashMovementWhereUniqueInput
+    update: XOR<CashMovementUpdateWithoutCashRegisterSessionInput, CashMovementUncheckedUpdateWithoutCashRegisterSessionInput>
+    create: XOR<CashMovementCreateWithoutCashRegisterSessionInput, CashMovementUncheckedCreateWithoutCashRegisterSessionInput>
+  }
+
+  export type CashMovementUpdateWithWhereUniqueWithoutCashRegisterSessionInput = {
+    where: CashMovementWhereUniqueInput
+    data: XOR<CashMovementUpdateWithoutCashRegisterSessionInput, CashMovementUncheckedUpdateWithoutCashRegisterSessionInput>
+  }
+
+  export type CashMovementUpdateManyWithWhereWithoutCashRegisterSessionInput = {
+    where: CashMovementScalarWhereInput
+    data: XOR<CashMovementUpdateManyMutationInput, CashMovementUncheckedUpdateManyWithoutCashRegisterSessionInput>
+  }
+
+  export type CashMovementScalarWhereInput = {
+    AND?: CashMovementScalarWhereInput | CashMovementScalarWhereInput[]
+    OR?: CashMovementScalarWhereInput[]
+    NOT?: CashMovementScalarWhereInput | CashMovementScalarWhereInput[]
+    id?: StringFilter<"CashMovement"> | string
+    cashRegisterSessionId?: StringFilter<"CashMovement"> | string
+    type?: EnumCashMovementTypeFilter<"CashMovement"> | $Enums.CashMovementType
+    amount?: FloatFilter<"CashMovement"> | number
+    description?: StringFilter<"CashMovement"> | string
+    date?: DateTimeFilter<"CashMovement"> | Date | string
+    userId?: StringNullableFilter<"CashMovement"> | string | null
+  }
+
+  export type POSSaleUpsertWithWhereUniqueWithoutCashRegisterSessionInput = {
+    where: POSSaleWhereUniqueInput
+    update: XOR<POSSaleUpdateWithoutCashRegisterSessionInput, POSSaleUncheckedUpdateWithoutCashRegisterSessionInput>
+    create: XOR<POSSaleCreateWithoutCashRegisterSessionInput, POSSaleUncheckedCreateWithoutCashRegisterSessionInput>
+  }
+
+  export type POSSaleUpdateWithWhereUniqueWithoutCashRegisterSessionInput = {
+    where: POSSaleWhereUniqueInput
+    data: XOR<POSSaleUpdateWithoutCashRegisterSessionInput, POSSaleUncheckedUpdateWithoutCashRegisterSessionInput>
+  }
+
+  export type POSSaleUpdateManyWithWhereWithoutCashRegisterSessionInput = {
+    where: POSSaleScalarWhereInput
+    data: XOR<POSSaleUpdateManyMutationInput, POSSaleUncheckedUpdateManyWithoutCashRegisterSessionInput>
+  }
+
+  export type ExpenseUpsertWithWhereUniqueWithoutCashRegisterSessionInput = {
+    where: ExpenseWhereUniqueInput
+    update: XOR<ExpenseUpdateWithoutCashRegisterSessionInput, ExpenseUncheckedUpdateWithoutCashRegisterSessionInput>
+    create: XOR<ExpenseCreateWithoutCashRegisterSessionInput, ExpenseUncheckedCreateWithoutCashRegisterSessionInput>
+  }
+
+  export type ExpenseUpdateWithWhereUniqueWithoutCashRegisterSessionInput = {
+    where: ExpenseWhereUniqueInput
+    data: XOR<ExpenseUpdateWithoutCashRegisterSessionInput, ExpenseUncheckedUpdateWithoutCashRegisterSessionInput>
+  }
+
+  export type ExpenseUpdateManyWithWhereWithoutCashRegisterSessionInput = {
+    where: ExpenseScalarWhereInput
+    data: XOR<ExpenseUpdateManyMutationInput, ExpenseUncheckedUpdateManyWithoutCashRegisterSessionInput>
+  }
+
+  export type ExpenseScalarWhereInput = {
+    AND?: ExpenseScalarWhereInput | ExpenseScalarWhereInput[]
+    OR?: ExpenseScalarWhereInput[]
+    NOT?: ExpenseScalarWhereInput | ExpenseScalarWhereInput[]
+    id?: StringFilter<"Expense"> | string
+    product?: StringFilter<"Expense"> | string
+    details?: StringNullableFilter<"Expense"> | string | null
+    amount?: FloatFilter<"Expense"> | number
+    method?: StringNullableFilter<"Expense"> | string | null
+    date?: DateTimeFilter<"Expense"> | Date | string
+    category?: StringNullableFilter<"Expense"> | string | null
+    categoryId?: IntNullableFilter<"Expense"> | number | null
+    provider?: StringNullableFilter<"Expense"> | string | null
+    ticketUrl?: StringNullableFilter<"Expense"> | string | null
+    cashRegisterSessionId?: StringNullableFilter<"Expense"> | string | null
+  }
+
+  export type SaleUpsertWithWhereUniqueWithoutCashRegisterSessionInput = {
+    where: SaleWhereUniqueInput
+    update: XOR<SaleUpdateWithoutCashRegisterSessionInput, SaleUncheckedUpdateWithoutCashRegisterSessionInput>
+    create: XOR<SaleCreateWithoutCashRegisterSessionInput, SaleUncheckedCreateWithoutCashRegisterSessionInput>
+  }
+
+  export type SaleUpdateWithWhereUniqueWithoutCashRegisterSessionInput = {
+    where: SaleWhereUniqueInput
+    data: XOR<SaleUpdateWithoutCashRegisterSessionInput, SaleUncheckedUpdateWithoutCashRegisterSessionInput>
+  }
+
+  export type SaleUpdateManyWithWhereWithoutCashRegisterSessionInput = {
+    where: SaleScalarWhereInput
+    data: XOR<SaleUpdateManyMutationInput, SaleUncheckedUpdateManyWithoutCashRegisterSessionInput>
+  }
+
+  export type SaleScalarWhereInput = {
+    AND?: SaleScalarWhereInput | SaleScalarWhereInput[]
+    OR?: SaleScalarWhereInput[]
+    NOT?: SaleScalarWhereInput | SaleScalarWhereInput[]
+    id?: StringFilter<"Sale"> | string
+    customerId?: StringFilter<"Sale"> | string
+    details?: StringFilter<"Sale"> | string
+    date?: DateTimeFilter<"Sale"> | Date | string
+    products?: JsonFilter<"Sale">
+    total?: FloatFilter<"Sale"> | number
+    discount?: FloatFilter<"Sale"> | number
+    payments?: JsonNullableFilter<"Sale">
+    cashRegisterSessionId?: StringNullableFilter<"Sale"> | string | null
+  }
+
+  export type CashRegisterSessionCreateWithoutMovementsInput = {
+    id?: string
+    openedAt?: Date | string
+    closedAt?: Date | string | null
+    initialCash: number
+    finalCashCalculated?: number | null
+    finalCashCounted?: number | null
+    difference?: number | null
+    status?: $Enums.SessionStatus
+    openedBy?: string | null
+    closedBy?: string | null
+    observations?: string | null
+    sales?: POSSaleCreateNestedManyWithoutCashRegisterSessionInput
+    expenses?: ExpenseCreateNestedManyWithoutCashRegisterSessionInput
+    salesWeb?: SaleCreateNestedManyWithoutCashRegisterSessionInput
+  }
+
+  export type CashRegisterSessionUncheckedCreateWithoutMovementsInput = {
+    id?: string
+    openedAt?: Date | string
+    closedAt?: Date | string | null
+    initialCash: number
+    finalCashCalculated?: number | null
+    finalCashCounted?: number | null
+    difference?: number | null
+    status?: $Enums.SessionStatus
+    openedBy?: string | null
+    closedBy?: string | null
+    observations?: string | null
+    sales?: POSSaleUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+    expenses?: ExpenseUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+    salesWeb?: SaleUncheckedCreateNestedManyWithoutCashRegisterSessionInput
+  }
+
+  export type CashRegisterSessionCreateOrConnectWithoutMovementsInput = {
+    where: CashRegisterSessionWhereUniqueInput
+    create: XOR<CashRegisterSessionCreateWithoutMovementsInput, CashRegisterSessionUncheckedCreateWithoutMovementsInput>
+  }
+
+  export type CashRegisterSessionUpsertWithoutMovementsInput = {
+    update: XOR<CashRegisterSessionUpdateWithoutMovementsInput, CashRegisterSessionUncheckedUpdateWithoutMovementsInput>
+    create: XOR<CashRegisterSessionCreateWithoutMovementsInput, CashRegisterSessionUncheckedCreateWithoutMovementsInput>
+    where?: CashRegisterSessionWhereInput
+  }
+
+  export type CashRegisterSessionUpdateToOneWithWhereWithoutMovementsInput = {
+    where?: CashRegisterSessionWhereInput
+    data: XOR<CashRegisterSessionUpdateWithoutMovementsInput, CashRegisterSessionUncheckedUpdateWithoutMovementsInput>
+  }
+
+  export type CashRegisterSessionUpdateWithoutMovementsInput = {
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    initialCash?: FloatFieldUpdateOperationsInput | number
+    finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
+    difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
+    openedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    observations?: NullableStringFieldUpdateOperationsInput | string | null
+    sales?: POSSaleUpdateManyWithoutCashRegisterSessionNestedInput
+    expenses?: ExpenseUpdateManyWithoutCashRegisterSessionNestedInput
+    salesWeb?: SaleUpdateManyWithoutCashRegisterSessionNestedInput
+  }
+
+  export type CashRegisterSessionUncheckedUpdateWithoutMovementsInput = {
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    initialCash?: FloatFieldUpdateOperationsInput | number
+    finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
+    difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
+    openedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    observations?: NullableStringFieldUpdateOperationsInput | string | null
+    sales?: POSSaleUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+    expenses?: ExpenseUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+    salesWeb?: SaleUncheckedUpdateManyWithoutCashRegisterSessionNestedInput
+  }
+
   export type ProductVariantCreateManyProductInput = {
     id?: string
     barcode?: string | null
@@ -32156,6 +34991,7 @@ export namespace Prisma {
     descuento: number
     estado: string
     metodo_pago?: InputJsonValue | null
+    cashRegisterSessionId?: string | null
   }
 
   export type CustomerDeviceCreateManyBuyerInput = {
@@ -32237,6 +35073,8 @@ export namespace Prisma {
     fecha_aprobacion?: Date | string | null
     garantia_hasta?: Date | string | null
     observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
   }
 
@@ -32345,6 +35183,7 @@ export namespace Prisma {
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
     detalles?: POSSaleDetailUpdateManyWithoutPosSaleNestedInput
+    cashRegisterSession?: CashRegisterSessionUpdateOneWithoutSalesNestedInput
   }
 
   export type POSSaleUncheckedUpdateWithoutBuyerInput = {
@@ -32353,6 +35192,7 @@ export namespace Prisma {
     descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
+    cashRegisterSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     detalles?: POSSaleDetailUncheckedUpdateManyWithoutPosSaleNestedInput
   }
 
@@ -32362,6 +35202,7 @@ export namespace Prisma {
     descuento?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     metodo_pago?: InputJsonValue | InputJsonValue | null
+    cashRegisterSessionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CustomerDeviceUpdateWithoutBuyerInput = {
@@ -32551,6 +35392,8 @@ export namespace Prisma {
     fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
     customerDevice?: CustomerDeviceUpdateOneWithoutServicesNestedInput
   }
@@ -32573,6 +35416,8 @@ export namespace Prisma {
     fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
   }
 
@@ -32594,6 +35439,8 @@ export namespace Prisma {
     fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
   }
 
@@ -32616,6 +35463,8 @@ export namespace Prisma {
     fecha_aprobacion?: Date | string | null
     garantia_hasta?: Date | string | null
     observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
   }
 
@@ -32636,6 +35485,8 @@ export namespace Prisma {
     fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
     buyer?: BuyerUpdateOneWithoutServicesNestedInput
   }
@@ -32658,6 +35509,8 @@ export namespace Prisma {
     fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
   }
 
@@ -32679,6 +35532,8 @@ export namespace Prisma {
     fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
   }
 
@@ -32738,6 +35593,168 @@ export namespace Prisma {
     productoName?: StringFieldUpdateOperationsInput | string
     cantidad?: IntFieldUpdateOperationsInput | number
     precio_unitario_al_momento_de_compra?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CashMovementCreateManyCashRegisterSessionInput = {
+    id?: string
+    type: $Enums.CashMovementType
+    amount: number
+    description: string
+    date?: Date | string
+    userId?: string | null
+  }
+
+  export type POSSaleCreateManyCashRegisterSessionInput = {
+    id?: string
+    buyerId: string
+    fecha_creacion?: Date | string
+    monto_total: number
+    descuento: number
+    estado: string
+    metodo_pago?: InputJsonValue | null
+  }
+
+  export type ExpenseCreateManyCashRegisterSessionInput = {
+    id?: string
+    product: string
+    details?: string | null
+    amount: number
+    method?: string | null
+    date: Date | string
+    category?: string | null
+    categoryId?: number | null
+    provider?: string | null
+    ticketUrl?: string | null
+  }
+
+  export type SaleCreateManyCashRegisterSessionInput = {
+    id?: string
+    customerId: string
+    details: string
+    date: Date | string
+    products: InputJsonValue
+    total: number
+    discount: number
+    payments?: InputJsonValue | null
+  }
+
+  export type CashMovementUpdateWithoutCashRegisterSessionInput = {
+    type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    amount?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CashMovementUncheckedUpdateWithoutCashRegisterSessionInput = {
+    type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    amount?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CashMovementUncheckedUpdateManyWithoutCashRegisterSessionInput = {
+    type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    amount?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type POSSaleUpdateWithoutCashRegisterSessionInput = {
+    fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    monto_total?: IntFieldUpdateOperationsInput | number
+    descuento?: IntFieldUpdateOperationsInput | number
+    estado?: StringFieldUpdateOperationsInput | string
+    metodo_pago?: InputJsonValue | InputJsonValue | null
+    buyer?: BuyerUpdateOneRequiredWithoutPosSalesNestedInput
+    detalles?: POSSaleDetailUpdateManyWithoutPosSaleNestedInput
+  }
+
+  export type POSSaleUncheckedUpdateWithoutCashRegisterSessionInput = {
+    buyerId?: StringFieldUpdateOperationsInput | string
+    fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    monto_total?: IntFieldUpdateOperationsInput | number
+    descuento?: IntFieldUpdateOperationsInput | number
+    estado?: StringFieldUpdateOperationsInput | string
+    metodo_pago?: InputJsonValue | InputJsonValue | null
+    detalles?: POSSaleDetailUncheckedUpdateManyWithoutPosSaleNestedInput
+  }
+
+  export type POSSaleUncheckedUpdateManyWithoutCashRegisterSessionInput = {
+    buyerId?: StringFieldUpdateOperationsInput | string
+    fecha_creacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    monto_total?: IntFieldUpdateOperationsInput | number
+    descuento?: IntFieldUpdateOperationsInput | number
+    estado?: StringFieldUpdateOperationsInput | string
+    metodo_pago?: InputJsonValue | InputJsonValue | null
+  }
+
+  export type ExpenseUpdateWithoutCashRegisterSessionInput = {
+    product?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: FloatFieldUpdateOperationsInput | number
+    method?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ExpenseUncheckedUpdateWithoutCashRegisterSessionInput = {
+    product?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: FloatFieldUpdateOperationsInput | number
+    method?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ExpenseUncheckedUpdateManyWithoutCashRegisterSessionInput = {
+    product?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: FloatFieldUpdateOperationsInput | number
+    method?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SaleUpdateWithoutCashRegisterSessionInput = {
+    customerId?: StringFieldUpdateOperationsInput | string
+    details?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: InputJsonValue | InputJsonValue
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    payments?: InputJsonValue | InputJsonValue | null
+  }
+
+  export type SaleUncheckedUpdateWithoutCashRegisterSessionInput = {
+    customerId?: StringFieldUpdateOperationsInput | string
+    details?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: InputJsonValue | InputJsonValue
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    payments?: InputJsonValue | InputJsonValue | null
+  }
+
+  export type SaleUncheckedUpdateManyWithoutCashRegisterSessionInput = {
+    customerId?: StringFieldUpdateOperationsInput | string
+    details?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: InputJsonValue | InputJsonValue
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    payments?: InputJsonValue | InputJsonValue | null
   }
 
 

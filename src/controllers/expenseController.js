@@ -2,20 +2,32 @@ import { PrismaClient } from "db";
 const prisma = new PrismaClient();
 
 // Obtener todos los gastos
+// Obtener todos los gastos
 export const getExpenses = async (req, res) => {
   try {
     const pageSize = 10;
     const page = parseInt(req.query.page) || 1;
 
-    const expenses = await prisma.expense.findMany({
-      skip: (page - 1) * pageSize,
-      take: pageSize,
-      orderBy: {
-        date: "desc",
+    const [expenses, total] = await Promise.all([
+      prisma.expense.findMany({
+        skip: (page - 1) * pageSize,
+        take: pageSize,
+        orderBy: {
+          date: "desc",
+        },
+      }),
+      prisma.expense.count(),
+    ]);
+
+    res.status(200).json({
+      data: expenses,
+      meta: {
+        total,
+        page,
+        limit: pageSize,
+        totalPages: Math.ceil(total / pageSize),
       },
     });
-
-    res.status(200).json(expenses);
   } catch (err) {
     res.status(500).json({ error: "Error fetching expenses" });
   }
@@ -38,20 +50,31 @@ export const getExpenseById = async (req, res) => {
 };
 
 // Crear un nuevo gasto
+// Crear un nuevo gasto
+import { uploadBuffer } from "./cloudinaryController.js";
+
 export const createExpense = async (req, res) => {
-  const { product, details, amount, method, date, category, categoryId } =
-    req.body;
+  const { product, details, amount, method, date, category, categoryId, provider } = req.body;
 
   try {
+    let ticketUrl = null;
+
+    if (req.file) {
+      const uploadResult = await uploadBuffer(req.file.buffer, "expenses");
+      ticketUrl = uploadResult.secure_url;
+    }
+
     const newExpense = await prisma.expense.create({
       data: {
         product,
         details,
-        amount,
+        amount: parseFloat(amount), // Ensure amount is float
         method,
-        date,
+        date: new Date(date), // Ensure date is Date object
         category,
-        categoryId,
+        categoryId: categoryId ? parseInt(categoryId) : null,
+        provider,
+        ticketUrl,
       },
     });
     res.status(201).json(newExpense);

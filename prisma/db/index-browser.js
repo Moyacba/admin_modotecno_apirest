@@ -179,7 +179,8 @@ exports.Prisma.SaleScalarFieldEnum = {
   products: 'products',
   total: 'total',
   discount: 'discount',
-  payments: 'payments'
+  payments: 'payments',
+  cashRegisterSessionId: 'cashRegisterSessionId'
 };
 
 exports.Prisma.ExpenseScalarFieldEnum = {
@@ -190,7 +191,10 @@ exports.Prisma.ExpenseScalarFieldEnum = {
   method: 'method',
   date: 'date',
   category: 'category',
-  categoryId: 'categoryId'
+  categoryId: 'categoryId',
+  provider: 'provider',
+  ticketUrl: 'ticketUrl',
+  cashRegisterSessionId: 'cashRegisterSessionId'
 };
 
 exports.Prisma.BuyerScalarFieldEnum = {
@@ -347,7 +351,8 @@ exports.Prisma.POSSaleScalarFieldEnum = {
   monto_total: 'monto_total',
   descuento: 'descuento',
   estado: 'estado',
-  metodo_pago: 'metodo_pago'
+  metodo_pago: 'metodo_pago',
+  cashRegisterSessionId: 'cashRegisterSessionId'
 };
 
 exports.Prisma.POSSaleDetailScalarFieldEnum = {
@@ -379,22 +384,33 @@ exports.Prisma.ServiceScalarFieldEnum = {
   fecha_aprobacion: 'fecha_aprobacion',
   garantia_hasta: 'garantia_hasta',
   observaciones_garantia: 'observaciones_garantia',
+  warrantyReturnDate: 'warrantyReturnDate',
+  warrantyReturnReason: 'warrantyReturnReason',
   payments: 'payments'
 };
 
-exports.Prisma.CashflowScalarFieldEnum = {
+exports.Prisma.CashRegisterSessionScalarFieldEnum = {
   id: 'id',
-  active: 'active',
-  openDate: 'openDate',
-  closeDate: 'closeDate',
-  openingBalance: 'openingBalance',
-  total: 'total',
-  expenses: 'expenses',
-  cashSales: 'cashSales',
-  cashServices: 'cashServices',
-  digitalSales: 'digitalSales',
-  digitalServices: 'digitalServices',
+  openedAt: 'openedAt',
+  closedAt: 'closedAt',
+  initialCash: 'initialCash',
+  finalCashCalculated: 'finalCashCalculated',
+  finalCashCounted: 'finalCashCounted',
+  difference: 'difference',
+  status: 'status',
+  openedBy: 'openedBy',
+  closedBy: 'closedBy',
   observations: 'observations'
+};
+
+exports.Prisma.CashMovementScalarFieldEnum = {
+  id: 'id',
+  cashRegisterSessionId: 'cashRegisterSessionId',
+  type: 'type',
+  amount: 'amount',
+  description: 'description',
+  date: 'date',
+  userId: 'userId'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
@@ -458,6 +474,18 @@ exports.DeviceStatus = exports.$Enums.DeviceStatus = {
   OTROS: 'OTROS'
 };
 
+exports.SessionStatus = exports.$Enums.SessionStatus = {
+  OPEN: 'OPEN',
+  CLOSED: 'CLOSED'
+};
+
+exports.CashMovementType = exports.$Enums.CashMovementType = {
+  INGRESO_MANUAL: 'INGRESO_MANUAL',
+  RETIRO_MANUAL: 'RETIRO_MANUAL',
+  GASTO: 'GASTO',
+  VENTA: 'VENTA'
+};
+
 exports.Prisma.ModelName = {
   Product: 'Product',
   ProductVariant: 'ProductVariant',
@@ -475,7 +503,8 @@ exports.Prisma.ModelName = {
   POSSale: 'POSSale',
   POSSaleDetail: 'POSSaleDetail',
   Service: 'Service',
-  Cashflow: 'Cashflow',
+  CashRegisterSession: 'CashRegisterSession',
+  CashMovement: 'CashMovement',
   User: 'User'
 };
 

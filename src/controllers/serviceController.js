@@ -158,3 +158,24 @@ export const deleteService = async (req, res) => {
     res.status(501).json({ error: "Error deleting service" });
   }
 };
+
+// Registrar ingreso por garantía
+export const enterWarranty = async (req, res) => {
+  const { id } = req.params;
+  const { reason, date } = req.body;
+
+  try {
+    const updatedService = await prisma.service.update({
+      where: { id },
+      data: {
+        state: "EN_GARANTIA",
+        warrantyReturnReason: reason,
+        warrantyReturnDate: date,
+      },
+    });
+    res.status(200).json(updatedService);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error registering warranty entry", err });
+  }
+};
