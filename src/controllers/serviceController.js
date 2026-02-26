@@ -5,23 +5,83 @@ const prisma = new PrismaClient();
 // Obtener todos los servicios
 export const getServices = async (req, res) => {
   try {
-    const pageSize = 10;
+    const limit = parseInt(req.query.limit) || 10;
     const page = parseInt(req.query.page) || 1;
+    const skip = (page - 1) * limit;
 
-    const services = await prisma.service.findMany({
-      skip: (page - 1) * pageSize,
-      take: pageSize,
-      orderBy: {
-        date: "desc",
-      },
+    const clientName = req.query.clientName?.trim();
+    const stateFilter = req.query.state?.trim();
+
+    // Construir filtro de MongoDB
+    const mongoWhere = {};
+    if (clientName) {
+      // client es un campo JSON: buscar por client.name con regex (case-insensitive)
+      mongoWhere["client.name"] = { $regex: clientName, $options: "i" };
+    }
+    if (stateFilter) {
+      mongoWhere["state"] = stateFilter;
+    }
+
+    // Usar queryRaw para MongoDB cuando hay filtro de nombre (campo JSON anidado)
+    // Para Prisma con MongoDB, los campos Json no admiten filtros anidados en where,
+    // por lo que usamos la API de aggregation nativa de Prisma
+    const hasComplexFilter = Boolean(clientName);
+
+    let services, totalCount;
+
+    if (hasComplexFilter) {
+      // Usar findRaw para poder filtrar por campos dentro del JSON
+      const pipeline = [
+        { $match: mongoWhere },
+        { $sort: { date: -1 } },
+        {
+          $facet: {
+            data: [{ $skip: skip }, { $limit: limit }],
+            count: [{ $count: "total" }],
+          }
+        },
+      ];
+
+      const [result] = await prisma.service.aggregateRaw({ pipeline });
+      services = result.data ?? [];
+      totalCount = result.count?.[0]?.total ?? 0;
+
+      // Normalizar _id de MongoDB a string id
+      services = services.map(({ _id, ...rest }) => ({
+        id: _id?.$oid ?? String(_id),
+        ...rest,
+      }));
+    } else {
+      // Sin filtro de nombre: usar Prisma nativo (más eficiente)
+      const prismaWhere = {};
+      if (stateFilter) prismaWhere.state = stateFilter;
+
+      const [count, data] = await prisma.$transaction([
+        prisma.service.count({ where: prismaWhere }),
+        prisma.service.findMany({
+          where: prismaWhere,
+          skip,
+          take: limit,
+          orderBy: { date: "desc" },
+        }),
+      ]);
+
+      totalCount = count;
+      services = data;
+    }
+
+    res.status(200).json({
+      services,
+      totalCount,
+      page,
+      totalPages: Math.ceil(totalCount / limit),
     });
-
-    res.status(201).json(services);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: "Error fetching services ", err });
+    res.status(500).json({ error: "Error fetching services", err });
   }
 };
+
 
 // Obtener un servicio por ID
 export const getServiceById = async (req, res) => {
