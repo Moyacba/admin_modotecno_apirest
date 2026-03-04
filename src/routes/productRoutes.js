@@ -8,6 +8,9 @@ import {
   deleteProduct,
   validateStock,
   getStockBatch,
+  getProductsForBarcodes,
+  checkBarcodeUnique,
+  bulkUpdateBarcodes,
 } from "../controllers/productController.js ";
 
 import {
@@ -22,12 +25,18 @@ import {
 const router = express.Router();
 
 // ========================================
-// RUTAS DE STOCK EN TIEMPO REAL (NUEVAS)
+// RUTAS DE STOCK EN TIEMPO REAL
 // ========================================
 // IMPORTANTE: Estas rutas deben estar ANTES de las rutas con :id
-// para evitar que Express las confunda con parámetros dinámicos
 router.post("/validate-stock", validateStock);
 router.post("/stock-batch", getStockBatch);
+
+// ========================================
+// RUTAS DE GESTIÓN DE CÓDIGOS DE BARRAS
+// ========================================
+router.get("/barcodes", getProductsForBarcodes);
+router.get("/barcodes/check", checkBarcodeUnique);
+router.put("/barcodes/bulk", bulkUpdateBarcodes);
 
 // ========================================
 // RUTAS DE PRODUCTOS PRINCIPALES
