@@ -422,6 +422,12 @@ exports.Prisma.UserScalarFieldEnum = {
   sucursal: 'sucursal'
 };
 
+exports.Prisma.FavoriteImageScalarFieldEnum = {
+  id: 'id',
+  url: 'url',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -505,7 +511,8 @@ exports.Prisma.ModelName = {
   Service: 'Service',
   CashRegisterSession: 'CashRegisterSession',
   CashMovement: 'CashMovement',
-  User: 'User'
+  User: 'User',
+  FavoriteImage: 'FavoriteImage'
 };
 
 /**

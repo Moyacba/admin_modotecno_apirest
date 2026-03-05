@@ -1,5 +1,8 @@
 import { v2 as cloudinary } from "cloudinary";
 import multer from "multer";
+import { PrismaClient } from "db";
+
+const prisma = new PrismaClient();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -90,5 +93,74 @@ export const uploadImageUrl = async (req, res) => {
       error: "Error al subir imagen desde URL",
       details: error.message
     });
+  }
+};
+
+export const getStockImages = async (req, res) => {
+  try {
+    // 1. Obtener todas las imágenes de Products
+    const products = await prisma.product.findMany({
+      select: { images: true }
+    });
+
+    // 2. Obtener todas las imágenes de Variants
+    const variants = await prisma.productVariant.findMany({
+      select: { images: true }
+    });
+
+    // 3. Extraer, aplanar y limpiar nulos
+    const allImages = [
+      ...products.flatMap(p => p.images || []),
+      ...variants.flatMap(v => v.images || [])
+    ].filter(url => url && typeof url === 'string' && url.trim() !== '');
+
+    // 4. Obtener las imágenes favoritas de la DB
+    const favoriteRecords = await prisma.favoriteImage.findMany({
+      orderBy: { createdAt: 'desc' },
+      select: { url: true }
+    });
+    const favoriteUrls = favoriteRecords.map(f => f.url);
+    const favoritesSet = new Set(favoriteUrls);
+
+    // 5. Eliminar duplicados usando Set y conservar el orden (los Sets preservan inserción)
+    // Para que las nuevas aparezcan primero, las invertimos
+    const uniqueImagesArray = [...new Set(allImages)].reverse();
+
+    // 6. Separar favoritas y el resto, para que el frontend las pinte primero si lo desea,
+    // o enviarlas en dos arrays.
+    res.status(200).json({
+      stock: uniqueImagesArray,
+      favorites: favoriteUrls
+    });
+  } catch (error) {
+    console.error("Error obteniendo imágenes de stock:", error);
+    res.status(500).json({ error: "Error interno al obtener la galería de imágenes" });
+  }
+};
+
+export const toggleFavoriteImage = async (req, res) => {
+  try {
+    const { url } = req.body;
+    if (!url || typeof url !== 'string') {
+      return res.status(400).json({ error: "URL inválida o faltante" });
+    }
+
+    // Buscar si ya es favorita
+    const existing = await prisma.favoriteImage.findUnique({
+      where: { url }
+    });
+
+    if (existing) {
+      // Si existe, la eliminamos
+      await prisma.favoriteImage.delete({ where: { url } });
+      return res.status(200).json({ isFavorite: false, url });
+    } else {
+      // Si no existe, la creamos
+      await prisma.favoriteImage.create({ data: { url } });
+      return res.status(201).json({ isFavorite: true, url });
+    }
+  } catch (error) {
+    console.error("Error toggling favorite image:", error);
+    res.status(500).json({ error: "Error al actualizar la imagen favorita" });
   }
 };
