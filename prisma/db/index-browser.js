@@ -119,7 +119,6 @@ exports.Prisma.ProductScalarFieldEnum = {
   sku: 'sku',
   name: 'name',
   description: 'description',
-  category: 'category',
   brand: 'brand',
   provider: 'provider',
   costPrice: 'costPrice',
@@ -130,9 +129,59 @@ exports.Prisma.ProductScalarFieldEnum = {
   minStock: 'minStock',
   images: 'images',
   specifications: 'specifications',
+  attributes: 'attributes',
   hasVariants: 'hasVariants',
+  categoryId: 'categoryId',
+  subcategoryId: 'subcategoryId',
+  category: 'category',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  key: 'key',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SubcategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  key: 'key',
+  categoryId: 'categoryId',
+  deviceCompatible: 'deviceCompatible',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AttributeDefinitionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  key: 'key',
+  type: 'type',
+  options: 'options',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CategoryAttributeScalarFieldEnum = {
+  id: 'id',
+  categoryId: 'categoryId',
+  attributeId: 'attributeId',
+  required: 'required',
+  filterable: 'filterable',
+  position: 'position'
+};
+
+exports.Prisma.SubcategoryAttributeScalarFieldEnum = {
+  id: 'id',
+  subcategoryId: 'subcategoryId',
+  attributeId: 'attributeId',
+  required: 'required',
+  filterable: 'filterable',
+  position: 'position'
 };
 
 exports.Prisma.ProductVariantScalarFieldEnum = {
@@ -154,9 +203,35 @@ exports.Prisma.ProductVariantScalarFieldEnum = {
   minStock: 'minStock',
   images: 'images',
   specifications: 'specifications',
+  attributes: 'attributes',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DeviceBrandScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.DeviceModelScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  brandId: 'brandId'
+};
+
+exports.Prisma.ProductCompatibilityScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  deviceModelId: 'deviceModelId'
+};
+
+exports.Prisma.RecommendationRuleScalarFieldEnum = {
+  id: 'id',
+  sourceSubcategoryId: 'sourceSubcategoryId',
+  targetSubcategoryId: 'targetSubcategoryId',
+  ruleType: 'ruleType',
+  matchAttributes: 'matchAttributes'
 };
 
 exports.Prisma.CustomerScalarFieldEnum = {
@@ -428,6 +503,23 @@ exports.Prisma.FavoriteImageScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.StockEntryScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  observations: 'observations'
+};
+
+exports.Prisma.StockEntryItemScalarFieldEnum = {
+  id: 'id',
+  stockEntryId: 'stockEntryId',
+  productId: 'productId',
+  isVariant: 'isVariant',
+  productName: 'productName',
+  sku: 'sku',
+  quantity: 'quantity',
+  costPrice: 'costPrice'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -494,7 +586,16 @@ exports.CashMovementType = exports.$Enums.CashMovementType = {
 
 exports.Prisma.ModelName = {
   Product: 'Product',
+  Category: 'Category',
+  Subcategory: 'Subcategory',
+  AttributeDefinition: 'AttributeDefinition',
+  CategoryAttribute: 'CategoryAttribute',
+  SubcategoryAttribute: 'SubcategoryAttribute',
   ProductVariant: 'ProductVariant',
+  DeviceBrand: 'DeviceBrand',
+  DeviceModel: 'DeviceModel',
+  ProductCompatibility: 'ProductCompatibility',
+  RecommendationRule: 'RecommendationRule',
   Customer: 'Customer',
   Sale: 'Sale',
   Expense: 'Expense',
@@ -512,7 +613,9 @@ exports.Prisma.ModelName = {
   CashRegisterSession: 'CashRegisterSession',
   CashMovement: 'CashMovement',
   User: 'User',
-  FavoriteImage: 'FavoriteImage'
+  FavoriteImage: 'FavoriteImage',
+  StockEntry: 'StockEntry',
+  StockEntryItem: 'StockEntryItem'
 };
 
 /**

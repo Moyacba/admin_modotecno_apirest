@@ -14,12 +14,11 @@ generator client {
 
 // Model for a product (main product that can have variants)
 model Product {
-  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
   barcode        String?
   sku            String
   name           String
   description    String
-  category       String
   brand          String
   provider       String
   costPrice      Float
@@ -27,13 +26,95 @@ model Product {
   promoPrice     Float
   percentPrice   Float
   stock          Int
-  minStock       Int              @default(0)
+  minStock       Int      @default(0)
   images         String[]
   specifications Json?
-  hasVariants    Boolean          @default(false)
-  variants       ProductVariant[]
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
+  attributes     Json? // Atributos consolidados (heredados + específicos)
+  hasVariants    Boolean  @default(false)
+
+  // Relaciones con Categoría y Subcategoría
+  categoryId     String?      @db.ObjectId
+  categoryRel    Category?    @relation(fields: [categoryId], references: [id])
+  subcategoryId  String?      @db.ObjectId
+  subcategoryRel Subcategory? @relation(fields: [subcategoryId], references: [id])
+
+  category String? // Respaldo para migración
+
+  variants        ProductVariant[]
+  compatibilities ProductCompatibility[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id   String  @id @default(auto()) @map("_id") @db.ObjectId
+  name String  @unique
+  key  String? @unique // Opcional para seeding estable
+
+  attributes    CategoryAttribute[]
+  subcategories Subcategory[]
+  products      Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Subcategory {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String   @unique
+  key        String?  @unique // Opcional para seeding estable
+  categoryId String   @db.ObjectId
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  deviceCompatible Boolean @default(false)
+
+  attributes SubcategoryAttribute[]
+  products   Product[]
+
+  recommendationRules RecommendationRule[] @relation("SourceSubcategory")
+  targetRules         RecommendationRule[] @relation("TargetSubcategory")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AttributeDefinition {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  name    String   @unique
+  key     String?  @unique // Opcional para seeding estable
+  type    String // select, multiselect, boolean, number
+  options String[] // Para tipos select/multiselect
+
+  categoryAttributes    CategoryAttribute[]
+  subcategoryAttributes SubcategoryAttribute[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CategoryAttribute {
+  id          String              @id @default(auto()) @map("_id") @db.ObjectId
+  categoryId  String              @db.ObjectId
+  category    Category            @relation(fields: [categoryId], references: [id])
+  attributeId String              @db.ObjectId
+  attribute   AttributeDefinition @relation(fields: [attributeId], references: [id])
+
+  required   Boolean @default(false)
+  filterable Boolean @default(true)
+  position   Int     @default(0)
+}
+
+model SubcategoryAttribute {
+  id            String              @id @default(auto()) @map("_id") @db.ObjectId
+  subcategoryId String              @db.ObjectId
+  subcategory   Subcategory         @relation(fields: [subcategoryId], references: [id])
+  attributeId   String              @db.ObjectId
+  attribute     AttributeDefinition @relation(fields: [attributeId], references: [id])
+
+  required   Boolean @default(false)
+  filterable Boolean @default(true)
+  position   Int     @default(0)
 }
 
 // Model for product variants
@@ -57,9 +138,44 @@ model ProductVariant {
   minStock       Int      @default(0)
   images         String[]
   specifications Json?
+  attributes     Json? // Atributos específicos de la variante
   isActive       Boolean  @default(true)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+}
+
+model DeviceBrand {
+  id     String        @id @default(auto()) @map("_id") @db.ObjectId
+  name   String        @unique
+  models DeviceModel[]
+}
+
+model DeviceModel {
+  id      String      @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  brandId String      @db.ObjectId
+  brand   DeviceBrand @relation(fields: [brandId], references: [id])
+
+  compatibilities ProductCompatibility[]
+}
+
+model ProductCompatibility {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  productId     String      @db.ObjectId
+  product       Product     @relation(fields: [productId], references: [id])
+  deviceModelId String      @db.ObjectId
+  deviceModel   DeviceModel @relation(fields: [deviceModelId], references: [id])
+}
+
+model RecommendationRule {
+  id                  String      @id @default(auto()) @map("_id") @db.ObjectId
+  sourceSubcategoryId String      @db.ObjectId
+  sourceSubcategory   Subcategory @relation("SourceSubcategory", fields: [sourceSubcategoryId], references: [id])
+  targetSubcategoryId String      @db.ObjectId
+  targetSubcategory   Subcategory @relation("TargetSubcategory", fields: [targetSubcategoryId], references: [id])
+
+  ruleType        String // attributeMatch, deviceMatch, categoryCrossSell
+  matchAttributes Json? // Array de nombres de atributos a comparar
 }
 
 // Model for a customer
@@ -533,4 +649,26 @@ model FavoriteImage {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   url       String   @unique
   createdAt DateTime @default(now())
+}
+
+model StockEntry {
+  id           String           @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime         @default(now())
+  observations String?
+  items        StockEntryItem[]
+}
+
+model StockEntryItem {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  stockEntryId String     @db.ObjectId
+  stockEntry   StockEntry @relation(fields: [stockEntryId], references: [id], onDelete: Cascade)
+
+  productId   String  @db.ObjectId
+  isVariant   Boolean @default(false)
+  productName String
+  sku         String
+
+  quantity  Int
+  costPrice Float?
 }

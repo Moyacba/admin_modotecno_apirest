@@ -1,4 +1,5 @@
 import { PrismaClient } from "db";
+import * as productService from "../services/productService.js";
 const prisma = new PrismaClient();
 
 /**
@@ -84,13 +85,16 @@ export const getProducts = async (req, res) => {
     const skip = (page - 1) * pageSize;
 
     const keyword = (req.query.keyword || "").trim();
-    const category = req.query.category || "";
+    const categoryId = req.query.categoryId || "";
+    const subcategoryId = req.query.subcategoryId || "";
     const includeVariants = req.query.includeVariants === 'true';
 
     let where = {};
 
-    if (category) {
-      where.category = category;
+    if (subcategoryId) {
+      where.subcategoryId = subcategoryId;
+    } else if (categoryId) {
+      where.categoryId = categoryId;
     }
 
     if (keyword) {
@@ -110,12 +114,16 @@ export const getProducts = async (req, res) => {
         // Obtener TODOS los resultados para poder ordenarlos por score
         const allProducts = await prisma.product.findMany({
           where: andWhere,
-          include: includeVariants ? {
-            variants: {
-              where: { isActive: true },
-              orderBy: { createdAt: 'desc' },
-            }
-          } : undefined,
+          include: {
+            categoryRel: true,
+            subcategoryRel: true,
+            ...(includeVariants ? {
+              variants: {
+                where: { isActive: true },
+                orderBy: { createdAt: 'desc' },
+              }
+            } : {})
+          },
         });
 
         // Calcular score y ordenar por relevancia
@@ -185,12 +193,16 @@ export const getProducts = async (req, res) => {
       where,
       skip,
       take: pageSize,
-      include: includeVariants ? {
-        variants: {
-          where: { isActive: true },
-          orderBy: { createdAt: 'desc' },
-        }
-      } : undefined,
+        include: {
+          categoryRel: true,
+          subcategoryRel: true,
+          ...(includeVariants ? {
+            variants: {
+              where: { isActive: true },
+              orderBy: { createdAt: 'desc' },
+            }
+          } : {})
+        },
       orderBy: { createdAt: 'desc' },
     });
 
@@ -210,11 +222,15 @@ export const getProductById = async (req, res) => {
   try {
     const product = await prisma.product.findUnique({
       where: { id },
-      include: includeVariants ? {
-        variants: {
-          where: { isActive: true },
-        }
-      } : undefined,
+      include: {
+        categoryRel: true,
+        subcategoryRel: true,
+        ...(includeVariants ? {
+          variants: {
+            where: { isActive: true },
+          }
+        } : {})
+      },
     });
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
@@ -227,107 +243,31 @@ export const getProductById = async (req, res) => {
 
 // Crear un nuevo producto
 export const createProduct = async (req, res) => {
-  const {
-    barcode,
-    sku,
-    name,
-    description,
-    category,
-    brand,
-    provider,
-    costPrice,
-    salePrice,
-    promoPrice,
-    percentPrice,
-    stock,
-    minStock,
-    images,
-    specifications,
-    hasVariants,
-  } = req.body;
+  const { variants = [], compatibilities = [] } = req.body;
 
   try {
-    const newProduct = await prisma.product.create({
-      data: {
-        barcode,
-        sku,
-        name,
-        description,
-        category,
-        brand,
-        provider,
-        costPrice,
-        salePrice,
-        promoPrice,
-        percentPrice,
-        stock,
-        minStock: minStock || 0,
-        images,
-        specifications,
-        hasVariants: hasVariants || false,
-      },
-    });
+    const newProduct = await productService.createFullProduct(req.body, variants, compatibilities);
     res.status(201).json(newProduct);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "Error creating product" });
+    res.status(500).json({ error: "Error creating product: " + error.message });
   }
 };
 
 // Actualizar un producto
 export const updateProduct = async (req, res) => {
+  const { variants = [], compatibilities = [] } = req.body;
   const { id } = req.params;
-  const {
-    updatedAt,
-    barcode,
-    sku,
-    name,
-    description,
-    category,
-    brand,
-    provider,
-    costPrice,
-    salePrice,
-    promoPrice,
-    percentPrice,
-    stock,
-    minStock,
-    images,
-    specifications,
-    hasVariants,
-  } = req.body;
 
   try {
-    const updatedProduct = await prisma.product.update({
-      where: { id },
-      data: {
-        updatedAt,
-        barcode,
-        sku,
-        name,
-        description,
-        category,
-        brand,
-        provider,
-        costPrice,
-        salePrice,
-        promoPrice,
-        percentPrice,
-        stock,
-        minStock: minStock !== undefined ? minStock : 0,
-        images,
-        specifications,
-        hasVariants: hasVariants !== undefined ? hasVariants : false,
-      },
-    });
-    res.status(201).json(updatedProduct);
+    const updatedProduct = await productService.updateFullProduct(id, req.body, variants, compatibilities);
+    res.status(200).json(updatedProduct);
   } catch (error) {
     console.log(error);
     if (error.code === "P2025") {
-      // Product not found
       return res.status(404).json({ error: "Product not found" });
     }
-    res.status(500).json({ error: "Error updating product" });
+    res.status(500).json({ error: "Error updating product: " + error.message });
   }
 };
 
@@ -679,6 +619,262 @@ export const bulkUpdateBarcodes = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Error updating barcodes in bulk' });
+  }
+};
+
+// Búsqueda rápida optimizada (retorna productos y variantes aplanadas)
+export const searchProducts = async (req, res) => {
+  try {
+    const query = (req.query.query || "").trim();
+    if (!query) return res.status(200).json({ products: [] });
+
+    // 1. Buscar en Productos Padre
+    const products = await prisma.product.findMany({
+      where: {
+        OR: [
+          { name: { contains: query, mode: "insensitive" } },
+          { barcode: { contains: query, mode: "insensitive" } },
+          { sku: { contains: query, mode: "insensitive" } },
+        ]
+      },
+      include: {
+        variants: {
+          where: { isActive: true }
+        }
+      },
+      take: 20
+    });
+
+    // 2. Buscar en Variantes directamente
+    const variants = await prisma.productVariant.findMany({
+      where: {
+        isActive: true,
+        OR: [
+          { name: { contains: query, mode: "insensitive" } },
+          { barcode: { contains: query, mode: "insensitive" } },
+          { sku: { contains: query, mode: "insensitive" } },
+        ]
+      },
+      include: {
+        product: true
+      },
+      take: 20
+    });
+
+    // 3. Aplanar en un array único sin duplicados usando Map
+    const resultsMap = new Map();
+
+    products.forEach(p => {
+      // Agregamos el producto padre aunque tenga variantes. El front decide si dejarlo.
+      // Omitir si es padre virtual y solo operan las variantes, pero en nuestro caso permitimos
+      resultsMap.set(`p-${p.id}`, {
+        id: p.id,
+        isVariant: false,
+        name: p.name,
+        sku: p.barcode || p.sku || "N/A",
+        costPrice: p.costPrice,
+        stock: p.stock
+      });
+      
+      // Agregamos sus variantes relacionadas
+      if (p.variants && p.variants.length > 0) {
+        p.variants.forEach(v => {
+          resultsMap.set(`v-${v.id}`, {
+            id: v.id,
+            productId: p.id,
+            isVariant: true,
+            name: `${p.name} - ${v.name}`,
+            sku: v.barcode || v.sku || "N/A",
+            costPrice: v.costPrice,
+            stock: v.stock
+          });
+        });
+      }
+    });
+
+    variants.forEach(v => {
+      if (!resultsMap.has(`v-${v.id}`)) {
+        resultsMap.set(`v-${v.id}`, {
+          id: v.id,
+          productId: v.productId,
+          isVariant: true,
+          name: `${v.product.name} - ${v.name}`,
+          sku: v.barcode || v.sku || "N/A",
+          costPrice: v.costPrice,
+          stock: v.stock
+        });
+      }
+    });
+
+    // 4. Convertir a Array y limitar
+    // Chequeo si existe match exacto para priorizar
+    const results = Array.from(resultsMap.values());
+    const exactMatch = results.find(r => r.sku === query || (r.barcode === query));
+    
+    // Si hay un match exacto por código y es único, devolvemos solo ese (facilita escáner)
+    if (exactMatch && query.length >= 6) {
+      return res.status(200).json({ products: [exactMatch] });
+    }
+
+    return res.status(200).json({ products: results.slice(0, 15) });
+
+  } catch (err) {
+    console.error("Error in searchProducts:", err);
+    res.status(500).json({ message: "Error interno en búsqueda de productos", error: err.message });
+  }
+};
+
+// Obtiene todos los productos y variantes que tienen su stock <= minStock
+export const getLowStockProducts = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = parseInt(req.query.limit) || 20;
+    const skip = (page - 1) * pageSize;
+    
+    const provider = req.query.provider || "";
+    const categoryId = req.query.categoryId || "";
+    const subcategoryId = req.query.subcategoryId || "";
+
+    // Construir where base para filtrar en BD antes de la lógica de stock bajo
+    let productWhere = { minStock: { gt: 0 } };
+    let variantWhere = { isActive: true, minStock: { gt: 0 } };
+
+    if (provider) {
+      productWhere.provider = provider;
+      variantWhere.product = { provider: provider };
+    }
+
+    if (subcategoryId) {
+      productWhere.subcategoryId = subcategoryId;
+      variantWhere.product = { ...variantWhere.product, subcategoryId: subcategoryId };
+    } else if (categoryId) {
+      productWhere.categoryId = categoryId;
+      variantWhere.product = { ...variantWhere.product, categoryId: categoryId };
+    }
+
+    const stockLevel = req.query.stockLevel || "";
+
+    // 1. Obtener productos padres
+    const products = await prisma.product.findMany({
+      where: productWhere,
+      select: {
+        id: true,
+        name: true,
+        images: true,
+        stock: true,
+        minStock: true,
+        costPrice: true,
+        category: true,
+        categoryId: true,
+        subcategoryId: true,
+        provider: true,
+        sku: true,
+        categoryRel: true,
+        subcategoryRel: true
+      }
+    });
+
+    const lowStockProducts = products
+      .filter(p => {
+          const isLow = p.stock <= p.minStock;
+          if (!isLow) return false;
+          if (stockLevel === '0' && p.stock !== 0) return false;
+          if (stockLevel === '1' && p.stock !== 1) return false;
+          return true;
+      })
+      .map(p => ({
+        id: p.id,
+        isVariant: false,
+        name: p.name,
+        image: p.images && p.images.length > 0 ? p.images[0] : null,
+        stock: p.stock,
+        minStock: p.minStock,
+        costPrice: p.costPrice,
+        category: p.category,
+        categoryId: p.categoryId,
+        subcategoryId: p.subcategoryId,
+        provider: p.provider,
+        sku: p.sku
+      }));
+
+    // 2. Obtener variantes
+    const variants = await prisma.productVariant.findMany({
+      where: variantWhere,
+      select: {
+        id: true,
+        productId: true,
+        name: true,
+        images: true,
+        stock: true,
+        minStock: true,
+        costPrice: true,
+        sku: true,
+        product: {
+          select: {
+            name: true,
+            images: true,
+            category: true,
+            categoryId: true,
+            subcategoryId: true,
+            provider: true,
+            sku: true,
+            categoryRel: true,
+            subcategoryRel: true
+          }
+        }
+      }
+    });
+
+    const lowStockVariants = variants
+      .filter(v => {
+          const isLow = v.stock <= v.minStock;
+          if (!isLow) return false;
+          if (stockLevel === '0' && v.stock !== 0) return false;
+          if (stockLevel === '1' && v.stock !== 1) return false;
+          return true;
+      })
+      .map(v => ({
+        id: v.id,
+        productId: v.productId,
+        isVariant: true,
+        name: `${v.product.name} - ${v.name}`,
+        image: (v.images && v.images.length > 0) ? v.images[0] : (v.product.images && v.product.images.length > 0 ? v.product.images[0] : null),
+        stock: v.stock,
+        minStock: v.minStock,
+        costPrice: v.costPrice,
+        category: v.product.category,
+        categoryId: v.product.categoryId,
+        subcategoryId: v.product.subcategoryId,
+        provider: v.product.provider,
+        sku: v.sku || v.product.sku
+      }));
+
+    // 3. Unir, ordenar y paginar
+    const allResults = [...lowStockProducts, ...lowStockVariants]
+      .sort((a, b) => a.stock - b.stock);
+
+    const globalZeroStockCount = allResults.filter(a => a.stock <= 0).length;
+    const totalCount = allResults.length;
+    const paginatedResults = allResults.slice(skip, skip + pageSize);
+    const globalTotalInvestment = allResults.reduce((sum, item) => {
+      const toReplenish = Math.max(0, item.minStock - item.stock);
+      return sum + (toReplenish * (item.costPrice || 0));
+    }, 0);
+
+    return res.status(200).json({
+      alerts: paginatedResults,
+      totalCount,
+      totalPages: Math.ceil(totalCount / pageSize),
+      currentPage: page,
+      summary: {
+        zeroStockCount: globalZeroStockCount,
+        totalInvestment: globalTotalInvestment,
+        uniqueProviders: Array.from(new Set(allResults.map(a => a.provider).filter(Boolean))).sort()
+      }
+    });
+  } catch (error) {
+    console.error("Error in getLowStockProducts:", error);
+    res.status(500).json({ message: "Error al cargar alertas de stock", error: error.message });
   }
 };
 

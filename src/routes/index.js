@@ -12,6 +12,9 @@ import orderRoutes from "./orderRoutes.js";
 import posSalesRoutes from "./posSalesRoutes.js";
 import hybridRoutes from "./hybridRoutes.js";
 import cashRegisterRoutes from "./cashRegisterRoutes.js";
+import stockEntryRoutes from "./stockEntryRoutes.js";
+import categoryRoutes from "./categoryRoutes.js";
+import catalogRoutes from "./catalogRoutes.js";
 
 const router = Router();
 
@@ -28,6 +31,9 @@ router.use("/image", cloudinaryRoutes);
 router.use("/order", orderRoutes);
 router.use("/pos-sales", posSalesRoutes);
 router.use("/cash-register", cashRegisterRoutes);
+router.use("/stock-entry", stockEntryRoutes);
+router.use("/category", categoryRoutes);
+router.use("/catalog", catalogRoutes);
 
 // Nuevas rutas híbridas optimizadas para cache
 router.use("/", hybridRoutes);

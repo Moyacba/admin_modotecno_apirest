@@ -11,6 +11,8 @@ import {
   getProductsForBarcodes,
   checkBarcodeUnique,
   bulkUpdateBarcodes,
+  searchProducts,
+  getLowStockProducts,
 } from "../controllers/productController.js ";
 
 import {
@@ -41,6 +43,8 @@ router.put("/barcodes/bulk", bulkUpdateBarcodes);
 // ========================================
 // RUTAS DE PRODUCTOS PRINCIPALES
 // ========================================
+router.get("/low-stock", getLowStockProducts);
+router.get("/search", searchProducts);
 router.get("/", getProducts);
 router.get("/:id", getProductById);
 router.post("/", createProduct);

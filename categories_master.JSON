@@ -1,0 +1,476 @@
+{
+    "globalAttributes": [
+        {
+            "id": "brand",
+            "name": "Marca",
+            "type": "select",
+            "options": [
+                "Samsung",
+                "Apple",
+                "Xiaomi",
+                "Motorola",
+                "Netmak",
+                "Soul",
+                "Xaea",
+                "Only",
+                "Axer",
+                "Redoos",
+                "Anker",
+                "Ugreen",
+                "Baseus",
+                "Kingston",
+                "SanDisk",
+                "ADATA",
+                "Logitech",
+                "Redragon",
+                "HyperX",
+                "JBL",
+                "Sony",
+                "Philips",
+                "Genérico"
+            ]
+        },
+        {
+            "id": "color",
+            "name": "Color",
+            "type": "select",
+            "options": [
+                "Negro",
+                "Blanco",
+                "Gris",
+                "Plateado",
+                "Azul",
+                "Rojo",
+                "Verde",
+                "Rosa",
+                "Lila",
+                "Morado",
+                "Beige",
+                "Marron",
+                "Salmon",
+                "Naranja",
+                "Transparente"
+            ]
+        },
+        {
+            "id": "material",
+            "name": "Material",
+            "type": "select",
+            "options": [
+                "Plástico",
+                "Silicona",
+                "TPU",
+                "Policarbonato",
+                "Metal",
+                "Aluminio",
+                "Vidrio",
+                "Nylon trenzado"
+            ]
+        }
+    ],
+    "attributes": [
+        {
+            "id": "capacity",
+            "name": "Capacidad",
+            "type": "select",
+            "options": [
+                "8GB",
+                "16GB",
+                "32GB",
+                "64GB",
+                "128GB",
+                "256GB",
+                "512GB",
+                "1TB",
+                "2TB"
+            ]
+        },
+        {
+            "id": "power",
+            "name": "Potencia (W)",
+            "type": "select",
+            "options": [
+                "5W",
+                "6W",
+                "10W",
+                "12W",
+                "15W",
+                "18W",
+                "20W",
+                "25W",
+                "30W",
+                "45W",
+                "65W",
+                "100W"
+            ]
+        },
+        {
+            "id": "connectorInput",
+            "name": "Tipo de Conector Entrada",
+            "type": "select",
+            "options": [
+                "USB-A",
+                "USB-C",
+                "Lightning",
+                "Micro USB",
+                "Mini USB / V3",
+                "Jack 3.5mm",
+                "RCA",
+                "Red",
+                "DisplayPort",
+                "HDMI",
+                "VGA",
+                "DVI",
+                "USB-B / Red",
+                "Micro USB"
+            ]
+        },
+        {
+            "id": "connectorOutput",
+            "name": "Tipo de Conector Salida",
+            "type": "select",
+            "options": [
+                "USB-A",
+                "USB-C",
+                "Lightning",
+                "Micro USB",
+                "Mini USB / V3",
+                "Jack 3.5mm",
+                "RCA",
+                "Red",
+                "DisplayPort",
+                "HDMI",
+                "VGA",
+                "DVI",
+                "USB-B / Red",
+                "Micro USB"
+            ]
+        },
+        {
+            "id": "length",
+            "name": "Longitud",
+            "type": "select",
+            "options": [
+                "0.5m",
+                "1m",
+                "1.5m",
+                "2m",
+                "3m"
+            ]
+        },
+        {
+            "id": "bluetoothVersion",
+            "name": "Bluetooth",
+            "type": "select",
+            "options": [
+                "4.2",
+                "5.0",
+                "5.1",
+                "5.2",
+                "5.3"
+            ]
+        },
+        {
+            "id": "waterResistance",
+            "name": "Resistencia al agua",
+            "type": "select",
+            "options": [
+                "No",
+                "IPX4",
+                "IPX5",
+                "IPX6",
+                "IPX7"
+            ]
+        },
+        {
+            "id": "chargingTech",
+            "name": "Tecnología de carga",
+            "type": "multiselect",
+            "options": [
+                "Power Delivery",
+                "Quick Charge",
+                "PPS",
+                "GaN"
+            ]
+        },
+        {
+            "id": "rmsPower",
+            "name": "Potencia RMS",
+            "type": "select",
+            "options": [
+                "5W",
+                "10W",
+                "20W",
+                "30W",
+                "50W",
+                "100W"
+            ]
+        },
+        {
+            "id": "compatibility",
+            "name": "Compatible con",
+            "type": "multiselect",
+            "options": [
+                "Celular",
+                "Tablet",
+                "Notebook"
+            ]
+        }
+    ],
+    "deviceCompatibility": {
+        "brands": [
+            "Apple",
+            "Samsung",
+            "Xiaomi",
+            "Motorola"
+        ],
+        "models": {
+            "Apple": [
+                "iPhone 11",
+                "iPhone 12",
+                "iPhone 13",
+                "iPhone 14",
+                "iPhone 15"
+            ],
+            "Samsung": [
+                "Galaxy S21",
+                "Galaxy S22",
+                "Galaxy S23",
+                "Galaxy A32",
+                "Galaxy A52"
+            ],
+            "Xiaomi": [
+                "Redmi Note 10",
+                "Redmi Note 11",
+                "Redmi Note 12"
+            ]
+        }
+    },
+    "categories": [
+        {
+            "id": "telefonia",
+            "name": "Telefonía",
+            "inheritedAttributes": [
+                "brand",
+                "color",
+                "material"
+            ],
+            "subcategories": [
+                {
+                    "id": "cases",
+                    "name": "Fundas",
+                    "attributes": [],
+                    "deviceCompatible": true
+                },
+                {
+                    "id": "temperedGlass",
+                    "name": "Vidrios templados",
+                    "attributes": [],
+                    "deviceCompatible": true
+                },
+                {
+                    "id": "batteries",
+                    "name": "Baterías",
+                    "attributes": [
+                        "capacity"
+                    ],
+                    "deviceCompatible": true
+                }
+            ]
+        },
+        {
+            "id": "energia",
+            "name": "Energía y Carga",
+            "inheritedAttributes": [
+                "brand",
+                "color"
+            ],
+            "subcategories": [
+                {
+                    "id": "wallChargers",
+                    "name": "Cargadores de pared",
+                    "attributes": [
+                        "power",
+                        "connectorOutput",
+                        "chargingTech"
+                    ],
+                    "recommends": [
+                        {
+                            "category": "cables",
+                            "matchAttributes": [
+                                "connectorInput"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "cables",
+                    "name": "Cables",
+                    "attributes": [
+                        "connectorInput",
+                        "connectorOutput",
+                        "length",
+                        "material"
+                    ],
+                    "recommends": [
+                        {
+                            "category": "wallChargers",
+                            "matchAttributes": [
+                                "connectorOutput"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "powerBanks",
+                    "name": "Power banks",
+                    "attributes": [
+                        "capacity",
+                        "power",
+                        "connectorOutput"
+                    ],
+                    "recommends": [
+                        {
+                            "category": "cables",
+                            "matchAttributes": [
+                                "connectorInput"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "audio",
+            "name": "Audio",
+            "inheritedAttributes": [
+                "brand",
+                "color"
+            ],
+            "subcategories": [
+                {
+                    "id": "bluetoothHeadphones",
+                    "name": "Auriculares Bluetooth",
+                    "attributes": [
+                        "bluetoothVersion",
+                        "waterResistance"
+                    ]
+                },
+                {
+                    "id": "cableHeadphones",
+                    "name": "Auriculares con cable",
+                    "attributes": [
+                        "connectorInput",
+                        "length",
+                        "material"
+                    ]
+                },
+                {
+                    "id": "speakers",
+                    "name": "Parlantes",
+                    "attributes": [
+                        "bluetoothVersion",
+                        "rmsPower",
+                        "waterResistance"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "computacion",
+            "name": "Computación",
+            "inheritedAttributes": [
+                "brand",
+                "color"
+            ],
+            "subcategories": [
+                {
+                    "id": "mouse",
+                    "name": "Mouse",
+                    "attributes": []
+                },
+                {
+                    "id": "keyboards",
+                    "name": "Teclados",
+                    "attributes": []
+                },
+                {
+                    "id": "webcams",
+                    "name": "Webcams",
+                    "attributes": []
+                },
+                {
+                    "id": "cables",
+                    "name": "Cables",
+                    "attributes": [
+                        "connectorInput",
+                        "connectorOutput",
+                        "length",
+                        "material"
+                    ]
+                },
+                {
+                    "id": "hubs",
+                    "name": "Hubs y adaptadores",
+                    "attributes": [
+                        "connectorInput"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "soportes",
+            "name": "Soportes",
+            "inheritedAttributes": [
+                "brand",
+                "color",
+                "material",
+                "compatibility"
+            ],
+            "subcategories": [
+                {
+                    "id": "soportes-universal",
+                    "name": "Soportes Universales",
+                    "attributes": []
+                }
+            ]
+        },
+        {
+            "id": "almacenamiento",
+            "name": "Almacenamiento",
+            "inheritedAttributes": [
+                "brand"
+            ],
+            "subcategories": [
+                {
+                    "id": "pendrives",
+                    "name": "Pendrives",
+                    "attributes": [
+                        "capacity",
+                        "connectorInput",
+                        "material"
+                    ]
+                },
+                {
+                    "id": "microSD",
+                    "name": "Tarjetas MicroSD",
+                    "attributes": [
+                        "capacity"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sin-clasificar",
+            "name": "Sin Clasificar",
+            "inheritedAttributes": [],
+            "subcategories": [
+                {
+                    "id": "sin-clasificar-sub",
+                    "name": "Sin Clasificar",
+                    "attributes": []
+                }
+            ]
+        }
+    ]
+}
