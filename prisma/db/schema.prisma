@@ -652,10 +652,20 @@ model FavoriteImage {
 }
 
 model StockEntry {
-  id           String           @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt    DateTime         @default(now())
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime @default(now())
   observations String?
-  items        StockEntryItem[]
+
+  // Cabecera de Compra — para auditoría y analíticas
+  provider        String? // Nombre del proveedor
+  paymentMethod   String? // efectivo | transferencia | tarjeta | cuenta_corriente
+  userId          String? // ID/nombre del usuario que registró
+  totalCost       Float? // Total en ARS (calculado al guardar)
+  totalUnits      Int? // Suma de todas las cantidades (calculado al guardar)
+  exchangeRateUSD Float? // Tipo de cambio USD al momento
+  auditNotes      String? // Notas de auditoría
+
+  items StockEntryItem[]
 }
 
 model StockEntryItem {
@@ -671,4 +681,22 @@ model StockEntryItem {
 
   quantity  Int
   costPrice Float?
+
+  // Campos de rentabilidad — capturados al momento del ingreso
+  salePriceAtMoment Float? // Precio de venta vigente al ingresar
+  categoryId        String? // Categoría del producto (denormalizado)
+  categoryName      String? // Nombre de categoría (denormalizado)
+  profitMargin      Float? // ((salePrice - costPrice) / salePrice) * 100
+}
+
+model Provider {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String   @unique
+  contact   String?
+  phone     String?
+  email     String?
+  notes     String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

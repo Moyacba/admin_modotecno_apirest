@@ -14,6 +14,7 @@
                 "Xaea",
                 "Only",
                 "Axer",
+                "Smartilike",
                 "Redoos",
                 "Anker",
                 "Ugreen",
@@ -215,6 +216,23 @@
                 "Tablet",
                 "Notebook"
             ]
+        },
+        {
+            "id": "typeHidrogel",
+            "name": "Tipo de Hidrogel",
+            "type": "select",
+            "options": [
+                "Hidrogel Clear",
+                "Hidrogel Premium",
+                "Hidrogel Matte",
+                "Hidrogel Anti-Blue",
+                "Hidrogel Anti-Spy",
+                "Hidrogel Tablet Clear",
+                "Hidrogel Tablet Premium",
+                "Hidrogel Tablet Matte",
+                "Hidrogel Tablet Anti-Blue",
+                "Hidrogel Tablet Anti-Spy"
+            ]
         }
     ],
     "deviceCompatibility": {
@@ -275,6 +293,49 @@
                         "capacity"
                     ],
                     "deviceCompatible": true
+                },
+                {
+                    "id": "cables",
+                    "name": "Cables",
+                    "attributes": [
+                        "connectorInput",
+                        "connectorOutput",
+                        "length",
+                        "material"
+                    ],
+                    "recommends": [
+                        {
+                            "category": "wallChargers",
+                            "matchAttributes": [
+                                "connectorOutput"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "cable",
+                    "name": "Cable",
+                    "attributes": [
+                        "connectorInput",
+                        "connectorOutput",
+                        "length",
+                        "material"
+                    ],
+                    "recommends": [
+                        {
+                            "category": "wallChargers",
+                            "matchAttributes": [
+                                "connectorOutput"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "hidrogel",
+                    "name": "Hidrogel",
+                    "attributes": [
+                        "typeHidrogel"
+                    ]
                 }
             ]
         },
@@ -289,6 +350,23 @@
                 {
                     "id": "wallChargers",
                     "name": "Cargadores de pared",
+                    "attributes": [
+                        "power",
+                        "connectorOutput",
+                        "chargingTech"
+                    ],
+                    "recommends": [
+                        {
+                            "category": "cables",
+                            "matchAttributes": [
+                                "connectorInput"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "carChargers",
+                    "name": "Cargadores para auto",
                     "attributes": [
                         "power",
                         "connectorOutput",
@@ -414,6 +492,23 @@
                     "name": "Hubs y adaptadores",
                     "attributes": [
                         "connectorInput"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "consoles",
+            "name": "Consolas",
+            "inheritedAttributes": [
+                "brand",
+                "color"
+            ],
+            "subcategories": [
+                {
+                    "id": "joysticks",
+                    "name": "Joysticks",
+                    "attributes": [
+                        "connectorOutput"
                     ]
                 }
             ]

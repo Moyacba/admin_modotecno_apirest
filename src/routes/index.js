@@ -15,6 +15,7 @@ import cashRegisterRoutes from "./cashRegisterRoutes.js";
 import stockEntryRoutes from "./stockEntryRoutes.js";
 import categoryRoutes from "./categoryRoutes.js";
 import catalogRoutes from "./catalogRoutes.js";
+import providerRoutes from "./providerRoutes.js";
 
 const router = Router();
 
@@ -34,6 +35,7 @@ router.use("/cash-register", cashRegisterRoutes);
 router.use("/stock-entry", stockEntryRoutes);
 router.use("/category", categoryRoutes);
 router.use("/catalog", catalogRoutes);
+router.use("/providers", providerRoutes);
 
 // Nuevas rutas híbridas optimizadas para cache
 router.use("/", hybridRoutes);

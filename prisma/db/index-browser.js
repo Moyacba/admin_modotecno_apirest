@@ -506,7 +506,14 @@ exports.Prisma.FavoriteImageScalarFieldEnum = {
 exports.Prisma.StockEntryScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  observations: 'observations'
+  observations: 'observations',
+  provider: 'provider',
+  paymentMethod: 'paymentMethod',
+  userId: 'userId',
+  totalCost: 'totalCost',
+  totalUnits: 'totalUnits',
+  exchangeRateUSD: 'exchangeRateUSD',
+  auditNotes: 'auditNotes'
 };
 
 exports.Prisma.StockEntryItemScalarFieldEnum = {
@@ -517,7 +524,23 @@ exports.Prisma.StockEntryItemScalarFieldEnum = {
   productName: 'productName',
   sku: 'sku',
   quantity: 'quantity',
-  costPrice: 'costPrice'
+  costPrice: 'costPrice',
+  salePriceAtMoment: 'salePriceAtMoment',
+  categoryId: 'categoryId',
+  categoryName: 'categoryName',
+  profitMargin: 'profitMargin'
+};
+
+exports.Prisma.ProviderScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  contact: 'contact',
+  phone: 'phone',
+  email: 'email',
+  notes: 'notes',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -615,7 +638,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   FavoriteImage: 'FavoriteImage',
   StockEntry: 'StockEntry',
-  StockEntryItem: 'StockEntryItem'
+  StockEntryItem: 'StockEntryItem',
+  Provider: 'Provider'
 };
 
 /**

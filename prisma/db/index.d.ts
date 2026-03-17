@@ -168,6 +168,11 @@ export type StockEntry = $Result.DefaultSelection<Prisma.$StockEntryPayload>
  * 
  */
 export type StockEntryItem = $Result.DefaultSelection<Prisma.$StockEntryItemPayload>
+/**
+ * Model Provider
+ * 
+ */
+export type Provider = $Result.DefaultSelection<Prisma.$ProviderPayload>
 
 /**
  * Enums
@@ -679,6 +684,16 @@ export class PrismaClient<
     * ```
     */
   get stockEntryItem(): Prisma.StockEntryItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.provider`: Exposes CRUD operations for the **Provider** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Providers
+    * const providers = await prisma.provider.findMany()
+    * ```
+    */
+  get provider(): Prisma.ProviderDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1149,7 +1164,8 @@ export namespace Prisma {
     User: 'User',
     FavoriteImage: 'FavoriteImage',
     StockEntry: 'StockEntry',
-    StockEntryItem: 'StockEntryItem'
+    StockEntryItem: 'StockEntryItem',
+    Provider: 'Provider'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1168,7 +1184,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "product" | "category" | "subcategory" | "attributeDefinition" | "categoryAttribute" | "subcategoryAttribute" | "productVariant" | "deviceBrand" | "deviceModel" | "productCompatibility" | "recommendationRule" | "customer" | "sale" | "expense" | "buyer" | "communicationPreferences" | "customerDevice" | "productInteraction" | "browsingEvent" | "feedback" | "order" | "orderDetail" | "pOSSale" | "pOSSaleDetail" | "service" | "cashRegisterSession" | "cashMovement" | "user" | "favoriteImage" | "stockEntry" | "stockEntryItem"
+      modelProps: "product" | "category" | "subcategory" | "attributeDefinition" | "categoryAttribute" | "subcategoryAttribute" | "productVariant" | "deviceBrand" | "deviceModel" | "productCompatibility" | "recommendationRule" | "customer" | "sale" | "expense" | "buyer" | "communicationPreferences" | "customerDevice" | "productInteraction" | "browsingEvent" | "feedback" | "order" | "orderDetail" | "pOSSale" | "pOSSaleDetail" | "service" | "cashRegisterSession" | "cashMovement" | "user" | "favoriteImage" | "stockEntry" | "stockEntryItem" | "provider"
       txIsolationLevel: never
     }
     model: {
@@ -3466,6 +3482,80 @@ export namespace Prisma {
           }
         }
       }
+      Provider: {
+        payload: Prisma.$ProviderPayload<ExtArgs>
+        fields: Prisma.ProviderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProviderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProviderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProviderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>
+          }
+          findFirst: {
+            args: Prisma.ProviderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProviderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProviderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>
+          }
+          findMany: {
+            args: Prisma.ProviderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>[]
+          }
+          create: {
+            args: Prisma.ProviderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>
+          }
+          createMany: {
+            args: Prisma.ProviderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ProviderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>
+          }
+          update: {
+            args: Prisma.ProviderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProviderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProviderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProviderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>
+          }
+          aggregate: {
+            args: Prisma.ProviderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProvider>
+          }
+          groupBy: {
+            args: Prisma.ProviderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProviderGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ProviderFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ProviderAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ProviderCountArgs<ExtArgs>
+            result: $Utils.Optional<ProviderCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3568,6 +3658,7 @@ export namespace Prisma {
     favoriteImage?: FavoriteImageOmit
     stockEntry?: StockEntryOmit
     stockEntryItem?: StockEntryItemOmit
+    provider?: ProviderOmit
   }
 
   /* Types for Logging */
@@ -35730,46 +35821,114 @@ export namespace Prisma {
 
   export type AggregateStockEntry = {
     _count: StockEntryCountAggregateOutputType | null
+    _avg: StockEntryAvgAggregateOutputType | null
+    _sum: StockEntrySumAggregateOutputType | null
     _min: StockEntryMinAggregateOutputType | null
     _max: StockEntryMaxAggregateOutputType | null
+  }
+
+  export type StockEntryAvgAggregateOutputType = {
+    totalCost: number | null
+    totalUnits: number | null
+    exchangeRateUSD: number | null
+  }
+
+  export type StockEntrySumAggregateOutputType = {
+    totalCost: number | null
+    totalUnits: number | null
+    exchangeRateUSD: number | null
   }
 
   export type StockEntryMinAggregateOutputType = {
     id: string | null
     createdAt: Date | null
     observations: string | null
+    provider: string | null
+    paymentMethod: string | null
+    userId: string | null
+    totalCost: number | null
+    totalUnits: number | null
+    exchangeRateUSD: number | null
+    auditNotes: string | null
   }
 
   export type StockEntryMaxAggregateOutputType = {
     id: string | null
     createdAt: Date | null
     observations: string | null
+    provider: string | null
+    paymentMethod: string | null
+    userId: string | null
+    totalCost: number | null
+    totalUnits: number | null
+    exchangeRateUSD: number | null
+    auditNotes: string | null
   }
 
   export type StockEntryCountAggregateOutputType = {
     id: number
     createdAt: number
     observations: number
+    provider: number
+    paymentMethod: number
+    userId: number
+    totalCost: number
+    totalUnits: number
+    exchangeRateUSD: number
+    auditNotes: number
     _all: number
   }
 
+
+  export type StockEntryAvgAggregateInputType = {
+    totalCost?: true
+    totalUnits?: true
+    exchangeRateUSD?: true
+  }
+
+  export type StockEntrySumAggregateInputType = {
+    totalCost?: true
+    totalUnits?: true
+    exchangeRateUSD?: true
+  }
 
   export type StockEntryMinAggregateInputType = {
     id?: true
     createdAt?: true
     observations?: true
+    provider?: true
+    paymentMethod?: true
+    userId?: true
+    totalCost?: true
+    totalUnits?: true
+    exchangeRateUSD?: true
+    auditNotes?: true
   }
 
   export type StockEntryMaxAggregateInputType = {
     id?: true
     createdAt?: true
     observations?: true
+    provider?: true
+    paymentMethod?: true
+    userId?: true
+    totalCost?: true
+    totalUnits?: true
+    exchangeRateUSD?: true
+    auditNotes?: true
   }
 
   export type StockEntryCountAggregateInputType = {
     id?: true
     createdAt?: true
     observations?: true
+    provider?: true
+    paymentMethod?: true
+    userId?: true
+    totalCost?: true
+    totalUnits?: true
+    exchangeRateUSD?: true
+    auditNotes?: true
     _all?: true
   }
 
@@ -35811,6 +35970,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: StockEntryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StockEntrySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: StockEntryMinAggregateInputType
@@ -35841,6 +36012,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: StockEntryCountAggregateInputType | true
+    _avg?: StockEntryAvgAggregateInputType
+    _sum?: StockEntrySumAggregateInputType
     _min?: StockEntryMinAggregateInputType
     _max?: StockEntryMaxAggregateInputType
   }
@@ -35849,7 +36022,16 @@ export namespace Prisma {
     id: string
     createdAt: Date
     observations: string | null
+    provider: string | null
+    paymentMethod: string | null
+    userId: string | null
+    totalCost: number | null
+    totalUnits: number | null
+    exchangeRateUSD: number | null
+    auditNotes: string | null
     _count: StockEntryCountAggregateOutputType | null
+    _avg: StockEntryAvgAggregateOutputType | null
+    _sum: StockEntrySumAggregateOutputType | null
     _min: StockEntryMinAggregateOutputType | null
     _max: StockEntryMaxAggregateOutputType | null
   }
@@ -35872,6 +36054,13 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     observations?: boolean
+    provider?: boolean
+    paymentMethod?: boolean
+    userId?: boolean
+    totalCost?: boolean
+    totalUnits?: boolean
+    exchangeRateUSD?: boolean
+    auditNotes?: boolean
     items?: boolean | StockEntry$itemsArgs<ExtArgs>
     _count?: boolean | StockEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["stockEntry"]>
@@ -35882,9 +36071,16 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     observations?: boolean
+    provider?: boolean
+    paymentMethod?: boolean
+    userId?: boolean
+    totalCost?: boolean
+    totalUnits?: boolean
+    exchangeRateUSD?: boolean
+    auditNotes?: boolean
   }
 
-  export type StockEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "observations", ExtArgs["result"]["stockEntry"]>
+  export type StockEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "observations" | "provider" | "paymentMethod" | "userId" | "totalCost" | "totalUnits" | "exchangeRateUSD" | "auditNotes", ExtArgs["result"]["stockEntry"]>
   export type StockEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     items?: boolean | StockEntry$itemsArgs<ExtArgs>
     _count?: boolean | StockEntryCountOutputTypeDefaultArgs<ExtArgs>
@@ -35899,6 +36095,13 @@ export namespace Prisma {
       id: string
       createdAt: Date
       observations: string | null
+      provider: string | null
+      paymentMethod: string | null
+      userId: string | null
+      totalCost: number | null
+      totalUnits: number | null
+      exchangeRateUSD: number | null
+      auditNotes: string | null
     }, ExtArgs["result"]["stockEntry"]>
     composites: {}
   }
@@ -36295,6 +36498,13 @@ export namespace Prisma {
     readonly id: FieldRef<"StockEntry", 'String'>
     readonly createdAt: FieldRef<"StockEntry", 'DateTime'>
     readonly observations: FieldRef<"StockEntry", 'String'>
+    readonly provider: FieldRef<"StockEntry", 'String'>
+    readonly paymentMethod: FieldRef<"StockEntry", 'String'>
+    readonly userId: FieldRef<"StockEntry", 'String'>
+    readonly totalCost: FieldRef<"StockEntry", 'Float'>
+    readonly totalUnits: FieldRef<"StockEntry", 'Int'>
+    readonly exchangeRateUSD: FieldRef<"StockEntry", 'Float'>
+    readonly auditNotes: FieldRef<"StockEntry", 'String'>
   }
     
 
@@ -36722,11 +36932,15 @@ export namespace Prisma {
   export type StockEntryItemAvgAggregateOutputType = {
     quantity: number | null
     costPrice: number | null
+    salePriceAtMoment: number | null
+    profitMargin: number | null
   }
 
   export type StockEntryItemSumAggregateOutputType = {
     quantity: number | null
     costPrice: number | null
+    salePriceAtMoment: number | null
+    profitMargin: number | null
   }
 
   export type StockEntryItemMinAggregateOutputType = {
@@ -36738,6 +36952,10 @@ export namespace Prisma {
     sku: string | null
     quantity: number | null
     costPrice: number | null
+    salePriceAtMoment: number | null
+    categoryId: string | null
+    categoryName: string | null
+    profitMargin: number | null
   }
 
   export type StockEntryItemMaxAggregateOutputType = {
@@ -36749,6 +36967,10 @@ export namespace Prisma {
     sku: string | null
     quantity: number | null
     costPrice: number | null
+    salePriceAtMoment: number | null
+    categoryId: string | null
+    categoryName: string | null
+    profitMargin: number | null
   }
 
   export type StockEntryItemCountAggregateOutputType = {
@@ -36760,6 +36982,10 @@ export namespace Prisma {
     sku: number
     quantity: number
     costPrice: number
+    salePriceAtMoment: number
+    categoryId: number
+    categoryName: number
+    profitMargin: number
     _all: number
   }
 
@@ -36767,11 +36993,15 @@ export namespace Prisma {
   export type StockEntryItemAvgAggregateInputType = {
     quantity?: true
     costPrice?: true
+    salePriceAtMoment?: true
+    profitMargin?: true
   }
 
   export type StockEntryItemSumAggregateInputType = {
     quantity?: true
     costPrice?: true
+    salePriceAtMoment?: true
+    profitMargin?: true
   }
 
   export type StockEntryItemMinAggregateInputType = {
@@ -36783,6 +37013,10 @@ export namespace Prisma {
     sku?: true
     quantity?: true
     costPrice?: true
+    salePriceAtMoment?: true
+    categoryId?: true
+    categoryName?: true
+    profitMargin?: true
   }
 
   export type StockEntryItemMaxAggregateInputType = {
@@ -36794,6 +37028,10 @@ export namespace Prisma {
     sku?: true
     quantity?: true
     costPrice?: true
+    salePriceAtMoment?: true
+    categoryId?: true
+    categoryName?: true
+    profitMargin?: true
   }
 
   export type StockEntryItemCountAggregateInputType = {
@@ -36805,6 +37043,10 @@ export namespace Prisma {
     sku?: true
     quantity?: true
     costPrice?: true
+    salePriceAtMoment?: true
+    categoryId?: true
+    categoryName?: true
+    profitMargin?: true
     _all?: true
   }
 
@@ -36903,6 +37145,10 @@ export namespace Prisma {
     sku: string
     quantity: number
     costPrice: number | null
+    salePriceAtMoment: number | null
+    categoryId: string | null
+    categoryName: string | null
+    profitMargin: number | null
     _count: StockEntryItemCountAggregateOutputType | null
     _avg: StockEntryItemAvgAggregateOutputType | null
     _sum: StockEntryItemSumAggregateOutputType | null
@@ -36933,6 +37179,10 @@ export namespace Prisma {
     sku?: boolean
     quantity?: boolean
     costPrice?: boolean
+    salePriceAtMoment?: boolean
+    categoryId?: boolean
+    categoryName?: boolean
+    profitMargin?: boolean
     stockEntry?: boolean | StockEntryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["stockEntryItem"]>
 
@@ -36947,9 +37197,13 @@ export namespace Prisma {
     sku?: boolean
     quantity?: boolean
     costPrice?: boolean
+    salePriceAtMoment?: boolean
+    categoryId?: boolean
+    categoryName?: boolean
+    profitMargin?: boolean
   }
 
-  export type StockEntryItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stockEntryId" | "productId" | "isVariant" | "productName" | "sku" | "quantity" | "costPrice", ExtArgs["result"]["stockEntryItem"]>
+  export type StockEntryItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stockEntryId" | "productId" | "isVariant" | "productName" | "sku" | "quantity" | "costPrice" | "salePriceAtMoment" | "categoryId" | "categoryName" | "profitMargin", ExtArgs["result"]["stockEntryItem"]>
   export type StockEntryItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     stockEntry?: boolean | StockEntryDefaultArgs<ExtArgs>
   }
@@ -36968,6 +37222,10 @@ export namespace Prisma {
       sku: string
       quantity: number
       costPrice: number | null
+      salePriceAtMoment: number | null
+      categoryId: string | null
+      categoryName: string | null
+      profitMargin: number | null
     }, ExtArgs["result"]["stockEntryItem"]>
     composites: {}
   }
@@ -37369,6 +37627,10 @@ export namespace Prisma {
     readonly sku: FieldRef<"StockEntryItem", 'String'>
     readonly quantity: FieldRef<"StockEntryItem", 'Int'>
     readonly costPrice: FieldRef<"StockEntryItem", 'Float'>
+    readonly salePriceAtMoment: FieldRef<"StockEntryItem", 'Float'>
+    readonly categoryId: FieldRef<"StockEntryItem", 'String'>
+    readonly categoryName: FieldRef<"StockEntryItem", 'String'>
+    readonly profitMargin: FieldRef<"StockEntryItem", 'Float'>
   }
     
 
@@ -37754,6 +38016,982 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: StockEntryItemInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Provider
+   */
+
+  export type AggregateProvider = {
+    _count: ProviderCountAggregateOutputType | null
+    _min: ProviderMinAggregateOutputType | null
+    _max: ProviderMaxAggregateOutputType | null
+  }
+
+  export type ProviderMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    contact: string | null
+    phone: string | null
+    email: string | null
+    notes: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProviderMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    contact: string | null
+    phone: string | null
+    email: string | null
+    notes: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProviderCountAggregateOutputType = {
+    id: number
+    name: number
+    contact: number
+    phone: number
+    email: number
+    notes: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ProviderMinAggregateInputType = {
+    id?: true
+    name?: true
+    contact?: true
+    phone?: true
+    email?: true
+    notes?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProviderMaxAggregateInputType = {
+    id?: true
+    name?: true
+    contact?: true
+    phone?: true
+    email?: true
+    notes?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProviderCountAggregateInputType = {
+    id?: true
+    name?: true
+    contact?: true
+    phone?: true
+    email?: true
+    notes?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ProviderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Provider to aggregate.
+     */
+    where?: ProviderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Providers to fetch.
+     */
+    orderBy?: ProviderOrderByWithRelationInput | ProviderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProviderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Providers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Providers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Providers
+    **/
+    _count?: true | ProviderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProviderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProviderMaxAggregateInputType
+  }
+
+  export type GetProviderAggregateType<T extends ProviderAggregateArgs> = {
+        [P in keyof T & keyof AggregateProvider]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProvider[P]>
+      : GetScalarType<T[P], AggregateProvider[P]>
+  }
+
+
+
+
+  export type ProviderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProviderWhereInput
+    orderBy?: ProviderOrderByWithAggregationInput | ProviderOrderByWithAggregationInput[]
+    by: ProviderScalarFieldEnum[] | ProviderScalarFieldEnum
+    having?: ProviderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProviderCountAggregateInputType | true
+    _min?: ProviderMinAggregateInputType
+    _max?: ProviderMaxAggregateInputType
+  }
+
+  export type ProviderGroupByOutputType = {
+    id: string
+    name: string
+    contact: string | null
+    phone: string | null
+    email: string | null
+    notes: string | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: ProviderCountAggregateOutputType | null
+    _min: ProviderMinAggregateOutputType | null
+    _max: ProviderMaxAggregateOutputType | null
+  }
+
+  type GetProviderGroupByPayload<T extends ProviderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProviderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProviderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProviderGroupByOutputType[P]>
+            : GetScalarType<T[P], ProviderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProviderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    contact?: boolean
+    phone?: boolean
+    email?: boolean
+    notes?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["provider"]>
+
+
+
+  export type ProviderSelectScalar = {
+    id?: boolean
+    name?: boolean
+    contact?: boolean
+    phone?: boolean
+    email?: boolean
+    notes?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ProviderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "contact" | "phone" | "email" | "notes" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["provider"]>
+
+  export type $ProviderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Provider"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      contact: string | null
+      phone: string | null
+      email: string | null
+      notes: string | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["provider"]>
+    composites: {}
+  }
+
+  type ProviderGetPayload<S extends boolean | null | undefined | ProviderDefaultArgs> = $Result.GetResult<Prisma.$ProviderPayload, S>
+
+  type ProviderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProviderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProviderCountAggregateInputType | true
+    }
+
+  export interface ProviderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Provider'], meta: { name: 'Provider' } }
+    /**
+     * Find zero or one Provider that matches the filter.
+     * @param {ProviderFindUniqueArgs} args - Arguments to find a Provider
+     * @example
+     * // Get one Provider
+     * const provider = await prisma.provider.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProviderFindUniqueArgs>(args: SelectSubset<T, ProviderFindUniqueArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Provider that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProviderFindUniqueOrThrowArgs} args - Arguments to find a Provider
+     * @example
+     * // Get one Provider
+     * const provider = await prisma.provider.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProviderFindUniqueOrThrowArgs>(args: SelectSubset<T, ProviderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Provider that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProviderFindFirstArgs} args - Arguments to find a Provider
+     * @example
+     * // Get one Provider
+     * const provider = await prisma.provider.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProviderFindFirstArgs>(args?: SelectSubset<T, ProviderFindFirstArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Provider that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProviderFindFirstOrThrowArgs} args - Arguments to find a Provider
+     * @example
+     * // Get one Provider
+     * const provider = await prisma.provider.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProviderFindFirstOrThrowArgs>(args?: SelectSubset<T, ProviderFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Providers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProviderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Providers
+     * const providers = await prisma.provider.findMany()
+     * 
+     * // Get first 10 Providers
+     * const providers = await prisma.provider.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const providerWithIdOnly = await prisma.provider.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProviderFindManyArgs>(args?: SelectSubset<T, ProviderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Provider.
+     * @param {ProviderCreateArgs} args - Arguments to create a Provider.
+     * @example
+     * // Create one Provider
+     * const Provider = await prisma.provider.create({
+     *   data: {
+     *     // ... data to create a Provider
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProviderCreateArgs>(args: SelectSubset<T, ProviderCreateArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Providers.
+     * @param {ProviderCreateManyArgs} args - Arguments to create many Providers.
+     * @example
+     * // Create many Providers
+     * const provider = await prisma.provider.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProviderCreateManyArgs>(args?: SelectSubset<T, ProviderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Provider.
+     * @param {ProviderDeleteArgs} args - Arguments to delete one Provider.
+     * @example
+     * // Delete one Provider
+     * const Provider = await prisma.provider.delete({
+     *   where: {
+     *     // ... filter to delete one Provider
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProviderDeleteArgs>(args: SelectSubset<T, ProviderDeleteArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Provider.
+     * @param {ProviderUpdateArgs} args - Arguments to update one Provider.
+     * @example
+     * // Update one Provider
+     * const provider = await prisma.provider.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProviderUpdateArgs>(args: SelectSubset<T, ProviderUpdateArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Providers.
+     * @param {ProviderDeleteManyArgs} args - Arguments to filter Providers to delete.
+     * @example
+     * // Delete a few Providers
+     * const { count } = await prisma.provider.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProviderDeleteManyArgs>(args?: SelectSubset<T, ProviderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Providers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProviderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Providers
+     * const provider = await prisma.provider.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProviderUpdateManyArgs>(args: SelectSubset<T, ProviderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Provider.
+     * @param {ProviderUpsertArgs} args - Arguments to update or create a Provider.
+     * @example
+     * // Update or create a Provider
+     * const provider = await prisma.provider.upsert({
+     *   create: {
+     *     // ... data to create a Provider
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Provider we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProviderUpsertArgs>(args: SelectSubset<T, ProviderUpsertArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Providers that matches the filter.
+     * @param {ProviderFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const provider = await prisma.provider.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ProviderFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Provider.
+     * @param {ProviderAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const provider = await prisma.provider.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ProviderAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Providers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProviderCountArgs} args - Arguments to filter Providers to count.
+     * @example
+     * // Count the number of Providers
+     * const count = await prisma.provider.count({
+     *   where: {
+     *     // ... the filter for the Providers we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProviderCountArgs>(
+      args?: Subset<T, ProviderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProviderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Provider.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProviderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProviderAggregateArgs>(args: Subset<T, ProviderAggregateArgs>): Prisma.PrismaPromise<GetProviderAggregateType<T>>
+
+    /**
+     * Group by Provider.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProviderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProviderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProviderGroupByArgs['orderBy'] }
+        : { orderBy?: ProviderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProviderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProviderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Provider model
+   */
+  readonly fields: ProviderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Provider.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProviderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Provider model
+   */
+  interface ProviderFieldRefs {
+    readonly id: FieldRef<"Provider", 'String'>
+    readonly name: FieldRef<"Provider", 'String'>
+    readonly contact: FieldRef<"Provider", 'String'>
+    readonly phone: FieldRef<"Provider", 'String'>
+    readonly email: FieldRef<"Provider", 'String'>
+    readonly notes: FieldRef<"Provider", 'String'>
+    readonly isActive: FieldRef<"Provider", 'Boolean'>
+    readonly createdAt: FieldRef<"Provider", 'DateTime'>
+    readonly updatedAt: FieldRef<"Provider", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Provider findUnique
+   */
+  export type ProviderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provider
+     */
+    select?: ProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provider
+     */
+    omit?: ProviderOmit<ExtArgs> | null
+    /**
+     * Filter, which Provider to fetch.
+     */
+    where: ProviderWhereUniqueInput
+  }
+
+  /**
+   * Provider findUniqueOrThrow
+   */
+  export type ProviderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provider
+     */
+    select?: ProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provider
+     */
+    omit?: ProviderOmit<ExtArgs> | null
+    /**
+     * Filter, which Provider to fetch.
+     */
+    where: ProviderWhereUniqueInput
+  }
+
+  /**
+   * Provider findFirst
+   */
+  export type ProviderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provider
+     */
+    select?: ProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provider
+     */
+    omit?: ProviderOmit<ExtArgs> | null
+    /**
+     * Filter, which Provider to fetch.
+     */
+    where?: ProviderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Providers to fetch.
+     */
+    orderBy?: ProviderOrderByWithRelationInput | ProviderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Providers.
+     */
+    cursor?: ProviderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Providers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Providers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Providers.
+     */
+    distinct?: ProviderScalarFieldEnum | ProviderScalarFieldEnum[]
+  }
+
+  /**
+   * Provider findFirstOrThrow
+   */
+  export type ProviderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provider
+     */
+    select?: ProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provider
+     */
+    omit?: ProviderOmit<ExtArgs> | null
+    /**
+     * Filter, which Provider to fetch.
+     */
+    where?: ProviderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Providers to fetch.
+     */
+    orderBy?: ProviderOrderByWithRelationInput | ProviderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Providers.
+     */
+    cursor?: ProviderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Providers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Providers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Providers.
+     */
+    distinct?: ProviderScalarFieldEnum | ProviderScalarFieldEnum[]
+  }
+
+  /**
+   * Provider findMany
+   */
+  export type ProviderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provider
+     */
+    select?: ProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provider
+     */
+    omit?: ProviderOmit<ExtArgs> | null
+    /**
+     * Filter, which Providers to fetch.
+     */
+    where?: ProviderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Providers to fetch.
+     */
+    orderBy?: ProviderOrderByWithRelationInput | ProviderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Providers.
+     */
+    cursor?: ProviderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Providers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Providers.
+     */
+    skip?: number
+    distinct?: ProviderScalarFieldEnum | ProviderScalarFieldEnum[]
+  }
+
+  /**
+   * Provider create
+   */
+  export type ProviderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provider
+     */
+    select?: ProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provider
+     */
+    omit?: ProviderOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Provider.
+     */
+    data: XOR<ProviderCreateInput, ProviderUncheckedCreateInput>
+  }
+
+  /**
+   * Provider createMany
+   */
+  export type ProviderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Providers.
+     */
+    data: ProviderCreateManyInput | ProviderCreateManyInput[]
+  }
+
+  /**
+   * Provider update
+   */
+  export type ProviderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provider
+     */
+    select?: ProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provider
+     */
+    omit?: ProviderOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Provider.
+     */
+    data: XOR<ProviderUpdateInput, ProviderUncheckedUpdateInput>
+    /**
+     * Choose, which Provider to update.
+     */
+    where: ProviderWhereUniqueInput
+  }
+
+  /**
+   * Provider updateMany
+   */
+  export type ProviderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Providers.
+     */
+    data: XOR<ProviderUpdateManyMutationInput, ProviderUncheckedUpdateManyInput>
+    /**
+     * Filter which Providers to update
+     */
+    where?: ProviderWhereInput
+    /**
+     * Limit how many Providers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Provider upsert
+   */
+  export type ProviderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provider
+     */
+    select?: ProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provider
+     */
+    omit?: ProviderOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Provider to update in case it exists.
+     */
+    where: ProviderWhereUniqueInput
+    /**
+     * In case the Provider found by the `where` argument doesn't exist, create a new Provider with this data.
+     */
+    create: XOR<ProviderCreateInput, ProviderUncheckedCreateInput>
+    /**
+     * In case the Provider was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProviderUpdateInput, ProviderUncheckedUpdateInput>
+  }
+
+  /**
+   * Provider delete
+   */
+  export type ProviderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provider
+     */
+    select?: ProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provider
+     */
+    omit?: ProviderOmit<ExtArgs> | null
+    /**
+     * Filter which Provider to delete.
+     */
+    where: ProviderWhereUniqueInput
+  }
+
+  /**
+   * Provider deleteMany
+   */
+  export type ProviderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Providers to delete
+     */
+    where?: ProviderWhereInput
+    /**
+     * Limit how many Providers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Provider findRaw
+   */
+  export type ProviderFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Provider aggregateRaw
+   */
+  export type ProviderAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Provider without action
+   */
+  export type ProviderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provider
+     */
+    select?: ProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provider
+     */
+    omit?: ProviderOmit<ExtArgs> | null
   }
 
 
@@ -38241,7 +39479,14 @@ export namespace Prisma {
   export const StockEntryScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
-    observations: 'observations'
+    observations: 'observations',
+    provider: 'provider',
+    paymentMethod: 'paymentMethod',
+    userId: 'userId',
+    totalCost: 'totalCost',
+    totalUnits: 'totalUnits',
+    exchangeRateUSD: 'exchangeRateUSD',
+    auditNotes: 'auditNotes'
   };
 
   export type StockEntryScalarFieldEnum = (typeof StockEntryScalarFieldEnum)[keyof typeof StockEntryScalarFieldEnum]
@@ -38255,10 +39500,29 @@ export namespace Prisma {
     productName: 'productName',
     sku: 'sku',
     quantity: 'quantity',
-    costPrice: 'costPrice'
+    costPrice: 'costPrice',
+    salePriceAtMoment: 'salePriceAtMoment',
+    categoryId: 'categoryId',
+    categoryName: 'categoryName',
+    profitMargin: 'profitMargin'
   };
 
   export type StockEntryItemScalarFieldEnum = (typeof StockEntryItemScalarFieldEnum)[keyof typeof StockEntryItemScalarFieldEnum]
+
+
+  export const ProviderScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    contact: 'contact',
+    phone: 'phone',
+    email: 'email',
+    notes: 'notes',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ProviderScalarFieldEnum = (typeof ProviderScalarFieldEnum)[keyof typeof ProviderScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -40960,6 +42224,13 @@ export namespace Prisma {
     id?: StringFilter<"StockEntry"> | string
     createdAt?: DateTimeFilter<"StockEntry"> | Date | string
     observations?: StringNullableFilter<"StockEntry"> | string | null
+    provider?: StringNullableFilter<"StockEntry"> | string | null
+    paymentMethod?: StringNullableFilter<"StockEntry"> | string | null
+    userId?: StringNullableFilter<"StockEntry"> | string | null
+    totalCost?: FloatNullableFilter<"StockEntry"> | number | null
+    totalUnits?: IntNullableFilter<"StockEntry"> | number | null
+    exchangeRateUSD?: FloatNullableFilter<"StockEntry"> | number | null
+    auditNotes?: StringNullableFilter<"StockEntry"> | string | null
     items?: StockEntryItemListRelationFilter
   }
 
@@ -40967,6 +42238,13 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     observations?: SortOrder
+    provider?: SortOrder
+    paymentMethod?: SortOrder
+    userId?: SortOrder
+    totalCost?: SortOrder
+    totalUnits?: SortOrder
+    exchangeRateUSD?: SortOrder
+    auditNotes?: SortOrder
     items?: StockEntryItemOrderByRelationAggregateInput
   }
 
@@ -40977,6 +42255,13 @@ export namespace Prisma {
     NOT?: StockEntryWhereInput | StockEntryWhereInput[]
     createdAt?: DateTimeFilter<"StockEntry"> | Date | string
     observations?: StringNullableFilter<"StockEntry"> | string | null
+    provider?: StringNullableFilter<"StockEntry"> | string | null
+    paymentMethod?: StringNullableFilter<"StockEntry"> | string | null
+    userId?: StringNullableFilter<"StockEntry"> | string | null
+    totalCost?: FloatNullableFilter<"StockEntry"> | number | null
+    totalUnits?: IntNullableFilter<"StockEntry"> | number | null
+    exchangeRateUSD?: FloatNullableFilter<"StockEntry"> | number | null
+    auditNotes?: StringNullableFilter<"StockEntry"> | string | null
     items?: StockEntryItemListRelationFilter
   }, "id">
 
@@ -40984,9 +42269,18 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     observations?: SortOrder
+    provider?: SortOrder
+    paymentMethod?: SortOrder
+    userId?: SortOrder
+    totalCost?: SortOrder
+    totalUnits?: SortOrder
+    exchangeRateUSD?: SortOrder
+    auditNotes?: SortOrder
     _count?: StockEntryCountOrderByAggregateInput
+    _avg?: StockEntryAvgOrderByAggregateInput
     _max?: StockEntryMaxOrderByAggregateInput
     _min?: StockEntryMinOrderByAggregateInput
+    _sum?: StockEntrySumOrderByAggregateInput
   }
 
   export type StockEntryScalarWhereWithAggregatesInput = {
@@ -40996,6 +42290,13 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"StockEntry"> | string
     createdAt?: DateTimeWithAggregatesFilter<"StockEntry"> | Date | string
     observations?: StringNullableWithAggregatesFilter<"StockEntry"> | string | null
+    provider?: StringNullableWithAggregatesFilter<"StockEntry"> | string | null
+    paymentMethod?: StringNullableWithAggregatesFilter<"StockEntry"> | string | null
+    userId?: StringNullableWithAggregatesFilter<"StockEntry"> | string | null
+    totalCost?: FloatNullableWithAggregatesFilter<"StockEntry"> | number | null
+    totalUnits?: IntNullableWithAggregatesFilter<"StockEntry"> | number | null
+    exchangeRateUSD?: FloatNullableWithAggregatesFilter<"StockEntry"> | number | null
+    auditNotes?: StringNullableWithAggregatesFilter<"StockEntry"> | string | null
   }
 
   export type StockEntryItemWhereInput = {
@@ -41010,6 +42311,10 @@ export namespace Prisma {
     sku?: StringFilter<"StockEntryItem"> | string
     quantity?: IntFilter<"StockEntryItem"> | number
     costPrice?: FloatNullableFilter<"StockEntryItem"> | number | null
+    salePriceAtMoment?: FloatNullableFilter<"StockEntryItem"> | number | null
+    categoryId?: StringNullableFilter<"StockEntryItem"> | string | null
+    categoryName?: StringNullableFilter<"StockEntryItem"> | string | null
+    profitMargin?: FloatNullableFilter<"StockEntryItem"> | number | null
     stockEntry?: XOR<StockEntryScalarRelationFilter, StockEntryWhereInput>
   }
 
@@ -41022,6 +42327,10 @@ export namespace Prisma {
     sku?: SortOrder
     quantity?: SortOrder
     costPrice?: SortOrder
+    salePriceAtMoment?: SortOrder
+    categoryId?: SortOrder
+    categoryName?: SortOrder
+    profitMargin?: SortOrder
     stockEntry?: StockEntryOrderByWithRelationInput
   }
 
@@ -41037,6 +42346,10 @@ export namespace Prisma {
     sku?: StringFilter<"StockEntryItem"> | string
     quantity?: IntFilter<"StockEntryItem"> | number
     costPrice?: FloatNullableFilter<"StockEntryItem"> | number | null
+    salePriceAtMoment?: FloatNullableFilter<"StockEntryItem"> | number | null
+    categoryId?: StringNullableFilter<"StockEntryItem"> | string | null
+    categoryName?: StringNullableFilter<"StockEntryItem"> | string | null
+    profitMargin?: FloatNullableFilter<"StockEntryItem"> | number | null
     stockEntry?: XOR<StockEntryScalarRelationFilter, StockEntryWhereInput>
   }, "id">
 
@@ -41049,6 +42362,10 @@ export namespace Prisma {
     sku?: SortOrder
     quantity?: SortOrder
     costPrice?: SortOrder
+    salePriceAtMoment?: SortOrder
+    categoryId?: SortOrder
+    categoryName?: SortOrder
+    profitMargin?: SortOrder
     _count?: StockEntryItemCountOrderByAggregateInput
     _avg?: StockEntryItemAvgOrderByAggregateInput
     _max?: StockEntryItemMaxOrderByAggregateInput
@@ -41068,6 +42385,82 @@ export namespace Prisma {
     sku?: StringWithAggregatesFilter<"StockEntryItem"> | string
     quantity?: IntWithAggregatesFilter<"StockEntryItem"> | number
     costPrice?: FloatNullableWithAggregatesFilter<"StockEntryItem"> | number | null
+    salePriceAtMoment?: FloatNullableWithAggregatesFilter<"StockEntryItem"> | number | null
+    categoryId?: StringNullableWithAggregatesFilter<"StockEntryItem"> | string | null
+    categoryName?: StringNullableWithAggregatesFilter<"StockEntryItem"> | string | null
+    profitMargin?: FloatNullableWithAggregatesFilter<"StockEntryItem"> | number | null
+  }
+
+  export type ProviderWhereInput = {
+    AND?: ProviderWhereInput | ProviderWhereInput[]
+    OR?: ProviderWhereInput[]
+    NOT?: ProviderWhereInput | ProviderWhereInput[]
+    id?: StringFilter<"Provider"> | string
+    name?: StringFilter<"Provider"> | string
+    contact?: StringNullableFilter<"Provider"> | string | null
+    phone?: StringNullableFilter<"Provider"> | string | null
+    email?: StringNullableFilter<"Provider"> | string | null
+    notes?: StringNullableFilter<"Provider"> | string | null
+    isActive?: BoolFilter<"Provider"> | boolean
+    createdAt?: DateTimeFilter<"Provider"> | Date | string
+    updatedAt?: DateTimeFilter<"Provider"> | Date | string
+  }
+
+  export type ProviderOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    contact?: SortOrder
+    phone?: SortOrder
+    email?: SortOrder
+    notes?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProviderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: ProviderWhereInput | ProviderWhereInput[]
+    OR?: ProviderWhereInput[]
+    NOT?: ProviderWhereInput | ProviderWhereInput[]
+    contact?: StringNullableFilter<"Provider"> | string | null
+    phone?: StringNullableFilter<"Provider"> | string | null
+    email?: StringNullableFilter<"Provider"> | string | null
+    notes?: StringNullableFilter<"Provider"> | string | null
+    isActive?: BoolFilter<"Provider"> | boolean
+    createdAt?: DateTimeFilter<"Provider"> | Date | string
+    updatedAt?: DateTimeFilter<"Provider"> | Date | string
+  }, "id" | "name">
+
+  export type ProviderOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    contact?: SortOrder
+    phone?: SortOrder
+    email?: SortOrder
+    notes?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ProviderCountOrderByAggregateInput
+    _max?: ProviderMaxOrderByAggregateInput
+    _min?: ProviderMinOrderByAggregateInput
+  }
+
+  export type ProviderScalarWhereWithAggregatesInput = {
+    AND?: ProviderScalarWhereWithAggregatesInput | ProviderScalarWhereWithAggregatesInput[]
+    OR?: ProviderScalarWhereWithAggregatesInput[]
+    NOT?: ProviderScalarWhereWithAggregatesInput | ProviderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Provider"> | string
+    name?: StringWithAggregatesFilter<"Provider"> | string
+    contact?: StringNullableWithAggregatesFilter<"Provider"> | string | null
+    phone?: StringNullableWithAggregatesFilter<"Provider"> | string | null
+    email?: StringNullableWithAggregatesFilter<"Provider"> | string | null
+    notes?: StringNullableWithAggregatesFilter<"Provider"> | string | null
+    isActive?: BoolWithAggregatesFilter<"Provider"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Provider"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Provider"> | Date | string
   }
 
   export type ProductCreateInput = {
@@ -43773,6 +45166,13 @@ export namespace Prisma {
     id?: string
     createdAt?: Date | string
     observations?: string | null
+    provider?: string | null
+    paymentMethod?: string | null
+    userId?: string | null
+    totalCost?: number | null
+    totalUnits?: number | null
+    exchangeRateUSD?: number | null
+    auditNotes?: string | null
     items?: StockEntryItemCreateNestedManyWithoutStockEntryInput
   }
 
@@ -43780,18 +45180,39 @@ export namespace Prisma {
     id?: string
     createdAt?: Date | string
     observations?: string | null
+    provider?: string | null
+    paymentMethod?: string | null
+    userId?: string | null
+    totalCost?: number | null
+    totalUnits?: number | null
+    exchangeRateUSD?: number | null
+    auditNotes?: string | null
     items?: StockEntryItemUncheckedCreateNestedManyWithoutStockEntryInput
   }
 
   export type StockEntryUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observations?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    exchangeRateUSD?: NullableFloatFieldUpdateOperationsInput | number | null
+    auditNotes?: NullableStringFieldUpdateOperationsInput | string | null
     items?: StockEntryItemUpdateManyWithoutStockEntryNestedInput
   }
 
   export type StockEntryUncheckedUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observations?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    exchangeRateUSD?: NullableFloatFieldUpdateOperationsInput | number | null
+    auditNotes?: NullableStringFieldUpdateOperationsInput | string | null
     items?: StockEntryItemUncheckedUpdateManyWithoutStockEntryNestedInput
   }
 
@@ -43799,16 +45220,37 @@ export namespace Prisma {
     id?: string
     createdAt?: Date | string
     observations?: string | null
+    provider?: string | null
+    paymentMethod?: string | null
+    userId?: string | null
+    totalCost?: number | null
+    totalUnits?: number | null
+    exchangeRateUSD?: number | null
+    auditNotes?: string | null
   }
 
   export type StockEntryUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observations?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    exchangeRateUSD?: NullableFloatFieldUpdateOperationsInput | number | null
+    auditNotes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StockEntryUncheckedUpdateManyInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observations?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    exchangeRateUSD?: NullableFloatFieldUpdateOperationsInput | number | null
+    auditNotes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StockEntryItemCreateInput = {
@@ -43819,6 +45261,10 @@ export namespace Prisma {
     sku: string
     quantity: number
     costPrice?: number | null
+    salePriceAtMoment?: number | null
+    categoryId?: string | null
+    categoryName?: string | null
+    profitMargin?: number | null
     stockEntry: StockEntryCreateNestedOneWithoutItemsInput
   }
 
@@ -43831,6 +45277,10 @@ export namespace Prisma {
     sku: string
     quantity: number
     costPrice?: number | null
+    salePriceAtMoment?: number | null
+    categoryId?: string | null
+    categoryName?: string | null
+    profitMargin?: number | null
   }
 
   export type StockEntryItemUpdateInput = {
@@ -43840,6 +45290,10 @@ export namespace Prisma {
     sku?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     costPrice?: NullableFloatFieldUpdateOperationsInput | number | null
+    salePriceAtMoment?: NullableFloatFieldUpdateOperationsInput | number | null
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryName?: NullableStringFieldUpdateOperationsInput | string | null
+    profitMargin?: NullableFloatFieldUpdateOperationsInput | number | null
     stockEntry?: StockEntryUpdateOneRequiredWithoutItemsNestedInput
   }
 
@@ -43851,6 +45305,10 @@ export namespace Prisma {
     sku?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     costPrice?: NullableFloatFieldUpdateOperationsInput | number | null
+    salePriceAtMoment?: NullableFloatFieldUpdateOperationsInput | number | null
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryName?: NullableStringFieldUpdateOperationsInput | string | null
+    profitMargin?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type StockEntryItemCreateManyInput = {
@@ -43862,6 +45320,10 @@ export namespace Prisma {
     sku: string
     quantity: number
     costPrice?: number | null
+    salePriceAtMoment?: number | null
+    categoryId?: string | null
+    categoryName?: string | null
+    profitMargin?: number | null
   }
 
   export type StockEntryItemUpdateManyMutationInput = {
@@ -43871,6 +45333,10 @@ export namespace Prisma {
     sku?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     costPrice?: NullableFloatFieldUpdateOperationsInput | number | null
+    salePriceAtMoment?: NullableFloatFieldUpdateOperationsInput | number | null
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryName?: NullableStringFieldUpdateOperationsInput | string | null
+    profitMargin?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type StockEntryItemUncheckedUpdateManyInput = {
@@ -43881,6 +45347,90 @@ export namespace Prisma {
     sku?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     costPrice?: NullableFloatFieldUpdateOperationsInput | number | null
+    salePriceAtMoment?: NullableFloatFieldUpdateOperationsInput | number | null
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryName?: NullableStringFieldUpdateOperationsInput | string | null
+    profitMargin?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type ProviderCreateInput = {
+    id?: string
+    name: string
+    contact?: string | null
+    phone?: string | null
+    email?: string | null
+    notes?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProviderUncheckedCreateInput = {
+    id?: string
+    name: string
+    contact?: string | null
+    phone?: string | null
+    email?: string | null
+    notes?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProviderUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    contact?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProviderUncheckedUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    contact?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProviderCreateManyInput = {
+    id?: string
+    name: string
+    contact?: string | null
+    phone?: string | null
+    email?: string | null
+    notes?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProviderUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    contact?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProviderUncheckedUpdateManyInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    contact?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -45919,18 +47469,51 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     observations?: SortOrder
+    provider?: SortOrder
+    paymentMethod?: SortOrder
+    userId?: SortOrder
+    totalCost?: SortOrder
+    totalUnits?: SortOrder
+    exchangeRateUSD?: SortOrder
+    auditNotes?: SortOrder
+  }
+
+  export type StockEntryAvgOrderByAggregateInput = {
+    totalCost?: SortOrder
+    totalUnits?: SortOrder
+    exchangeRateUSD?: SortOrder
   }
 
   export type StockEntryMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
     observations?: SortOrder
+    provider?: SortOrder
+    paymentMethod?: SortOrder
+    userId?: SortOrder
+    totalCost?: SortOrder
+    totalUnits?: SortOrder
+    exchangeRateUSD?: SortOrder
+    auditNotes?: SortOrder
   }
 
   export type StockEntryMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
     observations?: SortOrder
+    provider?: SortOrder
+    paymentMethod?: SortOrder
+    userId?: SortOrder
+    totalCost?: SortOrder
+    totalUnits?: SortOrder
+    exchangeRateUSD?: SortOrder
+    auditNotes?: SortOrder
+  }
+
+  export type StockEntrySumOrderByAggregateInput = {
+    totalCost?: SortOrder
+    totalUnits?: SortOrder
+    exchangeRateUSD?: SortOrder
   }
 
   export type StockEntryScalarRelationFilter = {
@@ -45947,11 +47530,17 @@ export namespace Prisma {
     sku?: SortOrder
     quantity?: SortOrder
     costPrice?: SortOrder
+    salePriceAtMoment?: SortOrder
+    categoryId?: SortOrder
+    categoryName?: SortOrder
+    profitMargin?: SortOrder
   }
 
   export type StockEntryItemAvgOrderByAggregateInput = {
     quantity?: SortOrder
     costPrice?: SortOrder
+    salePriceAtMoment?: SortOrder
+    profitMargin?: SortOrder
   }
 
   export type StockEntryItemMaxOrderByAggregateInput = {
@@ -45963,6 +47552,10 @@ export namespace Prisma {
     sku?: SortOrder
     quantity?: SortOrder
     costPrice?: SortOrder
+    salePriceAtMoment?: SortOrder
+    categoryId?: SortOrder
+    categoryName?: SortOrder
+    profitMargin?: SortOrder
   }
 
   export type StockEntryItemMinOrderByAggregateInput = {
@@ -45974,11 +47567,53 @@ export namespace Prisma {
     sku?: SortOrder
     quantity?: SortOrder
     costPrice?: SortOrder
+    salePriceAtMoment?: SortOrder
+    categoryId?: SortOrder
+    categoryName?: SortOrder
+    profitMargin?: SortOrder
   }
 
   export type StockEntryItemSumOrderByAggregateInput = {
     quantity?: SortOrder
     costPrice?: SortOrder
+    salePriceAtMoment?: SortOrder
+    profitMargin?: SortOrder
+  }
+
+  export type ProviderCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    contact?: SortOrder
+    phone?: SortOrder
+    email?: SortOrder
+    notes?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProviderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    contact?: SortOrder
+    phone?: SortOrder
+    email?: SortOrder
+    notes?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProviderMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    contact?: SortOrder
+    phone?: SortOrder
+    email?: SortOrder
+    notes?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ProductCreateimagesInput = {
@@ -52548,6 +54183,10 @@ export namespace Prisma {
     sku: string
     quantity: number
     costPrice?: number | null
+    salePriceAtMoment?: number | null
+    categoryId?: string | null
+    categoryName?: string | null
+    profitMargin?: number | null
   }
 
   export type StockEntryItemUncheckedCreateWithoutStockEntryInput = {
@@ -52558,6 +54197,10 @@ export namespace Prisma {
     sku: string
     quantity: number
     costPrice?: number | null
+    salePriceAtMoment?: number | null
+    categoryId?: string | null
+    categoryName?: string | null
+    profitMargin?: number | null
   }
 
   export type StockEntryItemCreateOrConnectWithoutStockEntryInput = {
@@ -52597,18 +54240,36 @@ export namespace Prisma {
     sku?: StringFilter<"StockEntryItem"> | string
     quantity?: IntFilter<"StockEntryItem"> | number
     costPrice?: FloatNullableFilter<"StockEntryItem"> | number | null
+    salePriceAtMoment?: FloatNullableFilter<"StockEntryItem"> | number | null
+    categoryId?: StringNullableFilter<"StockEntryItem"> | string | null
+    categoryName?: StringNullableFilter<"StockEntryItem"> | string | null
+    profitMargin?: FloatNullableFilter<"StockEntryItem"> | number | null
   }
 
   export type StockEntryCreateWithoutItemsInput = {
     id?: string
     createdAt?: Date | string
     observations?: string | null
+    provider?: string | null
+    paymentMethod?: string | null
+    userId?: string | null
+    totalCost?: number | null
+    totalUnits?: number | null
+    exchangeRateUSD?: number | null
+    auditNotes?: string | null
   }
 
   export type StockEntryUncheckedCreateWithoutItemsInput = {
     id?: string
     createdAt?: Date | string
     observations?: string | null
+    provider?: string | null
+    paymentMethod?: string | null
+    userId?: string | null
+    totalCost?: number | null
+    totalUnits?: number | null
+    exchangeRateUSD?: number | null
+    auditNotes?: string | null
   }
 
   export type StockEntryCreateOrConnectWithoutItemsInput = {
@@ -52630,11 +54291,25 @@ export namespace Prisma {
   export type StockEntryUpdateWithoutItemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observations?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    exchangeRateUSD?: NullableFloatFieldUpdateOperationsInput | number | null
+    auditNotes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StockEntryUncheckedUpdateWithoutItemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observations?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    totalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    exchangeRateUSD?: NullableFloatFieldUpdateOperationsInput | number | null
+    auditNotes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProductVariantCreateManyProductInput = {
@@ -53998,6 +55673,10 @@ export namespace Prisma {
     sku: string
     quantity: number
     costPrice?: number | null
+    salePriceAtMoment?: number | null
+    categoryId?: string | null
+    categoryName?: string | null
+    profitMargin?: number | null
   }
 
   export type StockEntryItemUpdateWithoutStockEntryInput = {
@@ -54007,6 +55686,10 @@ export namespace Prisma {
     sku?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     costPrice?: NullableFloatFieldUpdateOperationsInput | number | null
+    salePriceAtMoment?: NullableFloatFieldUpdateOperationsInput | number | null
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryName?: NullableStringFieldUpdateOperationsInput | string | null
+    profitMargin?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type StockEntryItemUncheckedUpdateWithoutStockEntryInput = {
@@ -54016,6 +55699,10 @@ export namespace Prisma {
     sku?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     costPrice?: NullableFloatFieldUpdateOperationsInput | number | null
+    salePriceAtMoment?: NullableFloatFieldUpdateOperationsInput | number | null
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryName?: NullableStringFieldUpdateOperationsInput | string | null
+    profitMargin?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type StockEntryItemUncheckedUpdateManyWithoutStockEntryInput = {
@@ -54025,6 +55712,10 @@ export namespace Prisma {
     sku?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     costPrice?: NullableFloatFieldUpdateOperationsInput | number | null
+    salePriceAtMoment?: NullableFloatFieldUpdateOperationsInput | number | null
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryName?: NullableStringFieldUpdateOperationsInput | string | null
+    profitMargin?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
 
