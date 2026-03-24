@@ -16,6 +16,7 @@ import stockEntryRoutes from "./stockEntryRoutes.js";
 import categoryRoutes from "./categoryRoutes.js";
 import catalogRoutes from "./catalogRoutes.js";
 import providerRoutes from "./providerRoutes.js";
+import repairCatalogRoutes from "./repairCatalogRoutes.js";
 
 const router = Router();
 
@@ -36,6 +37,7 @@ router.use("/stock-entry", stockEntryRoutes);
 router.use("/category", categoryRoutes);
 router.use("/catalog", catalogRoutes);
 router.use("/providers", providerRoutes);
+router.use("/repair-catalog", repairCatalogRoutes);
 
 // Nuevas rutas híbridas optimizadas para cache
 router.use("/", hybridRoutes);

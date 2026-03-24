@@ -700,3 +700,34 @@ model Provider {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// Marcas específicas de Servicio Técnico (Samsung, iPhone, etc.)
+model BrandRepair {
+  id        String         @id @default(auto()) @map("_id") @db.ObjectId
+  name      String         @unique // Ej: "Motorola"
+  models    ModelRepair[]
+  createdAt DateTime       @default(now())
+}
+
+// Modelos específicos de Servicio Técnico
+model ModelRepair {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  name           String           // Ej: "Moto G52"
+  brandId        String           @db.ObjectId
+  brand          BrandRepair      @relation(fields: [brandId], references: [id])
+  serviceCatalog ServiceCatalog[] 
+  
+  @@unique([name, brandId]) // Un modelo no se repite dentro de la misma marca
+}
+
+// Catálogo de Repuestos y Precios (Módulos, Pines, Baterías, etc.)
+model ServiceCatalog {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  type        String       // Ej: "MODULO", "PIN", "BATERIA"
+  price       Float        // El precio de tu lista CSV
+  modelId     String       @db.ObjectId
+  model       ModelRepair  @relation(fields: [modelId], references: [id])
+  updatedAt   DateTime     @updatedAt
+
+  @@index([type])
+}

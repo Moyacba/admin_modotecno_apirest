@@ -58,7 +58,8 @@ export const createPOSSale = async (req, res) => {
     monto_total,
     metodo_pago,
     descuento,
-    productos
+    productos,
+    serviceId,  // opcional: para vincular el cobro a un servicio técnico
   } = req.body;
 
   try {
@@ -198,6 +199,9 @@ export const createPOSSale = async (req, res) => {
     const productUpdates = [];
 
     for (const producto of productos) {
+      // Los ítems de reparación son virtuales, no tocan el stock
+      if (producto.isServiceRepair) continue;
+
       if (!producto.id || !producto.quantity || producto.quantity <= 0) {
         return res.status(400).json({
           error: "Each product must have a valid ID and quantity"
@@ -222,6 +226,10 @@ export const createPOSSale = async (req, res) => {
       }
 
       if (!productData) {
+        // Si isServiceRepair, no debería llegar aquí, pero por seguridad:
+        if (producto.isServiceRepair) {
+          continue; // skip — ya filtrado arriba
+        }
         stockValidationErrors.push(`Product with ID ${producto.id} not found`);
         continue;
       }
@@ -234,7 +242,7 @@ export const createPOSSale = async (req, res) => {
         continue;
       }
 
-      // Preparar actualización de stock
+      // Preparar actualización de stock — saltar ítems de reparación (virtuales)
       productUpdates.push({
         id: producto.id,
         isVariant,
@@ -300,6 +308,17 @@ export const createPOSSale = async (req, res) => {
             data: { stock: update.newStock }
           });
         }
+      }
+
+      // Si la venta está vinculada a un servicio técnico, marcarlo como ENTREGADO
+      if (serviceId) {
+        await tx.service.update({
+          where: { id: serviceId },
+          data: {
+            state: 'ENTREGADO',
+            dateOut: new Date(),
+          },
+        });
       }
 
       return newSale;

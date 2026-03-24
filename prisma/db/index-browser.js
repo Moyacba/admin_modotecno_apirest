@@ -543,6 +543,26 @@ exports.Prisma.ProviderScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.BrandRepairScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ModelRepairScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  brandId: 'brandId'
+};
+
+exports.Prisma.ServiceCatalogScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  price: 'price',
+  modelId: 'modelId',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -639,7 +659,10 @@ exports.Prisma.ModelName = {
   FavoriteImage: 'FavoriteImage',
   StockEntry: 'StockEntry',
   StockEntryItem: 'StockEntryItem',
-  Provider: 'Provider'
+  Provider: 'Provider',
+  BrandRepair: 'BrandRepair',
+  ModelRepair: 'ModelRepair',
+  ServiceCatalog: 'ServiceCatalog'
 };
 
 /**

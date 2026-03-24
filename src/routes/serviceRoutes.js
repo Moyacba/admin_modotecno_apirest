@@ -9,6 +9,7 @@ import {
   deliveryService,
   getServiceByQuery,
   enterWarranty,
+  getServiceCheckoutPrep,
 } from "../controllers/serviceController.js";
 
 const router = express.Router();
@@ -21,6 +22,9 @@ router.get("/", getServices);
 
 // Buscar un servicio por producto, cliente o telefono
 router.get("/query", getServiceByQuery);
+
+// Preparar checkout para entrega en POS
+router.get("/:id/checkout-prep", getServiceCheckoutPrep);
 
 // Crear un nuevo servicio
 router.post("/", createService);

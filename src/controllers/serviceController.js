@@ -219,6 +219,60 @@ export const deleteService = async (req, res) => {
   }
 };
 
+// Preparar datos para cobro en POS
+export const getServiceCheckoutPrep = async (req, res) => {
+  const { id } = req.params;
+
+  const DELIVERABLE_STATES = ['REPARADO', 'SIN_ARREGLO', 'RECHAZADO'];
+
+  try {
+    const service = await prisma.service.findUnique({ where: { id } });
+
+    if (!service) {
+      return res.status(404).json({ error: 'Servicio no encontrado' });
+    }
+
+    if (!DELIVERABLE_STATES.includes(service.state)) {
+      return res.status(400).json({
+        error: `El servicio no puede ser entregado en estado "${service.state}". Estados válidos: ${DELIVERABLE_STATES.join(', ')}`
+      });
+    }
+
+    const total = service.total || 0;
+    const paid = (service.payments || []).reduce((sum, p) => sum + (p.amount || 0), 0);
+    const pendingAmount = Math.max(0, total - paid);
+
+    // Nombre del cliente del JSON
+    const clientName = service.client?.name || 'Cliente';
+    const clientPhone = service.client?.phone1 || '';
+
+    // Descripción: Marca + Modelo + primer detalle de falla
+    const brand = service.device?.branch || service.device?.brand || '';
+    const model = service.device?.model || '';
+    const issue = service.repair || service.device?.details || '';
+    const description = `Reparación: ${[brand, model].filter(Boolean).join(' ')}${issue ? ` - ${issue}` : ''}`;
+
+    return res.status(200).json({
+      data: {
+        serviceId: id,
+        clientName,
+        clientPhone,
+        description,
+        total,
+        paid,
+        pendingAmount,
+        canDeliverFree: pendingAmount === 0,
+        state: service.state,
+      },
+      message: 'Checkout preparado correctamente',
+      status: 200,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al preparar el checkout del servicio', err });
+  }
+};
+
 // Registrar ingreso por garantía
 export const enterWarranty = async (req, res) => {
   const { id } = req.params;
