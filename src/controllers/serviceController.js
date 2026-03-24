@@ -226,6 +226,7 @@ export const getServiceCheckoutPrep = async (req, res) => {
   const DELIVERABLE_STATES = ['REPARADO', 'SIN_ARREGLO', 'RECHAZADO'];
 
   try {
+    console.log(`[CheckoutPrep] Solicitud para ID: ${id}`);
     const service = await prisma.service.findUnique({ where: { id } });
 
     if (!service) {
@@ -246,11 +247,13 @@ export const getServiceCheckoutPrep = async (req, res) => {
     const clientName = service.client?.name || 'Cliente';
     const clientPhone = service.client?.phone1 || '';
 
-    // Descripción: Marca + Modelo + primer detalle de falla
+    // Preparar descripción descriptiva
     const brand = service.device?.branch || service.device?.brand || '';
     const model = service.device?.model || '';
     const issue = service.repair || service.device?.details || '';
     const description = `Reparación: ${[brand, model].filter(Boolean).join(' ')}${issue ? ` - ${issue}` : ''}`;
+
+    console.log(`[CheckoutPrep] Éxito para ID: ${id}. Pending: ${pendingAmount}`);
 
     return res.status(200).json({
       data: {
@@ -268,8 +271,11 @@ export const getServiceCheckoutPrep = async (req, res) => {
       status: 200,
     });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Error al preparar el checkout del servicio', err });
+    console.error(`[CheckoutPrep] Error crítico para ID: ${id}:`, err);
+    res.status(500).json({ 
+      error: 'Error interno al preparar el checkout del servicio', 
+      details: err.message || String(err)
+    });
   }
 };
 
