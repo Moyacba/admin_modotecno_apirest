@@ -32075,16 +32075,28 @@ export namespace Prisma {
 
   export type CashRegisterSessionAvgAggregateOutputType = {
     initialCash: number | null
+    expectedInitialCash: number | null
     finalCashCalculated: number | null
     finalCashCounted: number | null
     difference: number | null
+    nextSessionFund: number | null
+    withdrawalAmount: number | null
+    totalCard: number | null
+    totalDigital: number | null
+    totalExpenses: number | null
   }
 
   export type CashRegisterSessionSumAggregateOutputType = {
     initialCash: number | null
+    expectedInitialCash: number | null
     finalCashCalculated: number | null
     finalCashCounted: number | null
     difference: number | null
+    nextSessionFund: number | null
+    withdrawalAmount: number | null
+    totalCard: number | null
+    totalDigital: number | null
+    totalExpenses: number | null
   }
 
   export type CashRegisterSessionMinAggregateOutputType = {
@@ -32092,9 +32104,15 @@ export namespace Prisma {
     openedAt: Date | null
     closedAt: Date | null
     initialCash: number | null
+    expectedInitialCash: number | null
     finalCashCalculated: number | null
     finalCashCounted: number | null
     difference: number | null
+    nextSessionFund: number | null
+    withdrawalAmount: number | null
+    totalCard: number | null
+    totalDigital: number | null
+    totalExpenses: number | null
     status: $Enums.SessionStatus | null
     openedBy: string | null
     closedBy: string | null
@@ -32106,9 +32124,15 @@ export namespace Prisma {
     openedAt: Date | null
     closedAt: Date | null
     initialCash: number | null
+    expectedInitialCash: number | null
     finalCashCalculated: number | null
     finalCashCounted: number | null
     difference: number | null
+    nextSessionFund: number | null
+    withdrawalAmount: number | null
+    totalCard: number | null
+    totalDigital: number | null
+    totalExpenses: number | null
     status: $Enums.SessionStatus | null
     openedBy: string | null
     closedBy: string | null
@@ -32120,9 +32144,15 @@ export namespace Prisma {
     openedAt: number
     closedAt: number
     initialCash: number
+    expectedInitialCash: number
     finalCashCalculated: number
     finalCashCounted: number
     difference: number
+    nextSessionFund: number
+    withdrawalAmount: number
+    totalCard: number
+    totalDigital: number
+    totalExpenses: number
     status: number
     openedBy: number
     closedBy: number
@@ -32133,16 +32163,28 @@ export namespace Prisma {
 
   export type CashRegisterSessionAvgAggregateInputType = {
     initialCash?: true
+    expectedInitialCash?: true
     finalCashCalculated?: true
     finalCashCounted?: true
     difference?: true
+    nextSessionFund?: true
+    withdrawalAmount?: true
+    totalCard?: true
+    totalDigital?: true
+    totalExpenses?: true
   }
 
   export type CashRegisterSessionSumAggregateInputType = {
     initialCash?: true
+    expectedInitialCash?: true
     finalCashCalculated?: true
     finalCashCounted?: true
     difference?: true
+    nextSessionFund?: true
+    withdrawalAmount?: true
+    totalCard?: true
+    totalDigital?: true
+    totalExpenses?: true
   }
 
   export type CashRegisterSessionMinAggregateInputType = {
@@ -32150,9 +32192,15 @@ export namespace Prisma {
     openedAt?: true
     closedAt?: true
     initialCash?: true
+    expectedInitialCash?: true
     finalCashCalculated?: true
     finalCashCounted?: true
     difference?: true
+    nextSessionFund?: true
+    withdrawalAmount?: true
+    totalCard?: true
+    totalDigital?: true
+    totalExpenses?: true
     status?: true
     openedBy?: true
     closedBy?: true
@@ -32164,9 +32212,15 @@ export namespace Prisma {
     openedAt?: true
     closedAt?: true
     initialCash?: true
+    expectedInitialCash?: true
     finalCashCalculated?: true
     finalCashCounted?: true
     difference?: true
+    nextSessionFund?: true
+    withdrawalAmount?: true
+    totalCard?: true
+    totalDigital?: true
+    totalExpenses?: true
     status?: true
     openedBy?: true
     closedBy?: true
@@ -32178,9 +32232,15 @@ export namespace Prisma {
     openedAt?: true
     closedAt?: true
     initialCash?: true
+    expectedInitialCash?: true
     finalCashCalculated?: true
     finalCashCounted?: true
     difference?: true
+    nextSessionFund?: true
+    withdrawalAmount?: true
+    totalCard?: true
+    totalDigital?: true
+    totalExpenses?: true
     status?: true
     openedBy?: true
     closedBy?: true
@@ -32279,9 +32339,15 @@ export namespace Prisma {
     openedAt: Date
     closedAt: Date | null
     initialCash: number
+    expectedInitialCash: number | null
     finalCashCalculated: number | null
     finalCashCounted: number | null
     difference: number | null
+    nextSessionFund: number | null
+    withdrawalAmount: number | null
+    totalCard: number | null
+    totalDigital: number | null
+    totalExpenses: number | null
     status: $Enums.SessionStatus
     openedBy: string | null
     closedBy: string | null
@@ -32312,9 +32378,15 @@ export namespace Prisma {
     openedAt?: boolean
     closedAt?: boolean
     initialCash?: boolean
+    expectedInitialCash?: boolean
     finalCashCalculated?: boolean
     finalCashCounted?: boolean
     difference?: boolean
+    nextSessionFund?: boolean
+    withdrawalAmount?: boolean
+    totalCard?: boolean
+    totalDigital?: boolean
+    totalExpenses?: boolean
     status?: boolean
     openedBy?: boolean
     closedBy?: boolean
@@ -32333,16 +32405,22 @@ export namespace Prisma {
     openedAt?: boolean
     closedAt?: boolean
     initialCash?: boolean
+    expectedInitialCash?: boolean
     finalCashCalculated?: boolean
     finalCashCounted?: boolean
     difference?: boolean
+    nextSessionFund?: boolean
+    withdrawalAmount?: boolean
+    totalCard?: boolean
+    totalDigital?: boolean
+    totalExpenses?: boolean
     status?: boolean
     openedBy?: boolean
     closedBy?: boolean
     observations?: boolean
   }
 
-  export type CashRegisterSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "openedAt" | "closedAt" | "initialCash" | "finalCashCalculated" | "finalCashCounted" | "difference" | "status" | "openedBy" | "closedBy" | "observations", ExtArgs["result"]["cashRegisterSession"]>
+  export type CashRegisterSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "openedAt" | "closedAt" | "initialCash" | "expectedInitialCash" | "finalCashCalculated" | "finalCashCounted" | "difference" | "nextSessionFund" | "withdrawalAmount" | "totalCard" | "totalDigital" | "totalExpenses" | "status" | "openedBy" | "closedBy" | "observations", ExtArgs["result"]["cashRegisterSession"]>
   export type CashRegisterSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     movements?: boolean | CashRegisterSession$movementsArgs<ExtArgs>
     sales?: boolean | CashRegisterSession$salesArgs<ExtArgs>
@@ -32364,9 +32442,15 @@ export namespace Prisma {
       openedAt: Date
       closedAt: Date | null
       initialCash: number
+      expectedInitialCash: number | null
       finalCashCalculated: number | null
       finalCashCounted: number | null
       difference: number | null
+      nextSessionFund: number | null
+      withdrawalAmount: number | null
+      totalCard: number | null
+      totalDigital: number | null
+      totalExpenses: number | null
       status: $Enums.SessionStatus
       openedBy: string | null
       closedBy: string | null
@@ -32771,9 +32855,15 @@ export namespace Prisma {
     readonly openedAt: FieldRef<"CashRegisterSession", 'DateTime'>
     readonly closedAt: FieldRef<"CashRegisterSession", 'DateTime'>
     readonly initialCash: FieldRef<"CashRegisterSession", 'Float'>
+    readonly expectedInitialCash: FieldRef<"CashRegisterSession", 'Float'>
     readonly finalCashCalculated: FieldRef<"CashRegisterSession", 'Float'>
     readonly finalCashCounted: FieldRef<"CashRegisterSession", 'Float'>
     readonly difference: FieldRef<"CashRegisterSession", 'Float'>
+    readonly nextSessionFund: FieldRef<"CashRegisterSession", 'Float'>
+    readonly withdrawalAmount: FieldRef<"CashRegisterSession", 'Float'>
+    readonly totalCard: FieldRef<"CashRegisterSession", 'Float'>
+    readonly totalDigital: FieldRef<"CashRegisterSession", 'Float'>
+    readonly totalExpenses: FieldRef<"CashRegisterSession", 'Float'>
     readonly status: FieldRef<"CashRegisterSession", 'SessionStatus'>
     readonly openedBy: FieldRef<"CashRegisterSession", 'String'>
     readonly closedBy: FieldRef<"CashRegisterSession", 'String'>
@@ -33286,30 +33376,39 @@ export namespace Prisma {
     id: string | null
     cashRegisterSessionId: string | null
     type: $Enums.CashMovementType | null
+    category: string | null
+    paymentMethod: string | null
     amount: number | null
     description: string | null
     date: Date | null
     userId: string | null
+    isLocked: boolean | null
   }
 
   export type CashMovementMaxAggregateOutputType = {
     id: string | null
     cashRegisterSessionId: string | null
     type: $Enums.CashMovementType | null
+    category: string | null
+    paymentMethod: string | null
     amount: number | null
     description: string | null
     date: Date | null
     userId: string | null
+    isLocked: boolean | null
   }
 
   export type CashMovementCountAggregateOutputType = {
     id: number
     cashRegisterSessionId: number
     type: number
+    category: number
+    paymentMethod: number
     amount: number
     description: number
     date: number
     userId: number
+    isLocked: number
     _all: number
   }
 
@@ -33326,30 +33425,39 @@ export namespace Prisma {
     id?: true
     cashRegisterSessionId?: true
     type?: true
+    category?: true
+    paymentMethod?: true
     amount?: true
     description?: true
     date?: true
     userId?: true
+    isLocked?: true
   }
 
   export type CashMovementMaxAggregateInputType = {
     id?: true
     cashRegisterSessionId?: true
     type?: true
+    category?: true
+    paymentMethod?: true
     amount?: true
     description?: true
     date?: true
     userId?: true
+    isLocked?: true
   }
 
   export type CashMovementCountAggregateInputType = {
     id?: true
     cashRegisterSessionId?: true
     type?: true
+    category?: true
+    paymentMethod?: true
     amount?: true
     description?: true
     date?: true
     userId?: true
+    isLocked?: true
     _all?: true
   }
 
@@ -33443,10 +33551,13 @@ export namespace Prisma {
     id: string
     cashRegisterSessionId: string
     type: $Enums.CashMovementType
+    category: string | null
+    paymentMethod: string | null
     amount: number
     description: string
     date: Date
     userId: string | null
+    isLocked: boolean
     _count: CashMovementCountAggregateOutputType | null
     _avg: CashMovementAvgAggregateOutputType | null
     _sum: CashMovementSumAggregateOutputType | null
@@ -33472,10 +33583,13 @@ export namespace Prisma {
     id?: boolean
     cashRegisterSessionId?: boolean
     type?: boolean
+    category?: boolean
+    paymentMethod?: boolean
     amount?: boolean
     description?: boolean
     date?: boolean
     userId?: boolean
+    isLocked?: boolean
     cashRegisterSession?: boolean | CashRegisterSessionDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cashMovement"]>
 
@@ -33485,13 +33599,16 @@ export namespace Prisma {
     id?: boolean
     cashRegisterSessionId?: boolean
     type?: boolean
+    category?: boolean
+    paymentMethod?: boolean
     amount?: boolean
     description?: boolean
     date?: boolean
     userId?: boolean
+    isLocked?: boolean
   }
 
-  export type CashMovementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cashRegisterSessionId" | "type" | "amount" | "description" | "date" | "userId", ExtArgs["result"]["cashMovement"]>
+  export type CashMovementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cashRegisterSessionId" | "type" | "category" | "paymentMethod" | "amount" | "description" | "date" | "userId" | "isLocked", ExtArgs["result"]["cashMovement"]>
   export type CashMovementInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     cashRegisterSession?: boolean | CashRegisterSessionDefaultArgs<ExtArgs>
   }
@@ -33505,10 +33622,13 @@ export namespace Prisma {
       id: string
       cashRegisterSessionId: string
       type: $Enums.CashMovementType
+      category: string | null
+      paymentMethod: string | null
       amount: number
       description: string
       date: Date
       userId: string | null
+      isLocked: boolean
     }, ExtArgs["result"]["cashMovement"]>
     composites: {}
   }
@@ -33905,10 +34025,13 @@ export namespace Prisma {
     readonly id: FieldRef<"CashMovement", 'String'>
     readonly cashRegisterSessionId: FieldRef<"CashMovement", 'String'>
     readonly type: FieldRef<"CashMovement", 'CashMovementType'>
+    readonly category: FieldRef<"CashMovement", 'String'>
+    readonly paymentMethod: FieldRef<"CashMovement", 'String'>
     readonly amount: FieldRef<"CashMovement", 'Float'>
     readonly description: FieldRef<"CashMovement", 'String'>
     readonly date: FieldRef<"CashMovement", 'DateTime'>
     readonly userId: FieldRef<"CashMovement", 'String'>
+    readonly isLocked: FieldRef<"CashMovement", 'Boolean'>
   }
     
 
@@ -42748,9 +42871,15 @@ export namespace Prisma {
     openedAt: 'openedAt',
     closedAt: 'closedAt',
     initialCash: 'initialCash',
+    expectedInitialCash: 'expectedInitialCash',
     finalCashCalculated: 'finalCashCalculated',
     finalCashCounted: 'finalCashCounted',
     difference: 'difference',
+    nextSessionFund: 'nextSessionFund',
+    withdrawalAmount: 'withdrawalAmount',
+    totalCard: 'totalCard',
+    totalDigital: 'totalDigital',
+    totalExpenses: 'totalExpenses',
     status: 'status',
     openedBy: 'openedBy',
     closedBy: 'closedBy',
@@ -42764,10 +42893,13 @@ export namespace Prisma {
     id: 'id',
     cashRegisterSessionId: 'cashRegisterSessionId',
     type: 'type',
+    category: 'category',
+    paymentMethod: 'paymentMethod',
     amount: 'amount',
     description: 'description',
     date: 'date',
-    userId: 'userId'
+    userId: 'userId',
+    isLocked: 'isLocked'
   };
 
   export type CashMovementScalarFieldEnum = (typeof CashMovementScalarFieldEnum)[keyof typeof CashMovementScalarFieldEnum]
@@ -45310,9 +45442,15 @@ export namespace Prisma {
     openedAt?: DateTimeFilter<"CashRegisterSession"> | Date | string
     closedAt?: DateTimeNullableFilter<"CashRegisterSession"> | Date | string | null
     initialCash?: FloatFilter<"CashRegisterSession"> | number
+    expectedInitialCash?: FloatNullableFilter<"CashRegisterSession"> | number | null
     finalCashCalculated?: FloatNullableFilter<"CashRegisterSession"> | number | null
     finalCashCounted?: FloatNullableFilter<"CashRegisterSession"> | number | null
     difference?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    nextSessionFund?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    withdrawalAmount?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalCard?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalDigital?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalExpenses?: FloatNullableFilter<"CashRegisterSession"> | number | null
     status?: EnumSessionStatusFilter<"CashRegisterSession"> | $Enums.SessionStatus
     openedBy?: StringNullableFilter<"CashRegisterSession"> | string | null
     closedBy?: StringNullableFilter<"CashRegisterSession"> | string | null
@@ -45328,9 +45466,15 @@ export namespace Prisma {
     openedAt?: SortOrder
     closedAt?: SortOrder
     initialCash?: SortOrder
+    expectedInitialCash?: SortOrder
     finalCashCalculated?: SortOrder
     finalCashCounted?: SortOrder
     difference?: SortOrder
+    nextSessionFund?: SortOrder
+    withdrawalAmount?: SortOrder
+    totalCard?: SortOrder
+    totalDigital?: SortOrder
+    totalExpenses?: SortOrder
     status?: SortOrder
     openedBy?: SortOrder
     closedBy?: SortOrder
@@ -45349,9 +45493,15 @@ export namespace Prisma {
     openedAt?: DateTimeFilter<"CashRegisterSession"> | Date | string
     closedAt?: DateTimeNullableFilter<"CashRegisterSession"> | Date | string | null
     initialCash?: FloatFilter<"CashRegisterSession"> | number
+    expectedInitialCash?: FloatNullableFilter<"CashRegisterSession"> | number | null
     finalCashCalculated?: FloatNullableFilter<"CashRegisterSession"> | number | null
     finalCashCounted?: FloatNullableFilter<"CashRegisterSession"> | number | null
     difference?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    nextSessionFund?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    withdrawalAmount?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalCard?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalDigital?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalExpenses?: FloatNullableFilter<"CashRegisterSession"> | number | null
     status?: EnumSessionStatusFilter<"CashRegisterSession"> | $Enums.SessionStatus
     openedBy?: StringNullableFilter<"CashRegisterSession"> | string | null
     closedBy?: StringNullableFilter<"CashRegisterSession"> | string | null
@@ -45367,9 +45517,15 @@ export namespace Prisma {
     openedAt?: SortOrder
     closedAt?: SortOrder
     initialCash?: SortOrder
+    expectedInitialCash?: SortOrder
     finalCashCalculated?: SortOrder
     finalCashCounted?: SortOrder
     difference?: SortOrder
+    nextSessionFund?: SortOrder
+    withdrawalAmount?: SortOrder
+    totalCard?: SortOrder
+    totalDigital?: SortOrder
+    totalExpenses?: SortOrder
     status?: SortOrder
     openedBy?: SortOrder
     closedBy?: SortOrder
@@ -45389,9 +45545,15 @@ export namespace Prisma {
     openedAt?: DateTimeWithAggregatesFilter<"CashRegisterSession"> | Date | string
     closedAt?: DateTimeNullableWithAggregatesFilter<"CashRegisterSession"> | Date | string | null
     initialCash?: FloatWithAggregatesFilter<"CashRegisterSession"> | number
+    expectedInitialCash?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
     finalCashCalculated?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
     finalCashCounted?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
     difference?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
+    nextSessionFund?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
+    withdrawalAmount?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
+    totalCard?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
+    totalDigital?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
+    totalExpenses?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
     status?: EnumSessionStatusWithAggregatesFilter<"CashRegisterSession"> | $Enums.SessionStatus
     openedBy?: StringNullableWithAggregatesFilter<"CashRegisterSession"> | string | null
     closedBy?: StringNullableWithAggregatesFilter<"CashRegisterSession"> | string | null
@@ -45405,10 +45567,13 @@ export namespace Prisma {
     id?: StringFilter<"CashMovement"> | string
     cashRegisterSessionId?: StringFilter<"CashMovement"> | string
     type?: EnumCashMovementTypeFilter<"CashMovement"> | $Enums.CashMovementType
+    category?: StringNullableFilter<"CashMovement"> | string | null
+    paymentMethod?: StringNullableFilter<"CashMovement"> | string | null
     amount?: FloatFilter<"CashMovement"> | number
     description?: StringFilter<"CashMovement"> | string
     date?: DateTimeFilter<"CashMovement"> | Date | string
     userId?: StringNullableFilter<"CashMovement"> | string | null
+    isLocked?: BoolFilter<"CashMovement"> | boolean
     cashRegisterSession?: XOR<CashRegisterSessionScalarRelationFilter, CashRegisterSessionWhereInput>
   }
 
@@ -45416,10 +45581,13 @@ export namespace Prisma {
     id?: SortOrder
     cashRegisterSessionId?: SortOrder
     type?: SortOrder
+    category?: SortOrder
+    paymentMethod?: SortOrder
     amount?: SortOrder
     description?: SortOrder
     date?: SortOrder
     userId?: SortOrder
+    isLocked?: SortOrder
     cashRegisterSession?: CashRegisterSessionOrderByWithRelationInput
   }
 
@@ -45430,10 +45598,13 @@ export namespace Prisma {
     NOT?: CashMovementWhereInput | CashMovementWhereInput[]
     cashRegisterSessionId?: StringFilter<"CashMovement"> | string
     type?: EnumCashMovementTypeFilter<"CashMovement"> | $Enums.CashMovementType
+    category?: StringNullableFilter<"CashMovement"> | string | null
+    paymentMethod?: StringNullableFilter<"CashMovement"> | string | null
     amount?: FloatFilter<"CashMovement"> | number
     description?: StringFilter<"CashMovement"> | string
     date?: DateTimeFilter<"CashMovement"> | Date | string
     userId?: StringNullableFilter<"CashMovement"> | string | null
+    isLocked?: BoolFilter<"CashMovement"> | boolean
     cashRegisterSession?: XOR<CashRegisterSessionScalarRelationFilter, CashRegisterSessionWhereInput>
   }, "id">
 
@@ -45441,10 +45612,13 @@ export namespace Prisma {
     id?: SortOrder
     cashRegisterSessionId?: SortOrder
     type?: SortOrder
+    category?: SortOrder
+    paymentMethod?: SortOrder
     amount?: SortOrder
     description?: SortOrder
     date?: SortOrder
     userId?: SortOrder
+    isLocked?: SortOrder
     _count?: CashMovementCountOrderByAggregateInput
     _avg?: CashMovementAvgOrderByAggregateInput
     _max?: CashMovementMaxOrderByAggregateInput
@@ -45459,10 +45633,13 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"CashMovement"> | string
     cashRegisterSessionId?: StringWithAggregatesFilter<"CashMovement"> | string
     type?: EnumCashMovementTypeWithAggregatesFilter<"CashMovement"> | $Enums.CashMovementType
+    category?: StringNullableWithAggregatesFilter<"CashMovement"> | string | null
+    paymentMethod?: StringNullableWithAggregatesFilter<"CashMovement"> | string | null
     amount?: FloatWithAggregatesFilter<"CashMovement"> | number
     description?: StringWithAggregatesFilter<"CashMovement"> | string
     date?: DateTimeWithAggregatesFilter<"CashMovement"> | Date | string
     userId?: StringNullableWithAggregatesFilter<"CashMovement"> | string | null
+    isLocked?: BoolWithAggregatesFilter<"CashMovement"> | boolean
   }
 
   export type UserWhereInput = {
@@ -48393,9 +48570,15 @@ export namespace Prisma {
     openedAt?: Date | string
     closedAt?: Date | string | null
     initialCash: number
+    expectedInitialCash?: number | null
     finalCashCalculated?: number | null
     finalCashCounted?: number | null
     difference?: number | null
+    nextSessionFund?: number | null
+    withdrawalAmount?: number | null
+    totalCard?: number | null
+    totalDigital?: number | null
+    totalExpenses?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -48411,9 +48594,15 @@ export namespace Prisma {
     openedAt?: Date | string
     closedAt?: Date | string | null
     initialCash: number
+    expectedInitialCash?: number | null
     finalCashCalculated?: number | null
     finalCashCounted?: number | null
     difference?: number | null
+    nextSessionFund?: number | null
+    withdrawalAmount?: number | null
+    totalCard?: number | null
+    totalDigital?: number | null
+    totalExpenses?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -48428,9 +48617,15 @@ export namespace Prisma {
     openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     initialCash?: FloatFieldUpdateOperationsInput | number
+    expectedInitialCash?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
+    withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48445,9 +48640,15 @@ export namespace Prisma {
     openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     initialCash?: FloatFieldUpdateOperationsInput | number
+    expectedInitialCash?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
+    withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48463,9 +48664,15 @@ export namespace Prisma {
     openedAt?: Date | string
     closedAt?: Date | string | null
     initialCash: number
+    expectedInitialCash?: number | null
     finalCashCalculated?: number | null
     finalCashCounted?: number | null
     difference?: number | null
+    nextSessionFund?: number | null
+    withdrawalAmount?: number | null
+    totalCard?: number | null
+    totalDigital?: number | null
+    totalExpenses?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -48476,9 +48683,15 @@ export namespace Prisma {
     openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     initialCash?: FloatFieldUpdateOperationsInput | number
+    expectedInitialCash?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
+    withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48489,9 +48702,15 @@ export namespace Prisma {
     openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     initialCash?: FloatFieldUpdateOperationsInput | number
+    expectedInitialCash?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
+    withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48501,10 +48720,13 @@ export namespace Prisma {
   export type CashMovementCreateInput = {
     id?: string
     type: $Enums.CashMovementType
+    category?: string | null
+    paymentMethod?: string | null
     amount: number
     description: string
     date?: Date | string
     userId?: string | null
+    isLocked?: boolean
     cashRegisterSession: CashRegisterSessionCreateNestedOneWithoutMovementsInput
   }
 
@@ -48512,55 +48734,73 @@ export namespace Prisma {
     id?: string
     cashRegisterSessionId: string
     type: $Enums.CashMovementType
+    category?: string | null
+    paymentMethod?: string | null
     amount: number
     description: string
     date?: Date | string
     userId?: string | null
+    isLocked?: boolean
   }
 
   export type CashMovementUpdateInput = {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: FloatFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
     cashRegisterSession?: CashRegisterSessionUpdateOneRequiredWithoutMovementsNestedInput
   }
 
   export type CashMovementUncheckedUpdateInput = {
     cashRegisterSessionId?: StringFieldUpdateOperationsInput | string
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: FloatFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CashMovementCreateManyInput = {
     id?: string
     cashRegisterSessionId: string
     type: $Enums.CashMovementType
+    category?: string | null
+    paymentMethod?: string | null
     amount: number
     description: string
     date?: Date | string
     userId?: string | null
+    isLocked?: boolean
   }
 
   export type CashMovementUpdateManyMutationInput = {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: FloatFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CashMovementUncheckedUpdateManyInput = {
     cashRegisterSessionId?: StringFieldUpdateOperationsInput | string
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: FloatFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserCreateInput = {
@@ -50921,9 +51161,15 @@ export namespace Prisma {
     openedAt?: SortOrder
     closedAt?: SortOrder
     initialCash?: SortOrder
+    expectedInitialCash?: SortOrder
     finalCashCalculated?: SortOrder
     finalCashCounted?: SortOrder
     difference?: SortOrder
+    nextSessionFund?: SortOrder
+    withdrawalAmount?: SortOrder
+    totalCard?: SortOrder
+    totalDigital?: SortOrder
+    totalExpenses?: SortOrder
     status?: SortOrder
     openedBy?: SortOrder
     closedBy?: SortOrder
@@ -50932,9 +51178,15 @@ export namespace Prisma {
 
   export type CashRegisterSessionAvgOrderByAggregateInput = {
     initialCash?: SortOrder
+    expectedInitialCash?: SortOrder
     finalCashCalculated?: SortOrder
     finalCashCounted?: SortOrder
     difference?: SortOrder
+    nextSessionFund?: SortOrder
+    withdrawalAmount?: SortOrder
+    totalCard?: SortOrder
+    totalDigital?: SortOrder
+    totalExpenses?: SortOrder
   }
 
   export type CashRegisterSessionMaxOrderByAggregateInput = {
@@ -50942,9 +51194,15 @@ export namespace Prisma {
     openedAt?: SortOrder
     closedAt?: SortOrder
     initialCash?: SortOrder
+    expectedInitialCash?: SortOrder
     finalCashCalculated?: SortOrder
     finalCashCounted?: SortOrder
     difference?: SortOrder
+    nextSessionFund?: SortOrder
+    withdrawalAmount?: SortOrder
+    totalCard?: SortOrder
+    totalDigital?: SortOrder
+    totalExpenses?: SortOrder
     status?: SortOrder
     openedBy?: SortOrder
     closedBy?: SortOrder
@@ -50956,9 +51214,15 @@ export namespace Prisma {
     openedAt?: SortOrder
     closedAt?: SortOrder
     initialCash?: SortOrder
+    expectedInitialCash?: SortOrder
     finalCashCalculated?: SortOrder
     finalCashCounted?: SortOrder
     difference?: SortOrder
+    nextSessionFund?: SortOrder
+    withdrawalAmount?: SortOrder
+    totalCard?: SortOrder
+    totalDigital?: SortOrder
+    totalExpenses?: SortOrder
     status?: SortOrder
     openedBy?: SortOrder
     closedBy?: SortOrder
@@ -50967,9 +51231,15 @@ export namespace Prisma {
 
   export type CashRegisterSessionSumOrderByAggregateInput = {
     initialCash?: SortOrder
+    expectedInitialCash?: SortOrder
     finalCashCalculated?: SortOrder
     finalCashCounted?: SortOrder
     difference?: SortOrder
+    nextSessionFund?: SortOrder
+    withdrawalAmount?: SortOrder
+    totalCard?: SortOrder
+    totalDigital?: SortOrder
+    totalExpenses?: SortOrder
   }
 
   export type EnumSessionStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -50998,10 +51268,13 @@ export namespace Prisma {
     id?: SortOrder
     cashRegisterSessionId?: SortOrder
     type?: SortOrder
+    category?: SortOrder
+    paymentMethod?: SortOrder
     amount?: SortOrder
     description?: SortOrder
     date?: SortOrder
     userId?: SortOrder
+    isLocked?: SortOrder
   }
 
   export type CashMovementAvgOrderByAggregateInput = {
@@ -51012,20 +51285,26 @@ export namespace Prisma {
     id?: SortOrder
     cashRegisterSessionId?: SortOrder
     type?: SortOrder
+    category?: SortOrder
+    paymentMethod?: SortOrder
     amount?: SortOrder
     description?: SortOrder
     date?: SortOrder
     userId?: SortOrder
+    isLocked?: SortOrder
   }
 
   export type CashMovementMinOrderByAggregateInput = {
     id?: SortOrder
     cashRegisterSessionId?: SortOrder
     type?: SortOrder
+    category?: SortOrder
+    paymentMethod?: SortOrder
     amount?: SortOrder
     description?: SortOrder
     date?: SortOrder
     userId?: SortOrder
+    isLocked?: SortOrder
   }
 
   export type CashMovementSumOrderByAggregateInput = {
@@ -55221,9 +55500,15 @@ export namespace Prisma {
     openedAt?: Date | string
     closedAt?: Date | string | null
     initialCash: number
+    expectedInitialCash?: number | null
     finalCashCalculated?: number | null
     finalCashCounted?: number | null
     difference?: number | null
+    nextSessionFund?: number | null
+    withdrawalAmount?: number | null
+    totalCard?: number | null
+    totalDigital?: number | null
+    totalExpenses?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -55238,9 +55523,15 @@ export namespace Prisma {
     openedAt?: Date | string
     closedAt?: Date | string | null
     initialCash: number
+    expectedInitialCash?: number | null
     finalCashCalculated?: number | null
     finalCashCounted?: number | null
     difference?: number | null
+    nextSessionFund?: number | null
+    withdrawalAmount?: number | null
+    totalCard?: number | null
+    totalDigital?: number | null
+    totalExpenses?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -55270,9 +55561,15 @@ export namespace Prisma {
     openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     initialCash?: FloatFieldUpdateOperationsInput | number
+    expectedInitialCash?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
+    withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -55286,9 +55583,15 @@ export namespace Prisma {
     openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     initialCash?: FloatFieldUpdateOperationsInput | number
+    expectedInitialCash?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
+    withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -55303,9 +55606,15 @@ export namespace Prisma {
     openedAt?: Date | string
     closedAt?: Date | string | null
     initialCash: number
+    expectedInitialCash?: number | null
     finalCashCalculated?: number | null
     finalCashCounted?: number | null
     difference?: number | null
+    nextSessionFund?: number | null
+    withdrawalAmount?: number | null
+    totalCard?: number | null
+    totalDigital?: number | null
+    totalExpenses?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -55320,9 +55629,15 @@ export namespace Prisma {
     openedAt?: Date | string
     closedAt?: Date | string | null
     initialCash: number
+    expectedInitialCash?: number | null
     finalCashCalculated?: number | null
     finalCashCounted?: number | null
     difference?: number | null
+    nextSessionFund?: number | null
+    withdrawalAmount?: number | null
+    totalCard?: number | null
+    totalDigital?: number | null
+    totalExpenses?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -55352,9 +55667,15 @@ export namespace Prisma {
     openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     initialCash?: FloatFieldUpdateOperationsInput | number
+    expectedInitialCash?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
+    withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -55368,9 +55689,15 @@ export namespace Prisma {
     openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     initialCash?: FloatFieldUpdateOperationsInput | number
+    expectedInitialCash?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
+    withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -57245,9 +57572,15 @@ export namespace Prisma {
     openedAt?: Date | string
     closedAt?: Date | string | null
     initialCash: number
+    expectedInitialCash?: number | null
     finalCashCalculated?: number | null
     finalCashCounted?: number | null
     difference?: number | null
+    nextSessionFund?: number | null
+    withdrawalAmount?: number | null
+    totalCard?: number | null
+    totalDigital?: number | null
+    totalExpenses?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -57262,9 +57595,15 @@ export namespace Prisma {
     openedAt?: Date | string
     closedAt?: Date | string | null
     initialCash: number
+    expectedInitialCash?: number | null
     finalCashCalculated?: number | null
     finalCashCounted?: number | null
     difference?: number | null
+    nextSessionFund?: number | null
+    withdrawalAmount?: number | null
+    totalCard?: number | null
+    totalDigital?: number | null
+    totalExpenses?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -57393,9 +57732,15 @@ export namespace Prisma {
     openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     initialCash?: FloatFieldUpdateOperationsInput | number
+    expectedInitialCash?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
+    withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -57409,9 +57754,15 @@ export namespace Prisma {
     openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     initialCash?: FloatFieldUpdateOperationsInput | number
+    expectedInitialCash?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
+    withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -57710,19 +58061,25 @@ export namespace Prisma {
   export type CashMovementCreateWithoutCashRegisterSessionInput = {
     id?: string
     type: $Enums.CashMovementType
+    category?: string | null
+    paymentMethod?: string | null
     amount: number
     description: string
     date?: Date | string
     userId?: string | null
+    isLocked?: boolean
   }
 
   export type CashMovementUncheckedCreateWithoutCashRegisterSessionInput = {
     id?: string
     type: $Enums.CashMovementType
+    category?: string | null
+    paymentMethod?: string | null
     amount: number
     description: string
     date?: Date | string
     userId?: string | null
+    isLocked?: boolean
   }
 
   export type CashMovementCreateOrConnectWithoutCashRegisterSessionInput = {
@@ -57854,10 +58211,13 @@ export namespace Prisma {
     id?: StringFilter<"CashMovement"> | string
     cashRegisterSessionId?: StringFilter<"CashMovement"> | string
     type?: EnumCashMovementTypeFilter<"CashMovement"> | $Enums.CashMovementType
+    category?: StringNullableFilter<"CashMovement"> | string | null
+    paymentMethod?: StringNullableFilter<"CashMovement"> | string | null
     amount?: FloatFilter<"CashMovement"> | number
     description?: StringFilter<"CashMovement"> | string
     date?: DateTimeFilter<"CashMovement"> | Date | string
     userId?: StringNullableFilter<"CashMovement"> | string | null
+    isLocked?: BoolFilter<"CashMovement"> | boolean
   }
 
   export type POSSaleUpsertWithWhereUniqueWithoutCashRegisterSessionInput = {
@@ -57945,9 +58305,15 @@ export namespace Prisma {
     openedAt?: Date | string
     closedAt?: Date | string | null
     initialCash: number
+    expectedInitialCash?: number | null
     finalCashCalculated?: number | null
     finalCashCounted?: number | null
     difference?: number | null
+    nextSessionFund?: number | null
+    withdrawalAmount?: number | null
+    totalCard?: number | null
+    totalDigital?: number | null
+    totalExpenses?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -57962,9 +58328,15 @@ export namespace Prisma {
     openedAt?: Date | string
     closedAt?: Date | string | null
     initialCash: number
+    expectedInitialCash?: number | null
     finalCashCalculated?: number | null
     finalCashCounted?: number | null
     difference?: number | null
+    nextSessionFund?: number | null
+    withdrawalAmount?: number | null
+    totalCard?: number | null
+    totalDigital?: number | null
+    totalExpenses?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -57994,9 +58366,15 @@ export namespace Prisma {
     openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     initialCash?: FloatFieldUpdateOperationsInput | number
+    expectedInitialCash?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
+    withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -58010,9 +58388,15 @@ export namespace Prisma {
     openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     initialCash?: FloatFieldUpdateOperationsInput | number
+    expectedInitialCash?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCalculated?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCashCounted?: NullableFloatFieldUpdateOperationsInput | number | null
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
+    nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
+    withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -59525,10 +59909,13 @@ export namespace Prisma {
   export type CashMovementCreateManyCashRegisterSessionInput = {
     id?: string
     type: $Enums.CashMovementType
+    category?: string | null
+    paymentMethod?: string | null
     amount: number
     description: string
     date?: Date | string
     userId?: string | null
+    isLocked?: boolean
   }
 
   export type POSSaleCreateManyCashRegisterSessionInput = {
@@ -59567,26 +59954,35 @@ export namespace Prisma {
 
   export type CashMovementUpdateWithoutCashRegisterSessionInput = {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: FloatFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CashMovementUncheckedUpdateWithoutCashRegisterSessionInput = {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: FloatFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CashMovementUncheckedUpdateManyWithoutCashRegisterSessionInput = {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: FloatFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type POSSaleUpdateWithoutCashRegisterSessionInput = {

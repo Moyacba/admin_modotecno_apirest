@@ -469,9 +469,15 @@ exports.Prisma.CashRegisterSessionScalarFieldEnum = {
   openedAt: 'openedAt',
   closedAt: 'closedAt',
   initialCash: 'initialCash',
+  expectedInitialCash: 'expectedInitialCash',
   finalCashCalculated: 'finalCashCalculated',
   finalCashCounted: 'finalCashCounted',
   difference: 'difference',
+  nextSessionFund: 'nextSessionFund',
+  withdrawalAmount: 'withdrawalAmount',
+  totalCard: 'totalCard',
+  totalDigital: 'totalDigital',
+  totalExpenses: 'totalExpenses',
   status: 'status',
   openedBy: 'openedBy',
   closedBy: 'closedBy',
@@ -482,10 +488,13 @@ exports.Prisma.CashMovementScalarFieldEnum = {
   id: 'id',
   cashRegisterSessionId: 'cashRegisterSessionId',
   type: 'type',
+  category: 'category',
+  paymentMethod: 'paymentMethod',
   amount: 'amount',
   description: 'description',
   date: 'date',
-  userId: 'userId'
+  userId: 'userId',
+  isLocked: 'isLocked'
 };
 
 exports.Prisma.UserScalarFieldEnum = {

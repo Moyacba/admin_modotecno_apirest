@@ -21,7 +21,16 @@ export const getCashStatus = async (req, res) => {
     });
 
     if (!activeSession) {
-      return res.json({ status: "CLOSED", activeSession: null });
+      const lastSession = await prisma.cashRegisterSession.findFirst({
+        where: { status: "CLOSED" },
+        orderBy: { closedAt: 'desc' },
+        select: { nextSessionFund: true }
+      });
+      return res.json({ 
+        status: "CLOSED", 
+        activeSession: null,
+        expectedInitialCash: lastSession?.nextSessionFund || 0 
+      });
     }
 
     // Calcular totales en tiempo real
@@ -108,12 +117,27 @@ export const openSession = async (req, res) => {
       return res.status(400).json({ error: "Ya hay una caja abierta." });
     }
 
+    // Buscar la última sesión cerrada para obtener el fondo esperado
+    const lastSession = await prisma.cashRegisterSession.findFirst({
+      where: { status: "CLOSED" },
+      orderBy: { closedAt: 'desc' }
+    });
+
+    const expectedInitialCash = lastSession?.nextSessionFund || 0;
+    let finalObservations = observations || "";
+
+    if (parseFloat(initialCash) !== expectedInitialCash) {
+      const warning = `⚠️ Apertura con diferencia: se esperaba $${expectedInitialCash.toLocaleString()}`;
+      finalObservations = finalObservations ? `${warning}\n${finalObservations}` : warning;
+    }
+
     const newSession = await prisma.cashRegisterSession.create({
       data: {
         initialCash: parseFloat(initialCash) || 0,
+        expectedInitialCash,
         status: "OPEN",
         openedBy: userId,
-        observations
+        observations: finalObservations
       }
     });
 
@@ -126,7 +150,7 @@ export const openSession = async (req, res) => {
 
 // Cerrar caja
 export const closeSession = async (req, res) => {
-  const { finalCashCounted, userId, observations } = req.body;
+  const { finalCashCounted, nextSessionFund, userId, observations } = req.body;
 
   try {
     const activeSession = await prisma.cashRegisterSession.findFirst({
@@ -142,9 +166,30 @@ export const closeSession = async (req, res) => {
       return res.status(400).json({ error: "No hay caja abierta para cerrar." });
     }
 
-    // Calcular el esperado (copiado de getStatus, refactorizar idealmente)
-    const initialCash = activeSession.initialCash;
+    // 1. Cálculos de Totales Segmentados
+    let cashSales = 0;
+    let totalCard = 0;
+    let totalDigital = 0;
 
+    activeSession.sales.forEach(sale => {
+      const methods = sale.metodo_pago;
+      if (Array.isArray(methods)) {
+        methods.forEach(payment => {
+          const amount = (payment.amount / 100);
+          const method = payment.method?.toLowerCase();
+
+          if (method === 'cash') {
+            cashSales += amount;
+          } else if (['debit', 'credit', 'installments', 'gocuotas'].includes(method)) {
+            totalCard += amount;
+          } else if (['transfer', 'qr'].includes(method)) {
+            totalDigital += amount;
+          }
+        });
+      }
+    });
+
+    // Totales de movimientos manuales
     const manualIncome = activeSession.movements
       .filter(m => m.type === "INGRESO_MANUAL")
       .reduce((sum, m) => sum + m.amount, 0);
@@ -153,24 +198,21 @@ export const closeSession = async (req, res) => {
       .filter(m => m.type === "RETIRO_MANUAL")
       .reduce((sum, m) => sum + m.amount, 0);
 
-    let cashSales = 0;
-    activeSession.sales.forEach(sale => {
-      const methods = sale.metodo_pago;
-      if (Array.isArray(methods)) {
-        methods.forEach(payment => {
-          if (payment.method === 'cash') cashSales += (payment.amount / 100);
-        });
-      }
-    });
+    const totalExpenses = activeSession.expenses.reduce((sum, e) => sum + e.amount, 0);
 
-    // Filtramos gastos en 'cash' si es posible, o todo expense (asumiendo caja chica)
-    const expenses = activeSession.expenses.reduce((sum, e) => {
-      // TODO: Verificar método de gasto
-      return sum + e.amount;
-    }, 0);
-
-    const calculatedCash = initialCash + manualIncome - manualWithdrawal + cashSales - expenses;
+    // 2. Cálculo de Efectivo Esperado
+    const calculatedCash = activeSession.initialCash + manualIncome - manualWithdrawal + cashSales - totalExpenses;
     const difference = (parseFloat(finalCashCounted) - calculatedCash);
+
+    // 3. Control de fondo — cuánto queda para mañana y cuánto se retira
+    const nextFund = parseFloat(nextSessionFund) || 0;
+    const withdrawalAmount = parseFloat(finalCashCounted) - nextFund;
+
+    // 4. Inmutabilidad: Bloquear movimientos de esta sesión
+    await prisma.cashMovement.updateMany({
+      where: { cashRegisterSessionId: activeSession.id },
+      data: { isLocked: true }
+    });
 
     const closedSession = await prisma.cashRegisterSession.update({
       where: { id: activeSession.id },
@@ -180,8 +222,13 @@ export const closeSession = async (req, res) => {
         closedBy: userId,
         finalCashCounted: parseFloat(finalCashCounted),
         finalCashCalculated: calculatedCash,
-        difference: difference,
-        observations: observations ? `${activeSession.observations || ''} \n Cierre: ${observations}` : activeSession.observations
+        difference,
+        nextSessionFund: nextFund,
+        withdrawalAmount,
+        totalCard,
+        totalDigital,
+        totalExpenses,
+        observations: observations ? `${activeSession.observations || ''}\nCierre: ${observations}` : activeSession.observations
       }
     });
 
@@ -195,7 +242,7 @@ export const closeSession = async (req, res) => {
 
 // Agregar movimiento manual
 export const addMovement = async (req, res) => {
-  const { type, amount, description, userId } = req.body;
+  const { type, amount, description, category, paymentMethod, userId } = req.body;
 
   try {
     const activeSession = await prisma.cashRegisterSession.findFirst({
@@ -210,6 +257,8 @@ export const addMovement = async (req, res) => {
       data: {
         cashRegisterSessionId: activeSession.id,
         type, // INGRESO_MANUAL, RETIRO_MANUAL
+        category,
+        paymentMethod: paymentMethod || "CASH",
         amount: parseFloat(amount),
         description,
         userId
@@ -224,6 +273,43 @@ export const addMovement = async (req, res) => {
   }
 };
 
+// Actualizar movimiento
+export const updateMovement = async (req, res) => {
+  const { id } = req.params;
+  const { amount, description, category, paymentMethod } = req.body;
+
+  try {
+    const updated = await prisma.cashMovement.update({
+      where: { id },
+      data: {
+        amount: amount ? parseFloat(amount) : undefined,
+        description,
+        category,
+        paymentMethod
+      }
+    });
+    res.json(updated);
+  } catch (error) {
+    console.error("Error updating movement:", error);
+    res.status(500).json({ error: "Error updating movement" });
+  }
+};
+
+// Eliminar movimiento
+export const deleteMovement = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await prisma.cashMovement.delete({
+      where: { id }
+    });
+    res.json({ message: "Movimiento eliminado" });
+  } catch (error) {
+    console.error("Error deleting movement:", error);
+    res.status(500).json({ error: "Error deleting movement" });
+  }
+};
+
 // Historial de sesiones
 export const getHistory = async (req, res) => {
   try {
@@ -232,9 +318,10 @@ export const getHistory = async (req, res) => {
     const skip = (page - 1) * limit;
 
     const [total, sessions] = await Promise.all([
-      prisma.cashRegisterSession.count(),
+      prisma.cashRegisterSession.count({ where: { status: "CLOSED" } }),
       prisma.cashRegisterSession.findMany({
-        orderBy: { openedAt: 'desc' },
+        where: { status: "CLOSED" },
+        orderBy: { closedAt: 'desc' },
         skip,
         take: limit
       })

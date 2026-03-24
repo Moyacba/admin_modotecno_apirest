@@ -595,12 +595,23 @@ model CashRegisterSession {
   openedAt        DateTime       @default(now())
   closedAt        DateTime?
   
-  initialCash     Float          // Monto inicial en caja al abrir
+  // Apertura
+  initialCash           Float          // Monto con el que se abre físicamente
+  expectedInitialCash   Float?         // El "Monto para apertura" que dejó la sesión anterior
   
   // Datos calculados al cierre (snapshot)
   finalCashCalculated Float?     // Lo que el sistema dice que debería haber en efectivo
   finalCashCounted    Float?     // Lo que el usuario cuenta físicamente
   difference          Float?     // Diferencia
+  
+  // Control de flujo: Cuánto queda para mañana
+  nextSessionFund   Float?         // Lo que el usuario elige dejar en caja para la próxima apertura
+  withdrawalAmount  Float?         // El retiro neto (Contado - Fondo para mañana)
+  
+  // Totales por grupo (Para el Historial de Cierres)
+  totalCard         Float?         @default(0) // Suma Débito + Crédito
+  totalDigital      Float?         @default(0) // Suma QR + Transf + GoCuotas
+  totalExpenses     Float?         @default(0) // Suma de Egresos
   
   status          SessionStatus  @default(OPEN)
   
@@ -616,6 +627,8 @@ model CashRegisterSession {
   
   // Nota: Podríamos linkear ventas web (Sale) si quisiéramos, pero por ahora POSSale es lo crítico de caja.
   salesWeb        Sale[]
+
+  @@index([status])
 }
 
 model CashMovement {
@@ -623,12 +636,18 @@ model CashMovement {
   cashRegisterSessionId String              @db.ObjectId
   cashRegisterSession   CashRegisterSession @relation(fields: [cashRegisterSessionId], references: [id])
   
-  type                  CashMovementType
+  type                  CashMovementType    // IN, OUT
+  category              String?             // VENTA, SERVICIO, GASTO, RETIRO, APORTE
+  paymentMethod         String?             @default("CASH") // CASH, DEBITO, CREDITO, QR, TRANSFERENCIA, GOCUOTAS
+  
   amount                Float
   description           String
   date                  DateTime            @default(now())
   
   userId                String?             // Quién hizo el movimiento
+
+  // Inmutabilidad: se vuelve true al cerrar la sesión
+  isLocked              Boolean             @default(false)
 }
 
 model User {
