@@ -16,15 +16,19 @@ export const upload = multer({
   limits: { fileSize: 15728640 }, // 15MB
 });
 
+const DEFAULT_UPLOAD_PARAMS = {
+  transformation: [{ width: 1024, height: 1024, crop: "fill" }],
+};
+
 export const uploadBuffer = (buffer, folder = "news") => {
   return new Promise((resolve, reject) => {
-    const uploadParams = {
+    const params = {
+      ...DEFAULT_UPLOAD_PARAMS,
       folder: folder,
-      transformation: [{ width: 1024, height: 1024, crop: "fill" }],
     };
 
     cloudinary.uploader
-      .upload_stream(uploadParams, (error, uploadResult) => {
+      .upload_stream(params, (error, uploadResult) => {
         if (error) return reject(error);
         return resolve(uploadResult);
       })
@@ -62,7 +66,8 @@ export const uploadImageUrl = async (req, res) => {
   try {
     // Cloudinary requiere que la URL sea públicamente accesible
     const uploadResult = await cloudinary.uploader.upload(url, {
-      ...uploadParams,
+      ...DEFAULT_UPLOAD_PARAMS,
+      folder: 'news',
       resource_type: 'auto', // Detecta automáticamente el tipo de recurso
     });
 
