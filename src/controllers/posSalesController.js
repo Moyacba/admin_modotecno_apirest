@@ -24,11 +24,10 @@ export const getAllPOSSales = async (req, res) => {
       skip,
       take: limit,
     });
-    console.log(sales)
     res.status(200).json(sales);
   } catch (error) {
     console.error("Error fetching POS sales:", error);
-    res.status(500).json({ error: "Error fetching POS sales" });
+    res.status(500).json({ error: "Error fetching POS sales", error: error.message });
   }
 };
 
