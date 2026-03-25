@@ -105,98 +105,80 @@ export const createPOSSale = async (req, res) => {
       });
     }
 
-    let finalBuyerId = DEFAULT_BUYER_ID;
+    let finalBuyerId = null;
     let buyerData = null;
 
-    // Manejar buyer - puede ser un ID existente o datos para crear nuevo buyer
-    if (buyerId) {
-      // Cliente existente - usar el ID proporcionado
-      finalBuyerId = buyerId;
+    // Nombre y email para el cliente genérico
+    const GENERIC_CUSTOMER_NAME = "CLIENTE SIN REGISTRAR";
+    const GENERIC_CUSTOMER_EMAIL = "cliente_generico@modotecno.com";
 
-      // Verificar que el buyer existe
-      buyerData = await prisma.buyer.findUnique({
-        where: { id: finalBuyerId }
+    // 1. Manejar buyer por ID explícito
+    if (buyerId) {
+      finalBuyerId = buyerId;
+      buyerData = await prisma.buyer.findUnique({ where: { id: finalBuyerId } });
+      if (!buyerData) return res.status(400).json({ error: "Buyer not found" });
+    } 
+    // 2. Manejar buyer por objeto (nuevo o búsqueda por nombre)
+    else if (buyer && buyer.nombre) {
+      const normalizedName = buyer.nombre.trim().toUpperCase();
+      
+      // Intentar buscar por nombre y teléfono o email
+      buyerData = await prisma.buyer.findFirst({
+        where: {
+          OR: [
+            { AND: [{ nombre: normalizedName }, { telefono: buyer.telefono || '' }] },
+            { email: buyer.email }
+          ]
+        }
       });
 
-      if (!buyerData) {
-        return res.status(400).json({ error: "Buyer not found" });
-      }
-    } else if (buyer && buyer.nombre) {
-      // Nuevo cliente - crear buyer primero
-      try {
-        // Generar email único si no se proporciona uno específico
+      if (buyerData) {
+        finalBuyerId = buyerData.id;
+      } else {
+        // Crear nuevo cliente
         let uniqueEmail = buyer.email || 'sinregistrar@modotecno.com';
-
         if (uniqueEmail === 'sinregistrar@modotecno.com') {
-          // Generar un email único basado en timestamp y nombre
           const timestamp = Date.now();
-          const nameSlug = buyer.nombre.toLowerCase().replace(/\s+/g, '').substring(0, 10);
+          const nameSlug = normalizedName.replace(/\s+/g, '').substring(0, 10);
           uniqueEmail = `sinregistrar_${nameSlug}_${timestamp}@modotecno.com`;
         }
 
-        // Intentar buscar un buyer existente con los mismos datos primero
-        const existingBuyer = await prisma.buyer.findFirst({
-          where: {
-            AND: [
-              { nombre: buyer.nombre },
-              { telefono: buyer.telefono || '' }
-            ]
+        buyerData = await prisma.buyer.create({
+          data: {
+            nombre: normalizedName,
+            telefono: buyer.telefono || '',
+            email: uniqueEmail,
+            dni: buyer.dni || '12345678',
+            direccion: buyer.direccion || ''
           }
         });
-
-        if (existingBuyer) {
-          // Usar el buyer existente si coinciden nombre y teléfono
-          buyerData = existingBuyer;
-          finalBuyerId = existingBuyer.id;
-        } else {
-          // Crear nuevo buyer con email único
-          buyerData = await prisma.buyer.create({
-            data: {
-              nombre: buyer.nombre,
-              telefono: buyer.telefono || '',
-              email: uniqueEmail,
-              dni: buyer.dni || '12345678',
-              direccion: buyer.direccion || ''
-            }
-          });
-          finalBuyerId = buyerData.id;
-        }
-      } catch (createError) {
-        console.error("Error creating buyer:", createError);
-
-        // Si aún falla por email duplicado, intentar con un email más único
-        if (createError.code === 'P2002' && createError.meta?.target === 'Buyer_email_key') {
-          try {
-            const uniqueId = Math.random().toString(36).substring(2, 15);
-            const uniqueEmail = `sinregistrar_${uniqueId}@modotecno.com`;
-
-            buyerData = await prisma.buyer.create({
-              data: {
-                nombre: buyer.nombre,
-                telefono: buyer.telefono || '',
-                email: uniqueEmail,
-                dni: buyer.dni || '12345678',
-                direccion: buyer.direccion || ''
-              }
-            });
-            finalBuyerId = buyerData.id;
-          } catch (retryError) {
-            console.error("Error creating buyer on retry:", retryError);
-            return res.status(500).json({ error: "Error creating buyer" });
-          }
-        } else {
-          return res.status(500).json({ error: "Error creating buyer" });
-        }
+        finalBuyerId = buyerData.id;
       }
-    } else {
-      // Usar buyer por defecto
-      buyerData = await prisma.buyer.findUnique({
-        where: { id: DEFAULT_BUYER_ID }
+    } 
+    // 3. Fallback: Cliente genérico persistente
+    else {
+      buyerData = await prisma.buyer.findFirst({
+        where: { 
+          OR: [
+            { nombre: GENERIC_CUSTOMER_NAME },
+            { email: GENERIC_CUSTOMER_EMAIL }
+          ]
+        }
       });
 
       if (!buyerData) {
-        return res.status(400).json({ error: "Default buyer not found" });
+        // Crear el cliente genérico si no existe
+        buyerData = await prisma.buyer.create({
+          data: {
+            nombre: GENERIC_CUSTOMER_NAME,
+            telefono: "0000000000",
+            email: GENERIC_CUSTOMER_EMAIL,
+            dni: "00000000",
+            direccion: "SISTEMA POS"
+          }
+        });
       }
+      finalBuyerId = buyerData.id;
     }
 
     // VALIDACIÓN DE STOCK - Verificar disponibilidad de todos los productos
