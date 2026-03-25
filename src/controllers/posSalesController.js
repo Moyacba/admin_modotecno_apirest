@@ -9,16 +9,22 @@ const VALID_PAYMENT_METHODS = ["cash", "qr", "transfer", "debit", "credit", "ins
 
 // Obtener todas las ventas POS
 export const getAllPOSSales = async (req, res) => {
+  const limit = parseInt(req.query.limit) || 10;
+  const page = parseInt(req.query.page) || 1;
+  const skip = (page - 1) * limit;
   try {
     const sales = await prisma.pOSSale.findMany({
       include: {
-        buyer: true,
+        // buyer: true,
         detalles: true,
       },
       orderBy: {
         fecha_creacion: 'desc'
-      }
+      },
+      skip,
+      take: limit,
     });
+    console.log(sales)
     res.status(200).json(sales);
   } catch (error) {
     console.error("Error fetching POS sales:", error);

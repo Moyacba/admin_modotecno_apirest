@@ -7,16 +7,39 @@ export const getCustomers = async (req, res) => {
   try {
     const pageSize = 10;
     const page = parseInt(req.query.page) || 1;
+    const search = req.query.search?.trim();
 
-    const customers = await prisma.buyer.findMany({
-      skip: (page - 1) * pageSize,
-      take: pageSize,
-      orderBy: {
-        nombre: "asc",
-      },
+    let where = {};
+    
+    if (search) {
+      where = {
+        OR: [
+          { nombre: { contains: search, mode: 'insensitive' } },
+          { apellido: { contains: search, mode: 'insensitive' } },
+          { telefono: { contains: search } },
+          { whatsapp: { contains: search } }
+        ]
+      };
+    }
+
+    const [customers, totalCount] = await prisma.$transaction([
+      prisma.buyer.findMany({
+        where,
+        skip: (page - 1) * pageSize,
+        take: pageSize,
+        orderBy: {
+          nombre: "asc",
+        },
+      }),
+      prisma.buyer.count({ where })
+    ]);
+
+    res.status(200).json({
+      customers,
+      totalCount,
+      page,
+      totalPages: Math.ceil(totalCount / pageSize)
     });
-
-    res.status(200).json(customers);
   } catch (err) {
     console.error('Error fetching customers:', err);
     res.status(500).json({ error: "Error fetching customers" });

@@ -17,6 +17,7 @@ import categoryRoutes from "./categoryRoutes.js";
 import catalogRoutes from "./catalogRoutes.js";
 import providerRoutes from "./providerRoutes.js";
 import repairCatalogRoutes from "./repairCatalogRoutes.js";
+import serviceMatrixRoutes from "./serviceMatrixRoutes.js";
 
 const router = Router();
 
@@ -38,6 +39,7 @@ router.use("/category", categoryRoutes);
 router.use("/catalog", catalogRoutes);
 router.use("/providers", providerRoutes);
 router.use("/repair-catalog", repairCatalogRoutes);
+router.use("/service-matrix", serviceMatrixRoutes);
 
 // Nuevas rutas híbridas optimizadas para cache
 router.use("/", hybridRoutes);

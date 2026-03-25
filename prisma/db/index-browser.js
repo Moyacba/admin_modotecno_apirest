@@ -461,7 +461,11 @@ exports.Prisma.ServiceScalarFieldEnum = {
   observaciones_garantia: 'observaciones_garantia',
   warrantyReturnDate: 'warrantyReturnDate',
   warrantyReturnReason: 'warrantyReturnReason',
-  payments: 'payments'
+  payments: 'payments',
+  defectId: 'defectId',
+  additionalDetails: 'additionalDetails',
+  privateNotes: 'privateNotes',
+  isWarranty: 'isWarranty'
 };
 
 exports.Prisma.CashRegisterSessionScalarFieldEnum = {
@@ -572,6 +576,21 @@ exports.Prisma.ServiceCatalogScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ServiceDefectScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ServiceAttributeScalarFieldEnum = {
+  id: 'id',
+  label: 'label',
+  type: 'type',
+  categoryId: 'categoryId',
+  isActive: 'isActive'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -671,7 +690,9 @@ exports.Prisma.ModelName = {
   Provider: 'Provider',
   BrandRepair: 'BrandRepair',
   ModelRepair: 'ModelRepair',
-  ServiceCatalog: 'ServiceCatalog'
+  ServiceCatalog: 'ServiceCatalog',
+  ServiceDefect: 'ServiceDefect',
+  ServiceAttribute: 'ServiceAttribute'
 };
 
 /**

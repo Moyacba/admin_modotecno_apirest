@@ -17,14 +17,14 @@ const router = express.Router();
 // Obtener todos los servicios
 router.get("/", getServices);
 
-// // Obtener un servicio por ID
-// router.get("/:id", getServiceById);
-
 // Buscar un servicio por producto, cliente o telefono
 router.get("/query", getServiceByQuery);
 
 // Preparar checkout para entrega en POS
 router.get("/:id/checkout-prep", getServiceCheckoutPrep);
+
+// Obtener un servicio por ID — debe ir después de las rutas estáticas
+router.get("/:id", getServiceById);
 
 // Crear un nuevo servicio
 router.post("/", createService);

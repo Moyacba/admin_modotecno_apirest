@@ -17,7 +17,7 @@ export const createOrder = async (req, res) => {
     if (productosDB.length !== items.length) {
       return res.status(400).json({ error: 'Producto inexistente.' });
     }
-    
+
     // Recalcular subtotal y verificar stock
     let subtotal = 0;
     for (const item of items) {
@@ -27,7 +27,7 @@ export const createOrder = async (req, res) => {
       }
       subtotal += prod.salePrice * item.cantidad;
     }
-    
+
     // Calcular monto total (subtotal - descuento + envío)
     const costo_envio = envio?.costo_envio || 0;
     const descuento_aplicado = descuento?.descuento_aplicado || 0;
@@ -58,12 +58,12 @@ export const createOrder = async (req, res) => {
       estado: 'PENDIENTE_PAGO',
       metodo_pago,
       info_envio,
-      
+
       // Información de envío
       provincia: envio?.provincia || null,
       codigo_postal: envio?.codigo_postal || null,
       tiempo_estimado_envio: envio?.tiempo_estimado_envio || null,
-      
+
       // Marketing y canal
       canal_venta: 'ECOMMERCE',
       utm_source: tracking?.utm_source || null,
@@ -72,18 +72,18 @@ export const createOrder = async (req, res) => {
       utm_content: tracking?.utm_content || null,
       utm_term: tracking?.utm_term || null,
       cupon_aplicado: descuento?.cupon_aplicado || null,
-      
+
       // Tracking técnico
       session_id: tracking?.session_id || null,
       device_type: tracking?.device_type || null,
       user_agent: tracking?.user_agent || null,
       ip_address: req.ip || req.headers['x-forwarded-for'] || req.connection.remoteAddress || null,
-      
+
       // Comportamiento
       tiempo_desde_primer_producto_agregado: tracking?.tiempo_desde_primer_producto_agregado || null,
       cantidad_productos_vistos: tracking?.cantidad_productos_vistos || null,
       abandono_carrito_previo: tracking?.abandono_carrito_previo || false,
-      
+
       detalles: {
         create: items.map(item => ({
           productoId: item.id,
@@ -211,18 +211,18 @@ export const getAllOrders = async (req, res) => {
     const orders = await prisma.order.findMany({
       where: whereClause,
       include: {
-        buyer: {
-          select: {
-            nombre: true,
-            email: true,
-          },
-        },
+        // buyer: {
+        //   select: {
+        //     nombre: true,
+        //     email: true,
+        //   },
+        // },
         detalles: {
-            select: {
-                productoName: true,
-                cantidad: true,
-                precio_unitario_al_momento_de_compra: true,
-            }
+          select: {
+            productoName: true,
+            cantidad: true,
+            precio_unitario_al_momento_de_compra: true,
+          }
         }
       },
       orderBy: {
@@ -270,15 +270,15 @@ export const updateOrderStatus = async (req, res) => {
 
     const possibleNextStates = allowedTransitions[order.estado] || [];
     if (!possibleNextStates.includes(estado)) {
-      return res.status(400).json({ 
-        error: `Transición de estado no permitida. Desde '${order.estado}' solo se puede pasar a: ${possibleNextStates.join(', ')}` 
+      return res.status(400).json({
+        error: `Transición de estado no permitida. Desde '${order.estado}' solo se puede pasar a: ${possibleNextStates.join(', ')}`
       });
     }
 
     const updatedOrder = await prisma.order.update({
       where: { id },
       data: { estado },
-       include: {
+      include: {
         buyer: true,
         detalles: true,
       },

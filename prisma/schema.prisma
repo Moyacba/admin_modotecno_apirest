@@ -588,6 +588,19 @@ model Service {
 
   // Pagos
   payments Json?
+
+  // NUEVOS CAMPOS PARA EL REGISTRO INTELIGENTE
+  defectId          String?  @db.ObjectId // Link a la Matrix de Fallas
+  
+  // Detalles adicionales guardados como JSON para flexibilidad total
+  // Ej: { "cargador": true, "rayones": "Leves en esquinas", "sim": false }
+  additionalDetails Json?    
+
+  // Observaciones privadas (No salen en el ticket)
+  privateNotes      String?
+
+  // Flags de auditoría
+  isWarranty        Boolean  @default(false)
 }
 
 model CashRegisterSession {
@@ -749,4 +762,26 @@ model ServiceCatalog {
   updatedAt   DateTime     @updatedAt
 
   @@index([type])
+}
+
+// 1. Matriz de Fallas por Categoría
+model ServiceDefect {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String   // Ej: "Cambio de Pantalla", "Pin de Carga"
+  categoryId  String   @db.ObjectId
+  // Relación opcional para agrupar por categoría de producto
+  createdAt   DateTime @default(now())
+
+  @@unique([name, categoryId]) // Evita duplicados en la misma categoría
+}
+
+// 2. Matriz de Atributos/Detalles por Categoría
+model ServiceAttribute {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  label       String   // Ej: "¿Trae Cargador?", "Estado de Batería"
+  type        String   @default("CHECKBOX") // CHECKBOX, TEXT, SELECT
+  categoryId  String   @db.ObjectId
+  isActive    Boolean  @default(true)
+
+  @@unique([label, categoryId])
 }

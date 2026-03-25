@@ -188,6 +188,16 @@ export type ModelRepair = $Result.DefaultSelection<Prisma.$ModelRepairPayload>
  * 
  */
 export type ServiceCatalog = $Result.DefaultSelection<Prisma.$ServiceCatalogPayload>
+/**
+ * Model ServiceDefect
+ * 
+ */
+export type ServiceDefect = $Result.DefaultSelection<Prisma.$ServiceDefectPayload>
+/**
+ * Model ServiceAttribute
+ * 
+ */
+export type ServiceAttribute = $Result.DefaultSelection<Prisma.$ServiceAttributePayload>
 
 /**
  * Enums
@@ -739,6 +749,26 @@ export class PrismaClient<
     * ```
     */
   get serviceCatalog(): Prisma.ServiceCatalogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.serviceDefect`: Exposes CRUD operations for the **ServiceDefect** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServiceDefects
+    * const serviceDefects = await prisma.serviceDefect.findMany()
+    * ```
+    */
+  get serviceDefect(): Prisma.ServiceDefectDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.serviceAttribute`: Exposes CRUD operations for the **ServiceAttribute** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServiceAttributes
+    * const serviceAttributes = await prisma.serviceAttribute.findMany()
+    * ```
+    */
+  get serviceAttribute(): Prisma.ServiceAttributeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1213,7 +1243,9 @@ export namespace Prisma {
     Provider: 'Provider',
     BrandRepair: 'BrandRepair',
     ModelRepair: 'ModelRepair',
-    ServiceCatalog: 'ServiceCatalog'
+    ServiceCatalog: 'ServiceCatalog',
+    ServiceDefect: 'ServiceDefect',
+    ServiceAttribute: 'ServiceAttribute'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1232,7 +1264,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "product" | "category" | "subcategory" | "attributeDefinition" | "categoryAttribute" | "subcategoryAttribute" | "productVariant" | "deviceBrand" | "deviceModel" | "productCompatibility" | "recommendationRule" | "customer" | "sale" | "expense" | "buyer" | "communicationPreferences" | "customerDevice" | "productInteraction" | "browsingEvent" | "feedback" | "order" | "orderDetail" | "pOSSale" | "pOSSaleDetail" | "service" | "cashRegisterSession" | "cashMovement" | "user" | "favoriteImage" | "stockEntry" | "stockEntryItem" | "provider" | "brandRepair" | "modelRepair" | "serviceCatalog"
+      modelProps: "product" | "category" | "subcategory" | "attributeDefinition" | "categoryAttribute" | "subcategoryAttribute" | "productVariant" | "deviceBrand" | "deviceModel" | "productCompatibility" | "recommendationRule" | "customer" | "sale" | "expense" | "buyer" | "communicationPreferences" | "customerDevice" | "productInteraction" | "browsingEvent" | "feedback" | "order" | "orderDetail" | "pOSSale" | "pOSSaleDetail" | "service" | "cashRegisterSession" | "cashMovement" | "user" | "favoriteImage" | "stockEntry" | "stockEntryItem" | "provider" | "brandRepair" | "modelRepair" | "serviceCatalog" | "serviceDefect" | "serviceAttribute"
       txIsolationLevel: never
     }
     model: {
@@ -3826,6 +3858,154 @@ export namespace Prisma {
           }
         }
       }
+      ServiceDefect: {
+        payload: Prisma.$ServiceDefectPayload<ExtArgs>
+        fields: Prisma.ServiceDefectFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ServiceDefectFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDefectPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServiceDefectFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDefectPayload>
+          }
+          findFirst: {
+            args: Prisma.ServiceDefectFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDefectPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServiceDefectFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDefectPayload>
+          }
+          findMany: {
+            args: Prisma.ServiceDefectFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDefectPayload>[]
+          }
+          create: {
+            args: Prisma.ServiceDefectCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDefectPayload>
+          }
+          createMany: {
+            args: Prisma.ServiceDefectCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ServiceDefectDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDefectPayload>
+          }
+          update: {
+            args: Prisma.ServiceDefectUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDefectPayload>
+          }
+          deleteMany: {
+            args: Prisma.ServiceDefectDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServiceDefectUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ServiceDefectUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDefectPayload>
+          }
+          aggregate: {
+            args: Prisma.ServiceDefectAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServiceDefect>
+          }
+          groupBy: {
+            args: Prisma.ServiceDefectGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServiceDefectGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ServiceDefectFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ServiceDefectAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ServiceDefectCountArgs<ExtArgs>
+            result: $Utils.Optional<ServiceDefectCountAggregateOutputType> | number
+          }
+        }
+      }
+      ServiceAttribute: {
+        payload: Prisma.$ServiceAttributePayload<ExtArgs>
+        fields: Prisma.ServiceAttributeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ServiceAttributeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceAttributePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServiceAttributeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceAttributePayload>
+          }
+          findFirst: {
+            args: Prisma.ServiceAttributeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceAttributePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServiceAttributeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceAttributePayload>
+          }
+          findMany: {
+            args: Prisma.ServiceAttributeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceAttributePayload>[]
+          }
+          create: {
+            args: Prisma.ServiceAttributeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceAttributePayload>
+          }
+          createMany: {
+            args: Prisma.ServiceAttributeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ServiceAttributeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceAttributePayload>
+          }
+          update: {
+            args: Prisma.ServiceAttributeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceAttributePayload>
+          }
+          deleteMany: {
+            args: Prisma.ServiceAttributeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServiceAttributeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ServiceAttributeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceAttributePayload>
+          }
+          aggregate: {
+            args: Prisma.ServiceAttributeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServiceAttribute>
+          }
+          groupBy: {
+            args: Prisma.ServiceAttributeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServiceAttributeGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ServiceAttributeFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ServiceAttributeAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ServiceAttributeCountArgs<ExtArgs>
+            result: $Utils.Optional<ServiceAttributeCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3932,6 +4112,8 @@ export namespace Prisma {
     brandRepair?: BrandRepairOmit
     modelRepair?: ModelRepairOmit
     serviceCatalog?: ServiceCatalogOmit
+    serviceDefect?: ServiceDefectOmit
+    serviceAttribute?: ServiceAttributeOmit
   }
 
   /* Types for Logging */
@@ -30872,6 +31054,9 @@ export namespace Prisma {
     observaciones_garantia: string | null
     warrantyReturnDate: Date | null
     warrantyReturnReason: string | null
+    defectId: string | null
+    privateNotes: string | null
+    isWarranty: boolean | null
   }
 
   export type ServiceMaxAggregateOutputType = {
@@ -30893,6 +31078,9 @@ export namespace Prisma {
     observaciones_garantia: string | null
     warrantyReturnDate: Date | null
     warrantyReturnReason: string | null
+    defectId: string | null
+    privateNotes: string | null
+    isWarranty: boolean | null
   }
 
   export type ServiceCountAggregateOutputType = {
@@ -30918,6 +31106,10 @@ export namespace Prisma {
     warrantyReturnDate: number
     warrantyReturnReason: number
     payments: number
+    defectId: number
+    additionalDetails: number
+    privateNotes: number
+    isWarranty: number
     _all: number
   }
 
@@ -30951,6 +31143,9 @@ export namespace Prisma {
     observaciones_garantia?: true
     warrantyReturnDate?: true
     warrantyReturnReason?: true
+    defectId?: true
+    privateNotes?: true
+    isWarranty?: true
   }
 
   export type ServiceMaxAggregateInputType = {
@@ -30972,6 +31167,9 @@ export namespace Prisma {
     observaciones_garantia?: true
     warrantyReturnDate?: true
     warrantyReturnReason?: true
+    defectId?: true
+    privateNotes?: true
+    isWarranty?: true
   }
 
   export type ServiceCountAggregateInputType = {
@@ -30997,6 +31195,10 @@ export namespace Prisma {
     warrantyReturnDate?: true
     warrantyReturnReason?: true
     payments?: true
+    defectId?: true
+    additionalDetails?: true
+    privateNotes?: true
+    isWarranty?: true
     _all?: true
   }
 
@@ -31109,6 +31311,10 @@ export namespace Prisma {
     warrantyReturnDate: Date | null
     warrantyReturnReason: string | null
     payments: JsonValue | null
+    defectId: string | null
+    additionalDetails: JsonValue | null
+    privateNotes: string | null
+    isWarranty: boolean
     _count: ServiceCountAggregateOutputType | null
     _avg: ServiceAvgAggregateOutputType | null
     _sum: ServiceSumAggregateOutputType | null
@@ -31153,6 +31359,10 @@ export namespace Prisma {
     warrantyReturnDate?: boolean
     warrantyReturnReason?: boolean
     payments?: boolean
+    defectId?: boolean
+    additionalDetails?: boolean
+    privateNotes?: boolean
+    isWarranty?: boolean
     buyer?: boolean | Service$buyerArgs<ExtArgs>
     customerDevice?: boolean | Service$customerDeviceArgs<ExtArgs>
   }, ExtArgs["result"]["service"]>
@@ -31182,9 +31392,13 @@ export namespace Prisma {
     warrantyReturnDate?: boolean
     warrantyReturnReason?: boolean
     payments?: boolean
+    defectId?: boolean
+    additionalDetails?: boolean
+    privateNotes?: boolean
+    isWarranty?: boolean
   }
 
-  export type ServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "customerDeviceId" | "device" | "client" | "state" | "diagnostico" | "estado_dispositivo_al_ingresar" | "observaciones" | "repair" | "piezas" | "total" | "discount" | "date" | "dateOut" | "fecha_presupuesto" | "fecha_aprobacion" | "garantia_hasta" | "observaciones_garantia" | "warrantyReturnDate" | "warrantyReturnReason" | "payments", ExtArgs["result"]["service"]>
+  export type ServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "customerDeviceId" | "device" | "client" | "state" | "diagnostico" | "estado_dispositivo_al_ingresar" | "observaciones" | "repair" | "piezas" | "total" | "discount" | "date" | "dateOut" | "fecha_presupuesto" | "fecha_aprobacion" | "garantia_hasta" | "observaciones_garantia" | "warrantyReturnDate" | "warrantyReturnReason" | "payments" | "defectId" | "additionalDetails" | "privateNotes" | "isWarranty", ExtArgs["result"]["service"]>
   export type ServiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     buyer?: boolean | Service$buyerArgs<ExtArgs>
     customerDevice?: boolean | Service$customerDeviceArgs<ExtArgs>
@@ -31219,6 +31433,10 @@ export namespace Prisma {
       warrantyReturnDate: Date | null
       warrantyReturnReason: string | null
       payments: Prisma.JsonValue | null
+      defectId: string | null
+      additionalDetails: Prisma.JsonValue | null
+      privateNotes: string | null
+      isWarranty: boolean
     }, ExtArgs["result"]["service"]>
     composites: {}
   }
@@ -31635,6 +31853,10 @@ export namespace Prisma {
     readonly warrantyReturnDate: FieldRef<"Service", 'DateTime'>
     readonly warrantyReturnReason: FieldRef<"Service", 'String'>
     readonly payments: FieldRef<"Service", 'Json'>
+    readonly defectId: FieldRef<"Service", 'String'>
+    readonly additionalDetails: FieldRef<"Service", 'Json'>
+    readonly privateNotes: FieldRef<"Service", 'String'>
+    readonly isWarranty: FieldRef<"Service", 'Boolean'>
   }
     
 
@@ -42437,6 +42659,1859 @@ export namespace Prisma {
 
 
   /**
+   * Model ServiceDefect
+   */
+
+  export type AggregateServiceDefect = {
+    _count: ServiceDefectCountAggregateOutputType | null
+    _min: ServiceDefectMinAggregateOutputType | null
+    _max: ServiceDefectMaxAggregateOutputType | null
+  }
+
+  export type ServiceDefectMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    categoryId: string | null
+    createdAt: Date | null
+  }
+
+  export type ServiceDefectMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    categoryId: string | null
+    createdAt: Date | null
+  }
+
+  export type ServiceDefectCountAggregateOutputType = {
+    id: number
+    name: number
+    categoryId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ServiceDefectMinAggregateInputType = {
+    id?: true
+    name?: true
+    categoryId?: true
+    createdAt?: true
+  }
+
+  export type ServiceDefectMaxAggregateInputType = {
+    id?: true
+    name?: true
+    categoryId?: true
+    createdAt?: true
+  }
+
+  export type ServiceDefectCountAggregateInputType = {
+    id?: true
+    name?: true
+    categoryId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ServiceDefectAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceDefect to aggregate.
+     */
+    where?: ServiceDefectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceDefects to fetch.
+     */
+    orderBy?: ServiceDefectOrderByWithRelationInput | ServiceDefectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServiceDefectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceDefects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceDefects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServiceDefects
+    **/
+    _count?: true | ServiceDefectCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServiceDefectMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServiceDefectMaxAggregateInputType
+  }
+
+  export type GetServiceDefectAggregateType<T extends ServiceDefectAggregateArgs> = {
+        [P in keyof T & keyof AggregateServiceDefect]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServiceDefect[P]>
+      : GetScalarType<T[P], AggregateServiceDefect[P]>
+  }
+
+
+
+
+  export type ServiceDefectGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceDefectWhereInput
+    orderBy?: ServiceDefectOrderByWithAggregationInput | ServiceDefectOrderByWithAggregationInput[]
+    by: ServiceDefectScalarFieldEnum[] | ServiceDefectScalarFieldEnum
+    having?: ServiceDefectScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServiceDefectCountAggregateInputType | true
+    _min?: ServiceDefectMinAggregateInputType
+    _max?: ServiceDefectMaxAggregateInputType
+  }
+
+  export type ServiceDefectGroupByOutputType = {
+    id: string
+    name: string
+    categoryId: string
+    createdAt: Date
+    _count: ServiceDefectCountAggregateOutputType | null
+    _min: ServiceDefectMinAggregateOutputType | null
+    _max: ServiceDefectMaxAggregateOutputType | null
+  }
+
+  type GetServiceDefectGroupByPayload<T extends ServiceDefectGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ServiceDefectGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServiceDefectGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServiceDefectGroupByOutputType[P]>
+            : GetScalarType<T[P], ServiceDefectGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServiceDefectSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    categoryId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["serviceDefect"]>
+
+
+
+  export type ServiceDefectSelectScalar = {
+    id?: boolean
+    name?: boolean
+    categoryId?: boolean
+    createdAt?: boolean
+  }
+
+  export type ServiceDefectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "categoryId" | "createdAt", ExtArgs["result"]["serviceDefect"]>
+
+  export type $ServiceDefectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServiceDefect"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      categoryId: string
+      createdAt: Date
+    }, ExtArgs["result"]["serviceDefect"]>
+    composites: {}
+  }
+
+  type ServiceDefectGetPayload<S extends boolean | null | undefined | ServiceDefectDefaultArgs> = $Result.GetResult<Prisma.$ServiceDefectPayload, S>
+
+  type ServiceDefectCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ServiceDefectFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ServiceDefectCountAggregateInputType | true
+    }
+
+  export interface ServiceDefectDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceDefect'], meta: { name: 'ServiceDefect' } }
+    /**
+     * Find zero or one ServiceDefect that matches the filter.
+     * @param {ServiceDefectFindUniqueArgs} args - Arguments to find a ServiceDefect
+     * @example
+     * // Get one ServiceDefect
+     * const serviceDefect = await prisma.serviceDefect.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServiceDefectFindUniqueArgs>(args: SelectSubset<T, ServiceDefectFindUniqueArgs<ExtArgs>>): Prisma__ServiceDefectClient<$Result.GetResult<Prisma.$ServiceDefectPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ServiceDefect that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ServiceDefectFindUniqueOrThrowArgs} args - Arguments to find a ServiceDefect
+     * @example
+     * // Get one ServiceDefect
+     * const serviceDefect = await prisma.serviceDefect.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServiceDefectFindUniqueOrThrowArgs>(args: SelectSubset<T, ServiceDefectFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServiceDefectClient<$Result.GetResult<Prisma.$ServiceDefectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceDefect that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDefectFindFirstArgs} args - Arguments to find a ServiceDefect
+     * @example
+     * // Get one ServiceDefect
+     * const serviceDefect = await prisma.serviceDefect.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServiceDefectFindFirstArgs>(args?: SelectSubset<T, ServiceDefectFindFirstArgs<ExtArgs>>): Prisma__ServiceDefectClient<$Result.GetResult<Prisma.$ServiceDefectPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceDefect that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDefectFindFirstOrThrowArgs} args - Arguments to find a ServiceDefect
+     * @example
+     * // Get one ServiceDefect
+     * const serviceDefect = await prisma.serviceDefect.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServiceDefectFindFirstOrThrowArgs>(args?: SelectSubset<T, ServiceDefectFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServiceDefectClient<$Result.GetResult<Prisma.$ServiceDefectPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServiceDefects that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDefectFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServiceDefects
+     * const serviceDefects = await prisma.serviceDefect.findMany()
+     * 
+     * // Get first 10 ServiceDefects
+     * const serviceDefects = await prisma.serviceDefect.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const serviceDefectWithIdOnly = await prisma.serviceDefect.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServiceDefectFindManyArgs>(args?: SelectSubset<T, ServiceDefectFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceDefectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ServiceDefect.
+     * @param {ServiceDefectCreateArgs} args - Arguments to create a ServiceDefect.
+     * @example
+     * // Create one ServiceDefect
+     * const ServiceDefect = await prisma.serviceDefect.create({
+     *   data: {
+     *     // ... data to create a ServiceDefect
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServiceDefectCreateArgs>(args: SelectSubset<T, ServiceDefectCreateArgs<ExtArgs>>): Prisma__ServiceDefectClient<$Result.GetResult<Prisma.$ServiceDefectPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ServiceDefects.
+     * @param {ServiceDefectCreateManyArgs} args - Arguments to create many ServiceDefects.
+     * @example
+     * // Create many ServiceDefects
+     * const serviceDefect = await prisma.serviceDefect.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServiceDefectCreateManyArgs>(args?: SelectSubset<T, ServiceDefectCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ServiceDefect.
+     * @param {ServiceDefectDeleteArgs} args - Arguments to delete one ServiceDefect.
+     * @example
+     * // Delete one ServiceDefect
+     * const ServiceDefect = await prisma.serviceDefect.delete({
+     *   where: {
+     *     // ... filter to delete one ServiceDefect
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServiceDefectDeleteArgs>(args: SelectSubset<T, ServiceDefectDeleteArgs<ExtArgs>>): Prisma__ServiceDefectClient<$Result.GetResult<Prisma.$ServiceDefectPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ServiceDefect.
+     * @param {ServiceDefectUpdateArgs} args - Arguments to update one ServiceDefect.
+     * @example
+     * // Update one ServiceDefect
+     * const serviceDefect = await prisma.serviceDefect.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServiceDefectUpdateArgs>(args: SelectSubset<T, ServiceDefectUpdateArgs<ExtArgs>>): Prisma__ServiceDefectClient<$Result.GetResult<Prisma.$ServiceDefectPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ServiceDefects.
+     * @param {ServiceDefectDeleteManyArgs} args - Arguments to filter ServiceDefects to delete.
+     * @example
+     * // Delete a few ServiceDefects
+     * const { count } = await prisma.serviceDefect.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServiceDefectDeleteManyArgs>(args?: SelectSubset<T, ServiceDefectDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceDefects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDefectUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServiceDefects
+     * const serviceDefect = await prisma.serviceDefect.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServiceDefectUpdateManyArgs>(args: SelectSubset<T, ServiceDefectUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ServiceDefect.
+     * @param {ServiceDefectUpsertArgs} args - Arguments to update or create a ServiceDefect.
+     * @example
+     * // Update or create a ServiceDefect
+     * const serviceDefect = await prisma.serviceDefect.upsert({
+     *   create: {
+     *     // ... data to create a ServiceDefect
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServiceDefect we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServiceDefectUpsertArgs>(args: SelectSubset<T, ServiceDefectUpsertArgs<ExtArgs>>): Prisma__ServiceDefectClient<$Result.GetResult<Prisma.$ServiceDefectPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServiceDefects that matches the filter.
+     * @param {ServiceDefectFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const serviceDefect = await prisma.serviceDefect.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ServiceDefectFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a ServiceDefect.
+     * @param {ServiceDefectAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const serviceDefect = await prisma.serviceDefect.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ServiceDefectAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of ServiceDefects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDefectCountArgs} args - Arguments to filter ServiceDefects to count.
+     * @example
+     * // Count the number of ServiceDefects
+     * const count = await prisma.serviceDefect.count({
+     *   where: {
+     *     // ... the filter for the ServiceDefects we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServiceDefectCountArgs>(
+      args?: Subset<T, ServiceDefectCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServiceDefectCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServiceDefect.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDefectAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServiceDefectAggregateArgs>(args: Subset<T, ServiceDefectAggregateArgs>): Prisma.PrismaPromise<GetServiceDefectAggregateType<T>>
+
+    /**
+     * Group by ServiceDefect.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDefectGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServiceDefectGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServiceDefectGroupByArgs['orderBy'] }
+        : { orderBy?: ServiceDefectGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServiceDefectGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceDefectGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServiceDefect model
+   */
+  readonly fields: ServiceDefectFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServiceDefect.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServiceDefectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServiceDefect model
+   */
+  interface ServiceDefectFieldRefs {
+    readonly id: FieldRef<"ServiceDefect", 'String'>
+    readonly name: FieldRef<"ServiceDefect", 'String'>
+    readonly categoryId: FieldRef<"ServiceDefect", 'String'>
+    readonly createdAt: FieldRef<"ServiceDefect", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServiceDefect findUnique
+   */
+  export type ServiceDefectFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDefect
+     */
+    select?: ServiceDefectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDefect
+     */
+    omit?: ServiceDefectOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceDefect to fetch.
+     */
+    where: ServiceDefectWhereUniqueInput
+  }
+
+  /**
+   * ServiceDefect findUniqueOrThrow
+   */
+  export type ServiceDefectFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDefect
+     */
+    select?: ServiceDefectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDefect
+     */
+    omit?: ServiceDefectOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceDefect to fetch.
+     */
+    where: ServiceDefectWhereUniqueInput
+  }
+
+  /**
+   * ServiceDefect findFirst
+   */
+  export type ServiceDefectFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDefect
+     */
+    select?: ServiceDefectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDefect
+     */
+    omit?: ServiceDefectOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceDefect to fetch.
+     */
+    where?: ServiceDefectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceDefects to fetch.
+     */
+    orderBy?: ServiceDefectOrderByWithRelationInput | ServiceDefectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceDefects.
+     */
+    cursor?: ServiceDefectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceDefects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceDefects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceDefects.
+     */
+    distinct?: ServiceDefectScalarFieldEnum | ServiceDefectScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceDefect findFirstOrThrow
+   */
+  export type ServiceDefectFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDefect
+     */
+    select?: ServiceDefectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDefect
+     */
+    omit?: ServiceDefectOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceDefect to fetch.
+     */
+    where?: ServiceDefectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceDefects to fetch.
+     */
+    orderBy?: ServiceDefectOrderByWithRelationInput | ServiceDefectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceDefects.
+     */
+    cursor?: ServiceDefectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceDefects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceDefects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceDefects.
+     */
+    distinct?: ServiceDefectScalarFieldEnum | ServiceDefectScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceDefect findMany
+   */
+  export type ServiceDefectFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDefect
+     */
+    select?: ServiceDefectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDefect
+     */
+    omit?: ServiceDefectOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceDefects to fetch.
+     */
+    where?: ServiceDefectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceDefects to fetch.
+     */
+    orderBy?: ServiceDefectOrderByWithRelationInput | ServiceDefectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServiceDefects.
+     */
+    cursor?: ServiceDefectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceDefects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceDefects.
+     */
+    skip?: number
+    distinct?: ServiceDefectScalarFieldEnum | ServiceDefectScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceDefect create
+   */
+  export type ServiceDefectCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDefect
+     */
+    select?: ServiceDefectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDefect
+     */
+    omit?: ServiceDefectOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ServiceDefect.
+     */
+    data: XOR<ServiceDefectCreateInput, ServiceDefectUncheckedCreateInput>
+  }
+
+  /**
+   * ServiceDefect createMany
+   */
+  export type ServiceDefectCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServiceDefects.
+     */
+    data: ServiceDefectCreateManyInput | ServiceDefectCreateManyInput[]
+  }
+
+  /**
+   * ServiceDefect update
+   */
+  export type ServiceDefectUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDefect
+     */
+    select?: ServiceDefectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDefect
+     */
+    omit?: ServiceDefectOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ServiceDefect.
+     */
+    data: XOR<ServiceDefectUpdateInput, ServiceDefectUncheckedUpdateInput>
+    /**
+     * Choose, which ServiceDefect to update.
+     */
+    where: ServiceDefectWhereUniqueInput
+  }
+
+  /**
+   * ServiceDefect updateMany
+   */
+  export type ServiceDefectUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServiceDefects.
+     */
+    data: XOR<ServiceDefectUpdateManyMutationInput, ServiceDefectUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceDefects to update
+     */
+    where?: ServiceDefectWhereInput
+    /**
+     * Limit how many ServiceDefects to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceDefect upsert
+   */
+  export type ServiceDefectUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDefect
+     */
+    select?: ServiceDefectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDefect
+     */
+    omit?: ServiceDefectOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ServiceDefect to update in case it exists.
+     */
+    where: ServiceDefectWhereUniqueInput
+    /**
+     * In case the ServiceDefect found by the `where` argument doesn't exist, create a new ServiceDefect with this data.
+     */
+    create: XOR<ServiceDefectCreateInput, ServiceDefectUncheckedCreateInput>
+    /**
+     * In case the ServiceDefect was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServiceDefectUpdateInput, ServiceDefectUncheckedUpdateInput>
+  }
+
+  /**
+   * ServiceDefect delete
+   */
+  export type ServiceDefectDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDefect
+     */
+    select?: ServiceDefectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDefect
+     */
+    omit?: ServiceDefectOmit<ExtArgs> | null
+    /**
+     * Filter which ServiceDefect to delete.
+     */
+    where: ServiceDefectWhereUniqueInput
+  }
+
+  /**
+   * ServiceDefect deleteMany
+   */
+  export type ServiceDefectDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceDefects to delete
+     */
+    where?: ServiceDefectWhereInput
+    /**
+     * Limit how many ServiceDefects to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceDefect findRaw
+   */
+  export type ServiceDefectFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ServiceDefect aggregateRaw
+   */
+  export type ServiceDefectAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ServiceDefect without action
+   */
+  export type ServiceDefectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDefect
+     */
+    select?: ServiceDefectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDefect
+     */
+    omit?: ServiceDefectOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ServiceAttribute
+   */
+
+  export type AggregateServiceAttribute = {
+    _count: ServiceAttributeCountAggregateOutputType | null
+    _min: ServiceAttributeMinAggregateOutputType | null
+    _max: ServiceAttributeMaxAggregateOutputType | null
+  }
+
+  export type ServiceAttributeMinAggregateOutputType = {
+    id: string | null
+    label: string | null
+    type: string | null
+    categoryId: string | null
+    isActive: boolean | null
+  }
+
+  export type ServiceAttributeMaxAggregateOutputType = {
+    id: string | null
+    label: string | null
+    type: string | null
+    categoryId: string | null
+    isActive: boolean | null
+  }
+
+  export type ServiceAttributeCountAggregateOutputType = {
+    id: number
+    label: number
+    type: number
+    categoryId: number
+    isActive: number
+    _all: number
+  }
+
+
+  export type ServiceAttributeMinAggregateInputType = {
+    id?: true
+    label?: true
+    type?: true
+    categoryId?: true
+    isActive?: true
+  }
+
+  export type ServiceAttributeMaxAggregateInputType = {
+    id?: true
+    label?: true
+    type?: true
+    categoryId?: true
+    isActive?: true
+  }
+
+  export type ServiceAttributeCountAggregateInputType = {
+    id?: true
+    label?: true
+    type?: true
+    categoryId?: true
+    isActive?: true
+    _all?: true
+  }
+
+  export type ServiceAttributeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceAttribute to aggregate.
+     */
+    where?: ServiceAttributeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceAttributes to fetch.
+     */
+    orderBy?: ServiceAttributeOrderByWithRelationInput | ServiceAttributeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServiceAttributeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceAttributes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceAttributes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServiceAttributes
+    **/
+    _count?: true | ServiceAttributeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServiceAttributeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServiceAttributeMaxAggregateInputType
+  }
+
+  export type GetServiceAttributeAggregateType<T extends ServiceAttributeAggregateArgs> = {
+        [P in keyof T & keyof AggregateServiceAttribute]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServiceAttribute[P]>
+      : GetScalarType<T[P], AggregateServiceAttribute[P]>
+  }
+
+
+
+
+  export type ServiceAttributeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceAttributeWhereInput
+    orderBy?: ServiceAttributeOrderByWithAggregationInput | ServiceAttributeOrderByWithAggregationInput[]
+    by: ServiceAttributeScalarFieldEnum[] | ServiceAttributeScalarFieldEnum
+    having?: ServiceAttributeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServiceAttributeCountAggregateInputType | true
+    _min?: ServiceAttributeMinAggregateInputType
+    _max?: ServiceAttributeMaxAggregateInputType
+  }
+
+  export type ServiceAttributeGroupByOutputType = {
+    id: string
+    label: string
+    type: string
+    categoryId: string
+    isActive: boolean
+    _count: ServiceAttributeCountAggregateOutputType | null
+    _min: ServiceAttributeMinAggregateOutputType | null
+    _max: ServiceAttributeMaxAggregateOutputType | null
+  }
+
+  type GetServiceAttributeGroupByPayload<T extends ServiceAttributeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ServiceAttributeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServiceAttributeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServiceAttributeGroupByOutputType[P]>
+            : GetScalarType<T[P], ServiceAttributeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServiceAttributeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    label?: boolean
+    type?: boolean
+    categoryId?: boolean
+    isActive?: boolean
+  }, ExtArgs["result"]["serviceAttribute"]>
+
+
+
+  export type ServiceAttributeSelectScalar = {
+    id?: boolean
+    label?: boolean
+    type?: boolean
+    categoryId?: boolean
+    isActive?: boolean
+  }
+
+  export type ServiceAttributeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "type" | "categoryId" | "isActive", ExtArgs["result"]["serviceAttribute"]>
+
+  export type $ServiceAttributePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServiceAttribute"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      label: string
+      type: string
+      categoryId: string
+      isActive: boolean
+    }, ExtArgs["result"]["serviceAttribute"]>
+    composites: {}
+  }
+
+  type ServiceAttributeGetPayload<S extends boolean | null | undefined | ServiceAttributeDefaultArgs> = $Result.GetResult<Prisma.$ServiceAttributePayload, S>
+
+  type ServiceAttributeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ServiceAttributeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ServiceAttributeCountAggregateInputType | true
+    }
+
+  export interface ServiceAttributeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceAttribute'], meta: { name: 'ServiceAttribute' } }
+    /**
+     * Find zero or one ServiceAttribute that matches the filter.
+     * @param {ServiceAttributeFindUniqueArgs} args - Arguments to find a ServiceAttribute
+     * @example
+     * // Get one ServiceAttribute
+     * const serviceAttribute = await prisma.serviceAttribute.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServiceAttributeFindUniqueArgs>(args: SelectSubset<T, ServiceAttributeFindUniqueArgs<ExtArgs>>): Prisma__ServiceAttributeClient<$Result.GetResult<Prisma.$ServiceAttributePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ServiceAttribute that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ServiceAttributeFindUniqueOrThrowArgs} args - Arguments to find a ServiceAttribute
+     * @example
+     * // Get one ServiceAttribute
+     * const serviceAttribute = await prisma.serviceAttribute.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServiceAttributeFindUniqueOrThrowArgs>(args: SelectSubset<T, ServiceAttributeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServiceAttributeClient<$Result.GetResult<Prisma.$ServiceAttributePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceAttribute that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceAttributeFindFirstArgs} args - Arguments to find a ServiceAttribute
+     * @example
+     * // Get one ServiceAttribute
+     * const serviceAttribute = await prisma.serviceAttribute.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServiceAttributeFindFirstArgs>(args?: SelectSubset<T, ServiceAttributeFindFirstArgs<ExtArgs>>): Prisma__ServiceAttributeClient<$Result.GetResult<Prisma.$ServiceAttributePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceAttribute that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceAttributeFindFirstOrThrowArgs} args - Arguments to find a ServiceAttribute
+     * @example
+     * // Get one ServiceAttribute
+     * const serviceAttribute = await prisma.serviceAttribute.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServiceAttributeFindFirstOrThrowArgs>(args?: SelectSubset<T, ServiceAttributeFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServiceAttributeClient<$Result.GetResult<Prisma.$ServiceAttributePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServiceAttributes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceAttributeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServiceAttributes
+     * const serviceAttributes = await prisma.serviceAttribute.findMany()
+     * 
+     * // Get first 10 ServiceAttributes
+     * const serviceAttributes = await prisma.serviceAttribute.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const serviceAttributeWithIdOnly = await prisma.serviceAttribute.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServiceAttributeFindManyArgs>(args?: SelectSubset<T, ServiceAttributeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceAttributePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ServiceAttribute.
+     * @param {ServiceAttributeCreateArgs} args - Arguments to create a ServiceAttribute.
+     * @example
+     * // Create one ServiceAttribute
+     * const ServiceAttribute = await prisma.serviceAttribute.create({
+     *   data: {
+     *     // ... data to create a ServiceAttribute
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServiceAttributeCreateArgs>(args: SelectSubset<T, ServiceAttributeCreateArgs<ExtArgs>>): Prisma__ServiceAttributeClient<$Result.GetResult<Prisma.$ServiceAttributePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ServiceAttributes.
+     * @param {ServiceAttributeCreateManyArgs} args - Arguments to create many ServiceAttributes.
+     * @example
+     * // Create many ServiceAttributes
+     * const serviceAttribute = await prisma.serviceAttribute.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServiceAttributeCreateManyArgs>(args?: SelectSubset<T, ServiceAttributeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ServiceAttribute.
+     * @param {ServiceAttributeDeleteArgs} args - Arguments to delete one ServiceAttribute.
+     * @example
+     * // Delete one ServiceAttribute
+     * const ServiceAttribute = await prisma.serviceAttribute.delete({
+     *   where: {
+     *     // ... filter to delete one ServiceAttribute
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServiceAttributeDeleteArgs>(args: SelectSubset<T, ServiceAttributeDeleteArgs<ExtArgs>>): Prisma__ServiceAttributeClient<$Result.GetResult<Prisma.$ServiceAttributePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ServiceAttribute.
+     * @param {ServiceAttributeUpdateArgs} args - Arguments to update one ServiceAttribute.
+     * @example
+     * // Update one ServiceAttribute
+     * const serviceAttribute = await prisma.serviceAttribute.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServiceAttributeUpdateArgs>(args: SelectSubset<T, ServiceAttributeUpdateArgs<ExtArgs>>): Prisma__ServiceAttributeClient<$Result.GetResult<Prisma.$ServiceAttributePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ServiceAttributes.
+     * @param {ServiceAttributeDeleteManyArgs} args - Arguments to filter ServiceAttributes to delete.
+     * @example
+     * // Delete a few ServiceAttributes
+     * const { count } = await prisma.serviceAttribute.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServiceAttributeDeleteManyArgs>(args?: SelectSubset<T, ServiceAttributeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceAttributes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceAttributeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServiceAttributes
+     * const serviceAttribute = await prisma.serviceAttribute.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServiceAttributeUpdateManyArgs>(args: SelectSubset<T, ServiceAttributeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ServiceAttribute.
+     * @param {ServiceAttributeUpsertArgs} args - Arguments to update or create a ServiceAttribute.
+     * @example
+     * // Update or create a ServiceAttribute
+     * const serviceAttribute = await prisma.serviceAttribute.upsert({
+     *   create: {
+     *     // ... data to create a ServiceAttribute
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServiceAttribute we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServiceAttributeUpsertArgs>(args: SelectSubset<T, ServiceAttributeUpsertArgs<ExtArgs>>): Prisma__ServiceAttributeClient<$Result.GetResult<Prisma.$ServiceAttributePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServiceAttributes that matches the filter.
+     * @param {ServiceAttributeFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const serviceAttribute = await prisma.serviceAttribute.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ServiceAttributeFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a ServiceAttribute.
+     * @param {ServiceAttributeAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const serviceAttribute = await prisma.serviceAttribute.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ServiceAttributeAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of ServiceAttributes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceAttributeCountArgs} args - Arguments to filter ServiceAttributes to count.
+     * @example
+     * // Count the number of ServiceAttributes
+     * const count = await prisma.serviceAttribute.count({
+     *   where: {
+     *     // ... the filter for the ServiceAttributes we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServiceAttributeCountArgs>(
+      args?: Subset<T, ServiceAttributeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServiceAttributeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServiceAttribute.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceAttributeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServiceAttributeAggregateArgs>(args: Subset<T, ServiceAttributeAggregateArgs>): Prisma.PrismaPromise<GetServiceAttributeAggregateType<T>>
+
+    /**
+     * Group by ServiceAttribute.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceAttributeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServiceAttributeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServiceAttributeGroupByArgs['orderBy'] }
+        : { orderBy?: ServiceAttributeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServiceAttributeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceAttributeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServiceAttribute model
+   */
+  readonly fields: ServiceAttributeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServiceAttribute.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServiceAttributeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServiceAttribute model
+   */
+  interface ServiceAttributeFieldRefs {
+    readonly id: FieldRef<"ServiceAttribute", 'String'>
+    readonly label: FieldRef<"ServiceAttribute", 'String'>
+    readonly type: FieldRef<"ServiceAttribute", 'String'>
+    readonly categoryId: FieldRef<"ServiceAttribute", 'String'>
+    readonly isActive: FieldRef<"ServiceAttribute", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServiceAttribute findUnique
+   */
+  export type ServiceAttributeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceAttribute
+     */
+    select?: ServiceAttributeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceAttribute
+     */
+    omit?: ServiceAttributeOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceAttribute to fetch.
+     */
+    where: ServiceAttributeWhereUniqueInput
+  }
+
+  /**
+   * ServiceAttribute findUniqueOrThrow
+   */
+  export type ServiceAttributeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceAttribute
+     */
+    select?: ServiceAttributeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceAttribute
+     */
+    omit?: ServiceAttributeOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceAttribute to fetch.
+     */
+    where: ServiceAttributeWhereUniqueInput
+  }
+
+  /**
+   * ServiceAttribute findFirst
+   */
+  export type ServiceAttributeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceAttribute
+     */
+    select?: ServiceAttributeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceAttribute
+     */
+    omit?: ServiceAttributeOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceAttribute to fetch.
+     */
+    where?: ServiceAttributeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceAttributes to fetch.
+     */
+    orderBy?: ServiceAttributeOrderByWithRelationInput | ServiceAttributeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceAttributes.
+     */
+    cursor?: ServiceAttributeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceAttributes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceAttributes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceAttributes.
+     */
+    distinct?: ServiceAttributeScalarFieldEnum | ServiceAttributeScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceAttribute findFirstOrThrow
+   */
+  export type ServiceAttributeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceAttribute
+     */
+    select?: ServiceAttributeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceAttribute
+     */
+    omit?: ServiceAttributeOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceAttribute to fetch.
+     */
+    where?: ServiceAttributeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceAttributes to fetch.
+     */
+    orderBy?: ServiceAttributeOrderByWithRelationInput | ServiceAttributeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceAttributes.
+     */
+    cursor?: ServiceAttributeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceAttributes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceAttributes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceAttributes.
+     */
+    distinct?: ServiceAttributeScalarFieldEnum | ServiceAttributeScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceAttribute findMany
+   */
+  export type ServiceAttributeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceAttribute
+     */
+    select?: ServiceAttributeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceAttribute
+     */
+    omit?: ServiceAttributeOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceAttributes to fetch.
+     */
+    where?: ServiceAttributeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceAttributes to fetch.
+     */
+    orderBy?: ServiceAttributeOrderByWithRelationInput | ServiceAttributeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServiceAttributes.
+     */
+    cursor?: ServiceAttributeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceAttributes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceAttributes.
+     */
+    skip?: number
+    distinct?: ServiceAttributeScalarFieldEnum | ServiceAttributeScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceAttribute create
+   */
+  export type ServiceAttributeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceAttribute
+     */
+    select?: ServiceAttributeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceAttribute
+     */
+    omit?: ServiceAttributeOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ServiceAttribute.
+     */
+    data: XOR<ServiceAttributeCreateInput, ServiceAttributeUncheckedCreateInput>
+  }
+
+  /**
+   * ServiceAttribute createMany
+   */
+  export type ServiceAttributeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServiceAttributes.
+     */
+    data: ServiceAttributeCreateManyInput | ServiceAttributeCreateManyInput[]
+  }
+
+  /**
+   * ServiceAttribute update
+   */
+  export type ServiceAttributeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceAttribute
+     */
+    select?: ServiceAttributeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceAttribute
+     */
+    omit?: ServiceAttributeOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ServiceAttribute.
+     */
+    data: XOR<ServiceAttributeUpdateInput, ServiceAttributeUncheckedUpdateInput>
+    /**
+     * Choose, which ServiceAttribute to update.
+     */
+    where: ServiceAttributeWhereUniqueInput
+  }
+
+  /**
+   * ServiceAttribute updateMany
+   */
+  export type ServiceAttributeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServiceAttributes.
+     */
+    data: XOR<ServiceAttributeUpdateManyMutationInput, ServiceAttributeUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceAttributes to update
+     */
+    where?: ServiceAttributeWhereInput
+    /**
+     * Limit how many ServiceAttributes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceAttribute upsert
+   */
+  export type ServiceAttributeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceAttribute
+     */
+    select?: ServiceAttributeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceAttribute
+     */
+    omit?: ServiceAttributeOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ServiceAttribute to update in case it exists.
+     */
+    where: ServiceAttributeWhereUniqueInput
+    /**
+     * In case the ServiceAttribute found by the `where` argument doesn't exist, create a new ServiceAttribute with this data.
+     */
+    create: XOR<ServiceAttributeCreateInput, ServiceAttributeUncheckedCreateInput>
+    /**
+     * In case the ServiceAttribute was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServiceAttributeUpdateInput, ServiceAttributeUncheckedUpdateInput>
+  }
+
+  /**
+   * ServiceAttribute delete
+   */
+  export type ServiceAttributeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceAttribute
+     */
+    select?: ServiceAttributeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceAttribute
+     */
+    omit?: ServiceAttributeOmit<ExtArgs> | null
+    /**
+     * Filter which ServiceAttribute to delete.
+     */
+    where: ServiceAttributeWhereUniqueInput
+  }
+
+  /**
+   * ServiceAttribute deleteMany
+   */
+  export type ServiceAttributeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceAttributes to delete
+     */
+    where?: ServiceAttributeWhereInput
+    /**
+     * Limit how many ServiceAttributes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceAttribute findRaw
+   */
+  export type ServiceAttributeFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ServiceAttribute aggregateRaw
+   */
+  export type ServiceAttributeAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ServiceAttribute without action
+   */
+  export type ServiceAttributeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceAttribute
+     */
+    select?: ServiceAttributeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceAttribute
+     */
+    omit?: ServiceAttributeOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -42860,7 +44935,11 @@ export namespace Prisma {
     observaciones_garantia: 'observaciones_garantia',
     warrantyReturnDate: 'warrantyReturnDate',
     warrantyReturnReason: 'warrantyReturnReason',
-    payments: 'payments'
+    payments: 'payments',
+    defectId: 'defectId',
+    additionalDetails: 'additionalDetails',
+    privateNotes: 'privateNotes',
+    isWarranty: 'isWarranty'
   };
 
   export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
@@ -43002,6 +45081,27 @@ export namespace Prisma {
   };
 
   export type ServiceCatalogScalarFieldEnum = (typeof ServiceCatalogScalarFieldEnum)[keyof typeof ServiceCatalogScalarFieldEnum]
+
+
+  export const ServiceDefectScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    categoryId: 'categoryId',
+    createdAt: 'createdAt'
+  };
+
+  export type ServiceDefectScalarFieldEnum = (typeof ServiceDefectScalarFieldEnum)[keyof typeof ServiceDefectScalarFieldEnum]
+
+
+  export const ServiceAttributeScalarFieldEnum: {
+    id: 'id',
+    label: 'label',
+    type: 'type',
+    categoryId: 'categoryId',
+    isActive: 'isActive'
+  };
+
+  export type ServiceAttributeScalarFieldEnum = (typeof ServiceAttributeScalarFieldEnum)[keyof typeof ServiceAttributeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -45315,6 +47415,10 @@ export namespace Prisma {
     warrantyReturnDate?: DateTimeNullableFilter<"Service"> | Date | string | null
     warrantyReturnReason?: StringNullableFilter<"Service"> | string | null
     payments?: JsonNullableFilter<"Service">
+    defectId?: StringNullableFilter<"Service"> | string | null
+    additionalDetails?: JsonNullableFilter<"Service">
+    privateNotes?: StringNullableFilter<"Service"> | string | null
+    isWarranty?: BoolFilter<"Service"> | boolean
     buyer?: XOR<BuyerNullableScalarRelationFilter, BuyerWhereInput> | null
     customerDevice?: XOR<CustomerDeviceNullableScalarRelationFilter, CustomerDeviceWhereInput> | null
   }
@@ -45342,6 +47446,10 @@ export namespace Prisma {
     warrantyReturnDate?: SortOrder
     warrantyReturnReason?: SortOrder
     payments?: SortOrder
+    defectId?: SortOrder
+    additionalDetails?: SortOrder
+    privateNotes?: SortOrder
+    isWarranty?: SortOrder
     buyer?: BuyerOrderByWithRelationInput
     customerDevice?: CustomerDeviceOrderByWithRelationInput
   }
@@ -45372,6 +47480,10 @@ export namespace Prisma {
     warrantyReturnDate?: DateTimeNullableFilter<"Service"> | Date | string | null
     warrantyReturnReason?: StringNullableFilter<"Service"> | string | null
     payments?: JsonNullableFilter<"Service">
+    defectId?: StringNullableFilter<"Service"> | string | null
+    additionalDetails?: JsonNullableFilter<"Service">
+    privateNotes?: StringNullableFilter<"Service"> | string | null
+    isWarranty?: BoolFilter<"Service"> | boolean
     buyer?: XOR<BuyerNullableScalarRelationFilter, BuyerWhereInput> | null
     customerDevice?: XOR<CustomerDeviceNullableScalarRelationFilter, CustomerDeviceWhereInput> | null
   }, "id">
@@ -45399,6 +47511,10 @@ export namespace Prisma {
     warrantyReturnDate?: SortOrder
     warrantyReturnReason?: SortOrder
     payments?: SortOrder
+    defectId?: SortOrder
+    additionalDetails?: SortOrder
+    privateNotes?: SortOrder
+    isWarranty?: SortOrder
     _count?: ServiceCountOrderByAggregateInput
     _avg?: ServiceAvgOrderByAggregateInput
     _max?: ServiceMaxOrderByAggregateInput
@@ -45432,6 +47548,10 @@ export namespace Prisma {
     warrantyReturnDate?: DateTimeNullableWithAggregatesFilter<"Service"> | Date | string | null
     warrantyReturnReason?: StringNullableWithAggregatesFilter<"Service"> | string | null
     payments?: JsonNullableWithAggregatesFilter<"Service">
+    defectId?: StringNullableWithAggregatesFilter<"Service"> | string | null
+    additionalDetails?: JsonNullableWithAggregatesFilter<"Service">
+    privateNotes?: StringNullableWithAggregatesFilter<"Service"> | string | null
+    isWarranty?: BoolWithAggregatesFilter<"Service"> | boolean
   }
 
   export type CashRegisterSessionWhereInput = {
@@ -46136,6 +48256,107 @@ export namespace Prisma {
     price?: FloatWithAggregatesFilter<"ServiceCatalog"> | number
     modelId?: StringWithAggregatesFilter<"ServiceCatalog"> | string
     updatedAt?: DateTimeWithAggregatesFilter<"ServiceCatalog"> | Date | string
+  }
+
+  export type ServiceDefectWhereInput = {
+    AND?: ServiceDefectWhereInput | ServiceDefectWhereInput[]
+    OR?: ServiceDefectWhereInput[]
+    NOT?: ServiceDefectWhereInput | ServiceDefectWhereInput[]
+    id?: StringFilter<"ServiceDefect"> | string
+    name?: StringFilter<"ServiceDefect"> | string
+    categoryId?: StringFilter<"ServiceDefect"> | string
+    createdAt?: DateTimeFilter<"ServiceDefect"> | Date | string
+  }
+
+  export type ServiceDefectOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceDefectWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name_categoryId?: ServiceDefectNameCategoryIdCompoundUniqueInput
+    AND?: ServiceDefectWhereInput | ServiceDefectWhereInput[]
+    OR?: ServiceDefectWhereInput[]
+    NOT?: ServiceDefectWhereInput | ServiceDefectWhereInput[]
+    name?: StringFilter<"ServiceDefect"> | string
+    categoryId?: StringFilter<"ServiceDefect"> | string
+    createdAt?: DateTimeFilter<"ServiceDefect"> | Date | string
+  }, "id" | "name_categoryId">
+
+  export type ServiceDefectOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+    _count?: ServiceDefectCountOrderByAggregateInput
+    _max?: ServiceDefectMaxOrderByAggregateInput
+    _min?: ServiceDefectMinOrderByAggregateInput
+  }
+
+  export type ServiceDefectScalarWhereWithAggregatesInput = {
+    AND?: ServiceDefectScalarWhereWithAggregatesInput | ServiceDefectScalarWhereWithAggregatesInput[]
+    OR?: ServiceDefectScalarWhereWithAggregatesInput[]
+    NOT?: ServiceDefectScalarWhereWithAggregatesInput | ServiceDefectScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ServiceDefect"> | string
+    name?: StringWithAggregatesFilter<"ServiceDefect"> | string
+    categoryId?: StringWithAggregatesFilter<"ServiceDefect"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ServiceDefect"> | Date | string
+  }
+
+  export type ServiceAttributeWhereInput = {
+    AND?: ServiceAttributeWhereInput | ServiceAttributeWhereInput[]
+    OR?: ServiceAttributeWhereInput[]
+    NOT?: ServiceAttributeWhereInput | ServiceAttributeWhereInput[]
+    id?: StringFilter<"ServiceAttribute"> | string
+    label?: StringFilter<"ServiceAttribute"> | string
+    type?: StringFilter<"ServiceAttribute"> | string
+    categoryId?: StringFilter<"ServiceAttribute"> | string
+    isActive?: BoolFilter<"ServiceAttribute"> | boolean
+  }
+
+  export type ServiceAttributeOrderByWithRelationInput = {
+    id?: SortOrder
+    label?: SortOrder
+    type?: SortOrder
+    categoryId?: SortOrder
+    isActive?: SortOrder
+  }
+
+  export type ServiceAttributeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    label_categoryId?: ServiceAttributeLabelCategoryIdCompoundUniqueInput
+    AND?: ServiceAttributeWhereInput | ServiceAttributeWhereInput[]
+    OR?: ServiceAttributeWhereInput[]
+    NOT?: ServiceAttributeWhereInput | ServiceAttributeWhereInput[]
+    label?: StringFilter<"ServiceAttribute"> | string
+    type?: StringFilter<"ServiceAttribute"> | string
+    categoryId?: StringFilter<"ServiceAttribute"> | string
+    isActive?: BoolFilter<"ServiceAttribute"> | boolean
+  }, "id" | "label_categoryId">
+
+  export type ServiceAttributeOrderByWithAggregationInput = {
+    id?: SortOrder
+    label?: SortOrder
+    type?: SortOrder
+    categoryId?: SortOrder
+    isActive?: SortOrder
+    _count?: ServiceAttributeCountOrderByAggregateInput
+    _max?: ServiceAttributeMaxOrderByAggregateInput
+    _min?: ServiceAttributeMinOrderByAggregateInput
+  }
+
+  export type ServiceAttributeScalarWhereWithAggregatesInput = {
+    AND?: ServiceAttributeScalarWhereWithAggregatesInput | ServiceAttributeScalarWhereWithAggregatesInput[]
+    OR?: ServiceAttributeScalarWhereWithAggregatesInput[]
+    NOT?: ServiceAttributeScalarWhereWithAggregatesInput | ServiceAttributeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ServiceAttribute"> | string
+    label?: StringWithAggregatesFilter<"ServiceAttribute"> | string
+    type?: StringWithAggregatesFilter<"ServiceAttribute"> | string
+    categoryId?: StringWithAggregatesFilter<"ServiceAttribute"> | string
+    isActive?: BoolWithAggregatesFilter<"ServiceAttribute"> | boolean
   }
 
   export type ProductCreateInput = {
@@ -48417,6 +50638,10 @@ export namespace Prisma {
     warrantyReturnDate?: Date | string | null
     warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
     buyer?: BuyerCreateNestedOneWithoutServicesInput
     customerDevice?: CustomerDeviceCreateNestedOneWithoutServicesInput
   }
@@ -48444,6 +50669,10 @@ export namespace Prisma {
     warrantyReturnDate?: Date | string | null
     warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
   }
 
   export type ServiceUpdateInput = {
@@ -48466,6 +50695,10 @@ export namespace Prisma {
     warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
     buyer?: BuyerUpdateOneWithoutServicesNestedInput
     customerDevice?: CustomerDeviceUpdateOneWithoutServicesNestedInput
   }
@@ -48492,6 +50725,10 @@ export namespace Prisma {
     warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceCreateManyInput = {
@@ -48517,6 +50754,10 @@ export namespace Prisma {
     warrantyReturnDate?: Date | string | null
     warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
   }
 
   export type ServiceUpdateManyMutationInput = {
@@ -48539,6 +50780,10 @@ export namespace Prisma {
     warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceUncheckedUpdateManyInput = {
@@ -48563,6 +50808,10 @@ export namespace Prisma {
     warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CashRegisterSessionCreateInput = {
@@ -49303,6 +51552,103 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     modelId?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceDefectCreateInput = {
+    id?: string
+    name: string
+    categoryId: string
+    createdAt?: Date | string
+  }
+
+  export type ServiceDefectUncheckedCreateInput = {
+    id?: string
+    name: string
+    categoryId: string
+    createdAt?: Date | string
+  }
+
+  export type ServiceDefectUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceDefectUncheckedUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceDefectCreateManyInput = {
+    id?: string
+    name: string
+    categoryId: string
+    createdAt?: Date | string
+  }
+
+  export type ServiceDefectUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceDefectUncheckedUpdateManyInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceAttributeCreateInput = {
+    id?: string
+    label: string
+    type?: string
+    categoryId: string
+    isActive?: boolean
+  }
+
+  export type ServiceAttributeUncheckedCreateInput = {
+    id?: string
+    label: string
+    type?: string
+    categoryId: string
+    isActive?: boolean
+  }
+
+  export type ServiceAttributeUpdateInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ServiceAttributeUncheckedUpdateInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ServiceAttributeCreateManyInput = {
+    id?: string
+    label: string
+    type?: string
+    categoryId: string
+    isActive?: boolean
+  }
+
+  export type ServiceAttributeUpdateManyMutationInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ServiceAttributeUncheckedUpdateManyInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -51054,6 +53400,10 @@ export namespace Prisma {
     warrantyReturnDate?: SortOrder
     warrantyReturnReason?: SortOrder
     payments?: SortOrder
+    defectId?: SortOrder
+    additionalDetails?: SortOrder
+    privateNotes?: SortOrder
+    isWarranty?: SortOrder
   }
 
   export type ServiceAvgOrderByAggregateInput = {
@@ -51080,6 +53430,9 @@ export namespace Prisma {
     observaciones_garantia?: SortOrder
     warrantyReturnDate?: SortOrder
     warrantyReturnReason?: SortOrder
+    defectId?: SortOrder
+    privateNotes?: SortOrder
+    isWarranty?: SortOrder
   }
 
   export type ServiceMinOrderByAggregateInput = {
@@ -51101,6 +53454,9 @@ export namespace Prisma {
     observaciones_garantia?: SortOrder
     warrantyReturnDate?: SortOrder
     warrantyReturnReason?: SortOrder
+    defectId?: SortOrder
+    privateNotes?: SortOrder
+    isWarranty?: SortOrder
   }
 
   export type ServiceSumOrderByAggregateInput = {
@@ -51628,6 +53984,61 @@ export namespace Prisma {
 
   export type ServiceCatalogSumOrderByAggregateInput = {
     price?: SortOrder
+  }
+
+  export type ServiceDefectNameCategoryIdCompoundUniqueInput = {
+    name: string
+    categoryId: string
+  }
+
+  export type ServiceDefectCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceDefectMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceDefectMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceAttributeLabelCategoryIdCompoundUniqueInput = {
+    label: string
+    categoryId: string
+  }
+
+  export type ServiceAttributeCountOrderByAggregateInput = {
+    id?: SortOrder
+    label?: SortOrder
+    type?: SortOrder
+    categoryId?: SortOrder
+    isActive?: SortOrder
+  }
+
+  export type ServiceAttributeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    label?: SortOrder
+    type?: SortOrder
+    categoryId?: SortOrder
+    isActive?: SortOrder
+  }
+
+  export type ServiceAttributeMinOrderByAggregateInput = {
+    id?: SortOrder
+    label?: SortOrder
+    type?: SortOrder
+    categoryId?: SortOrder
+    isActive?: SortOrder
   }
 
   export type ProductCreateimagesInput = {
@@ -56029,6 +58440,10 @@ export namespace Prisma {
     warrantyReturnDate?: Date | string | null
     warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
     customerDevice?: CustomerDeviceCreateNestedOneWithoutServicesInput
   }
 
@@ -56054,6 +58469,10 @@ export namespace Prisma {
     warrantyReturnDate?: Date | string | null
     warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
   }
 
   export type ServiceCreateOrConnectWithoutBuyerInput = {
@@ -56369,6 +58788,10 @@ export namespace Prisma {
     warrantyReturnDate?: DateTimeNullableFilter<"Service"> | Date | string | null
     warrantyReturnReason?: StringNullableFilter<"Service"> | string | null
     payments?: JsonNullableFilter<"Service">
+    defectId?: StringNullableFilter<"Service"> | string | null
+    additionalDetails?: JsonNullableFilter<"Service">
+    privateNotes?: StringNullableFilter<"Service"> | string | null
+    isWarranty?: BoolFilter<"Service"> | boolean
   }
 
   export type BuyerCreateWithoutCommunication_preferencesInput = {
@@ -56597,6 +59020,10 @@ export namespace Prisma {
     warrantyReturnDate?: Date | string | null
     warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
     buyer?: BuyerCreateNestedOneWithoutServicesInput
   }
 
@@ -56622,6 +59049,10 @@ export namespace Prisma {
     warrantyReturnDate?: Date | string | null
     warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
   }
 
   export type ServiceCreateOrConnectWithoutCustomerDeviceInput = {
@@ -59387,6 +61818,10 @@ export namespace Prisma {
     warrantyReturnDate?: Date | string | null
     warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
   }
 
   export type OrderUpdateWithoutBuyerInput = {
@@ -59706,6 +62141,10 @@ export namespace Prisma {
     warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
     customerDevice?: CustomerDeviceUpdateOneWithoutServicesNestedInput
   }
 
@@ -59730,6 +62169,10 @@ export namespace Prisma {
     warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceUncheckedUpdateManyWithoutBuyerInput = {
@@ -59753,6 +62196,10 @@ export namespace Prisma {
     warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceCreateManyCustomerDeviceInput = {
@@ -59777,6 +62224,10 @@ export namespace Prisma {
     warrantyReturnDate?: Date | string | null
     warrantyReturnReason?: string | null
     payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
   }
 
   export type ServiceUpdateWithoutCustomerDeviceInput = {
@@ -59799,6 +62250,10 @@ export namespace Prisma {
     warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
     buyer?: BuyerUpdateOneWithoutServicesNestedInput
   }
 
@@ -59823,6 +62278,10 @@ export namespace Prisma {
     warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceUncheckedUpdateManyWithoutCustomerDeviceInput = {
@@ -59846,6 +62305,10 @@ export namespace Prisma {
     warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
     payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type OrderDetailCreateManyOrderInput = {

@@ -121,21 +121,187 @@ export const getServiceByQuery = async (req, res) => {
 
 // Crear un nuevo servicio
 export const createService = async (req, res) => {
-  const { device, client, state, repair, total, date, payments, discount } =
-    req.body;
+  const {
+    device,
+    client,
+    state,
+    repair,
+    total,
+    date,
+    payments,
+    discount,
+    defectId,
+    defectName,
+    additionalDetails,
+    privateNotes,
+    isWarranty,
+  } = req.body;
+
   try {
+    let finalDefectId = defectId;
+    let resolvedCategoryId = null;
+
+    // 1. Normalización y Auto-inyección de Marcas/Modelos (Matriz de Reparación)
+    if (device?.branch && device?.model) {
+      const brandName = device.branch.trim().toUpperCase();
+      const modelName = device.model.trim().toUpperCase();
+
+      // Asegurar Marca
+      const brand = await prisma.brandRepair.upsert({
+        where: { name: brandName },
+        update: {},
+        create: { name: brandName },
+      });
+
+      // Asegurar Modelo
+      await prisma.modelRepair.upsert({
+        where: {
+          name_brandId: {
+            name: modelName,
+            brandId: brand.id,
+          },
+        },
+        update: {},
+        create: {
+          name: modelName,
+          brandId: brand.id,
+        },
+      });
+
+      // 2. Resolver Categoría para la Matriz de Fallas
+      if (device.category) {
+        const category = await prisma.category.findFirst({
+          where: { name: { equals: device.category.trim(), mode: "insensitive" } },
+        });
+        if (category) {
+          resolvedCategoryId = category.id;
+
+          // 3. Auto-inyección de Falla (si viene nombre y no ID)
+          if (!finalDefectId && defectName) {
+            const defName = defectName.trim().toUpperCase();
+            const defect = await prisma.serviceDefect.upsert({
+              where: {
+                name_categoryId: {
+                  name: defName,
+                  categoryId: resolvedCategoryId,
+                },
+              },
+              update: {},
+              create: {
+                name: defName,
+                categoryId: resolvedCategoryId,
+              },
+            });
+            finalDefectId = defect.id;
+          }
+        }
+      }
+    }
+    let finalBuyerId = null;
+
+    // 3.5. Alta o Actualización Automática del Cliente en la Base de Datos Global (Buyer)
+    if (client?.name && client?.phone1) {
+      const clientPhone = client.phone1.trim();
+      const [firstName, ...lastNameParts] = client.name.trim().split(' ');
+      const lastName = lastNameParts.join(' ').trim();
+
+      // Intentar encontrar por Nombre Y (Teléfono o Whatsapp)
+      const existingBuyer = await prisma.buyer.findFirst({
+        where: {
+          AND: [
+            { nombre: { equals: firstName, mode: 'insensitive' } },
+            { apellido: { equals: lastName, mode: 'insensitive' } },
+            {
+              OR: [
+                { telefono: clientPhone },
+                { whatsapp: clientPhone }
+              ]
+            }
+          ]
+        }
+      });
+
+      if (existingBuyer) {
+        // Actualizar datos de contacto si ya existe
+        const updated = await prisma.buyer.update({
+          where: { id: existingBuyer.id },
+          data: {
+            nombre: firstName,
+            apellido: lastName || existingBuyer.apellido,
+            direccion: client.details || existingBuyer.direccion,
+            telefono: clientPhone,
+            whatsapp: client.phone2?.trim() || clientPhone
+          }
+        });
+        finalBuyerId = updated.id;
+      } else {
+        // Crear nuevo cliente
+        const newBuyer = await prisma.buyer.create({
+          data: {
+            nombre: firstName,
+            apellido: lastName || '',
+            email: `cliente_${Date.now()}@modotecno.com`,
+            telefono: clientPhone,
+            whatsapp: client.phone2?.trim() || clientPhone,
+            direccion: client.details || '',
+            segment: 'NUEVO'
+          }
+        });
+        finalBuyerId = newBuyer.id;
+      }
+    }
+
     const newService = await prisma.service.create({
       data: {
         device,
         client,
+        buyerId: finalBuyerId,
         state,
         repair,
         total,
         date,
         payments,
         discount,
+        defectId: finalDefectId,
+        additionalDetails,
+        privateNotes,
+        isWarranty: isWarranty || false,
       },
     });
+
+    // 4. Registro de Seña en Caja (si existe pago al ingresar)
+    if (payments && Array.isArray(payments) && payments.length > 0) {
+      const activeSession = await prisma.cashRegisterSession.findFirst({
+        where: { status: "OPEN" },
+      });
+
+      if (activeSession) {
+        for (const p of payments) {
+          if (p.amount > 0) {
+            // Mapeo de método de pago a enum de caja
+            let internalMethod = "CASH";
+            const m = p.method?.toUpperCase();
+            if (m === "EFECTIVO" || m === "CASH") internalMethod = "CASH";
+            else if (m?.includes("TRANSFERENCIA")) internalMethod = "TRANSFERENCIA";
+            else if (m?.includes("TARJETA")) internalMethod = "CREDITO";
+            else if (m?.includes("QR")) internalMethod = "QR";
+
+            await prisma.cashMovement.create({
+              data: {
+                cashRegisterSessionId: activeSession.id,
+                amount: p.amount,
+                type: "INGRESO_MANUAL", // O el tipo que uses para ingresos extra
+                category: "SERVICIO",
+                paymentMethod: internalMethod,
+                description: `SEÑA SERVICIO: ${device.branch} ${device.model} - Cliente: ${client.name}`,
+                date: new Date(),
+              },
+            });
+          }
+        }
+      }
+    }
+
     res.status(201).json(newService);
   } catch (err) {
     console.log(err);
