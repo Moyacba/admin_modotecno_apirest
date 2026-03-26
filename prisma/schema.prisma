@@ -45,6 +45,8 @@ model Product {
 
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
+  isAlertMarked  Boolean          @default(false)
+  lastCost       Float?           // Último costo de compra registrado
 }
 
 model Category {
@@ -142,6 +144,8 @@ model ProductVariant {
   isActive       Boolean   @default(true)
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
+  isAlertMarked  Boolean   @default(false)
+  lastCost       Float?    // Último costo de compra registrado
 }
 
 model DeviceBrand {
@@ -621,10 +625,14 @@ model CashRegisterSession {
   nextSessionFund   Float?         // Lo que el usuario elige dejar en caja para la próxima apertura
   withdrawalAmount  Float?         // El retiro neto (Contado - Fondo para mañana)
   
-  // Totales por grupo (Para el Historial de Cierres)
+  // Totales por grupo (Para el Historial de Cierres - Snapshots)
+  totalCashSales    Float?         @default(0)
   totalCard         Float?         @default(0) // Suma Débito + Crédito
   totalDigital      Float?         @default(0) // Suma QR + Transf + GoCuotas
+  totalManualIncome Float?         @default(0) // Ingresos manuales (Depósitos)
+  totalManualWithdrawal Float?     @default(0) // Retiros manuales (Extracciones)
   totalExpenses     Float?         @default(0) // Suma de Egresos
+  totalCollected    Float?         @default(0) // Total Bruto Recaudado (Ingresos Totales)
   
   status          SessionStatus  @default(OPEN)
   

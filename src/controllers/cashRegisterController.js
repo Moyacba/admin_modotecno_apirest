@@ -93,7 +93,8 @@ export const getCashStatus = async (req, res) => {
           cardSales,
           transferSales,
           expenses,
-          currentCash // Lo que debería haber en el cajón
+          currentCash,
+          totalCollected: (cashSales + cardSales + transferSales + manualIncome)
         }
       }
     });
@@ -225,9 +226,13 @@ export const closeSession = async (req, res) => {
         difference,
         nextSessionFund: nextFund,
         withdrawalAmount,
-        totalCard,
-        totalDigital,
-        totalExpenses,
+        totalCashSales: cashSales,
+        totalCard: totalCard,
+        totalDigital: totalDigital,
+        totalManualIncome: manualIncome,
+        totalManualWithdrawal: manualWithdrawal,
+        totalExpenses: totalExpenses,
+        totalCollected: (cashSales + totalCard + totalDigital + manualIncome),
         observations: observations ? `${activeSession.observations || ''}\nCierre: ${observations}` : activeSession.observations
       }
     });
@@ -406,14 +411,14 @@ export const getSessionById = async (req, res) => {
       ...session,
       audit: {
         initialCash,
-        manualIncome,
-        manualWithdrawal,
-        cashSales,
-        cardSales,
-        transferSales,
-        expenses: session.expenses?.reduce((s, e) => s + e.amount, 0) || 0,
-        currentCash,
-        totalCollected
+        manualIncome: session.status === 'CLOSED' ? (session.totalManualIncome ?? manualIncome) : manualIncome,
+        manualWithdrawal: session.status === 'CLOSED' ? (session.totalManualWithdrawal ?? manualWithdrawal) : manualWithdrawal,
+        cashSales: session.status === 'CLOSED' ? (session.totalCashSales ?? cashSales) : cashSales,
+        cardSales: session.status === 'CLOSED' ? (session.totalCard ?? cardSales) : cardSales,
+        transferSales: session.status === 'CLOSED' ? (session.totalDigital ?? transferSales) : transferSales,
+        expenses: session.status === 'CLOSED' ? (session.totalExpenses ?? (session.expenses?.reduce((s, e) => s + e.amount, 0) || 0)) : (session.expenses?.reduce((s, e) => s + e.amount, 0) || 0),
+        currentCash: session.status === 'CLOSED' ? (session.finalCashCalculated ?? currentCash) : currentCash,
+        totalCollected: session.status === 'CLOSED' ? (session.totalCollected ?? totalCollected) : totalCollected
       }
     });
 

@@ -13,7 +13,9 @@ import {
   bulkUpdateBarcodes,
   searchProducts,
   getLowStockProducts,
-} from "../controllers/productController.js ";
+  toggleAlertMark,
+  bulkToggleAlertMark,
+} from "../controllers/productController.js";
 
 import {
   getProductVariants,
@@ -38,6 +40,8 @@ router.post("/stock-batch", getStockBatch);
 // ========================================
 router.get("/barcodes", getProductsForBarcodes);
 router.get("/barcodes/check", checkBarcodeUnique);
+router.patch("/:id/toggle-alert-mark", toggleAlertMark);
+router.patch("/low-stock/bulk-toggle-mark", bulkToggleAlertMark);
 router.put("/barcodes/bulk", bulkUpdateBarcodes);
 
 // ========================================

@@ -4804,6 +4804,7 @@ export namespace Prisma {
     percentPrice: number | null
     stock: number | null
     minStock: number | null
+    lastCost: number | null
   }
 
   export type ProductSumAggregateOutputType = {
@@ -4813,6 +4814,7 @@ export namespace Prisma {
     percentPrice: number | null
     stock: number | null
     minStock: number | null
+    lastCost: number | null
   }
 
   export type ProductMinAggregateOutputType = {
@@ -4835,6 +4837,8 @@ export namespace Prisma {
     category: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isAlertMarked: boolean | null
+    lastCost: number | null
   }
 
   export type ProductMaxAggregateOutputType = {
@@ -4857,6 +4861,8 @@ export namespace Prisma {
     category: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isAlertMarked: boolean | null
+    lastCost: number | null
   }
 
   export type ProductCountAggregateOutputType = {
@@ -4882,6 +4888,8 @@ export namespace Prisma {
     category: number
     createdAt: number
     updatedAt: number
+    isAlertMarked: number
+    lastCost: number
     _all: number
   }
 
@@ -4893,6 +4901,7 @@ export namespace Prisma {
     percentPrice?: true
     stock?: true
     minStock?: true
+    lastCost?: true
   }
 
   export type ProductSumAggregateInputType = {
@@ -4902,6 +4911,7 @@ export namespace Prisma {
     percentPrice?: true
     stock?: true
     minStock?: true
+    lastCost?: true
   }
 
   export type ProductMinAggregateInputType = {
@@ -4924,6 +4934,8 @@ export namespace Prisma {
     category?: true
     createdAt?: true
     updatedAt?: true
+    isAlertMarked?: true
+    lastCost?: true
   }
 
   export type ProductMaxAggregateInputType = {
@@ -4946,6 +4958,8 @@ export namespace Prisma {
     category?: true
     createdAt?: true
     updatedAt?: true
+    isAlertMarked?: true
+    lastCost?: true
   }
 
   export type ProductCountAggregateInputType = {
@@ -4971,6 +4985,8 @@ export namespace Prisma {
     category?: true
     createdAt?: true
     updatedAt?: true
+    isAlertMarked?: true
+    lastCost?: true
     _all?: true
   }
 
@@ -5083,6 +5099,8 @@ export namespace Prisma {
     category: string | null
     createdAt: Date
     updatedAt: Date
+    isAlertMarked: boolean
+    lastCost: number | null
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
     _sum: ProductSumAggregateOutputType | null
@@ -5127,6 +5145,8 @@ export namespace Prisma {
     category?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isAlertMarked?: boolean
+    lastCost?: boolean
     categoryRel?: boolean | Product$categoryRelArgs<ExtArgs>
     subcategoryRel?: boolean | Product$subcategoryRelArgs<ExtArgs>
     variants?: boolean | Product$variantsArgs<ExtArgs>
@@ -5159,9 +5179,11 @@ export namespace Prisma {
     category?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isAlertMarked?: boolean
+    lastCost?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "barcode" | "sku" | "name" | "description" | "brand" | "provider" | "costPrice" | "salePrice" | "promoPrice" | "percentPrice" | "stock" | "minStock" | "images" | "specifications" | "attributes" | "hasVariants" | "categoryId" | "subcategoryId" | "category" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "barcode" | "sku" | "name" | "description" | "brand" | "provider" | "costPrice" | "salePrice" | "promoPrice" | "percentPrice" | "stock" | "minStock" | "images" | "specifications" | "attributes" | "hasVariants" | "categoryId" | "subcategoryId" | "category" | "createdAt" | "updatedAt" | "isAlertMarked" | "lastCost", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     categoryRel?: boolean | Product$categoryRelArgs<ExtArgs>
     subcategoryRel?: boolean | Product$subcategoryRelArgs<ExtArgs>
@@ -5201,6 +5223,8 @@ export namespace Prisma {
       category: string | null
       createdAt: Date
       updatedAt: Date
+      isAlertMarked: boolean
+      lastCost: number | null
     }, ExtArgs["result"]["product"]>
     composites: {}
   }
@@ -5619,6 +5643,8 @@ export namespace Prisma {
     readonly category: FieldRef<"Product", 'String'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly updatedAt: FieldRef<"Product", 'DateTime'>
+    readonly isAlertMarked: FieldRef<"Product", 'Boolean'>
+    readonly lastCost: FieldRef<"Product", 'Float'>
   }
     
 
@@ -11395,6 +11421,7 @@ export namespace Prisma {
     percentPrice: number | null
     stock: number | null
     minStock: number | null
+    lastCost: number | null
   }
 
   export type ProductVariantSumAggregateOutputType = {
@@ -11404,6 +11431,7 @@ export namespace Prisma {
     percentPrice: number | null
     stock: number | null
     minStock: number | null
+    lastCost: number | null
   }
 
   export type ProductVariantMinAggregateOutputType = {
@@ -11426,6 +11454,8 @@ export namespace Prisma {
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    isAlertMarked: boolean | null
+    lastCost: number | null
   }
 
   export type ProductVariantMaxAggregateOutputType = {
@@ -11448,6 +11478,8 @@ export namespace Prisma {
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    isAlertMarked: boolean | null
+    lastCost: number | null
   }
 
   export type ProductVariantCountAggregateOutputType = {
@@ -11473,6 +11505,8 @@ export namespace Prisma {
     isActive: number
     createdAt: number
     updatedAt: number
+    isAlertMarked: number
+    lastCost: number
     _all: number
   }
 
@@ -11484,6 +11518,7 @@ export namespace Prisma {
     percentPrice?: true
     stock?: true
     minStock?: true
+    lastCost?: true
   }
 
   export type ProductVariantSumAggregateInputType = {
@@ -11493,6 +11528,7 @@ export namespace Prisma {
     percentPrice?: true
     stock?: true
     minStock?: true
+    lastCost?: true
   }
 
   export type ProductVariantMinAggregateInputType = {
@@ -11515,6 +11551,8 @@ export namespace Prisma {
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    isAlertMarked?: true
+    lastCost?: true
   }
 
   export type ProductVariantMaxAggregateInputType = {
@@ -11537,6 +11575,8 @@ export namespace Prisma {
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    isAlertMarked?: true
+    lastCost?: true
   }
 
   export type ProductVariantCountAggregateInputType = {
@@ -11562,6 +11602,8 @@ export namespace Prisma {
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    isAlertMarked?: true
+    lastCost?: true
     _all?: true
   }
 
@@ -11674,6 +11716,8 @@ export namespace Prisma {
     isActive: boolean
     createdAt: Date
     updatedAt: Date
+    isAlertMarked: boolean
+    lastCost: number | null
     _count: ProductVariantCountAggregateOutputType | null
     _avg: ProductVariantAvgAggregateOutputType | null
     _sum: ProductVariantSumAggregateOutputType | null
@@ -11718,6 +11762,8 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isAlertMarked?: boolean
+    lastCost?: boolean
     product?: boolean | ProductDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["productVariant"]>
 
@@ -11746,9 +11792,11 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isAlertMarked?: boolean
+    lastCost?: boolean
   }
 
-  export type ProductVariantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productId" | "barcode" | "sku" | "name" | "description" | "color" | "design" | "size" | "material" | "costPrice" | "salePrice" | "promoPrice" | "percentPrice" | "stock" | "minStock" | "images" | "specifications" | "attributes" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["productVariant"]>
+  export type ProductVariantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productId" | "barcode" | "sku" | "name" | "description" | "color" | "design" | "size" | "material" | "costPrice" | "salePrice" | "promoPrice" | "percentPrice" | "stock" | "minStock" | "images" | "specifications" | "attributes" | "isActive" | "createdAt" | "updatedAt" | "isAlertMarked" | "lastCost", ExtArgs["result"]["productVariant"]>
   export type ProductVariantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     product?: boolean | ProductDefaultArgs<ExtArgs>
   }
@@ -11781,6 +11829,8 @@ export namespace Prisma {
       isActive: boolean
       createdAt: Date
       updatedAt: Date
+      isAlertMarked: boolean
+      lastCost: number | null
     }, ExtArgs["result"]["productVariant"]>
     composites: {}
   }
@@ -12196,6 +12246,8 @@ export namespace Prisma {
     readonly isActive: FieldRef<"ProductVariant", 'Boolean'>
     readonly createdAt: FieldRef<"ProductVariant", 'DateTime'>
     readonly updatedAt: FieldRef<"ProductVariant", 'DateTime'>
+    readonly isAlertMarked: FieldRef<"ProductVariant", 'Boolean'>
+    readonly lastCost: FieldRef<"ProductVariant", 'Float'>
   }
     
 
@@ -32303,9 +32355,13 @@ export namespace Prisma {
     difference: number | null
     nextSessionFund: number | null
     withdrawalAmount: number | null
+    totalCashSales: number | null
     totalCard: number | null
     totalDigital: number | null
+    totalManualIncome: number | null
+    totalManualWithdrawal: number | null
     totalExpenses: number | null
+    totalCollected: number | null
   }
 
   export type CashRegisterSessionSumAggregateOutputType = {
@@ -32316,9 +32372,13 @@ export namespace Prisma {
     difference: number | null
     nextSessionFund: number | null
     withdrawalAmount: number | null
+    totalCashSales: number | null
     totalCard: number | null
     totalDigital: number | null
+    totalManualIncome: number | null
+    totalManualWithdrawal: number | null
     totalExpenses: number | null
+    totalCollected: number | null
   }
 
   export type CashRegisterSessionMinAggregateOutputType = {
@@ -32332,9 +32392,13 @@ export namespace Prisma {
     difference: number | null
     nextSessionFund: number | null
     withdrawalAmount: number | null
+    totalCashSales: number | null
     totalCard: number | null
     totalDigital: number | null
+    totalManualIncome: number | null
+    totalManualWithdrawal: number | null
     totalExpenses: number | null
+    totalCollected: number | null
     status: $Enums.SessionStatus | null
     openedBy: string | null
     closedBy: string | null
@@ -32352,9 +32416,13 @@ export namespace Prisma {
     difference: number | null
     nextSessionFund: number | null
     withdrawalAmount: number | null
+    totalCashSales: number | null
     totalCard: number | null
     totalDigital: number | null
+    totalManualIncome: number | null
+    totalManualWithdrawal: number | null
     totalExpenses: number | null
+    totalCollected: number | null
     status: $Enums.SessionStatus | null
     openedBy: string | null
     closedBy: string | null
@@ -32372,9 +32440,13 @@ export namespace Prisma {
     difference: number
     nextSessionFund: number
     withdrawalAmount: number
+    totalCashSales: number
     totalCard: number
     totalDigital: number
+    totalManualIncome: number
+    totalManualWithdrawal: number
     totalExpenses: number
+    totalCollected: number
     status: number
     openedBy: number
     closedBy: number
@@ -32391,9 +32463,13 @@ export namespace Prisma {
     difference?: true
     nextSessionFund?: true
     withdrawalAmount?: true
+    totalCashSales?: true
     totalCard?: true
     totalDigital?: true
+    totalManualIncome?: true
+    totalManualWithdrawal?: true
     totalExpenses?: true
+    totalCollected?: true
   }
 
   export type CashRegisterSessionSumAggregateInputType = {
@@ -32404,9 +32480,13 @@ export namespace Prisma {
     difference?: true
     nextSessionFund?: true
     withdrawalAmount?: true
+    totalCashSales?: true
     totalCard?: true
     totalDigital?: true
+    totalManualIncome?: true
+    totalManualWithdrawal?: true
     totalExpenses?: true
+    totalCollected?: true
   }
 
   export type CashRegisterSessionMinAggregateInputType = {
@@ -32420,9 +32500,13 @@ export namespace Prisma {
     difference?: true
     nextSessionFund?: true
     withdrawalAmount?: true
+    totalCashSales?: true
     totalCard?: true
     totalDigital?: true
+    totalManualIncome?: true
+    totalManualWithdrawal?: true
     totalExpenses?: true
+    totalCollected?: true
     status?: true
     openedBy?: true
     closedBy?: true
@@ -32440,9 +32524,13 @@ export namespace Prisma {
     difference?: true
     nextSessionFund?: true
     withdrawalAmount?: true
+    totalCashSales?: true
     totalCard?: true
     totalDigital?: true
+    totalManualIncome?: true
+    totalManualWithdrawal?: true
     totalExpenses?: true
+    totalCollected?: true
     status?: true
     openedBy?: true
     closedBy?: true
@@ -32460,9 +32548,13 @@ export namespace Prisma {
     difference?: true
     nextSessionFund?: true
     withdrawalAmount?: true
+    totalCashSales?: true
     totalCard?: true
     totalDigital?: true
+    totalManualIncome?: true
+    totalManualWithdrawal?: true
     totalExpenses?: true
+    totalCollected?: true
     status?: true
     openedBy?: true
     closedBy?: true
@@ -32567,9 +32659,13 @@ export namespace Prisma {
     difference: number | null
     nextSessionFund: number | null
     withdrawalAmount: number | null
+    totalCashSales: number | null
     totalCard: number | null
     totalDigital: number | null
+    totalManualIncome: number | null
+    totalManualWithdrawal: number | null
     totalExpenses: number | null
+    totalCollected: number | null
     status: $Enums.SessionStatus
     openedBy: string | null
     closedBy: string | null
@@ -32606,9 +32702,13 @@ export namespace Prisma {
     difference?: boolean
     nextSessionFund?: boolean
     withdrawalAmount?: boolean
+    totalCashSales?: boolean
     totalCard?: boolean
     totalDigital?: boolean
+    totalManualIncome?: boolean
+    totalManualWithdrawal?: boolean
     totalExpenses?: boolean
+    totalCollected?: boolean
     status?: boolean
     openedBy?: boolean
     closedBy?: boolean
@@ -32633,16 +32733,20 @@ export namespace Prisma {
     difference?: boolean
     nextSessionFund?: boolean
     withdrawalAmount?: boolean
+    totalCashSales?: boolean
     totalCard?: boolean
     totalDigital?: boolean
+    totalManualIncome?: boolean
+    totalManualWithdrawal?: boolean
     totalExpenses?: boolean
+    totalCollected?: boolean
     status?: boolean
     openedBy?: boolean
     closedBy?: boolean
     observations?: boolean
   }
 
-  export type CashRegisterSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "openedAt" | "closedAt" | "initialCash" | "expectedInitialCash" | "finalCashCalculated" | "finalCashCounted" | "difference" | "nextSessionFund" | "withdrawalAmount" | "totalCard" | "totalDigital" | "totalExpenses" | "status" | "openedBy" | "closedBy" | "observations", ExtArgs["result"]["cashRegisterSession"]>
+  export type CashRegisterSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "openedAt" | "closedAt" | "initialCash" | "expectedInitialCash" | "finalCashCalculated" | "finalCashCounted" | "difference" | "nextSessionFund" | "withdrawalAmount" | "totalCashSales" | "totalCard" | "totalDigital" | "totalManualIncome" | "totalManualWithdrawal" | "totalExpenses" | "totalCollected" | "status" | "openedBy" | "closedBy" | "observations", ExtArgs["result"]["cashRegisterSession"]>
   export type CashRegisterSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     movements?: boolean | CashRegisterSession$movementsArgs<ExtArgs>
     sales?: boolean | CashRegisterSession$salesArgs<ExtArgs>
@@ -32670,9 +32774,13 @@ export namespace Prisma {
       difference: number | null
       nextSessionFund: number | null
       withdrawalAmount: number | null
+      totalCashSales: number | null
       totalCard: number | null
       totalDigital: number | null
+      totalManualIncome: number | null
+      totalManualWithdrawal: number | null
       totalExpenses: number | null
+      totalCollected: number | null
       status: $Enums.SessionStatus
       openedBy: string | null
       closedBy: string | null
@@ -33083,9 +33191,13 @@ export namespace Prisma {
     readonly difference: FieldRef<"CashRegisterSession", 'Float'>
     readonly nextSessionFund: FieldRef<"CashRegisterSession", 'Float'>
     readonly withdrawalAmount: FieldRef<"CashRegisterSession", 'Float'>
+    readonly totalCashSales: FieldRef<"CashRegisterSession", 'Float'>
     readonly totalCard: FieldRef<"CashRegisterSession", 'Float'>
     readonly totalDigital: FieldRef<"CashRegisterSession", 'Float'>
+    readonly totalManualIncome: FieldRef<"CashRegisterSession", 'Float'>
+    readonly totalManualWithdrawal: FieldRef<"CashRegisterSession", 'Float'>
     readonly totalExpenses: FieldRef<"CashRegisterSession", 'Float'>
+    readonly totalCollected: FieldRef<"CashRegisterSession", 'Float'>
     readonly status: FieldRef<"CashRegisterSession", 'SessionStatus'>
     readonly openedBy: FieldRef<"CashRegisterSession", 'String'>
     readonly closedBy: FieldRef<"CashRegisterSession", 'String'>
@@ -44537,7 +44649,9 @@ export namespace Prisma {
     subcategoryId: 'subcategoryId',
     category: 'category',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    isAlertMarked: 'isAlertMarked',
+    lastCost: 'lastCost'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -44626,7 +44740,9 @@ export namespace Prisma {
     attributes: 'attributes',
     isActive: 'isActive',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    isAlertMarked: 'isAlertMarked',
+    lastCost: 'lastCost'
   };
 
   export type ProductVariantScalarFieldEnum = (typeof ProductVariantScalarFieldEnum)[keyof typeof ProductVariantScalarFieldEnum]
@@ -44956,9 +45072,13 @@ export namespace Prisma {
     difference: 'difference',
     nextSessionFund: 'nextSessionFund',
     withdrawalAmount: 'withdrawalAmount',
+    totalCashSales: 'totalCashSales',
     totalCard: 'totalCard',
     totalDigital: 'totalDigital',
+    totalManualIncome: 'totalManualIncome',
+    totalManualWithdrawal: 'totalManualWithdrawal',
     totalExpenses: 'totalExpenses',
+    totalCollected: 'totalCollected',
     status: 'status',
     openedBy: 'openedBy',
     closedBy: 'closedBy',
@@ -45322,6 +45442,8 @@ export namespace Prisma {
     category?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
+    isAlertMarked?: BoolFilter<"Product"> | boolean
+    lastCost?: FloatNullableFilter<"Product"> | number | null
     categoryRel?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
     subcategoryRel?: XOR<SubcategoryNullableScalarRelationFilter, SubcategoryWhereInput> | null
     variants?: ProductVariantListRelationFilter
@@ -45351,6 +45473,8 @@ export namespace Prisma {
     category?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isAlertMarked?: SortOrder
+    lastCost?: SortOrder
     categoryRel?: CategoryOrderByWithRelationInput
     subcategoryRel?: SubcategoryOrderByWithRelationInput
     variants?: ProductVariantOrderByRelationAggregateInput
@@ -45383,6 +45507,8 @@ export namespace Prisma {
     category?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
+    isAlertMarked?: BoolFilter<"Product"> | boolean
+    lastCost?: FloatNullableFilter<"Product"> | number | null
     categoryRel?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
     subcategoryRel?: XOR<SubcategoryNullableScalarRelationFilter, SubcategoryWhereInput> | null
     variants?: ProductVariantListRelationFilter
@@ -45412,6 +45538,8 @@ export namespace Prisma {
     category?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isAlertMarked?: SortOrder
+    lastCost?: SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
     _max?: ProductMaxOrderByAggregateInput
@@ -45445,6 +45573,8 @@ export namespace Prisma {
     category?: StringNullableWithAggregatesFilter<"Product"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
+    isAlertMarked?: BoolWithAggregatesFilter<"Product"> | boolean
+    lastCost?: FloatNullableWithAggregatesFilter<"Product"> | number | null
   }
 
   export type CategoryWhereInput = {
@@ -45809,6 +45939,8 @@ export namespace Prisma {
     isActive?: BoolFilter<"ProductVariant"> | boolean
     createdAt?: DateTimeFilter<"ProductVariant"> | Date | string
     updatedAt?: DateTimeFilter<"ProductVariant"> | Date | string
+    isAlertMarked?: BoolFilter<"ProductVariant"> | boolean
+    lastCost?: FloatNullableFilter<"ProductVariant"> | number | null
     product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
   }
 
@@ -45835,6 +45967,8 @@ export namespace Prisma {
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isAlertMarked?: SortOrder
+    lastCost?: SortOrder
     product?: ProductOrderByWithRelationInput
   }
 
@@ -45864,6 +45998,8 @@ export namespace Prisma {
     isActive?: BoolFilter<"ProductVariant"> | boolean
     createdAt?: DateTimeFilter<"ProductVariant"> | Date | string
     updatedAt?: DateTimeFilter<"ProductVariant"> | Date | string
+    isAlertMarked?: BoolFilter<"ProductVariant"> | boolean
+    lastCost?: FloatNullableFilter<"ProductVariant"> | number | null
     product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
   }, "id">
 
@@ -45890,6 +46026,8 @@ export namespace Prisma {
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isAlertMarked?: SortOrder
+    lastCost?: SortOrder
     _count?: ProductVariantCountOrderByAggregateInput
     _avg?: ProductVariantAvgOrderByAggregateInput
     _max?: ProductVariantMaxOrderByAggregateInput
@@ -45923,6 +46061,8 @@ export namespace Prisma {
     isActive?: BoolWithAggregatesFilter<"ProductVariant"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"ProductVariant"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ProductVariant"> | Date | string
+    isAlertMarked?: BoolWithAggregatesFilter<"ProductVariant"> | boolean
+    lastCost?: FloatNullableWithAggregatesFilter<"ProductVariant"> | number | null
   }
 
   export type DeviceBrandWhereInput = {
@@ -47568,9 +47708,13 @@ export namespace Prisma {
     difference?: FloatNullableFilter<"CashRegisterSession"> | number | null
     nextSessionFund?: FloatNullableFilter<"CashRegisterSession"> | number | null
     withdrawalAmount?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalCashSales?: FloatNullableFilter<"CashRegisterSession"> | number | null
     totalCard?: FloatNullableFilter<"CashRegisterSession"> | number | null
     totalDigital?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalManualIncome?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalManualWithdrawal?: FloatNullableFilter<"CashRegisterSession"> | number | null
     totalExpenses?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalCollected?: FloatNullableFilter<"CashRegisterSession"> | number | null
     status?: EnumSessionStatusFilter<"CashRegisterSession"> | $Enums.SessionStatus
     openedBy?: StringNullableFilter<"CashRegisterSession"> | string | null
     closedBy?: StringNullableFilter<"CashRegisterSession"> | string | null
@@ -47592,9 +47736,13 @@ export namespace Prisma {
     difference?: SortOrder
     nextSessionFund?: SortOrder
     withdrawalAmount?: SortOrder
+    totalCashSales?: SortOrder
     totalCard?: SortOrder
     totalDigital?: SortOrder
+    totalManualIncome?: SortOrder
+    totalManualWithdrawal?: SortOrder
     totalExpenses?: SortOrder
+    totalCollected?: SortOrder
     status?: SortOrder
     openedBy?: SortOrder
     closedBy?: SortOrder
@@ -47619,9 +47767,13 @@ export namespace Prisma {
     difference?: FloatNullableFilter<"CashRegisterSession"> | number | null
     nextSessionFund?: FloatNullableFilter<"CashRegisterSession"> | number | null
     withdrawalAmount?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalCashSales?: FloatNullableFilter<"CashRegisterSession"> | number | null
     totalCard?: FloatNullableFilter<"CashRegisterSession"> | number | null
     totalDigital?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalManualIncome?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalManualWithdrawal?: FloatNullableFilter<"CashRegisterSession"> | number | null
     totalExpenses?: FloatNullableFilter<"CashRegisterSession"> | number | null
+    totalCollected?: FloatNullableFilter<"CashRegisterSession"> | number | null
     status?: EnumSessionStatusFilter<"CashRegisterSession"> | $Enums.SessionStatus
     openedBy?: StringNullableFilter<"CashRegisterSession"> | string | null
     closedBy?: StringNullableFilter<"CashRegisterSession"> | string | null
@@ -47643,9 +47795,13 @@ export namespace Prisma {
     difference?: SortOrder
     nextSessionFund?: SortOrder
     withdrawalAmount?: SortOrder
+    totalCashSales?: SortOrder
     totalCard?: SortOrder
     totalDigital?: SortOrder
+    totalManualIncome?: SortOrder
+    totalManualWithdrawal?: SortOrder
     totalExpenses?: SortOrder
+    totalCollected?: SortOrder
     status?: SortOrder
     openedBy?: SortOrder
     closedBy?: SortOrder
@@ -47671,9 +47827,13 @@ export namespace Prisma {
     difference?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
     nextSessionFund?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
     withdrawalAmount?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
+    totalCashSales?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
     totalCard?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
     totalDigital?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
+    totalManualIncome?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
+    totalManualWithdrawal?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
     totalExpenses?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
+    totalCollected?: FloatNullableWithAggregatesFilter<"CashRegisterSession"> | number | null
     status?: EnumSessionStatusWithAggregatesFilter<"CashRegisterSession"> | $Enums.SessionStatus
     openedBy?: StringNullableWithAggregatesFilter<"CashRegisterSession"> | string | null
     closedBy?: StringNullableWithAggregatesFilter<"CashRegisterSession"> | string | null
@@ -48380,6 +48540,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
     categoryRel?: CategoryCreateNestedOneWithoutProductsInput
     subcategoryRel?: SubcategoryCreateNestedOneWithoutProductsInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
@@ -48409,6 +48571,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
     compatibilities?: ProductCompatibilityUncheckedCreateNestedManyWithoutProductInput
   }
@@ -48433,6 +48597,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     categoryRel?: CategoryUpdateOneWithoutProductsNestedInput
     subcategoryRel?: SubcategoryUpdateOneWithoutProductsNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
@@ -48461,6 +48627,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
     compatibilities?: ProductCompatibilityUncheckedUpdateManyWithoutProductNestedInput
   }
@@ -48488,6 +48656,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
   }
 
   export type ProductUpdateManyMutationInput = {
@@ -48510,6 +48680,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type ProductUncheckedUpdateManyInput = {
@@ -48534,6 +48706,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type CategoryCreateInput = {
@@ -48891,6 +49065,8 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
     product: ProductCreateNestedOneWithoutVariantsInput
   }
 
@@ -48917,6 +49093,8 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
   }
 
   export type ProductVariantUpdateInput = {
@@ -48940,6 +49118,8 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     product?: ProductUpdateOneRequiredWithoutVariantsNestedInput
   }
 
@@ -48965,6 +49145,8 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type ProductVariantCreateManyInput = {
@@ -48990,6 +49172,8 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
   }
 
   export type ProductVariantUpdateManyMutationInput = {
@@ -49013,6 +49197,8 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type ProductVariantUncheckedUpdateManyInput = {
@@ -49037,6 +49223,8 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type DeviceBrandCreateInput = {
@@ -50825,9 +51013,13 @@ export namespace Prisma {
     difference?: number | null
     nextSessionFund?: number | null
     withdrawalAmount?: number | null
+    totalCashSales?: number | null
     totalCard?: number | null
     totalDigital?: number | null
+    totalManualIncome?: number | null
+    totalManualWithdrawal?: number | null
     totalExpenses?: number | null
+    totalCollected?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -50849,9 +51041,13 @@ export namespace Prisma {
     difference?: number | null
     nextSessionFund?: number | null
     withdrawalAmount?: number | null
+    totalCashSales?: number | null
     totalCard?: number | null
     totalDigital?: number | null
+    totalManualIncome?: number | null
+    totalManualWithdrawal?: number | null
     totalExpenses?: number | null
+    totalCollected?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -50872,9 +51068,13 @@ export namespace Prisma {
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
     nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
     withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCashSales?: NullableFloatFieldUpdateOperationsInput | number | null
     totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
     totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualWithdrawal?: NullableFloatFieldUpdateOperationsInput | number | null
     totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCollected?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -50895,9 +51095,13 @@ export namespace Prisma {
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
     nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
     withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCashSales?: NullableFloatFieldUpdateOperationsInput | number | null
     totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
     totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualWithdrawal?: NullableFloatFieldUpdateOperationsInput | number | null
     totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCollected?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -50919,9 +51123,13 @@ export namespace Prisma {
     difference?: number | null
     nextSessionFund?: number | null
     withdrawalAmount?: number | null
+    totalCashSales?: number | null
     totalCard?: number | null
     totalDigital?: number | null
+    totalManualIncome?: number | null
+    totalManualWithdrawal?: number | null
     totalExpenses?: number | null
+    totalCollected?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -50938,9 +51146,13 @@ export namespace Prisma {
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
     nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
     withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCashSales?: NullableFloatFieldUpdateOperationsInput | number | null
     totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
     totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualWithdrawal?: NullableFloatFieldUpdateOperationsInput | number | null
     totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCollected?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -50957,9 +51169,13 @@ export namespace Prisma {
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
     nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
     withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCashSales?: NullableFloatFieldUpdateOperationsInput | number | null
     totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
     totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualWithdrawal?: NullableFloatFieldUpdateOperationsInput | number | null
     totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCollected?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -51740,6 +51956,18 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+    isSet?: boolean
+  }
+
   export type CategoryNullableScalarRelationFilter = {
     is?: CategoryWhereInput | null
     isNot?: CategoryWhereInput | null
@@ -51793,6 +52021,8 @@ export namespace Prisma {
     category?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isAlertMarked?: SortOrder
+    lastCost?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
@@ -51802,6 +52032,7 @@ export namespace Prisma {
     percentPrice?: SortOrder
     stock?: SortOrder
     minStock?: SortOrder
+    lastCost?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
@@ -51824,6 +52055,8 @@ export namespace Prisma {
     category?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isAlertMarked?: SortOrder
+    lastCost?: SortOrder
   }
 
   export type ProductMinOrderByAggregateInput = {
@@ -51846,6 +52079,8 @@ export namespace Prisma {
     category?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isAlertMarked?: SortOrder
+    lastCost?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
@@ -51855,6 +52090,7 @@ export namespace Prisma {
     percentPrice?: SortOrder
     stock?: SortOrder
     minStock?: SortOrder
+    lastCost?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -51961,6 +52197,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+    isSet?: boolean
   }
 
   export type CategoryAttributeListRelationFilter = {
@@ -52180,18 +52433,6 @@ export namespace Prisma {
     position?: SortOrder
   }
 
-  export type FloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-    isSet?: boolean
-  }
-
   export type ProductScalarRelationFilter = {
     is?: ProductWhereInput
     isNot?: ProductWhereInput
@@ -52220,6 +52461,8 @@ export namespace Prisma {
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isAlertMarked?: SortOrder
+    lastCost?: SortOrder
   }
 
   export type ProductVariantAvgOrderByAggregateInput = {
@@ -52229,6 +52472,7 @@ export namespace Prisma {
     percentPrice?: SortOrder
     stock?: SortOrder
     minStock?: SortOrder
+    lastCost?: SortOrder
   }
 
   export type ProductVariantMaxOrderByAggregateInput = {
@@ -52251,6 +52495,8 @@ export namespace Prisma {
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isAlertMarked?: SortOrder
+    lastCost?: SortOrder
   }
 
   export type ProductVariantMinOrderByAggregateInput = {
@@ -52273,6 +52519,8 @@ export namespace Prisma {
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isAlertMarked?: SortOrder
+    lastCost?: SortOrder
   }
 
   export type ProductVariantSumOrderByAggregateInput = {
@@ -52282,23 +52530,7 @@ export namespace Prisma {
     percentPrice?: SortOrder
     stock?: SortOrder
     minStock?: SortOrder
-  }
-
-  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
-    isSet?: boolean
+    lastCost?: SortOrder
   }
 
   export type DeviceModelListRelationFilter = {
@@ -53523,9 +53755,13 @@ export namespace Prisma {
     difference?: SortOrder
     nextSessionFund?: SortOrder
     withdrawalAmount?: SortOrder
+    totalCashSales?: SortOrder
     totalCard?: SortOrder
     totalDigital?: SortOrder
+    totalManualIncome?: SortOrder
+    totalManualWithdrawal?: SortOrder
     totalExpenses?: SortOrder
+    totalCollected?: SortOrder
     status?: SortOrder
     openedBy?: SortOrder
     closedBy?: SortOrder
@@ -53540,9 +53776,13 @@ export namespace Prisma {
     difference?: SortOrder
     nextSessionFund?: SortOrder
     withdrawalAmount?: SortOrder
+    totalCashSales?: SortOrder
     totalCard?: SortOrder
     totalDigital?: SortOrder
+    totalManualIncome?: SortOrder
+    totalManualWithdrawal?: SortOrder
     totalExpenses?: SortOrder
+    totalCollected?: SortOrder
   }
 
   export type CashRegisterSessionMaxOrderByAggregateInput = {
@@ -53556,9 +53796,13 @@ export namespace Prisma {
     difference?: SortOrder
     nextSessionFund?: SortOrder
     withdrawalAmount?: SortOrder
+    totalCashSales?: SortOrder
     totalCard?: SortOrder
     totalDigital?: SortOrder
+    totalManualIncome?: SortOrder
+    totalManualWithdrawal?: SortOrder
     totalExpenses?: SortOrder
+    totalCollected?: SortOrder
     status?: SortOrder
     openedBy?: SortOrder
     closedBy?: SortOrder
@@ -53576,9 +53820,13 @@ export namespace Prisma {
     difference?: SortOrder
     nextSessionFund?: SortOrder
     withdrawalAmount?: SortOrder
+    totalCashSales?: SortOrder
     totalCard?: SortOrder
     totalDigital?: SortOrder
+    totalManualIncome?: SortOrder
+    totalManualWithdrawal?: SortOrder
     totalExpenses?: SortOrder
+    totalCollected?: SortOrder
     status?: SortOrder
     openedBy?: SortOrder
     closedBy?: SortOrder
@@ -53593,9 +53841,13 @@ export namespace Prisma {
     difference?: SortOrder
     nextSessionFund?: SortOrder
     withdrawalAmount?: SortOrder
+    totalCashSales?: SortOrder
     totalCard?: SortOrder
     totalDigital?: SortOrder
+    totalManualIncome?: SortOrder
+    totalManualWithdrawal?: SortOrder
     totalExpenses?: SortOrder
+    totalCollected?: SortOrder
   }
 
   export type EnumSessionStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -54121,6 +54373,15 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+    unset?: boolean
   }
 
   export type CategoryUpdateOneWithoutProductsNestedInput = {
@@ -54664,15 +54925,6 @@ export namespace Prisma {
     create?: XOR<ProductCreateWithoutVariantsInput, ProductUncheckedCreateWithoutVariantsInput>
     connectOrCreate?: ProductCreateOrConnectWithoutVariantsInput
     connect?: ProductWhereUniqueInput
-  }
-
-  export type NullableFloatFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-    unset?: boolean
   }
 
   export type ProductVariantUpdateimagesInput = {
@@ -55989,6 +56241,18 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+    isSet?: boolean
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -56100,18 +56364,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-    isSet?: boolean
   }
 
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -56385,6 +56637,8 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
   }
 
   export type ProductVariantUncheckedCreateWithoutProductInput = {
@@ -56409,6 +56663,8 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
   }
 
   export type ProductVariantCreateOrConnectWithoutProductInput = {
@@ -56545,6 +56801,8 @@ export namespace Prisma {
     isActive?: BoolFilter<"ProductVariant"> | boolean
     createdAt?: DateTimeFilter<"ProductVariant"> | Date | string
     updatedAt?: DateTimeFilter<"ProductVariant"> | Date | string
+    isAlertMarked?: BoolFilter<"ProductVariant"> | boolean
+    lastCost?: FloatNullableFilter<"ProductVariant"> | number | null
   }
 
   export type ProductCompatibilityUpsertWithWhereUniqueWithoutProductInput = {
@@ -56653,6 +56911,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
     subcategoryRel?: SubcategoryCreateNestedOneWithoutProductsInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
     compatibilities?: ProductCompatibilityCreateNestedManyWithoutProductInput
@@ -56680,6 +56940,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
     compatibilities?: ProductCompatibilityUncheckedCreateNestedManyWithoutProductInput
   }
@@ -56792,6 +57054,8 @@ export namespace Prisma {
     category?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
+    isAlertMarked?: BoolFilter<"Product"> | boolean
+    lastCost?: FloatNullableFilter<"Product"> | number | null
   }
 
   export type CategoryCreateWithoutSubcategoriesInput = {
@@ -56865,6 +57129,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
     categoryRel?: CategoryCreateNestedOneWithoutProductsInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
     compatibilities?: ProductCompatibilityCreateNestedManyWithoutProductInput
@@ -56892,6 +57158,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
     compatibilities?: ProductCompatibilityUncheckedCreateNestedManyWithoutProductInput
   }
@@ -57406,6 +57674,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
     categoryRel?: CategoryCreateNestedOneWithoutProductsInput
     subcategoryRel?: SubcategoryCreateNestedOneWithoutProductsInput
     compatibilities?: ProductCompatibilityCreateNestedManyWithoutProductInput
@@ -57434,6 +57704,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
     compatibilities?: ProductCompatibilityUncheckedCreateNestedManyWithoutProductInput
   }
 
@@ -57473,6 +57745,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     categoryRel?: CategoryUpdateOneWithoutProductsNestedInput
     subcategoryRel?: SubcategoryUpdateOneWithoutProductsNestedInput
     compatibilities?: ProductCompatibilityUpdateManyWithoutProductNestedInput
@@ -57500,6 +57774,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     compatibilities?: ProductCompatibilityUncheckedUpdateManyWithoutProductNestedInput
   }
 
@@ -57639,6 +57915,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
     categoryRel?: CategoryCreateNestedOneWithoutProductsInput
     subcategoryRel?: SubcategoryCreateNestedOneWithoutProductsInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
@@ -57667,6 +57945,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
   }
 
@@ -57723,6 +58003,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     categoryRel?: CategoryUpdateOneWithoutProductsNestedInput
     subcategoryRel?: SubcategoryUpdateOneWithoutProductsNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
@@ -57750,6 +58032,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   }
 
@@ -57917,9 +58201,13 @@ export namespace Prisma {
     difference?: number | null
     nextSessionFund?: number | null
     withdrawalAmount?: number | null
+    totalCashSales?: number | null
     totalCard?: number | null
     totalDigital?: number | null
+    totalManualIncome?: number | null
+    totalManualWithdrawal?: number | null
     totalExpenses?: number | null
+    totalCollected?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -57940,9 +58228,13 @@ export namespace Prisma {
     difference?: number | null
     nextSessionFund?: number | null
     withdrawalAmount?: number | null
+    totalCashSales?: number | null
     totalCard?: number | null
     totalDigital?: number | null
+    totalManualIncome?: number | null
+    totalManualWithdrawal?: number | null
     totalExpenses?: number | null
+    totalCollected?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -57978,9 +58270,13 @@ export namespace Prisma {
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
     nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
     withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCashSales?: NullableFloatFieldUpdateOperationsInput | number | null
     totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
     totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualWithdrawal?: NullableFloatFieldUpdateOperationsInput | number | null
     totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCollected?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -58000,9 +58296,13 @@ export namespace Prisma {
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
     nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
     withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCashSales?: NullableFloatFieldUpdateOperationsInput | number | null
     totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
     totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualWithdrawal?: NullableFloatFieldUpdateOperationsInput | number | null
     totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCollected?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -58023,9 +58323,13 @@ export namespace Prisma {
     difference?: number | null
     nextSessionFund?: number | null
     withdrawalAmount?: number | null
+    totalCashSales?: number | null
     totalCard?: number | null
     totalDigital?: number | null
+    totalManualIncome?: number | null
+    totalManualWithdrawal?: number | null
     totalExpenses?: number | null
+    totalCollected?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -58046,9 +58350,13 @@ export namespace Prisma {
     difference?: number | null
     nextSessionFund?: number | null
     withdrawalAmount?: number | null
+    totalCashSales?: number | null
     totalCard?: number | null
     totalDigital?: number | null
+    totalManualIncome?: number | null
+    totalManualWithdrawal?: number | null
     totalExpenses?: number | null
+    totalCollected?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -58084,9 +58392,13 @@ export namespace Prisma {
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
     nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
     withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCashSales?: NullableFloatFieldUpdateOperationsInput | number | null
     totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
     totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualWithdrawal?: NullableFloatFieldUpdateOperationsInput | number | null
     totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCollected?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -58106,9 +58418,13 @@ export namespace Prisma {
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
     nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
     withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCashSales?: NullableFloatFieldUpdateOperationsInput | number | null
     totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
     totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualWithdrawal?: NullableFloatFieldUpdateOperationsInput | number | null
     totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCollected?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -60009,9 +60325,13 @@ export namespace Prisma {
     difference?: number | null
     nextSessionFund?: number | null
     withdrawalAmount?: number | null
+    totalCashSales?: number | null
     totalCard?: number | null
     totalDigital?: number | null
+    totalManualIncome?: number | null
+    totalManualWithdrawal?: number | null
     totalExpenses?: number | null
+    totalCollected?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -60032,9 +60352,13 @@ export namespace Prisma {
     difference?: number | null
     nextSessionFund?: number | null
     withdrawalAmount?: number | null
+    totalCashSales?: number | null
     totalCard?: number | null
     totalDigital?: number | null
+    totalManualIncome?: number | null
+    totalManualWithdrawal?: number | null
     totalExpenses?: number | null
+    totalCollected?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -60169,9 +60493,13 @@ export namespace Prisma {
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
     nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
     withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCashSales?: NullableFloatFieldUpdateOperationsInput | number | null
     totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
     totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualWithdrawal?: NullableFloatFieldUpdateOperationsInput | number | null
     totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCollected?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -60191,9 +60519,13 @@ export namespace Prisma {
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
     nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
     withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCashSales?: NullableFloatFieldUpdateOperationsInput | number | null
     totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
     totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualWithdrawal?: NullableFloatFieldUpdateOperationsInput | number | null
     totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCollected?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -60742,9 +61074,13 @@ export namespace Prisma {
     difference?: number | null
     nextSessionFund?: number | null
     withdrawalAmount?: number | null
+    totalCashSales?: number | null
     totalCard?: number | null
     totalDigital?: number | null
+    totalManualIncome?: number | null
+    totalManualWithdrawal?: number | null
     totalExpenses?: number | null
+    totalCollected?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -60765,9 +61101,13 @@ export namespace Prisma {
     difference?: number | null
     nextSessionFund?: number | null
     withdrawalAmount?: number | null
+    totalCashSales?: number | null
     totalCard?: number | null
     totalDigital?: number | null
+    totalManualIncome?: number | null
+    totalManualWithdrawal?: number | null
     totalExpenses?: number | null
+    totalCollected?: number | null
     status?: $Enums.SessionStatus
     openedBy?: string | null
     closedBy?: string | null
@@ -60803,9 +61143,13 @@ export namespace Prisma {
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
     nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
     withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCashSales?: NullableFloatFieldUpdateOperationsInput | number | null
     totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
     totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualWithdrawal?: NullableFloatFieldUpdateOperationsInput | number | null
     totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCollected?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -60825,9 +61169,13 @@ export namespace Prisma {
     difference?: NullableFloatFieldUpdateOperationsInput | number | null
     nextSessionFund?: NullableFloatFieldUpdateOperationsInput | number | null
     withdrawalAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCashSales?: NullableFloatFieldUpdateOperationsInput | number | null
     totalCard?: NullableFloatFieldUpdateOperationsInput | number | null
     totalDigital?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalManualWithdrawal?: NullableFloatFieldUpdateOperationsInput | number | null
     totalExpenses?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalCollected?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumSessionStatusFieldUpdateOperationsInput | $Enums.SessionStatus
     openedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -61168,6 +61516,8 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
   }
 
   export type ProductCompatibilityCreateManyProductInput = {
@@ -61196,6 +61546,8 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type ProductVariantUncheckedUpdateWithoutProductInput = {
@@ -61219,6 +61571,8 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type ProductVariantUncheckedUpdateManyWithoutProductInput = {
@@ -61242,6 +61596,8 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type ProductCompatibilityUpdateWithoutProductInput = {
@@ -61295,6 +61651,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
   }
 
   export type CategoryAttributeUpdateWithoutCategoryInput = {
@@ -61370,6 +61728,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     subcategoryRel?: SubcategoryUpdateOneWithoutProductsNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
     compatibilities?: ProductCompatibilityUpdateManyWithoutProductNestedInput
@@ -61396,6 +61756,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
     compatibilities?: ProductCompatibilityUncheckedUpdateManyWithoutProductNestedInput
   }
@@ -61421,6 +61783,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type SubcategoryAttributeCreateManySubcategoryInput = {
@@ -61453,6 +61817,8 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isAlertMarked?: boolean
+    lastCost?: number | null
   }
 
   export type RecommendationRuleCreateManySourceSubcategoryInput = {
@@ -61510,6 +61876,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     categoryRel?: CategoryUpdateOneWithoutProductsNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
     compatibilities?: ProductCompatibilityUpdateManyWithoutProductNestedInput
@@ -61536,6 +61904,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
     compatibilities?: ProductCompatibilityUncheckedUpdateManyWithoutProductNestedInput
   }
@@ -61561,6 +61931,8 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type RecommendationRuleUpdateWithoutSourceSubcategoryInput = {

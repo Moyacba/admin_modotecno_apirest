@@ -28,7 +28,17 @@ export const createStockEntry = async (req, res) => {
 
         // Ejecutar todo en una transacción atómica
         const result = await prisma.$transaction(async (tx) => {
-            // 1. Crear el registro base de la entrada
+            // 0. Seguridad: Si el pago es en efectivo, verificar sesión de caja abierta
+            if (paymentMethod === 'efectivo') {
+                const activeSession = await tx.cashRegisterSession.findFirst({
+                    where: { status: 'OPEN' }
+                });
+                if (!activeSession) {
+                    throw new Error('DEBE_ABRIR_CAJA'); // Error manejado en el frontend
+                }
+            }
+
+            // 1. Crear el registro base de la entrada (Purchase History)
             const stockEntry = await tx.stockEntry.create({
                 data: {
                     observations: observations || null,
@@ -67,21 +77,26 @@ export const createStockEntry = async (req, res) => {
                 }
             });
 
-            // 2. Por cada item, actualizar su stock en la base de datos
+            // 2. Por cada item, actualizar su stock y último costo en la base de datos de forma ATÓMICA
             for (const item of items) {
                 if (item.quantity <= 0) {
                     throw new Error(`La cantidad para el producto ${item.productName} debe ser mayor a 0`);
                 }
 
+                const updateData = {
+                    stock: { increment: item.quantity },
+                    lastCost: Number(item.costPrice) || 0
+                };
+
                 if (item.isVariant) {
                     await tx.productVariant.update({
                         where: { id: item.productId },
-                        data: { stock: { increment: item.quantity } }
+                        data: updateData
                     });
                 } else {
                     await tx.product.update({
                         where: { id: item.productId },
-                        data: { stock: { increment: item.quantity } }
+                        data: updateData
                     });
                 }
             }

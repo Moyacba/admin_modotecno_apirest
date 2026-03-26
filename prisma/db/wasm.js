@@ -135,7 +135,9 @@ exports.Prisma.ProductScalarFieldEnum = {
   subcategoryId: 'subcategoryId',
   category: 'category',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isAlertMarked: 'isAlertMarked',
+  lastCost: 'lastCost'
 };
 
 exports.Prisma.CategoryScalarFieldEnum = {
@@ -206,7 +208,9 @@ exports.Prisma.ProductVariantScalarFieldEnum = {
   attributes: 'attributes',
   isActive: 'isActive',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isAlertMarked: 'isAlertMarked',
+  lastCost: 'lastCost'
 };
 
 exports.Prisma.DeviceBrandScalarFieldEnum = {
@@ -479,9 +483,13 @@ exports.Prisma.CashRegisterSessionScalarFieldEnum = {
   difference: 'difference',
   nextSessionFund: 'nextSessionFund',
   withdrawalAmount: 'withdrawalAmount',
+  totalCashSales: 'totalCashSales',
   totalCard: 'totalCard',
   totalDigital: 'totalDigital',
+  totalManualIncome: 'totalManualIncome',
+  totalManualWithdrawal: 'totalManualWithdrawal',
   totalExpenses: 'totalExpenses',
+  totalCollected: 'totalCollected',
   status: 'status',
   openedBy: 'openedBy',
   closedBy: 'closedBy',

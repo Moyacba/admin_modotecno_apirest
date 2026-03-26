@@ -193,16 +193,16 @@ export const getProducts = async (req, res) => {
       where,
       skip,
       take: pageSize,
-        include: {
-          categoryRel: true,
-          subcategoryRel: true,
-          ...(includeVariants ? {
-            variants: {
-              where: { isActive: true },
-              orderBy: { createdAt: 'desc' },
-            }
-          } : {})
-        },
+      include: {
+        categoryRel: true,
+        subcategoryRel: true,
+        ...(includeVariants ? {
+          variants: {
+            where: { isActive: true },
+            orderBy: { createdAt: 'desc' },
+          }
+        } : {})
+      },
       orderBy: { createdAt: 'desc' },
     });
 
@@ -673,9 +673,10 @@ export const searchProducts = async (req, res) => {
         name: p.name,
         sku: p.barcode || p.sku || "N/A",
         costPrice: p.costPrice,
-        stock: p.stock
+        stock: p.stock,
+        image: p.images[0] || null
       });
-      
+
       // Agregamos sus variantes relacionadas
       if (p.variants && p.variants.length > 0) {
         p.variants.forEach(v => {
@@ -710,7 +711,7 @@ export const searchProducts = async (req, res) => {
     // Chequeo si existe match exacto para priorizar
     const results = Array.from(resultsMap.values());
     const exactMatch = results.find(r => r.sku === query || (r.barcode === query));
-    
+
     // Si hay un match exacto por código y es único, devolvemos solo ese (facilita escáner)
     if (exactMatch && query.length >= 6) {
       return res.status(200).json({ products: [exactMatch] });
@@ -730,7 +731,7 @@ export const getLowStockProducts = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const pageSize = parseInt(req.query.limit) || 20;
     const skip = (page - 1) * pageSize;
-    
+
     const provider = req.query.provider || "";
     const categoryId = req.query.categoryId || "";
     const subcategoryId = req.query.subcategoryId || "";
@@ -769,6 +770,7 @@ export const getLowStockProducts = async (req, res) => {
         subcategoryId: true,
         provider: true,
         sku: true,
+        isAlertMarked: true,
         categoryRel: true,
         subcategoryRel: true
       }
@@ -776,11 +778,11 @@ export const getLowStockProducts = async (req, res) => {
 
     const lowStockProducts = products
       .filter(p => {
-          const isLow = p.stock <= p.minStock;
-          if (!isLow) return false;
-          if (stockLevel === '0' && p.stock !== 0) return false;
-          if (stockLevel === '1' && p.stock !== 1) return false;
-          return true;
+        const isLow = p.stock <= p.minStock;
+        if (!isLow) return false;
+        if (stockLevel === '0' && p.stock !== 0) return false;
+        if (stockLevel === '1' && p.stock !== 1) return false;
+        return true;
       })
       .map(p => ({
         id: p.id,
@@ -794,7 +796,8 @@ export const getLowStockProducts = async (req, res) => {
         categoryId: p.categoryId,
         subcategoryId: p.subcategoryId,
         provider: p.provider,
-        sku: p.sku
+        sku: p.sku,
+        isAlertMarked: p.isAlertMarked
       }));
 
     // 2. Obtener variantes
@@ -809,6 +812,7 @@ export const getLowStockProducts = async (req, res) => {
         minStock: true,
         costPrice: true,
         sku: true,
+        isAlertMarked: true,
         product: {
           select: {
             name: true,
@@ -827,11 +831,11 @@ export const getLowStockProducts = async (req, res) => {
 
     const lowStockVariants = variants
       .filter(v => {
-          const isLow = v.stock <= v.minStock;
-          if (!isLow) return false;
-          if (stockLevel === '0' && v.stock !== 0) return false;
-          if (stockLevel === '1' && v.stock !== 1) return false;
-          return true;
+        const isLow = v.stock <= v.minStock;
+        if (!isLow) return false;
+        if (stockLevel === '0' && v.stock !== 0) return false;
+        if (stockLevel === '1' && v.stock !== 1) return false;
+        return true;
       })
       .map(v => ({
         id: v.id,
@@ -846,7 +850,8 @@ export const getLowStockProducts = async (req, res) => {
         categoryId: v.product.categoryId,
         subcategoryId: v.product.subcategoryId,
         provider: v.product.provider,
-        sku: v.sku || v.product.sku
+        sku: v.sku || v.product.sku,
+        isAlertMarked: v.isAlertMarked
       }));
 
     // 3. Unir, ordenar y paginar
@@ -878,3 +883,48 @@ export const getLowStockProducts = async (req, res) => {
   }
 };
 
+// Toggle marked status for shopping list
+export const toggleAlertMark = async (req, res) => {
+  const { id } = req.params;
+  const { isVariant, marked } = req.body;
+
+  try {
+    if (isVariant) {
+      await prisma.productVariant.update({
+        where: { id },
+        data: { isAlertMarked: !!marked }
+      });
+    } else {
+      await prisma.product.update({
+        where: { id },
+        data: { isAlertMarked: !!marked }
+      });
+    }
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error("Error toggling alert mark:", error);
+    res.status(500).json({ error: "Error updating marked status" });
+  }
+};
+// Bulk Toggle marked status for shopping list
+export const bulkToggleAlertMark = async (req, res) => {
+  const { updates } = req.body;
+
+  if (!Array.isArray(updates)) {
+    return res.status(400).json({ error: "Updates must be an array" });
+  }
+
+  try {
+    const ops = updates.map(u =>
+      u.isVariant
+        ? prisma.productVariant.update({ where: { id: u.id }, data: { isAlertMarked: !!u.marked } })
+        : prisma.product.update({ where: { id: u.id }, data: { isAlertMarked: !!u.marked } })
+    );
+
+    await prisma.$transaction(ops);
+    res.status(200).json({ success: true, count: updates.length });
+  } catch (error) {
+    console.error("Error bulk toggling alert mark:", error);
+    res.status(500).json({ error: "Error updating marked status in bulk" });
+  }
+};
