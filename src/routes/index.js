@@ -21,6 +21,9 @@ import serviceMatrixRoutes from "./serviceMatrixRoutes.js";
 
 const router = Router();
 
+// Nuevas rutas híbridas optimizadas para cache (PRIORIDAD)
+router.use("/", hybridRoutes);
+
 // Rutas tradicionales (compatibilidad)
 router.use("/auth", authRoutes);
 router.use("/product", productRoutes);
@@ -40,8 +43,5 @@ router.use("/catalog", catalogRoutes);
 router.use("/providers", providerRoutes);
 router.use("/repair-catalog", repairCatalogRoutes);
 router.use("/service-matrix", serviceMatrixRoutes);
-
-// Nuevas rutas híbridas optimizadas para cache
-router.use("/", hybridRoutes);
 
 export default router;

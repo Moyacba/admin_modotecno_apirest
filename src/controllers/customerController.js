@@ -2,6 +2,11 @@ import { PrismaClient } from "db";
 // import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 
+// Helper para validar ObjectIDs de MongoDB
+const isValidObjectId = (id) => {
+  return /^[0-9a-fA-F]{24}$/.test(id);
+};
+
 // Obtener todos los clientes
 export const getCustomers = async (req, res) => {
   try {
@@ -99,6 +104,11 @@ export const searchCustomers = async (req, res) => {
 // Obtener un cliente por ID
 export const getCustomerById = async (req, res) => {
   const { id } = req.params;
+
+  if (!isValidObjectId(id)) {
+    return res.status(400).json({ error: "Invalid customer ID format" });
+  }
+
   try {
     const buyer = await prisma.buyer.findUnique({
       where: { id },
@@ -228,6 +238,10 @@ export const updateCustomer = async (req, res) => {
   if (direccion !== undefined) updateData.direccion = direccion;
 
   try {
+    if (!isValidObjectId(id)) {
+      return res.status(400).json({ error: "Invalid customer ID format" });
+    }
+
     const updatedCustomer = await prisma.buyer.update({
       where: { id },
       data: updateData,
@@ -251,6 +265,10 @@ export const updateCustomer = async (req, res) => {
 // Eliminar un cliente
 export const deleteCustomer = async (req, res) => {
   const { id } = req.params;
+
+  if (!isValidObjectId(id)) {
+    return res.status(400).json({ error: "Invalid customer ID format" });
+  }
 
   try {
     await prisma.buyer.delete({
