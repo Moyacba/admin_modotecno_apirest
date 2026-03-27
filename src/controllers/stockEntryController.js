@@ -78,7 +78,8 @@ export const createStockEntry = async (req, res) => {
             });
 
             // 2. Por cada item, actualizar su stock y último costo en la base de datos de forma ATÓMICA
-            for (const item of items) {
+            // Usamos Promise.all para ejecutar las actualizaciones en paralelo dentro de la transacción
+            const updatePromises = items.map(item => {
                 if (item.quantity <= 0) {
                     throw new Error(`La cantidad para el producto ${item.productName} debe ser mayor a 0`);
                 }
@@ -89,19 +90,24 @@ export const createStockEntry = async (req, res) => {
                 };
 
                 if (item.isVariant) {
-                    await tx.productVariant.update({
+                    return tx.productVariant.update({
                         where: { id: item.productId },
                         data: updateData
                     });
                 } else {
-                    await tx.product.update({
+                    return tx.product.update({
                         where: { id: item.productId },
                         data: updateData
                     });
                 }
-            }
+            });
+
+            await Promise.all(updatePromises);
 
             return stockEntry;
+        }, {
+            maxWait: 10000, // 10s para esperar al pool de conexiones
+            timeout: 30000, // 30s de ejecución para listas largas (>10 productos)
         });
 
         res.status(201).json(result);
