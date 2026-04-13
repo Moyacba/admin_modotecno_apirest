@@ -174,6 +174,26 @@ export type StockEntryItem = $Result.DefaultSelection<Prisma.$StockEntryItemPayl
  */
 export type Provider = $Result.DefaultSelection<Prisma.$ProviderPayload>
 /**
+ * Model ServiceCategory
+ * 
+ */
+export type ServiceCategory = $Result.DefaultSelection<Prisma.$ServiceCategoryPayload>
+/**
+ * Model BrandRepairCategory
+ * 
+ */
+export type BrandRepairCategory = $Result.DefaultSelection<Prisma.$BrandRepairCategoryPayload>
+/**
+ * Model RepairType
+ * 
+ */
+export type RepairType = $Result.DefaultSelection<Prisma.$RepairTypePayload>
+/**
+ * Model RepairOption
+ * 
+ */
+export type RepairOption = $Result.DefaultSelection<Prisma.$RepairOptionPayload>
+/**
  * Model BrandRepair
  * 
  */
@@ -278,6 +298,14 @@ export const SessionStatus: {
 
 export type SessionStatus = (typeof SessionStatus)[keyof typeof SessionStatus]
 
+
+export const RepairQuality: {
+  ORIGINAL: 'ORIGINAL',
+  ALTERNATIVE: 'ALTERNATIVE'
+};
+
+export type RepairQuality = (typeof RepairQuality)[keyof typeof RepairQuality]
+
 }
 
 export type InteractionType = $Enums.InteractionType
@@ -307,6 +335,10 @@ export const CashMovementType: typeof $Enums.CashMovementType
 export type SessionStatus = $Enums.SessionStatus
 
 export const SessionStatus: typeof $Enums.SessionStatus
+
+export type RepairQuality = $Enums.RepairQuality
+
+export const RepairQuality: typeof $Enums.RepairQuality
 
 /**
  * ##  Prisma Client ʲˢ
@@ -719,6 +751,46 @@ export class PrismaClient<
     * ```
     */
   get provider(): Prisma.ProviderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.serviceCategory`: Exposes CRUD operations for the **ServiceCategory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServiceCategories
+    * const serviceCategories = await prisma.serviceCategory.findMany()
+    * ```
+    */
+  get serviceCategory(): Prisma.ServiceCategoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.brandRepairCategory`: Exposes CRUD operations for the **BrandRepairCategory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BrandRepairCategories
+    * const brandRepairCategories = await prisma.brandRepairCategory.findMany()
+    * ```
+    */
+  get brandRepairCategory(): Prisma.BrandRepairCategoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.repairType`: Exposes CRUD operations for the **RepairType** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RepairTypes
+    * const repairTypes = await prisma.repairType.findMany()
+    * ```
+    */
+  get repairType(): Prisma.RepairTypeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.repairOption`: Exposes CRUD operations for the **RepairOption** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RepairOptions
+    * const repairOptions = await prisma.repairOption.findMany()
+    * ```
+    */
+  get repairOption(): Prisma.RepairOptionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.brandRepair`: Exposes CRUD operations for the **BrandRepair** model.
@@ -1241,6 +1313,10 @@ export namespace Prisma {
     StockEntry: 'StockEntry',
     StockEntryItem: 'StockEntryItem',
     Provider: 'Provider',
+    ServiceCategory: 'ServiceCategory',
+    BrandRepairCategory: 'BrandRepairCategory',
+    RepairType: 'RepairType',
+    RepairOption: 'RepairOption',
     BrandRepair: 'BrandRepair',
     ModelRepair: 'ModelRepair',
     ServiceCatalog: 'ServiceCatalog',
@@ -1264,7 +1340,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "product" | "category" | "subcategory" | "attributeDefinition" | "categoryAttribute" | "subcategoryAttribute" | "productVariant" | "deviceBrand" | "deviceModel" | "productCompatibility" | "recommendationRule" | "customer" | "sale" | "expense" | "buyer" | "communicationPreferences" | "customerDevice" | "productInteraction" | "browsingEvent" | "feedback" | "order" | "orderDetail" | "pOSSale" | "pOSSaleDetail" | "service" | "cashRegisterSession" | "cashMovement" | "user" | "favoriteImage" | "stockEntry" | "stockEntryItem" | "provider" | "brandRepair" | "modelRepair" | "serviceCatalog" | "serviceDefect" | "serviceAttribute"
+      modelProps: "product" | "category" | "subcategory" | "attributeDefinition" | "categoryAttribute" | "subcategoryAttribute" | "productVariant" | "deviceBrand" | "deviceModel" | "productCompatibility" | "recommendationRule" | "customer" | "sale" | "expense" | "buyer" | "communicationPreferences" | "customerDevice" | "productInteraction" | "browsingEvent" | "feedback" | "order" | "orderDetail" | "pOSSale" | "pOSSaleDetail" | "service" | "cashRegisterSession" | "cashMovement" | "user" | "favoriteImage" | "stockEntry" | "stockEntryItem" | "provider" | "serviceCategory" | "brandRepairCategory" | "repairType" | "repairOption" | "brandRepair" | "modelRepair" | "serviceCatalog" | "serviceDefect" | "serviceAttribute"
       txIsolationLevel: never
     }
     model: {
@@ -3636,6 +3712,302 @@ export namespace Prisma {
           }
         }
       }
+      ServiceCategory: {
+        payload: Prisma.$ServiceCategoryPayload<ExtArgs>
+        fields: Prisma.ServiceCategoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ServiceCategoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServiceCategoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>
+          }
+          findFirst: {
+            args: Prisma.ServiceCategoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServiceCategoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>
+          }
+          findMany: {
+            args: Prisma.ServiceCategoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>[]
+          }
+          create: {
+            args: Prisma.ServiceCategoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>
+          }
+          createMany: {
+            args: Prisma.ServiceCategoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ServiceCategoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>
+          }
+          update: {
+            args: Prisma.ServiceCategoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.ServiceCategoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServiceCategoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ServiceCategoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>
+          }
+          aggregate: {
+            args: Prisma.ServiceCategoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServiceCategory>
+          }
+          groupBy: {
+            args: Prisma.ServiceCategoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServiceCategoryGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ServiceCategoryFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ServiceCategoryAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ServiceCategoryCountArgs<ExtArgs>
+            result: $Utils.Optional<ServiceCategoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      BrandRepairCategory: {
+        payload: Prisma.$BrandRepairCategoryPayload<ExtArgs>
+        fields: Prisma.BrandRepairCategoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BrandRepairCategoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrandRepairCategoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BrandRepairCategoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrandRepairCategoryPayload>
+          }
+          findFirst: {
+            args: Prisma.BrandRepairCategoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrandRepairCategoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BrandRepairCategoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrandRepairCategoryPayload>
+          }
+          findMany: {
+            args: Prisma.BrandRepairCategoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrandRepairCategoryPayload>[]
+          }
+          create: {
+            args: Prisma.BrandRepairCategoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrandRepairCategoryPayload>
+          }
+          createMany: {
+            args: Prisma.BrandRepairCategoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.BrandRepairCategoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrandRepairCategoryPayload>
+          }
+          update: {
+            args: Prisma.BrandRepairCategoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrandRepairCategoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.BrandRepairCategoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BrandRepairCategoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.BrandRepairCategoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrandRepairCategoryPayload>
+          }
+          aggregate: {
+            args: Prisma.BrandRepairCategoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBrandRepairCategory>
+          }
+          groupBy: {
+            args: Prisma.BrandRepairCategoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BrandRepairCategoryGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.BrandRepairCategoryFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.BrandRepairCategoryAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.BrandRepairCategoryCountArgs<ExtArgs>
+            result: $Utils.Optional<BrandRepairCategoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      RepairType: {
+        payload: Prisma.$RepairTypePayload<ExtArgs>
+        fields: Prisma.RepairTypeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RepairTypeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairTypePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RepairTypeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairTypePayload>
+          }
+          findFirst: {
+            args: Prisma.RepairTypeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairTypePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RepairTypeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairTypePayload>
+          }
+          findMany: {
+            args: Prisma.RepairTypeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairTypePayload>[]
+          }
+          create: {
+            args: Prisma.RepairTypeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairTypePayload>
+          }
+          createMany: {
+            args: Prisma.RepairTypeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.RepairTypeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairTypePayload>
+          }
+          update: {
+            args: Prisma.RepairTypeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairTypePayload>
+          }
+          deleteMany: {
+            args: Prisma.RepairTypeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RepairTypeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.RepairTypeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairTypePayload>
+          }
+          aggregate: {
+            args: Prisma.RepairTypeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRepairType>
+          }
+          groupBy: {
+            args: Prisma.RepairTypeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RepairTypeGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.RepairTypeFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.RepairTypeAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.RepairTypeCountArgs<ExtArgs>
+            result: $Utils.Optional<RepairTypeCountAggregateOutputType> | number
+          }
+        }
+      }
+      RepairOption: {
+        payload: Prisma.$RepairOptionPayload<ExtArgs>
+        fields: Prisma.RepairOptionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RepairOptionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairOptionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RepairOptionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairOptionPayload>
+          }
+          findFirst: {
+            args: Prisma.RepairOptionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairOptionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RepairOptionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairOptionPayload>
+          }
+          findMany: {
+            args: Prisma.RepairOptionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairOptionPayload>[]
+          }
+          create: {
+            args: Prisma.RepairOptionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairOptionPayload>
+          }
+          createMany: {
+            args: Prisma.RepairOptionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.RepairOptionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairOptionPayload>
+          }
+          update: {
+            args: Prisma.RepairOptionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairOptionPayload>
+          }
+          deleteMany: {
+            args: Prisma.RepairOptionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RepairOptionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.RepairOptionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairOptionPayload>
+          }
+          aggregate: {
+            args: Prisma.RepairOptionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRepairOption>
+          }
+          groupBy: {
+            args: Prisma.RepairOptionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RepairOptionGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.RepairOptionFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.RepairOptionAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.RepairOptionCountArgs<ExtArgs>
+            result: $Utils.Optional<RepairOptionCountAggregateOutputType> | number
+          }
+        }
+      }
       BrandRepair: {
         payload: Prisma.$BrandRepairPayload<ExtArgs>
         fields: Prisma.BrandRepairFieldRefs
@@ -4109,6 +4481,10 @@ export namespace Prisma {
     stockEntry?: StockEntryOmit
     stockEntryItem?: StockEntryItemOmit
     provider?: ProviderOmit
+    serviceCategory?: ServiceCategoryOmit
+    brandRepairCategory?: BrandRepairCategoryOmit
+    repairType?: RepairTypeOmit
+    repairOption?: RepairOptionOmit
     brandRepair?: BrandRepairOmit
     modelRepair?: ModelRepairOmit
     serviceCatalog?: ServiceCatalogOmit
@@ -4720,15 +5096,148 @@ export namespace Prisma {
 
 
   /**
+   * Count Type ServiceCategoryCountOutputType
+   */
+
+  export type ServiceCategoryCountOutputType = {
+    repairTypes: number
+    brandLinks: number
+    models: number
+    services: number
+  }
+
+  export type ServiceCategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repairTypes?: boolean | ServiceCategoryCountOutputTypeCountRepairTypesArgs
+    brandLinks?: boolean | ServiceCategoryCountOutputTypeCountBrandLinksArgs
+    models?: boolean | ServiceCategoryCountOutputTypeCountModelsArgs
+    services?: boolean | ServiceCategoryCountOutputTypeCountServicesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ServiceCategoryCountOutputType without action
+   */
+  export type ServiceCategoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategoryCountOutputType
+     */
+    select?: ServiceCategoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ServiceCategoryCountOutputType without action
+   */
+  export type ServiceCategoryCountOutputTypeCountRepairTypesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepairTypeWhereInput
+  }
+
+  /**
+   * ServiceCategoryCountOutputType without action
+   */
+  export type ServiceCategoryCountOutputTypeCountBrandLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BrandRepairCategoryWhereInput
+  }
+
+  /**
+   * ServiceCategoryCountOutputType without action
+   */
+  export type ServiceCategoryCountOutputTypeCountModelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModelRepairWhereInput
+  }
+
+  /**
+   * ServiceCategoryCountOutputType without action
+   */
+  export type ServiceCategoryCountOutputTypeCountServicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceWhereInput
+  }
+
+
+  /**
+   * Count Type RepairTypeCountOutputType
+   */
+
+  export type RepairTypeCountOutputType = {
+    repairOptions: number
+    services: number
+  }
+
+  export type RepairTypeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repairOptions?: boolean | RepairTypeCountOutputTypeCountRepairOptionsArgs
+    services?: boolean | RepairTypeCountOutputTypeCountServicesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * RepairTypeCountOutputType without action
+   */
+  export type RepairTypeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairTypeCountOutputType
+     */
+    select?: RepairTypeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RepairTypeCountOutputType without action
+   */
+  export type RepairTypeCountOutputTypeCountRepairOptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepairOptionWhereInput
+  }
+
+  /**
+   * RepairTypeCountOutputType without action
+   */
+  export type RepairTypeCountOutputTypeCountServicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceWhereInput
+  }
+
+
+  /**
+   * Count Type RepairOptionCountOutputType
+   */
+
+  export type RepairOptionCountOutputType = {
+    services: number
+  }
+
+  export type RepairOptionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    services?: boolean | RepairOptionCountOutputTypeCountServicesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * RepairOptionCountOutputType without action
+   */
+  export type RepairOptionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOptionCountOutputType
+     */
+    select?: RepairOptionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RepairOptionCountOutputType without action
+   */
+  export type RepairOptionCountOutputTypeCountServicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceWhereInput
+  }
+
+
+  /**
    * Count Type BrandRepairCountOutputType
    */
 
   export type BrandRepairCountOutputType = {
     models: number
+    categoryLinks: number
+    services: number
   }
 
   export type BrandRepairCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     models?: boolean | BrandRepairCountOutputTypeCountModelsArgs
+    categoryLinks?: boolean | BrandRepairCountOutputTypeCountCategoryLinksArgs
+    services?: boolean | BrandRepairCountOutputTypeCountServicesArgs
   }
 
   // Custom InputTypes
@@ -4749,6 +5258,20 @@ export namespace Prisma {
     where?: ModelRepairWhereInput
   }
 
+  /**
+   * BrandRepairCountOutputType without action
+   */
+  export type BrandRepairCountOutputTypeCountCategoryLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BrandRepairCategoryWhereInput
+  }
+
+  /**
+   * BrandRepairCountOutputType without action
+   */
+  export type BrandRepairCountOutputTypeCountServicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceWhereInput
+  }
+
 
   /**
    * Count Type ModelRepairCountOutputType
@@ -4756,10 +5279,14 @@ export namespace Prisma {
 
   export type ModelRepairCountOutputType = {
     serviceCatalog: number
+    repairOptions: number
+    services: number
   }
 
   export type ModelRepairCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     serviceCatalog?: boolean | ModelRepairCountOutputTypeCountServiceCatalogArgs
+    repairOptions?: boolean | ModelRepairCountOutputTypeCountRepairOptionsArgs
+    services?: boolean | ModelRepairCountOutputTypeCountServicesArgs
   }
 
   // Custom InputTypes
@@ -4778,6 +5305,20 @@ export namespace Prisma {
    */
   export type ModelRepairCountOutputTypeCountServiceCatalogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ServiceCatalogWhereInput
+  }
+
+  /**
+   * ModelRepairCountOutputType without action
+   */
+  export type ModelRepairCountOutputTypeCountRepairOptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepairOptionWhereInput
+  }
+
+  /**
+   * ModelRepairCountOutputType without action
+   */
+  export type ModelRepairCountOutputTypeCountServicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceWhereInput
   }
 
 
@@ -31109,6 +31650,11 @@ export namespace Prisma {
     defectId: string | null
     privateNotes: string | null
     isWarranty: boolean | null
+    serviceCategoryId: string | null
+    brandRepairId: string | null
+    modelRepairId: string | null
+    repairTypeId: string | null
+    repairOptionId: string | null
   }
 
   export type ServiceMaxAggregateOutputType = {
@@ -31133,6 +31679,11 @@ export namespace Prisma {
     defectId: string | null
     privateNotes: string | null
     isWarranty: boolean | null
+    serviceCategoryId: string | null
+    brandRepairId: string | null
+    modelRepairId: string | null
+    repairTypeId: string | null
+    repairOptionId: string | null
   }
 
   export type ServiceCountAggregateOutputType = {
@@ -31162,6 +31713,11 @@ export namespace Prisma {
     additionalDetails: number
     privateNotes: number
     isWarranty: number
+    serviceCategoryId: number
+    brandRepairId: number
+    modelRepairId: number
+    repairTypeId: number
+    repairOptionId: number
     _all: number
   }
 
@@ -31198,6 +31754,11 @@ export namespace Prisma {
     defectId?: true
     privateNotes?: true
     isWarranty?: true
+    serviceCategoryId?: true
+    brandRepairId?: true
+    modelRepairId?: true
+    repairTypeId?: true
+    repairOptionId?: true
   }
 
   export type ServiceMaxAggregateInputType = {
@@ -31222,6 +31783,11 @@ export namespace Prisma {
     defectId?: true
     privateNotes?: true
     isWarranty?: true
+    serviceCategoryId?: true
+    brandRepairId?: true
+    modelRepairId?: true
+    repairTypeId?: true
+    repairOptionId?: true
   }
 
   export type ServiceCountAggregateInputType = {
@@ -31251,6 +31817,11 @@ export namespace Prisma {
     additionalDetails?: true
     privateNotes?: true
     isWarranty?: true
+    serviceCategoryId?: true
+    brandRepairId?: true
+    modelRepairId?: true
+    repairTypeId?: true
+    repairOptionId?: true
     _all?: true
   }
 
@@ -31367,6 +31938,11 @@ export namespace Prisma {
     additionalDetails: JsonValue | null
     privateNotes: string | null
     isWarranty: boolean
+    serviceCategoryId: string | null
+    brandRepairId: string | null
+    modelRepairId: string | null
+    repairTypeId: string | null
+    repairOptionId: string | null
     _count: ServiceCountAggregateOutputType | null
     _avg: ServiceAvgAggregateOutputType | null
     _sum: ServiceSumAggregateOutputType | null
@@ -31415,8 +31991,18 @@ export namespace Prisma {
     additionalDetails?: boolean
     privateNotes?: boolean
     isWarranty?: boolean
+    serviceCategoryId?: boolean
+    brandRepairId?: boolean
+    modelRepairId?: boolean
+    repairTypeId?: boolean
+    repairOptionId?: boolean
     buyer?: boolean | Service$buyerArgs<ExtArgs>
     customerDevice?: boolean | Service$customerDeviceArgs<ExtArgs>
+    serviceCategory?: boolean | Service$serviceCategoryArgs<ExtArgs>
+    brandRepair?: boolean | Service$brandRepairArgs<ExtArgs>
+    modelRepair?: boolean | Service$modelRepairArgs<ExtArgs>
+    repairType?: boolean | Service$repairTypeArgs<ExtArgs>
+    repairOption?: boolean | Service$repairOptionArgs<ExtArgs>
   }, ExtArgs["result"]["service"]>
 
 
@@ -31448,12 +32034,22 @@ export namespace Prisma {
     additionalDetails?: boolean
     privateNotes?: boolean
     isWarranty?: boolean
+    serviceCategoryId?: boolean
+    brandRepairId?: boolean
+    modelRepairId?: boolean
+    repairTypeId?: boolean
+    repairOptionId?: boolean
   }
 
-  export type ServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "customerDeviceId" | "device" | "client" | "state" | "diagnostico" | "estado_dispositivo_al_ingresar" | "observaciones" | "repair" | "piezas" | "total" | "discount" | "date" | "dateOut" | "fecha_presupuesto" | "fecha_aprobacion" | "garantia_hasta" | "observaciones_garantia" | "warrantyReturnDate" | "warrantyReturnReason" | "payments" | "defectId" | "additionalDetails" | "privateNotes" | "isWarranty", ExtArgs["result"]["service"]>
+  export type ServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "customerDeviceId" | "device" | "client" | "state" | "diagnostico" | "estado_dispositivo_al_ingresar" | "observaciones" | "repair" | "piezas" | "total" | "discount" | "date" | "dateOut" | "fecha_presupuesto" | "fecha_aprobacion" | "garantia_hasta" | "observaciones_garantia" | "warrantyReturnDate" | "warrantyReturnReason" | "payments" | "defectId" | "additionalDetails" | "privateNotes" | "isWarranty" | "serviceCategoryId" | "brandRepairId" | "modelRepairId" | "repairTypeId" | "repairOptionId", ExtArgs["result"]["service"]>
   export type ServiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     buyer?: boolean | Service$buyerArgs<ExtArgs>
     customerDevice?: boolean | Service$customerDeviceArgs<ExtArgs>
+    serviceCategory?: boolean | Service$serviceCategoryArgs<ExtArgs>
+    brandRepair?: boolean | Service$brandRepairArgs<ExtArgs>
+    modelRepair?: boolean | Service$modelRepairArgs<ExtArgs>
+    repairType?: boolean | Service$repairTypeArgs<ExtArgs>
+    repairOption?: boolean | Service$repairOptionArgs<ExtArgs>
   }
 
   export type $ServicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -31461,6 +32057,11 @@ export namespace Prisma {
     objects: {
       buyer: Prisma.$BuyerPayload<ExtArgs> | null
       customerDevice: Prisma.$CustomerDevicePayload<ExtArgs> | null
+      serviceCategory: Prisma.$ServiceCategoryPayload<ExtArgs> | null
+      brandRepair: Prisma.$BrandRepairPayload<ExtArgs> | null
+      modelRepair: Prisma.$ModelRepairPayload<ExtArgs> | null
+      repairType: Prisma.$RepairTypePayload<ExtArgs> | null
+      repairOption: Prisma.$RepairOptionPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -31489,6 +32090,11 @@ export namespace Prisma {
       additionalDetails: Prisma.JsonValue | null
       privateNotes: string | null
       isWarranty: boolean
+      serviceCategoryId: string | null
+      brandRepairId: string | null
+      modelRepairId: string | null
+      repairTypeId: string | null
+      repairOptionId: string | null
     }, ExtArgs["result"]["service"]>
     composites: {}
   }
@@ -31854,6 +32460,11 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     buyer<T extends Service$buyerArgs<ExtArgs> = {}>(args?: Subset<T, Service$buyerArgs<ExtArgs>>): Prisma__BuyerClient<$Result.GetResult<Prisma.$BuyerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     customerDevice<T extends Service$customerDeviceArgs<ExtArgs> = {}>(args?: Subset<T, Service$customerDeviceArgs<ExtArgs>>): Prisma__CustomerDeviceClient<$Result.GetResult<Prisma.$CustomerDevicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    serviceCategory<T extends Service$serviceCategoryArgs<ExtArgs> = {}>(args?: Subset<T, Service$serviceCategoryArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    brandRepair<T extends Service$brandRepairArgs<ExtArgs> = {}>(args?: Subset<T, Service$brandRepairArgs<ExtArgs>>): Prisma__BrandRepairClient<$Result.GetResult<Prisma.$BrandRepairPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    modelRepair<T extends Service$modelRepairArgs<ExtArgs> = {}>(args?: Subset<T, Service$modelRepairArgs<ExtArgs>>): Prisma__ModelRepairClient<$Result.GetResult<Prisma.$ModelRepairPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    repairType<T extends Service$repairTypeArgs<ExtArgs> = {}>(args?: Subset<T, Service$repairTypeArgs<ExtArgs>>): Prisma__RepairTypeClient<$Result.GetResult<Prisma.$RepairTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    repairOption<T extends Service$repairOptionArgs<ExtArgs> = {}>(args?: Subset<T, Service$repairOptionArgs<ExtArgs>>): Prisma__RepairOptionClient<$Result.GetResult<Prisma.$RepairOptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -31909,6 +32520,11 @@ export namespace Prisma {
     readonly additionalDetails: FieldRef<"Service", 'Json'>
     readonly privateNotes: FieldRef<"Service", 'String'>
     readonly isWarranty: FieldRef<"Service", 'Boolean'>
+    readonly serviceCategoryId: FieldRef<"Service", 'String'>
+    readonly brandRepairId: FieldRef<"Service", 'String'>
+    readonly modelRepairId: FieldRef<"Service", 'String'>
+    readonly repairTypeId: FieldRef<"Service", 'String'>
+    readonly repairOptionId: FieldRef<"Service", 'String'>
   }
     
 
@@ -32314,6 +32930,101 @@ export namespace Prisma {
      */
     include?: CustomerDeviceInclude<ExtArgs> | null
     where?: CustomerDeviceWhereInput
+  }
+
+  /**
+   * Service.serviceCategory
+   */
+  export type Service$serviceCategoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    where?: ServiceCategoryWhereInput
+  }
+
+  /**
+   * Service.brandRepair
+   */
+  export type Service$brandRepairArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepair
+     */
+    select?: BrandRepairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepair
+     */
+    omit?: BrandRepairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairInclude<ExtArgs> | null
+    where?: BrandRepairWhereInput
+  }
+
+  /**
+   * Service.modelRepair
+   */
+  export type Service$modelRepairArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelRepair
+     */
+    select?: ModelRepairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelRepair
+     */
+    omit?: ModelRepairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelRepairInclude<ExtArgs> | null
+    where?: ModelRepairWhereInput
+  }
+
+  /**
+   * Service.repairType
+   */
+  export type Service$repairTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairType
+     */
+    select?: RepairTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairType
+     */
+    omit?: RepairTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairTypeInclude<ExtArgs> | null
+    where?: RepairTypeWhereInput
+  }
+
+  /**
+   * Service.repairOption
+   */
+  export type Service$repairOptionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+    where?: RepairOptionWhereInput
   }
 
   /**
@@ -34767,6 +35478,7 @@ export namespace Prisma {
   export type UserMinAggregateOutputType = {
     id: string | null
     username: string | null
+    name: string | null
     email: string | null
     password: string | null
     avatar: string | null
@@ -34776,6 +35488,7 @@ export namespace Prisma {
   export type UserMaxAggregateOutputType = {
     id: string | null
     username: string | null
+    name: string | null
     email: string | null
     password: string | null
     avatar: string | null
@@ -34785,6 +35498,7 @@ export namespace Prisma {
   export type UserCountAggregateOutputType = {
     id: number
     username: number
+    name: number
     email: number
     password: number
     avatar: number
@@ -34796,6 +35510,7 @@ export namespace Prisma {
   export type UserMinAggregateInputType = {
     id?: true
     username?: true
+    name?: true
     email?: true
     password?: true
     avatar?: true
@@ -34805,6 +35520,7 @@ export namespace Prisma {
   export type UserMaxAggregateInputType = {
     id?: true
     username?: true
+    name?: true
     email?: true
     password?: true
     avatar?: true
@@ -34814,6 +35530,7 @@ export namespace Prisma {
   export type UserCountAggregateInputType = {
     id?: true
     username?: true
+    name?: true
     email?: true
     password?: true
     avatar?: true
@@ -34896,6 +35613,7 @@ export namespace Prisma {
   export type UserGroupByOutputType = {
     id: string
     username: string | null
+    name: string | null
     email: string
     password: string
     avatar: string | null
@@ -34922,6 +35640,7 @@ export namespace Prisma {
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     username?: boolean
+    name?: boolean
     email?: boolean
     password?: boolean
     avatar?: boolean
@@ -34933,13 +35652,14 @@ export namespace Prisma {
   export type UserSelectScalar = {
     id?: boolean
     username?: boolean
+    name?: boolean
     email?: boolean
     password?: boolean
     avatar?: boolean
     sucursal?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "avatar" | "sucursal", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "name" | "email" | "password" | "avatar" | "sucursal", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -34947,6 +35667,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       username: string | null
+      name: string | null
       email: string
       password: string
       avatar: string | null
@@ -35345,6 +36066,7 @@ export namespace Prisma {
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
     readonly username: FieldRef<"User", 'String'>
+    readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly avatar: FieldRef<"User", 'String'>
@@ -39788,6 +40510,4255 @@ export namespace Prisma {
 
 
   /**
+   * Model ServiceCategory
+   */
+
+  export type AggregateServiceCategory = {
+    _count: ServiceCategoryCountAggregateOutputType | null
+    _min: ServiceCategoryMinAggregateOutputType | null
+    _max: ServiceCategoryMaxAggregateOutputType | null
+  }
+
+  export type ServiceCategoryMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    slug: string | null
+    icon: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ServiceCategoryMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    slug: string | null
+    icon: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ServiceCategoryCountAggregateOutputType = {
+    id: number
+    name: number
+    slug: number
+    icon: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ServiceCategoryMinAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    icon?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ServiceCategoryMaxAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    icon?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ServiceCategoryCountAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    icon?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ServiceCategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceCategory to aggregate.
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceCategories to fetch.
+     */
+    orderBy?: ServiceCategoryOrderByWithRelationInput | ServiceCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServiceCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServiceCategories
+    **/
+    _count?: true | ServiceCategoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServiceCategoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServiceCategoryMaxAggregateInputType
+  }
+
+  export type GetServiceCategoryAggregateType<T extends ServiceCategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateServiceCategory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServiceCategory[P]>
+      : GetScalarType<T[P], AggregateServiceCategory[P]>
+  }
+
+
+
+
+  export type ServiceCategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceCategoryWhereInput
+    orderBy?: ServiceCategoryOrderByWithAggregationInput | ServiceCategoryOrderByWithAggregationInput[]
+    by: ServiceCategoryScalarFieldEnum[] | ServiceCategoryScalarFieldEnum
+    having?: ServiceCategoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServiceCategoryCountAggregateInputType | true
+    _min?: ServiceCategoryMinAggregateInputType
+    _max?: ServiceCategoryMaxAggregateInputType
+  }
+
+  export type ServiceCategoryGroupByOutputType = {
+    id: string
+    name: string
+    slug: string
+    icon: string | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: ServiceCategoryCountAggregateOutputType | null
+    _min: ServiceCategoryMinAggregateOutputType | null
+    _max: ServiceCategoryMaxAggregateOutputType | null
+  }
+
+  type GetServiceCategoryGroupByPayload<T extends ServiceCategoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ServiceCategoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServiceCategoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServiceCategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], ServiceCategoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServiceCategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    icon?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    repairTypes?: boolean | ServiceCategory$repairTypesArgs<ExtArgs>
+    brandLinks?: boolean | ServiceCategory$brandLinksArgs<ExtArgs>
+    models?: boolean | ServiceCategory$modelsArgs<ExtArgs>
+    services?: boolean | ServiceCategory$servicesArgs<ExtArgs>
+    _count?: boolean | ServiceCategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["serviceCategory"]>
+
+
+
+  export type ServiceCategorySelectScalar = {
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    icon?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ServiceCategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "icon" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["serviceCategory"]>
+  export type ServiceCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repairTypes?: boolean | ServiceCategory$repairTypesArgs<ExtArgs>
+    brandLinks?: boolean | ServiceCategory$brandLinksArgs<ExtArgs>
+    models?: boolean | ServiceCategory$modelsArgs<ExtArgs>
+    services?: boolean | ServiceCategory$servicesArgs<ExtArgs>
+    _count?: boolean | ServiceCategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $ServiceCategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServiceCategory"
+    objects: {
+      repairTypes: Prisma.$RepairTypePayload<ExtArgs>[]
+      brandLinks: Prisma.$BrandRepairCategoryPayload<ExtArgs>[]
+      models: Prisma.$ModelRepairPayload<ExtArgs>[]
+      services: Prisma.$ServicePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      slug: string
+      icon: string | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["serviceCategory"]>
+    composites: {}
+  }
+
+  type ServiceCategoryGetPayload<S extends boolean | null | undefined | ServiceCategoryDefaultArgs> = $Result.GetResult<Prisma.$ServiceCategoryPayload, S>
+
+  type ServiceCategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ServiceCategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ServiceCategoryCountAggregateInputType | true
+    }
+
+  export interface ServiceCategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceCategory'], meta: { name: 'ServiceCategory' } }
+    /**
+     * Find zero or one ServiceCategory that matches the filter.
+     * @param {ServiceCategoryFindUniqueArgs} args - Arguments to find a ServiceCategory
+     * @example
+     * // Get one ServiceCategory
+     * const serviceCategory = await prisma.serviceCategory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServiceCategoryFindUniqueArgs>(args: SelectSubset<T, ServiceCategoryFindUniqueArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ServiceCategory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ServiceCategoryFindUniqueOrThrowArgs} args - Arguments to find a ServiceCategory
+     * @example
+     * // Get one ServiceCategory
+     * const serviceCategory = await prisma.serviceCategory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServiceCategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, ServiceCategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceCategory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryFindFirstArgs} args - Arguments to find a ServiceCategory
+     * @example
+     * // Get one ServiceCategory
+     * const serviceCategory = await prisma.serviceCategory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServiceCategoryFindFirstArgs>(args?: SelectSubset<T, ServiceCategoryFindFirstArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceCategory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryFindFirstOrThrowArgs} args - Arguments to find a ServiceCategory
+     * @example
+     * // Get one ServiceCategory
+     * const serviceCategory = await prisma.serviceCategory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServiceCategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, ServiceCategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServiceCategories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServiceCategories
+     * const serviceCategories = await prisma.serviceCategory.findMany()
+     * 
+     * // Get first 10 ServiceCategories
+     * const serviceCategories = await prisma.serviceCategory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const serviceCategoryWithIdOnly = await prisma.serviceCategory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServiceCategoryFindManyArgs>(args?: SelectSubset<T, ServiceCategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ServiceCategory.
+     * @param {ServiceCategoryCreateArgs} args - Arguments to create a ServiceCategory.
+     * @example
+     * // Create one ServiceCategory
+     * const ServiceCategory = await prisma.serviceCategory.create({
+     *   data: {
+     *     // ... data to create a ServiceCategory
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServiceCategoryCreateArgs>(args: SelectSubset<T, ServiceCategoryCreateArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ServiceCategories.
+     * @param {ServiceCategoryCreateManyArgs} args - Arguments to create many ServiceCategories.
+     * @example
+     * // Create many ServiceCategories
+     * const serviceCategory = await prisma.serviceCategory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServiceCategoryCreateManyArgs>(args?: SelectSubset<T, ServiceCategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ServiceCategory.
+     * @param {ServiceCategoryDeleteArgs} args - Arguments to delete one ServiceCategory.
+     * @example
+     * // Delete one ServiceCategory
+     * const ServiceCategory = await prisma.serviceCategory.delete({
+     *   where: {
+     *     // ... filter to delete one ServiceCategory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServiceCategoryDeleteArgs>(args: SelectSubset<T, ServiceCategoryDeleteArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ServiceCategory.
+     * @param {ServiceCategoryUpdateArgs} args - Arguments to update one ServiceCategory.
+     * @example
+     * // Update one ServiceCategory
+     * const serviceCategory = await prisma.serviceCategory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServiceCategoryUpdateArgs>(args: SelectSubset<T, ServiceCategoryUpdateArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ServiceCategories.
+     * @param {ServiceCategoryDeleteManyArgs} args - Arguments to filter ServiceCategories to delete.
+     * @example
+     * // Delete a few ServiceCategories
+     * const { count } = await prisma.serviceCategory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServiceCategoryDeleteManyArgs>(args?: SelectSubset<T, ServiceCategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceCategories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServiceCategories
+     * const serviceCategory = await prisma.serviceCategory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServiceCategoryUpdateManyArgs>(args: SelectSubset<T, ServiceCategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ServiceCategory.
+     * @param {ServiceCategoryUpsertArgs} args - Arguments to update or create a ServiceCategory.
+     * @example
+     * // Update or create a ServiceCategory
+     * const serviceCategory = await prisma.serviceCategory.upsert({
+     *   create: {
+     *     // ... data to create a ServiceCategory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServiceCategory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServiceCategoryUpsertArgs>(args: SelectSubset<T, ServiceCategoryUpsertArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServiceCategories that matches the filter.
+     * @param {ServiceCategoryFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const serviceCategory = await prisma.serviceCategory.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ServiceCategoryFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a ServiceCategory.
+     * @param {ServiceCategoryAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const serviceCategory = await prisma.serviceCategory.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ServiceCategoryAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of ServiceCategories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryCountArgs} args - Arguments to filter ServiceCategories to count.
+     * @example
+     * // Count the number of ServiceCategories
+     * const count = await prisma.serviceCategory.count({
+     *   where: {
+     *     // ... the filter for the ServiceCategories we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServiceCategoryCountArgs>(
+      args?: Subset<T, ServiceCategoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServiceCategoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServiceCategory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServiceCategoryAggregateArgs>(args: Subset<T, ServiceCategoryAggregateArgs>): Prisma.PrismaPromise<GetServiceCategoryAggregateType<T>>
+
+    /**
+     * Group by ServiceCategory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServiceCategoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServiceCategoryGroupByArgs['orderBy'] }
+        : { orderBy?: ServiceCategoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServiceCategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServiceCategory model
+   */
+  readonly fields: ServiceCategoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServiceCategory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServiceCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    repairTypes<T extends ServiceCategory$repairTypesArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategory$repairTypesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    brandLinks<T extends ServiceCategory$brandLinksArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategory$brandLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrandRepairCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    models<T extends ServiceCategory$modelsArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategory$modelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelRepairPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    services<T extends ServiceCategory$servicesArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategory$servicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServiceCategory model
+   */
+  interface ServiceCategoryFieldRefs {
+    readonly id: FieldRef<"ServiceCategory", 'String'>
+    readonly name: FieldRef<"ServiceCategory", 'String'>
+    readonly slug: FieldRef<"ServiceCategory", 'String'>
+    readonly icon: FieldRef<"ServiceCategory", 'String'>
+    readonly isActive: FieldRef<"ServiceCategory", 'Boolean'>
+    readonly createdAt: FieldRef<"ServiceCategory", 'DateTime'>
+    readonly updatedAt: FieldRef<"ServiceCategory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServiceCategory findUnique
+   */
+  export type ServiceCategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategory to fetch.
+     */
+    where: ServiceCategoryWhereUniqueInput
+  }
+
+  /**
+   * ServiceCategory findUniqueOrThrow
+   */
+  export type ServiceCategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategory to fetch.
+     */
+    where: ServiceCategoryWhereUniqueInput
+  }
+
+  /**
+   * ServiceCategory findFirst
+   */
+  export type ServiceCategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategory to fetch.
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceCategories to fetch.
+     */
+    orderBy?: ServiceCategoryOrderByWithRelationInput | ServiceCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceCategories.
+     */
+    cursor?: ServiceCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceCategories.
+     */
+    distinct?: ServiceCategoryScalarFieldEnum | ServiceCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceCategory findFirstOrThrow
+   */
+  export type ServiceCategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategory to fetch.
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceCategories to fetch.
+     */
+    orderBy?: ServiceCategoryOrderByWithRelationInput | ServiceCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceCategories.
+     */
+    cursor?: ServiceCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceCategories.
+     */
+    distinct?: ServiceCategoryScalarFieldEnum | ServiceCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceCategory findMany
+   */
+  export type ServiceCategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategories to fetch.
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceCategories to fetch.
+     */
+    orderBy?: ServiceCategoryOrderByWithRelationInput | ServiceCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServiceCategories.
+     */
+    cursor?: ServiceCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceCategories.
+     */
+    skip?: number
+    distinct?: ServiceCategoryScalarFieldEnum | ServiceCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceCategory create
+   */
+  export type ServiceCategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ServiceCategory.
+     */
+    data: XOR<ServiceCategoryCreateInput, ServiceCategoryUncheckedCreateInput>
+  }
+
+  /**
+   * ServiceCategory createMany
+   */
+  export type ServiceCategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServiceCategories.
+     */
+    data: ServiceCategoryCreateManyInput | ServiceCategoryCreateManyInput[]
+  }
+
+  /**
+   * ServiceCategory update
+   */
+  export type ServiceCategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ServiceCategory.
+     */
+    data: XOR<ServiceCategoryUpdateInput, ServiceCategoryUncheckedUpdateInput>
+    /**
+     * Choose, which ServiceCategory to update.
+     */
+    where: ServiceCategoryWhereUniqueInput
+  }
+
+  /**
+   * ServiceCategory updateMany
+   */
+  export type ServiceCategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServiceCategories.
+     */
+    data: XOR<ServiceCategoryUpdateManyMutationInput, ServiceCategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceCategories to update
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * Limit how many ServiceCategories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceCategory upsert
+   */
+  export type ServiceCategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ServiceCategory to update in case it exists.
+     */
+    where: ServiceCategoryWhereUniqueInput
+    /**
+     * In case the ServiceCategory found by the `where` argument doesn't exist, create a new ServiceCategory with this data.
+     */
+    create: XOR<ServiceCategoryCreateInput, ServiceCategoryUncheckedCreateInput>
+    /**
+     * In case the ServiceCategory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServiceCategoryUpdateInput, ServiceCategoryUncheckedUpdateInput>
+  }
+
+  /**
+   * ServiceCategory delete
+   */
+  export type ServiceCategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * Filter which ServiceCategory to delete.
+     */
+    where: ServiceCategoryWhereUniqueInput
+  }
+
+  /**
+   * ServiceCategory deleteMany
+   */
+  export type ServiceCategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceCategories to delete
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * Limit how many ServiceCategories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceCategory findRaw
+   */
+  export type ServiceCategoryFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ServiceCategory aggregateRaw
+   */
+  export type ServiceCategoryAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ServiceCategory.repairTypes
+   */
+  export type ServiceCategory$repairTypesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairType
+     */
+    select?: RepairTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairType
+     */
+    omit?: RepairTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairTypeInclude<ExtArgs> | null
+    where?: RepairTypeWhereInput
+    orderBy?: RepairTypeOrderByWithRelationInput | RepairTypeOrderByWithRelationInput[]
+    cursor?: RepairTypeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepairTypeScalarFieldEnum | RepairTypeScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceCategory.brandLinks
+   */
+  export type ServiceCategory$brandLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepairCategory
+     */
+    select?: BrandRepairCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepairCategory
+     */
+    omit?: BrandRepairCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairCategoryInclude<ExtArgs> | null
+    where?: BrandRepairCategoryWhereInput
+    orderBy?: BrandRepairCategoryOrderByWithRelationInput | BrandRepairCategoryOrderByWithRelationInput[]
+    cursor?: BrandRepairCategoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BrandRepairCategoryScalarFieldEnum | BrandRepairCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceCategory.models
+   */
+  export type ServiceCategory$modelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModelRepair
+     */
+    select?: ModelRepairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModelRepair
+     */
+    omit?: ModelRepairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelRepairInclude<ExtArgs> | null
+    where?: ModelRepairWhereInput
+    orderBy?: ModelRepairOrderByWithRelationInput | ModelRepairOrderByWithRelationInput[]
+    cursor?: ModelRepairWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ModelRepairScalarFieldEnum | ModelRepairScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceCategory.services
+   */
+  export type ServiceCategory$servicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Service
+     */
+    select?: ServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Service
+     */
+    omit?: ServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceInclude<ExtArgs> | null
+    where?: ServiceWhereInput
+    orderBy?: ServiceOrderByWithRelationInput | ServiceOrderByWithRelationInput[]
+    cursor?: ServiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ServiceScalarFieldEnum | ServiceScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceCategory without action
+   */
+  export type ServiceCategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BrandRepairCategory
+   */
+
+  export type AggregateBrandRepairCategory = {
+    _count: BrandRepairCategoryCountAggregateOutputType | null
+    _min: BrandRepairCategoryMinAggregateOutputType | null
+    _max: BrandRepairCategoryMaxAggregateOutputType | null
+  }
+
+  export type BrandRepairCategoryMinAggregateOutputType = {
+    id: string | null
+    brandId: string | null
+    categoryId: string | null
+  }
+
+  export type BrandRepairCategoryMaxAggregateOutputType = {
+    id: string | null
+    brandId: string | null
+    categoryId: string | null
+  }
+
+  export type BrandRepairCategoryCountAggregateOutputType = {
+    id: number
+    brandId: number
+    categoryId: number
+    _all: number
+  }
+
+
+  export type BrandRepairCategoryMinAggregateInputType = {
+    id?: true
+    brandId?: true
+    categoryId?: true
+  }
+
+  export type BrandRepairCategoryMaxAggregateInputType = {
+    id?: true
+    brandId?: true
+    categoryId?: true
+  }
+
+  export type BrandRepairCategoryCountAggregateInputType = {
+    id?: true
+    brandId?: true
+    categoryId?: true
+    _all?: true
+  }
+
+  export type BrandRepairCategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BrandRepairCategory to aggregate.
+     */
+    where?: BrandRepairCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BrandRepairCategories to fetch.
+     */
+    orderBy?: BrandRepairCategoryOrderByWithRelationInput | BrandRepairCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BrandRepairCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BrandRepairCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BrandRepairCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BrandRepairCategories
+    **/
+    _count?: true | BrandRepairCategoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BrandRepairCategoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BrandRepairCategoryMaxAggregateInputType
+  }
+
+  export type GetBrandRepairCategoryAggregateType<T extends BrandRepairCategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateBrandRepairCategory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBrandRepairCategory[P]>
+      : GetScalarType<T[P], AggregateBrandRepairCategory[P]>
+  }
+
+
+
+
+  export type BrandRepairCategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BrandRepairCategoryWhereInput
+    orderBy?: BrandRepairCategoryOrderByWithAggregationInput | BrandRepairCategoryOrderByWithAggregationInput[]
+    by: BrandRepairCategoryScalarFieldEnum[] | BrandRepairCategoryScalarFieldEnum
+    having?: BrandRepairCategoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BrandRepairCategoryCountAggregateInputType | true
+    _min?: BrandRepairCategoryMinAggregateInputType
+    _max?: BrandRepairCategoryMaxAggregateInputType
+  }
+
+  export type BrandRepairCategoryGroupByOutputType = {
+    id: string
+    brandId: string
+    categoryId: string
+    _count: BrandRepairCategoryCountAggregateOutputType | null
+    _min: BrandRepairCategoryMinAggregateOutputType | null
+    _max: BrandRepairCategoryMaxAggregateOutputType | null
+  }
+
+  type GetBrandRepairCategoryGroupByPayload<T extends BrandRepairCategoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BrandRepairCategoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BrandRepairCategoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BrandRepairCategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], BrandRepairCategoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BrandRepairCategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    brandId?: boolean
+    categoryId?: boolean
+    brand?: boolean | BrandRepairDefaultArgs<ExtArgs>
+    category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["brandRepairCategory"]>
+
+
+
+  export type BrandRepairCategorySelectScalar = {
+    id?: boolean
+    brandId?: boolean
+    categoryId?: boolean
+  }
+
+  export type BrandRepairCategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "brandId" | "categoryId", ExtArgs["result"]["brandRepairCategory"]>
+  export type BrandRepairCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    brand?: boolean | BrandRepairDefaultArgs<ExtArgs>
+    category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>
+  }
+
+  export type $BrandRepairCategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BrandRepairCategory"
+    objects: {
+      brand: Prisma.$BrandRepairPayload<ExtArgs>
+      category: Prisma.$ServiceCategoryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      brandId: string
+      categoryId: string
+    }, ExtArgs["result"]["brandRepairCategory"]>
+    composites: {}
+  }
+
+  type BrandRepairCategoryGetPayload<S extends boolean | null | undefined | BrandRepairCategoryDefaultArgs> = $Result.GetResult<Prisma.$BrandRepairCategoryPayload, S>
+
+  type BrandRepairCategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BrandRepairCategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BrandRepairCategoryCountAggregateInputType | true
+    }
+
+  export interface BrandRepairCategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BrandRepairCategory'], meta: { name: 'BrandRepairCategory' } }
+    /**
+     * Find zero or one BrandRepairCategory that matches the filter.
+     * @param {BrandRepairCategoryFindUniqueArgs} args - Arguments to find a BrandRepairCategory
+     * @example
+     * // Get one BrandRepairCategory
+     * const brandRepairCategory = await prisma.brandRepairCategory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BrandRepairCategoryFindUniqueArgs>(args: SelectSubset<T, BrandRepairCategoryFindUniqueArgs<ExtArgs>>): Prisma__BrandRepairCategoryClient<$Result.GetResult<Prisma.$BrandRepairCategoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BrandRepairCategory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BrandRepairCategoryFindUniqueOrThrowArgs} args - Arguments to find a BrandRepairCategory
+     * @example
+     * // Get one BrandRepairCategory
+     * const brandRepairCategory = await prisma.brandRepairCategory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BrandRepairCategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, BrandRepairCategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BrandRepairCategoryClient<$Result.GetResult<Prisma.$BrandRepairCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BrandRepairCategory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrandRepairCategoryFindFirstArgs} args - Arguments to find a BrandRepairCategory
+     * @example
+     * // Get one BrandRepairCategory
+     * const brandRepairCategory = await prisma.brandRepairCategory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BrandRepairCategoryFindFirstArgs>(args?: SelectSubset<T, BrandRepairCategoryFindFirstArgs<ExtArgs>>): Prisma__BrandRepairCategoryClient<$Result.GetResult<Prisma.$BrandRepairCategoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BrandRepairCategory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrandRepairCategoryFindFirstOrThrowArgs} args - Arguments to find a BrandRepairCategory
+     * @example
+     * // Get one BrandRepairCategory
+     * const brandRepairCategory = await prisma.brandRepairCategory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BrandRepairCategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, BrandRepairCategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__BrandRepairCategoryClient<$Result.GetResult<Prisma.$BrandRepairCategoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BrandRepairCategories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrandRepairCategoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BrandRepairCategories
+     * const brandRepairCategories = await prisma.brandRepairCategory.findMany()
+     * 
+     * // Get first 10 BrandRepairCategories
+     * const brandRepairCategories = await prisma.brandRepairCategory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const brandRepairCategoryWithIdOnly = await prisma.brandRepairCategory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BrandRepairCategoryFindManyArgs>(args?: SelectSubset<T, BrandRepairCategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrandRepairCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BrandRepairCategory.
+     * @param {BrandRepairCategoryCreateArgs} args - Arguments to create a BrandRepairCategory.
+     * @example
+     * // Create one BrandRepairCategory
+     * const BrandRepairCategory = await prisma.brandRepairCategory.create({
+     *   data: {
+     *     // ... data to create a BrandRepairCategory
+     *   }
+     * })
+     * 
+     */
+    create<T extends BrandRepairCategoryCreateArgs>(args: SelectSubset<T, BrandRepairCategoryCreateArgs<ExtArgs>>): Prisma__BrandRepairCategoryClient<$Result.GetResult<Prisma.$BrandRepairCategoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BrandRepairCategories.
+     * @param {BrandRepairCategoryCreateManyArgs} args - Arguments to create many BrandRepairCategories.
+     * @example
+     * // Create many BrandRepairCategories
+     * const brandRepairCategory = await prisma.brandRepairCategory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BrandRepairCategoryCreateManyArgs>(args?: SelectSubset<T, BrandRepairCategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a BrandRepairCategory.
+     * @param {BrandRepairCategoryDeleteArgs} args - Arguments to delete one BrandRepairCategory.
+     * @example
+     * // Delete one BrandRepairCategory
+     * const BrandRepairCategory = await prisma.brandRepairCategory.delete({
+     *   where: {
+     *     // ... filter to delete one BrandRepairCategory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BrandRepairCategoryDeleteArgs>(args: SelectSubset<T, BrandRepairCategoryDeleteArgs<ExtArgs>>): Prisma__BrandRepairCategoryClient<$Result.GetResult<Prisma.$BrandRepairCategoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BrandRepairCategory.
+     * @param {BrandRepairCategoryUpdateArgs} args - Arguments to update one BrandRepairCategory.
+     * @example
+     * // Update one BrandRepairCategory
+     * const brandRepairCategory = await prisma.brandRepairCategory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BrandRepairCategoryUpdateArgs>(args: SelectSubset<T, BrandRepairCategoryUpdateArgs<ExtArgs>>): Prisma__BrandRepairCategoryClient<$Result.GetResult<Prisma.$BrandRepairCategoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BrandRepairCategories.
+     * @param {BrandRepairCategoryDeleteManyArgs} args - Arguments to filter BrandRepairCategories to delete.
+     * @example
+     * // Delete a few BrandRepairCategories
+     * const { count } = await prisma.brandRepairCategory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BrandRepairCategoryDeleteManyArgs>(args?: SelectSubset<T, BrandRepairCategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BrandRepairCategories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrandRepairCategoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BrandRepairCategories
+     * const brandRepairCategory = await prisma.brandRepairCategory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BrandRepairCategoryUpdateManyArgs>(args: SelectSubset<T, BrandRepairCategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one BrandRepairCategory.
+     * @param {BrandRepairCategoryUpsertArgs} args - Arguments to update or create a BrandRepairCategory.
+     * @example
+     * // Update or create a BrandRepairCategory
+     * const brandRepairCategory = await prisma.brandRepairCategory.upsert({
+     *   create: {
+     *     // ... data to create a BrandRepairCategory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BrandRepairCategory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BrandRepairCategoryUpsertArgs>(args: SelectSubset<T, BrandRepairCategoryUpsertArgs<ExtArgs>>): Prisma__BrandRepairCategoryClient<$Result.GetResult<Prisma.$BrandRepairCategoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BrandRepairCategories that matches the filter.
+     * @param {BrandRepairCategoryFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const brandRepairCategory = await prisma.brandRepairCategory.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: BrandRepairCategoryFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a BrandRepairCategory.
+     * @param {BrandRepairCategoryAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const brandRepairCategory = await prisma.brandRepairCategory.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: BrandRepairCategoryAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of BrandRepairCategories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrandRepairCategoryCountArgs} args - Arguments to filter BrandRepairCategories to count.
+     * @example
+     * // Count the number of BrandRepairCategories
+     * const count = await prisma.brandRepairCategory.count({
+     *   where: {
+     *     // ... the filter for the BrandRepairCategories we want to count
+     *   }
+     * })
+    **/
+    count<T extends BrandRepairCategoryCountArgs>(
+      args?: Subset<T, BrandRepairCategoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BrandRepairCategoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BrandRepairCategory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrandRepairCategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BrandRepairCategoryAggregateArgs>(args: Subset<T, BrandRepairCategoryAggregateArgs>): Prisma.PrismaPromise<GetBrandRepairCategoryAggregateType<T>>
+
+    /**
+     * Group by BrandRepairCategory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrandRepairCategoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BrandRepairCategoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BrandRepairCategoryGroupByArgs['orderBy'] }
+        : { orderBy?: BrandRepairCategoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BrandRepairCategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBrandRepairCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BrandRepairCategory model
+   */
+  readonly fields: BrandRepairCategoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BrandRepairCategory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BrandRepairCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    brand<T extends BrandRepairDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BrandRepairDefaultArgs<ExtArgs>>): Prisma__BrandRepairClient<$Result.GetResult<Prisma.$BrandRepairPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    category<T extends ServiceCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategoryDefaultArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BrandRepairCategory model
+   */
+  interface BrandRepairCategoryFieldRefs {
+    readonly id: FieldRef<"BrandRepairCategory", 'String'>
+    readonly brandId: FieldRef<"BrandRepairCategory", 'String'>
+    readonly categoryId: FieldRef<"BrandRepairCategory", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BrandRepairCategory findUnique
+   */
+  export type BrandRepairCategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepairCategory
+     */
+    select?: BrandRepairCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepairCategory
+     */
+    omit?: BrandRepairCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which BrandRepairCategory to fetch.
+     */
+    where: BrandRepairCategoryWhereUniqueInput
+  }
+
+  /**
+   * BrandRepairCategory findUniqueOrThrow
+   */
+  export type BrandRepairCategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepairCategory
+     */
+    select?: BrandRepairCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepairCategory
+     */
+    omit?: BrandRepairCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which BrandRepairCategory to fetch.
+     */
+    where: BrandRepairCategoryWhereUniqueInput
+  }
+
+  /**
+   * BrandRepairCategory findFirst
+   */
+  export type BrandRepairCategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepairCategory
+     */
+    select?: BrandRepairCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepairCategory
+     */
+    omit?: BrandRepairCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which BrandRepairCategory to fetch.
+     */
+    where?: BrandRepairCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BrandRepairCategories to fetch.
+     */
+    orderBy?: BrandRepairCategoryOrderByWithRelationInput | BrandRepairCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BrandRepairCategories.
+     */
+    cursor?: BrandRepairCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BrandRepairCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BrandRepairCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BrandRepairCategories.
+     */
+    distinct?: BrandRepairCategoryScalarFieldEnum | BrandRepairCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * BrandRepairCategory findFirstOrThrow
+   */
+  export type BrandRepairCategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepairCategory
+     */
+    select?: BrandRepairCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepairCategory
+     */
+    omit?: BrandRepairCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which BrandRepairCategory to fetch.
+     */
+    where?: BrandRepairCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BrandRepairCategories to fetch.
+     */
+    orderBy?: BrandRepairCategoryOrderByWithRelationInput | BrandRepairCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BrandRepairCategories.
+     */
+    cursor?: BrandRepairCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BrandRepairCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BrandRepairCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BrandRepairCategories.
+     */
+    distinct?: BrandRepairCategoryScalarFieldEnum | BrandRepairCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * BrandRepairCategory findMany
+   */
+  export type BrandRepairCategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepairCategory
+     */
+    select?: BrandRepairCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepairCategory
+     */
+    omit?: BrandRepairCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which BrandRepairCategories to fetch.
+     */
+    where?: BrandRepairCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BrandRepairCategories to fetch.
+     */
+    orderBy?: BrandRepairCategoryOrderByWithRelationInput | BrandRepairCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BrandRepairCategories.
+     */
+    cursor?: BrandRepairCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BrandRepairCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BrandRepairCategories.
+     */
+    skip?: number
+    distinct?: BrandRepairCategoryScalarFieldEnum | BrandRepairCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * BrandRepairCategory create
+   */
+  export type BrandRepairCategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepairCategory
+     */
+    select?: BrandRepairCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepairCategory
+     */
+    omit?: BrandRepairCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairCategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BrandRepairCategory.
+     */
+    data: XOR<BrandRepairCategoryCreateInput, BrandRepairCategoryUncheckedCreateInput>
+  }
+
+  /**
+   * BrandRepairCategory createMany
+   */
+  export type BrandRepairCategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BrandRepairCategories.
+     */
+    data: BrandRepairCategoryCreateManyInput | BrandRepairCategoryCreateManyInput[]
+  }
+
+  /**
+   * BrandRepairCategory update
+   */
+  export type BrandRepairCategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepairCategory
+     */
+    select?: BrandRepairCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepairCategory
+     */
+    omit?: BrandRepairCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairCategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BrandRepairCategory.
+     */
+    data: XOR<BrandRepairCategoryUpdateInput, BrandRepairCategoryUncheckedUpdateInput>
+    /**
+     * Choose, which BrandRepairCategory to update.
+     */
+    where: BrandRepairCategoryWhereUniqueInput
+  }
+
+  /**
+   * BrandRepairCategory updateMany
+   */
+  export type BrandRepairCategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BrandRepairCategories.
+     */
+    data: XOR<BrandRepairCategoryUpdateManyMutationInput, BrandRepairCategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which BrandRepairCategories to update
+     */
+    where?: BrandRepairCategoryWhereInput
+    /**
+     * Limit how many BrandRepairCategories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BrandRepairCategory upsert
+   */
+  export type BrandRepairCategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepairCategory
+     */
+    select?: BrandRepairCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepairCategory
+     */
+    omit?: BrandRepairCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairCategoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BrandRepairCategory to update in case it exists.
+     */
+    where: BrandRepairCategoryWhereUniqueInput
+    /**
+     * In case the BrandRepairCategory found by the `where` argument doesn't exist, create a new BrandRepairCategory with this data.
+     */
+    create: XOR<BrandRepairCategoryCreateInput, BrandRepairCategoryUncheckedCreateInput>
+    /**
+     * In case the BrandRepairCategory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BrandRepairCategoryUpdateInput, BrandRepairCategoryUncheckedUpdateInput>
+  }
+
+  /**
+   * BrandRepairCategory delete
+   */
+  export type BrandRepairCategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepairCategory
+     */
+    select?: BrandRepairCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepairCategory
+     */
+    omit?: BrandRepairCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairCategoryInclude<ExtArgs> | null
+    /**
+     * Filter which BrandRepairCategory to delete.
+     */
+    where: BrandRepairCategoryWhereUniqueInput
+  }
+
+  /**
+   * BrandRepairCategory deleteMany
+   */
+  export type BrandRepairCategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BrandRepairCategories to delete
+     */
+    where?: BrandRepairCategoryWhereInput
+    /**
+     * Limit how many BrandRepairCategories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BrandRepairCategory findRaw
+   */
+  export type BrandRepairCategoryFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * BrandRepairCategory aggregateRaw
+   */
+  export type BrandRepairCategoryAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * BrandRepairCategory without action
+   */
+  export type BrandRepairCategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepairCategory
+     */
+    select?: BrandRepairCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepairCategory
+     */
+    omit?: BrandRepairCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairCategoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RepairType
+   */
+
+  export type AggregateRepairType = {
+    _count: RepairTypeCountAggregateOutputType | null
+    _avg: RepairTypeAvgAggregateOutputType | null
+    _sum: RepairTypeSumAggregateOutputType | null
+    _min: RepairTypeMinAggregateOutputType | null
+    _max: RepairTypeMaxAggregateOutputType | null
+  }
+
+  export type RepairTypeAvgAggregateOutputType = {
+    position: number | null
+  }
+
+  export type RepairTypeSumAggregateOutputType = {
+    position: number | null
+  }
+
+  export type RepairTypeMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    categoryId: string | null
+    position: number | null
+    icon: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+  }
+
+  export type RepairTypeMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    categoryId: string | null
+    position: number | null
+    icon: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+  }
+
+  export type RepairTypeCountAggregateOutputType = {
+    id: number
+    name: number
+    categoryId: number
+    position: number
+    icon: number
+    isActive: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type RepairTypeAvgAggregateInputType = {
+    position?: true
+  }
+
+  export type RepairTypeSumAggregateInputType = {
+    position?: true
+  }
+
+  export type RepairTypeMinAggregateInputType = {
+    id?: true
+    name?: true
+    categoryId?: true
+    position?: true
+    icon?: true
+    isActive?: true
+    createdAt?: true
+  }
+
+  export type RepairTypeMaxAggregateInputType = {
+    id?: true
+    name?: true
+    categoryId?: true
+    position?: true
+    icon?: true
+    isActive?: true
+    createdAt?: true
+  }
+
+  export type RepairTypeCountAggregateInputType = {
+    id?: true
+    name?: true
+    categoryId?: true
+    position?: true
+    icon?: true
+    isActive?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type RepairTypeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepairType to aggregate.
+     */
+    where?: RepairTypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairTypes to fetch.
+     */
+    orderBy?: RepairTypeOrderByWithRelationInput | RepairTypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RepairTypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairTypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairTypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RepairTypes
+    **/
+    _count?: true | RepairTypeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RepairTypeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RepairTypeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RepairTypeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RepairTypeMaxAggregateInputType
+  }
+
+  export type GetRepairTypeAggregateType<T extends RepairTypeAggregateArgs> = {
+        [P in keyof T & keyof AggregateRepairType]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRepairType[P]>
+      : GetScalarType<T[P], AggregateRepairType[P]>
+  }
+
+
+
+
+  export type RepairTypeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepairTypeWhereInput
+    orderBy?: RepairTypeOrderByWithAggregationInput | RepairTypeOrderByWithAggregationInput[]
+    by: RepairTypeScalarFieldEnum[] | RepairTypeScalarFieldEnum
+    having?: RepairTypeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RepairTypeCountAggregateInputType | true
+    _avg?: RepairTypeAvgAggregateInputType
+    _sum?: RepairTypeSumAggregateInputType
+    _min?: RepairTypeMinAggregateInputType
+    _max?: RepairTypeMaxAggregateInputType
+  }
+
+  export type RepairTypeGroupByOutputType = {
+    id: string
+    name: string
+    categoryId: string
+    position: number
+    icon: string | null
+    isActive: boolean
+    createdAt: Date
+    _count: RepairTypeCountAggregateOutputType | null
+    _avg: RepairTypeAvgAggregateOutputType | null
+    _sum: RepairTypeSumAggregateOutputType | null
+    _min: RepairTypeMinAggregateOutputType | null
+    _max: RepairTypeMaxAggregateOutputType | null
+  }
+
+  type GetRepairTypeGroupByPayload<T extends RepairTypeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RepairTypeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RepairTypeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RepairTypeGroupByOutputType[P]>
+            : GetScalarType<T[P], RepairTypeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RepairTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    categoryId?: boolean
+    position?: boolean
+    icon?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>
+    repairOptions?: boolean | RepairType$repairOptionsArgs<ExtArgs>
+    services?: boolean | RepairType$servicesArgs<ExtArgs>
+    _count?: boolean | RepairTypeCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repairType"]>
+
+
+
+  export type RepairTypeSelectScalar = {
+    id?: boolean
+    name?: boolean
+    categoryId?: boolean
+    position?: boolean
+    icon?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }
+
+  export type RepairTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "categoryId" | "position" | "icon" | "isActive" | "createdAt", ExtArgs["result"]["repairType"]>
+  export type RepairTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>
+    repairOptions?: boolean | RepairType$repairOptionsArgs<ExtArgs>
+    services?: boolean | RepairType$servicesArgs<ExtArgs>
+    _count?: boolean | RepairTypeCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $RepairTypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RepairType"
+    objects: {
+      category: Prisma.$ServiceCategoryPayload<ExtArgs>
+      repairOptions: Prisma.$RepairOptionPayload<ExtArgs>[]
+      services: Prisma.$ServicePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      categoryId: string
+      position: number
+      icon: string | null
+      isActive: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["repairType"]>
+    composites: {}
+  }
+
+  type RepairTypeGetPayload<S extends boolean | null | undefined | RepairTypeDefaultArgs> = $Result.GetResult<Prisma.$RepairTypePayload, S>
+
+  type RepairTypeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RepairTypeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RepairTypeCountAggregateInputType | true
+    }
+
+  export interface RepairTypeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RepairType'], meta: { name: 'RepairType' } }
+    /**
+     * Find zero or one RepairType that matches the filter.
+     * @param {RepairTypeFindUniqueArgs} args - Arguments to find a RepairType
+     * @example
+     * // Get one RepairType
+     * const repairType = await prisma.repairType.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RepairTypeFindUniqueArgs>(args: SelectSubset<T, RepairTypeFindUniqueArgs<ExtArgs>>): Prisma__RepairTypeClient<$Result.GetResult<Prisma.$RepairTypePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RepairType that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RepairTypeFindUniqueOrThrowArgs} args - Arguments to find a RepairType
+     * @example
+     * // Get one RepairType
+     * const repairType = await prisma.repairType.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RepairTypeFindUniqueOrThrowArgs>(args: SelectSubset<T, RepairTypeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RepairTypeClient<$Result.GetResult<Prisma.$RepairTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepairType that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairTypeFindFirstArgs} args - Arguments to find a RepairType
+     * @example
+     * // Get one RepairType
+     * const repairType = await prisma.repairType.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RepairTypeFindFirstArgs>(args?: SelectSubset<T, RepairTypeFindFirstArgs<ExtArgs>>): Prisma__RepairTypeClient<$Result.GetResult<Prisma.$RepairTypePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepairType that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairTypeFindFirstOrThrowArgs} args - Arguments to find a RepairType
+     * @example
+     * // Get one RepairType
+     * const repairType = await prisma.repairType.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RepairTypeFindFirstOrThrowArgs>(args?: SelectSubset<T, RepairTypeFindFirstOrThrowArgs<ExtArgs>>): Prisma__RepairTypeClient<$Result.GetResult<Prisma.$RepairTypePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RepairTypes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairTypeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RepairTypes
+     * const repairTypes = await prisma.repairType.findMany()
+     * 
+     * // Get first 10 RepairTypes
+     * const repairTypes = await prisma.repairType.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const repairTypeWithIdOnly = await prisma.repairType.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RepairTypeFindManyArgs>(args?: SelectSubset<T, RepairTypeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RepairType.
+     * @param {RepairTypeCreateArgs} args - Arguments to create a RepairType.
+     * @example
+     * // Create one RepairType
+     * const RepairType = await prisma.repairType.create({
+     *   data: {
+     *     // ... data to create a RepairType
+     *   }
+     * })
+     * 
+     */
+    create<T extends RepairTypeCreateArgs>(args: SelectSubset<T, RepairTypeCreateArgs<ExtArgs>>): Prisma__RepairTypeClient<$Result.GetResult<Prisma.$RepairTypePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RepairTypes.
+     * @param {RepairTypeCreateManyArgs} args - Arguments to create many RepairTypes.
+     * @example
+     * // Create many RepairTypes
+     * const repairType = await prisma.repairType.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RepairTypeCreateManyArgs>(args?: SelectSubset<T, RepairTypeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a RepairType.
+     * @param {RepairTypeDeleteArgs} args - Arguments to delete one RepairType.
+     * @example
+     * // Delete one RepairType
+     * const RepairType = await prisma.repairType.delete({
+     *   where: {
+     *     // ... filter to delete one RepairType
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RepairTypeDeleteArgs>(args: SelectSubset<T, RepairTypeDeleteArgs<ExtArgs>>): Prisma__RepairTypeClient<$Result.GetResult<Prisma.$RepairTypePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RepairType.
+     * @param {RepairTypeUpdateArgs} args - Arguments to update one RepairType.
+     * @example
+     * // Update one RepairType
+     * const repairType = await prisma.repairType.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RepairTypeUpdateArgs>(args: SelectSubset<T, RepairTypeUpdateArgs<ExtArgs>>): Prisma__RepairTypeClient<$Result.GetResult<Prisma.$RepairTypePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RepairTypes.
+     * @param {RepairTypeDeleteManyArgs} args - Arguments to filter RepairTypes to delete.
+     * @example
+     * // Delete a few RepairTypes
+     * const { count } = await prisma.repairType.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RepairTypeDeleteManyArgs>(args?: SelectSubset<T, RepairTypeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepairTypes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairTypeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RepairTypes
+     * const repairType = await prisma.repairType.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RepairTypeUpdateManyArgs>(args: SelectSubset<T, RepairTypeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one RepairType.
+     * @param {RepairTypeUpsertArgs} args - Arguments to update or create a RepairType.
+     * @example
+     * // Update or create a RepairType
+     * const repairType = await prisma.repairType.upsert({
+     *   create: {
+     *     // ... data to create a RepairType
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RepairType we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RepairTypeUpsertArgs>(args: SelectSubset<T, RepairTypeUpsertArgs<ExtArgs>>): Prisma__RepairTypeClient<$Result.GetResult<Prisma.$RepairTypePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RepairTypes that matches the filter.
+     * @param {RepairTypeFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const repairType = await prisma.repairType.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: RepairTypeFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a RepairType.
+     * @param {RepairTypeAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const repairType = await prisma.repairType.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: RepairTypeAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of RepairTypes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairTypeCountArgs} args - Arguments to filter RepairTypes to count.
+     * @example
+     * // Count the number of RepairTypes
+     * const count = await prisma.repairType.count({
+     *   where: {
+     *     // ... the filter for the RepairTypes we want to count
+     *   }
+     * })
+    **/
+    count<T extends RepairTypeCountArgs>(
+      args?: Subset<T, RepairTypeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RepairTypeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RepairType.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairTypeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RepairTypeAggregateArgs>(args: Subset<T, RepairTypeAggregateArgs>): Prisma.PrismaPromise<GetRepairTypeAggregateType<T>>
+
+    /**
+     * Group by RepairType.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairTypeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RepairTypeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RepairTypeGroupByArgs['orderBy'] }
+        : { orderBy?: RepairTypeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RepairTypeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRepairTypeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RepairType model
+   */
+  readonly fields: RepairTypeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RepairType.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RepairTypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    category<T extends ServiceCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategoryDefaultArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    repairOptions<T extends RepairType$repairOptionsArgs<ExtArgs> = {}>(args?: Subset<T, RepairType$repairOptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairOptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    services<T extends RepairType$servicesArgs<ExtArgs> = {}>(args?: Subset<T, RepairType$servicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RepairType model
+   */
+  interface RepairTypeFieldRefs {
+    readonly id: FieldRef<"RepairType", 'String'>
+    readonly name: FieldRef<"RepairType", 'String'>
+    readonly categoryId: FieldRef<"RepairType", 'String'>
+    readonly position: FieldRef<"RepairType", 'Int'>
+    readonly icon: FieldRef<"RepairType", 'String'>
+    readonly isActive: FieldRef<"RepairType", 'Boolean'>
+    readonly createdAt: FieldRef<"RepairType", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RepairType findUnique
+   */
+  export type RepairTypeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairType
+     */
+    select?: RepairTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairType
+     */
+    omit?: RepairTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairType to fetch.
+     */
+    where: RepairTypeWhereUniqueInput
+  }
+
+  /**
+   * RepairType findUniqueOrThrow
+   */
+  export type RepairTypeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairType
+     */
+    select?: RepairTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairType
+     */
+    omit?: RepairTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairType to fetch.
+     */
+    where: RepairTypeWhereUniqueInput
+  }
+
+  /**
+   * RepairType findFirst
+   */
+  export type RepairTypeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairType
+     */
+    select?: RepairTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairType
+     */
+    omit?: RepairTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairType to fetch.
+     */
+    where?: RepairTypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairTypes to fetch.
+     */
+    orderBy?: RepairTypeOrderByWithRelationInput | RepairTypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepairTypes.
+     */
+    cursor?: RepairTypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairTypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairTypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepairTypes.
+     */
+    distinct?: RepairTypeScalarFieldEnum | RepairTypeScalarFieldEnum[]
+  }
+
+  /**
+   * RepairType findFirstOrThrow
+   */
+  export type RepairTypeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairType
+     */
+    select?: RepairTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairType
+     */
+    omit?: RepairTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairType to fetch.
+     */
+    where?: RepairTypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairTypes to fetch.
+     */
+    orderBy?: RepairTypeOrderByWithRelationInput | RepairTypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepairTypes.
+     */
+    cursor?: RepairTypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairTypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairTypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepairTypes.
+     */
+    distinct?: RepairTypeScalarFieldEnum | RepairTypeScalarFieldEnum[]
+  }
+
+  /**
+   * RepairType findMany
+   */
+  export type RepairTypeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairType
+     */
+    select?: RepairTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairType
+     */
+    omit?: RepairTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairTypes to fetch.
+     */
+    where?: RepairTypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairTypes to fetch.
+     */
+    orderBy?: RepairTypeOrderByWithRelationInput | RepairTypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RepairTypes.
+     */
+    cursor?: RepairTypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairTypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairTypes.
+     */
+    skip?: number
+    distinct?: RepairTypeScalarFieldEnum | RepairTypeScalarFieldEnum[]
+  }
+
+  /**
+   * RepairType create
+   */
+  export type RepairTypeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairType
+     */
+    select?: RepairTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairType
+     */
+    omit?: RepairTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairTypeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RepairType.
+     */
+    data: XOR<RepairTypeCreateInput, RepairTypeUncheckedCreateInput>
+  }
+
+  /**
+   * RepairType createMany
+   */
+  export type RepairTypeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RepairTypes.
+     */
+    data: RepairTypeCreateManyInput | RepairTypeCreateManyInput[]
+  }
+
+  /**
+   * RepairType update
+   */
+  export type RepairTypeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairType
+     */
+    select?: RepairTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairType
+     */
+    omit?: RepairTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairTypeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RepairType.
+     */
+    data: XOR<RepairTypeUpdateInput, RepairTypeUncheckedUpdateInput>
+    /**
+     * Choose, which RepairType to update.
+     */
+    where: RepairTypeWhereUniqueInput
+  }
+
+  /**
+   * RepairType updateMany
+   */
+  export type RepairTypeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RepairTypes.
+     */
+    data: XOR<RepairTypeUpdateManyMutationInput, RepairTypeUncheckedUpdateManyInput>
+    /**
+     * Filter which RepairTypes to update
+     */
+    where?: RepairTypeWhereInput
+    /**
+     * Limit how many RepairTypes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepairType upsert
+   */
+  export type RepairTypeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairType
+     */
+    select?: RepairTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairType
+     */
+    omit?: RepairTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairTypeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RepairType to update in case it exists.
+     */
+    where: RepairTypeWhereUniqueInput
+    /**
+     * In case the RepairType found by the `where` argument doesn't exist, create a new RepairType with this data.
+     */
+    create: XOR<RepairTypeCreateInput, RepairTypeUncheckedCreateInput>
+    /**
+     * In case the RepairType was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RepairTypeUpdateInput, RepairTypeUncheckedUpdateInput>
+  }
+
+  /**
+   * RepairType delete
+   */
+  export type RepairTypeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairType
+     */
+    select?: RepairTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairType
+     */
+    omit?: RepairTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairTypeInclude<ExtArgs> | null
+    /**
+     * Filter which RepairType to delete.
+     */
+    where: RepairTypeWhereUniqueInput
+  }
+
+  /**
+   * RepairType deleteMany
+   */
+  export type RepairTypeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepairTypes to delete
+     */
+    where?: RepairTypeWhereInput
+    /**
+     * Limit how many RepairTypes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepairType findRaw
+   */
+  export type RepairTypeFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * RepairType aggregateRaw
+   */
+  export type RepairTypeAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * RepairType.repairOptions
+   */
+  export type RepairType$repairOptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+    where?: RepairOptionWhereInput
+    orderBy?: RepairOptionOrderByWithRelationInput | RepairOptionOrderByWithRelationInput[]
+    cursor?: RepairOptionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepairOptionScalarFieldEnum | RepairOptionScalarFieldEnum[]
+  }
+
+  /**
+   * RepairType.services
+   */
+  export type RepairType$servicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Service
+     */
+    select?: ServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Service
+     */
+    omit?: ServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceInclude<ExtArgs> | null
+    where?: ServiceWhereInput
+    orderBy?: ServiceOrderByWithRelationInput | ServiceOrderByWithRelationInput[]
+    cursor?: ServiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ServiceScalarFieldEnum | ServiceScalarFieldEnum[]
+  }
+
+  /**
+   * RepairType without action
+   */
+  export type RepairTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairType
+     */
+    select?: RepairTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairType
+     */
+    omit?: RepairTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairTypeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RepairOption
+   */
+
+  export type AggregateRepairOption = {
+    _count: RepairOptionCountAggregateOutputType | null
+    _avg: RepairOptionAvgAggregateOutputType | null
+    _sum: RepairOptionSumAggregateOutputType | null
+    _min: RepairOptionMinAggregateOutputType | null
+    _max: RepairOptionMaxAggregateOutputType | null
+  }
+
+  export type RepairOptionAvgAggregateOutputType = {
+    price: number | null
+    cost: number | null
+  }
+
+  export type RepairOptionSumAggregateOutputType = {
+    price: number | null
+    cost: number | null
+  }
+
+  export type RepairOptionMinAggregateOutputType = {
+    id: string | null
+    modelId: string | null
+    repairTypeId: string | null
+    quality: $Enums.RepairQuality | null
+    price: number | null
+    cost: number | null
+    isActive: boolean | null
+    updatedAt: Date | null
+  }
+
+  export type RepairOptionMaxAggregateOutputType = {
+    id: string | null
+    modelId: string | null
+    repairTypeId: string | null
+    quality: $Enums.RepairQuality | null
+    price: number | null
+    cost: number | null
+    isActive: boolean | null
+    updatedAt: Date | null
+  }
+
+  export type RepairOptionCountAggregateOutputType = {
+    id: number
+    modelId: number
+    repairTypeId: number
+    quality: number
+    price: number
+    cost: number
+    isActive: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RepairOptionAvgAggregateInputType = {
+    price?: true
+    cost?: true
+  }
+
+  export type RepairOptionSumAggregateInputType = {
+    price?: true
+    cost?: true
+  }
+
+  export type RepairOptionMinAggregateInputType = {
+    id?: true
+    modelId?: true
+    repairTypeId?: true
+    quality?: true
+    price?: true
+    cost?: true
+    isActive?: true
+    updatedAt?: true
+  }
+
+  export type RepairOptionMaxAggregateInputType = {
+    id?: true
+    modelId?: true
+    repairTypeId?: true
+    quality?: true
+    price?: true
+    cost?: true
+    isActive?: true
+    updatedAt?: true
+  }
+
+  export type RepairOptionCountAggregateInputType = {
+    id?: true
+    modelId?: true
+    repairTypeId?: true
+    quality?: true
+    price?: true
+    cost?: true
+    isActive?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RepairOptionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepairOption to aggregate.
+     */
+    where?: RepairOptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairOptions to fetch.
+     */
+    orderBy?: RepairOptionOrderByWithRelationInput | RepairOptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RepairOptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairOptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairOptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RepairOptions
+    **/
+    _count?: true | RepairOptionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RepairOptionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RepairOptionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RepairOptionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RepairOptionMaxAggregateInputType
+  }
+
+  export type GetRepairOptionAggregateType<T extends RepairOptionAggregateArgs> = {
+        [P in keyof T & keyof AggregateRepairOption]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRepairOption[P]>
+      : GetScalarType<T[P], AggregateRepairOption[P]>
+  }
+
+
+
+
+  export type RepairOptionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepairOptionWhereInput
+    orderBy?: RepairOptionOrderByWithAggregationInput | RepairOptionOrderByWithAggregationInput[]
+    by: RepairOptionScalarFieldEnum[] | RepairOptionScalarFieldEnum
+    having?: RepairOptionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RepairOptionCountAggregateInputType | true
+    _avg?: RepairOptionAvgAggregateInputType
+    _sum?: RepairOptionSumAggregateInputType
+    _min?: RepairOptionMinAggregateInputType
+    _max?: RepairOptionMaxAggregateInputType
+  }
+
+  export type RepairOptionGroupByOutputType = {
+    id: string
+    modelId: string
+    repairTypeId: string
+    quality: $Enums.RepairQuality
+    price: number
+    cost: number | null
+    isActive: boolean
+    updatedAt: Date
+    _count: RepairOptionCountAggregateOutputType | null
+    _avg: RepairOptionAvgAggregateOutputType | null
+    _sum: RepairOptionSumAggregateOutputType | null
+    _min: RepairOptionMinAggregateOutputType | null
+    _max: RepairOptionMaxAggregateOutputType | null
+  }
+
+  type GetRepairOptionGroupByPayload<T extends RepairOptionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RepairOptionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RepairOptionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RepairOptionGroupByOutputType[P]>
+            : GetScalarType<T[P], RepairOptionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RepairOptionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    modelId?: boolean
+    repairTypeId?: boolean
+    quality?: boolean
+    price?: boolean
+    cost?: boolean
+    isActive?: boolean
+    updatedAt?: boolean
+    model?: boolean | ModelRepairDefaultArgs<ExtArgs>
+    repairType?: boolean | RepairTypeDefaultArgs<ExtArgs>
+    services?: boolean | RepairOption$servicesArgs<ExtArgs>
+    _count?: boolean | RepairOptionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repairOption"]>
+
+
+
+  export type RepairOptionSelectScalar = {
+    id?: boolean
+    modelId?: boolean
+    repairTypeId?: boolean
+    quality?: boolean
+    price?: boolean
+    cost?: boolean
+    isActive?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RepairOptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "modelId" | "repairTypeId" | "quality" | "price" | "cost" | "isActive" | "updatedAt", ExtArgs["result"]["repairOption"]>
+  export type RepairOptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    model?: boolean | ModelRepairDefaultArgs<ExtArgs>
+    repairType?: boolean | RepairTypeDefaultArgs<ExtArgs>
+    services?: boolean | RepairOption$servicesArgs<ExtArgs>
+    _count?: boolean | RepairOptionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $RepairOptionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RepairOption"
+    objects: {
+      model: Prisma.$ModelRepairPayload<ExtArgs>
+      repairType: Prisma.$RepairTypePayload<ExtArgs>
+      services: Prisma.$ServicePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      modelId: string
+      repairTypeId: string
+      quality: $Enums.RepairQuality
+      price: number
+      cost: number | null
+      isActive: boolean
+      updatedAt: Date
+    }, ExtArgs["result"]["repairOption"]>
+    composites: {}
+  }
+
+  type RepairOptionGetPayload<S extends boolean | null | undefined | RepairOptionDefaultArgs> = $Result.GetResult<Prisma.$RepairOptionPayload, S>
+
+  type RepairOptionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RepairOptionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RepairOptionCountAggregateInputType | true
+    }
+
+  export interface RepairOptionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RepairOption'], meta: { name: 'RepairOption' } }
+    /**
+     * Find zero or one RepairOption that matches the filter.
+     * @param {RepairOptionFindUniqueArgs} args - Arguments to find a RepairOption
+     * @example
+     * // Get one RepairOption
+     * const repairOption = await prisma.repairOption.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RepairOptionFindUniqueArgs>(args: SelectSubset<T, RepairOptionFindUniqueArgs<ExtArgs>>): Prisma__RepairOptionClient<$Result.GetResult<Prisma.$RepairOptionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RepairOption that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RepairOptionFindUniqueOrThrowArgs} args - Arguments to find a RepairOption
+     * @example
+     * // Get one RepairOption
+     * const repairOption = await prisma.repairOption.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RepairOptionFindUniqueOrThrowArgs>(args: SelectSubset<T, RepairOptionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RepairOptionClient<$Result.GetResult<Prisma.$RepairOptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepairOption that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairOptionFindFirstArgs} args - Arguments to find a RepairOption
+     * @example
+     * // Get one RepairOption
+     * const repairOption = await prisma.repairOption.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RepairOptionFindFirstArgs>(args?: SelectSubset<T, RepairOptionFindFirstArgs<ExtArgs>>): Prisma__RepairOptionClient<$Result.GetResult<Prisma.$RepairOptionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepairOption that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairOptionFindFirstOrThrowArgs} args - Arguments to find a RepairOption
+     * @example
+     * // Get one RepairOption
+     * const repairOption = await prisma.repairOption.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RepairOptionFindFirstOrThrowArgs>(args?: SelectSubset<T, RepairOptionFindFirstOrThrowArgs<ExtArgs>>): Prisma__RepairOptionClient<$Result.GetResult<Prisma.$RepairOptionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RepairOptions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairOptionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RepairOptions
+     * const repairOptions = await prisma.repairOption.findMany()
+     * 
+     * // Get first 10 RepairOptions
+     * const repairOptions = await prisma.repairOption.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const repairOptionWithIdOnly = await prisma.repairOption.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RepairOptionFindManyArgs>(args?: SelectSubset<T, RepairOptionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairOptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RepairOption.
+     * @param {RepairOptionCreateArgs} args - Arguments to create a RepairOption.
+     * @example
+     * // Create one RepairOption
+     * const RepairOption = await prisma.repairOption.create({
+     *   data: {
+     *     // ... data to create a RepairOption
+     *   }
+     * })
+     * 
+     */
+    create<T extends RepairOptionCreateArgs>(args: SelectSubset<T, RepairOptionCreateArgs<ExtArgs>>): Prisma__RepairOptionClient<$Result.GetResult<Prisma.$RepairOptionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RepairOptions.
+     * @param {RepairOptionCreateManyArgs} args - Arguments to create many RepairOptions.
+     * @example
+     * // Create many RepairOptions
+     * const repairOption = await prisma.repairOption.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RepairOptionCreateManyArgs>(args?: SelectSubset<T, RepairOptionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a RepairOption.
+     * @param {RepairOptionDeleteArgs} args - Arguments to delete one RepairOption.
+     * @example
+     * // Delete one RepairOption
+     * const RepairOption = await prisma.repairOption.delete({
+     *   where: {
+     *     // ... filter to delete one RepairOption
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RepairOptionDeleteArgs>(args: SelectSubset<T, RepairOptionDeleteArgs<ExtArgs>>): Prisma__RepairOptionClient<$Result.GetResult<Prisma.$RepairOptionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RepairOption.
+     * @param {RepairOptionUpdateArgs} args - Arguments to update one RepairOption.
+     * @example
+     * // Update one RepairOption
+     * const repairOption = await prisma.repairOption.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RepairOptionUpdateArgs>(args: SelectSubset<T, RepairOptionUpdateArgs<ExtArgs>>): Prisma__RepairOptionClient<$Result.GetResult<Prisma.$RepairOptionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RepairOptions.
+     * @param {RepairOptionDeleteManyArgs} args - Arguments to filter RepairOptions to delete.
+     * @example
+     * // Delete a few RepairOptions
+     * const { count } = await prisma.repairOption.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RepairOptionDeleteManyArgs>(args?: SelectSubset<T, RepairOptionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepairOptions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairOptionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RepairOptions
+     * const repairOption = await prisma.repairOption.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RepairOptionUpdateManyArgs>(args: SelectSubset<T, RepairOptionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one RepairOption.
+     * @param {RepairOptionUpsertArgs} args - Arguments to update or create a RepairOption.
+     * @example
+     * // Update or create a RepairOption
+     * const repairOption = await prisma.repairOption.upsert({
+     *   create: {
+     *     // ... data to create a RepairOption
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RepairOption we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RepairOptionUpsertArgs>(args: SelectSubset<T, RepairOptionUpsertArgs<ExtArgs>>): Prisma__RepairOptionClient<$Result.GetResult<Prisma.$RepairOptionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RepairOptions that matches the filter.
+     * @param {RepairOptionFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const repairOption = await prisma.repairOption.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: RepairOptionFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a RepairOption.
+     * @param {RepairOptionAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const repairOption = await prisma.repairOption.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: RepairOptionAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of RepairOptions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairOptionCountArgs} args - Arguments to filter RepairOptions to count.
+     * @example
+     * // Count the number of RepairOptions
+     * const count = await prisma.repairOption.count({
+     *   where: {
+     *     // ... the filter for the RepairOptions we want to count
+     *   }
+     * })
+    **/
+    count<T extends RepairOptionCountArgs>(
+      args?: Subset<T, RepairOptionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RepairOptionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RepairOption.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairOptionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RepairOptionAggregateArgs>(args: Subset<T, RepairOptionAggregateArgs>): Prisma.PrismaPromise<GetRepairOptionAggregateType<T>>
+
+    /**
+     * Group by RepairOption.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairOptionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RepairOptionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RepairOptionGroupByArgs['orderBy'] }
+        : { orderBy?: RepairOptionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RepairOptionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRepairOptionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RepairOption model
+   */
+  readonly fields: RepairOptionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RepairOption.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RepairOptionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    model<T extends ModelRepairDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ModelRepairDefaultArgs<ExtArgs>>): Prisma__ModelRepairClient<$Result.GetResult<Prisma.$ModelRepairPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    repairType<T extends RepairTypeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RepairTypeDefaultArgs<ExtArgs>>): Prisma__RepairTypeClient<$Result.GetResult<Prisma.$RepairTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    services<T extends RepairOption$servicesArgs<ExtArgs> = {}>(args?: Subset<T, RepairOption$servicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RepairOption model
+   */
+  interface RepairOptionFieldRefs {
+    readonly id: FieldRef<"RepairOption", 'String'>
+    readonly modelId: FieldRef<"RepairOption", 'String'>
+    readonly repairTypeId: FieldRef<"RepairOption", 'String'>
+    readonly quality: FieldRef<"RepairOption", 'RepairQuality'>
+    readonly price: FieldRef<"RepairOption", 'Float'>
+    readonly cost: FieldRef<"RepairOption", 'Float'>
+    readonly isActive: FieldRef<"RepairOption", 'Boolean'>
+    readonly updatedAt: FieldRef<"RepairOption", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RepairOption findUnique
+   */
+  export type RepairOptionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairOption to fetch.
+     */
+    where: RepairOptionWhereUniqueInput
+  }
+
+  /**
+   * RepairOption findUniqueOrThrow
+   */
+  export type RepairOptionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairOption to fetch.
+     */
+    where: RepairOptionWhereUniqueInput
+  }
+
+  /**
+   * RepairOption findFirst
+   */
+  export type RepairOptionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairOption to fetch.
+     */
+    where?: RepairOptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairOptions to fetch.
+     */
+    orderBy?: RepairOptionOrderByWithRelationInput | RepairOptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepairOptions.
+     */
+    cursor?: RepairOptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairOptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairOptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepairOptions.
+     */
+    distinct?: RepairOptionScalarFieldEnum | RepairOptionScalarFieldEnum[]
+  }
+
+  /**
+   * RepairOption findFirstOrThrow
+   */
+  export type RepairOptionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairOption to fetch.
+     */
+    where?: RepairOptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairOptions to fetch.
+     */
+    orderBy?: RepairOptionOrderByWithRelationInput | RepairOptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepairOptions.
+     */
+    cursor?: RepairOptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairOptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairOptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepairOptions.
+     */
+    distinct?: RepairOptionScalarFieldEnum | RepairOptionScalarFieldEnum[]
+  }
+
+  /**
+   * RepairOption findMany
+   */
+  export type RepairOptionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairOptions to fetch.
+     */
+    where?: RepairOptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairOptions to fetch.
+     */
+    orderBy?: RepairOptionOrderByWithRelationInput | RepairOptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RepairOptions.
+     */
+    cursor?: RepairOptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairOptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairOptions.
+     */
+    skip?: number
+    distinct?: RepairOptionScalarFieldEnum | RepairOptionScalarFieldEnum[]
+  }
+
+  /**
+   * RepairOption create
+   */
+  export type RepairOptionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RepairOption.
+     */
+    data: XOR<RepairOptionCreateInput, RepairOptionUncheckedCreateInput>
+  }
+
+  /**
+   * RepairOption createMany
+   */
+  export type RepairOptionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RepairOptions.
+     */
+    data: RepairOptionCreateManyInput | RepairOptionCreateManyInput[]
+  }
+
+  /**
+   * RepairOption update
+   */
+  export type RepairOptionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RepairOption.
+     */
+    data: XOR<RepairOptionUpdateInput, RepairOptionUncheckedUpdateInput>
+    /**
+     * Choose, which RepairOption to update.
+     */
+    where: RepairOptionWhereUniqueInput
+  }
+
+  /**
+   * RepairOption updateMany
+   */
+  export type RepairOptionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RepairOptions.
+     */
+    data: XOR<RepairOptionUpdateManyMutationInput, RepairOptionUncheckedUpdateManyInput>
+    /**
+     * Filter which RepairOptions to update
+     */
+    where?: RepairOptionWhereInput
+    /**
+     * Limit how many RepairOptions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepairOption upsert
+   */
+  export type RepairOptionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RepairOption to update in case it exists.
+     */
+    where: RepairOptionWhereUniqueInput
+    /**
+     * In case the RepairOption found by the `where` argument doesn't exist, create a new RepairOption with this data.
+     */
+    create: XOR<RepairOptionCreateInput, RepairOptionUncheckedCreateInput>
+    /**
+     * In case the RepairOption was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RepairOptionUpdateInput, RepairOptionUncheckedUpdateInput>
+  }
+
+  /**
+   * RepairOption delete
+   */
+  export type RepairOptionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+    /**
+     * Filter which RepairOption to delete.
+     */
+    where: RepairOptionWhereUniqueInput
+  }
+
+  /**
+   * RepairOption deleteMany
+   */
+  export type RepairOptionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepairOptions to delete
+     */
+    where?: RepairOptionWhereInput
+    /**
+     * Limit how many RepairOptions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepairOption findRaw
+   */
+  export type RepairOptionFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * RepairOption aggregateRaw
+   */
+  export type RepairOptionAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * RepairOption.services
+   */
+  export type RepairOption$servicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Service
+     */
+    select?: ServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Service
+     */
+    omit?: ServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceInclude<ExtArgs> | null
+    where?: ServiceWhereInput
+    orderBy?: ServiceOrderByWithRelationInput | ServiceOrderByWithRelationInput[]
+    cursor?: ServiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ServiceScalarFieldEnum | ServiceScalarFieldEnum[]
+  }
+
+  /**
+   * RepairOption without action
+   */
+  export type RepairOptionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model BrandRepair
    */
 
@@ -39936,6 +44907,8 @@ export namespace Prisma {
     name?: boolean
     createdAt?: boolean
     models?: boolean | BrandRepair$modelsArgs<ExtArgs>
+    categoryLinks?: boolean | BrandRepair$categoryLinksArgs<ExtArgs>
+    services?: boolean | BrandRepair$servicesArgs<ExtArgs>
     _count?: boolean | BrandRepairCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brandRepair"]>
 
@@ -39950,6 +44923,8 @@ export namespace Prisma {
   export type BrandRepairOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt", ExtArgs["result"]["brandRepair"]>
   export type BrandRepairInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     models?: boolean | BrandRepair$modelsArgs<ExtArgs>
+    categoryLinks?: boolean | BrandRepair$categoryLinksArgs<ExtArgs>
+    services?: boolean | BrandRepair$servicesArgs<ExtArgs>
     _count?: boolean | BrandRepairCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -39957,6 +44932,8 @@ export namespace Prisma {
     name: "BrandRepair"
     objects: {
       models: Prisma.$ModelRepairPayload<ExtArgs>[]
+      categoryLinks: Prisma.$BrandRepairCategoryPayload<ExtArgs>[]
+      services: Prisma.$ServicePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -40326,6 +45303,8 @@ export namespace Prisma {
   export interface Prisma__BrandRepairClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     models<T extends BrandRepair$modelsArgs<ExtArgs> = {}>(args?: Subset<T, BrandRepair$modelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelRepairPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    categoryLinks<T extends BrandRepair$categoryLinksArgs<ExtArgs> = {}>(args?: Subset<T, BrandRepair$categoryLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrandRepairCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    services<T extends BrandRepair$servicesArgs<ExtArgs> = {}>(args?: Subset<T, BrandRepair$servicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -40752,6 +45731,54 @@ export namespace Prisma {
   }
 
   /**
+   * BrandRepair.categoryLinks
+   */
+  export type BrandRepair$categoryLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrandRepairCategory
+     */
+    select?: BrandRepairCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrandRepairCategory
+     */
+    omit?: BrandRepairCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandRepairCategoryInclude<ExtArgs> | null
+    where?: BrandRepairCategoryWhereInput
+    orderBy?: BrandRepairCategoryOrderByWithRelationInput | BrandRepairCategoryOrderByWithRelationInput[]
+    cursor?: BrandRepairCategoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BrandRepairCategoryScalarFieldEnum | BrandRepairCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * BrandRepair.services
+   */
+  export type BrandRepair$servicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Service
+     */
+    select?: ServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Service
+     */
+    omit?: ServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceInclude<ExtArgs> | null
+    where?: ServiceWhereInput
+    orderBy?: ServiceOrderByWithRelationInput | ServiceOrderByWithRelationInput[]
+    cursor?: ServiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ServiceScalarFieldEnum | ServiceScalarFieldEnum[]
+  }
+
+  /**
    * BrandRepair without action
    */
   export type BrandRepairDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -40784,18 +45811,21 @@ export namespace Prisma {
     id: string | null
     name: string | null
     brandId: string | null
+    categoryId: string | null
   }
 
   export type ModelRepairMaxAggregateOutputType = {
     id: string | null
     name: string | null
     brandId: string | null
+    categoryId: string | null
   }
 
   export type ModelRepairCountAggregateOutputType = {
     id: number
     name: number
     brandId: number
+    categoryId: number
     _all: number
   }
 
@@ -40804,18 +45834,21 @@ export namespace Prisma {
     id?: true
     name?: true
     brandId?: true
+    categoryId?: true
   }
 
   export type ModelRepairMaxAggregateInputType = {
     id?: true
     name?: true
     brandId?: true
+    categoryId?: true
   }
 
   export type ModelRepairCountAggregateInputType = {
     id?: true
     name?: true
     brandId?: true
+    categoryId?: true
     _all?: true
   }
 
@@ -40895,6 +45928,7 @@ export namespace Prisma {
     id: string
     name: string
     brandId: string
+    categoryId: string | null
     _count: ModelRepairCountAggregateOutputType | null
     _min: ModelRepairMinAggregateOutputType | null
     _max: ModelRepairMaxAggregateOutputType | null
@@ -40918,8 +45952,12 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     brandId?: boolean
+    categoryId?: boolean
     brand?: boolean | BrandRepairDefaultArgs<ExtArgs>
     serviceCatalog?: boolean | ModelRepair$serviceCatalogArgs<ExtArgs>
+    category?: boolean | ModelRepair$categoryArgs<ExtArgs>
+    repairOptions?: boolean | ModelRepair$repairOptionsArgs<ExtArgs>
+    services?: boolean | ModelRepair$servicesArgs<ExtArgs>
     _count?: boolean | ModelRepairCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["modelRepair"]>
 
@@ -40929,12 +45967,16 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     brandId?: boolean
+    categoryId?: boolean
   }
 
-  export type ModelRepairOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "brandId", ExtArgs["result"]["modelRepair"]>
+  export type ModelRepairOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "brandId" | "categoryId", ExtArgs["result"]["modelRepair"]>
   export type ModelRepairInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     brand?: boolean | BrandRepairDefaultArgs<ExtArgs>
     serviceCatalog?: boolean | ModelRepair$serviceCatalogArgs<ExtArgs>
+    category?: boolean | ModelRepair$categoryArgs<ExtArgs>
+    repairOptions?: boolean | ModelRepair$repairOptionsArgs<ExtArgs>
+    services?: boolean | ModelRepair$servicesArgs<ExtArgs>
     _count?: boolean | ModelRepairCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -40943,11 +45985,15 @@ export namespace Prisma {
     objects: {
       brand: Prisma.$BrandRepairPayload<ExtArgs>
       serviceCatalog: Prisma.$ServiceCatalogPayload<ExtArgs>[]
+      category: Prisma.$ServiceCategoryPayload<ExtArgs> | null
+      repairOptions: Prisma.$RepairOptionPayload<ExtArgs>[]
+      services: Prisma.$ServicePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       brandId: string
+      categoryId: string | null
     }, ExtArgs["result"]["modelRepair"]>
     composites: {}
   }
@@ -41313,6 +46359,9 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     brand<T extends BrandRepairDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BrandRepairDefaultArgs<ExtArgs>>): Prisma__BrandRepairClient<$Result.GetResult<Prisma.$BrandRepairPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     serviceCatalog<T extends ModelRepair$serviceCatalogArgs<ExtArgs> = {}>(args?: Subset<T, ModelRepair$serviceCatalogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceCatalogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    category<T extends ModelRepair$categoryArgs<ExtArgs> = {}>(args?: Subset<T, ModelRepair$categoryArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    repairOptions<T extends ModelRepair$repairOptionsArgs<ExtArgs> = {}>(args?: Subset<T, ModelRepair$repairOptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairOptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    services<T extends ModelRepair$servicesArgs<ExtArgs> = {}>(args?: Subset<T, ModelRepair$servicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -41345,6 +46394,7 @@ export namespace Prisma {
     readonly id: FieldRef<"ModelRepair", 'String'>
     readonly name: FieldRef<"ModelRepair", 'String'>
     readonly brandId: FieldRef<"ModelRepair", 'String'>
+    readonly categoryId: FieldRef<"ModelRepair", 'String'>
   }
     
 
@@ -41736,6 +46786,73 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ServiceCatalogScalarFieldEnum | ServiceCatalogScalarFieldEnum[]
+  }
+
+  /**
+   * ModelRepair.category
+   */
+  export type ModelRepair$categoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    where?: ServiceCategoryWhereInput
+  }
+
+  /**
+   * ModelRepair.repairOptions
+   */
+  export type ModelRepair$repairOptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairOption
+     */
+    select?: RepairOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairOption
+     */
+    omit?: RepairOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairOptionInclude<ExtArgs> | null
+    where?: RepairOptionWhereInput
+    orderBy?: RepairOptionOrderByWithRelationInput | RepairOptionOrderByWithRelationInput[]
+    cursor?: RepairOptionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepairOptionScalarFieldEnum | RepairOptionScalarFieldEnum[]
+  }
+
+  /**
+   * ModelRepair.services
+   */
+  export type ModelRepair$servicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Service
+     */
+    select?: ServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Service
+     */
+    omit?: ServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceInclude<ExtArgs> | null
+    where?: ServiceWhereInput
+    orderBy?: ServiceOrderByWithRelationInput | ServiceOrderByWithRelationInput[]
+    cursor?: ServiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ServiceScalarFieldEnum | ServiceScalarFieldEnum[]
   }
 
   /**
@@ -45055,7 +50172,12 @@ export namespace Prisma {
     defectId: 'defectId',
     additionalDetails: 'additionalDetails',
     privateNotes: 'privateNotes',
-    isWarranty: 'isWarranty'
+    isWarranty: 'isWarranty',
+    serviceCategoryId: 'serviceCategoryId',
+    brandRepairId: 'brandRepairId',
+    modelRepairId: 'modelRepairId',
+    repairTypeId: 'repairTypeId',
+    repairOptionId: 'repairOptionId'
   };
 
   export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
@@ -45107,6 +50229,7 @@ export namespace Prisma {
   export const UserScalarFieldEnum: {
     id: 'id',
     username: 'username',
+    name: 'name',
     email: 'email',
     password: 'password',
     avatar: 'avatar',
@@ -45174,6 +50297,55 @@ export namespace Prisma {
   export type ProviderScalarFieldEnum = (typeof ProviderScalarFieldEnum)[keyof typeof ProviderScalarFieldEnum]
 
 
+  export const ServiceCategoryScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    slug: 'slug',
+    icon: 'icon',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ServiceCategoryScalarFieldEnum = (typeof ServiceCategoryScalarFieldEnum)[keyof typeof ServiceCategoryScalarFieldEnum]
+
+
+  export const BrandRepairCategoryScalarFieldEnum: {
+    id: 'id',
+    brandId: 'brandId',
+    categoryId: 'categoryId'
+  };
+
+  export type BrandRepairCategoryScalarFieldEnum = (typeof BrandRepairCategoryScalarFieldEnum)[keyof typeof BrandRepairCategoryScalarFieldEnum]
+
+
+  export const RepairTypeScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    categoryId: 'categoryId',
+    position: 'position',
+    icon: 'icon',
+    isActive: 'isActive',
+    createdAt: 'createdAt'
+  };
+
+  export type RepairTypeScalarFieldEnum = (typeof RepairTypeScalarFieldEnum)[keyof typeof RepairTypeScalarFieldEnum]
+
+
+  export const RepairOptionScalarFieldEnum: {
+    id: 'id',
+    modelId: 'modelId',
+    repairTypeId: 'repairTypeId',
+    quality: 'quality',
+    price: 'price',
+    cost: 'cost',
+    isActive: 'isActive',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RepairOptionScalarFieldEnum = (typeof RepairOptionScalarFieldEnum)[keyof typeof RepairOptionScalarFieldEnum]
+
+
   export const BrandRepairScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -45186,7 +50358,8 @@ export namespace Prisma {
   export const ModelRepairScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    brandId: 'brandId'
+    brandId: 'brandId',
+    categoryId: 'categoryId'
   };
 
   export type ModelRepairScalarFieldEnum = (typeof ModelRepairScalarFieldEnum)[keyof typeof ModelRepairScalarFieldEnum]
@@ -45410,6 +50583,20 @@ export namespace Prisma {
    * Reference to a field of type 'CashMovementType[]'
    */
   export type ListEnumCashMovementTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CashMovementType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'RepairQuality'
+   */
+  export type EnumRepairQualityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RepairQuality'>
+    
+
+
+  /**
+   * Reference to a field of type 'RepairQuality[]'
+   */
+  export type ListEnumRepairQualityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RepairQuality[]'>
     
   /**
    * Deep Input Types
@@ -47559,8 +52746,18 @@ export namespace Prisma {
     additionalDetails?: JsonNullableFilter<"Service">
     privateNotes?: StringNullableFilter<"Service"> | string | null
     isWarranty?: BoolFilter<"Service"> | boolean
+    serviceCategoryId?: StringNullableFilter<"Service"> | string | null
+    brandRepairId?: StringNullableFilter<"Service"> | string | null
+    modelRepairId?: StringNullableFilter<"Service"> | string | null
+    repairTypeId?: StringNullableFilter<"Service"> | string | null
+    repairOptionId?: StringNullableFilter<"Service"> | string | null
     buyer?: XOR<BuyerNullableScalarRelationFilter, BuyerWhereInput> | null
     customerDevice?: XOR<CustomerDeviceNullableScalarRelationFilter, CustomerDeviceWhereInput> | null
+    serviceCategory?: XOR<ServiceCategoryNullableScalarRelationFilter, ServiceCategoryWhereInput> | null
+    brandRepair?: XOR<BrandRepairNullableScalarRelationFilter, BrandRepairWhereInput> | null
+    modelRepair?: XOR<ModelRepairNullableScalarRelationFilter, ModelRepairWhereInput> | null
+    repairType?: XOR<RepairTypeNullableScalarRelationFilter, RepairTypeWhereInput> | null
+    repairOption?: XOR<RepairOptionNullableScalarRelationFilter, RepairOptionWhereInput> | null
   }
 
   export type ServiceOrderByWithRelationInput = {
@@ -47590,8 +52787,18 @@ export namespace Prisma {
     additionalDetails?: SortOrder
     privateNotes?: SortOrder
     isWarranty?: SortOrder
+    serviceCategoryId?: SortOrder
+    brandRepairId?: SortOrder
+    modelRepairId?: SortOrder
+    repairTypeId?: SortOrder
+    repairOptionId?: SortOrder
     buyer?: BuyerOrderByWithRelationInput
     customerDevice?: CustomerDeviceOrderByWithRelationInput
+    serviceCategory?: ServiceCategoryOrderByWithRelationInput
+    brandRepair?: BrandRepairOrderByWithRelationInput
+    modelRepair?: ModelRepairOrderByWithRelationInput
+    repairType?: RepairTypeOrderByWithRelationInput
+    repairOption?: RepairOptionOrderByWithRelationInput
   }
 
   export type ServiceWhereUniqueInput = Prisma.AtLeast<{
@@ -47624,8 +52831,18 @@ export namespace Prisma {
     additionalDetails?: JsonNullableFilter<"Service">
     privateNotes?: StringNullableFilter<"Service"> | string | null
     isWarranty?: BoolFilter<"Service"> | boolean
+    serviceCategoryId?: StringNullableFilter<"Service"> | string | null
+    brandRepairId?: StringNullableFilter<"Service"> | string | null
+    modelRepairId?: StringNullableFilter<"Service"> | string | null
+    repairTypeId?: StringNullableFilter<"Service"> | string | null
+    repairOptionId?: StringNullableFilter<"Service"> | string | null
     buyer?: XOR<BuyerNullableScalarRelationFilter, BuyerWhereInput> | null
     customerDevice?: XOR<CustomerDeviceNullableScalarRelationFilter, CustomerDeviceWhereInput> | null
+    serviceCategory?: XOR<ServiceCategoryNullableScalarRelationFilter, ServiceCategoryWhereInput> | null
+    brandRepair?: XOR<BrandRepairNullableScalarRelationFilter, BrandRepairWhereInput> | null
+    modelRepair?: XOR<ModelRepairNullableScalarRelationFilter, ModelRepairWhereInput> | null
+    repairType?: XOR<RepairTypeNullableScalarRelationFilter, RepairTypeWhereInput> | null
+    repairOption?: XOR<RepairOptionNullableScalarRelationFilter, RepairOptionWhereInput> | null
   }, "id">
 
   export type ServiceOrderByWithAggregationInput = {
@@ -47655,6 +52872,11 @@ export namespace Prisma {
     additionalDetails?: SortOrder
     privateNotes?: SortOrder
     isWarranty?: SortOrder
+    serviceCategoryId?: SortOrder
+    brandRepairId?: SortOrder
+    modelRepairId?: SortOrder
+    repairTypeId?: SortOrder
+    repairOptionId?: SortOrder
     _count?: ServiceCountOrderByAggregateInput
     _avg?: ServiceAvgOrderByAggregateInput
     _max?: ServiceMaxOrderByAggregateInput
@@ -47692,6 +52914,11 @@ export namespace Prisma {
     additionalDetails?: JsonNullableWithAggregatesFilter<"Service">
     privateNotes?: StringNullableWithAggregatesFilter<"Service"> | string | null
     isWarranty?: BoolWithAggregatesFilter<"Service"> | boolean
+    serviceCategoryId?: StringNullableWithAggregatesFilter<"Service"> | string | null
+    brandRepairId?: StringNullableWithAggregatesFilter<"Service"> | string | null
+    modelRepairId?: StringNullableWithAggregatesFilter<"Service"> | string | null
+    repairTypeId?: StringNullableWithAggregatesFilter<"Service"> | string | null
+    repairOptionId?: StringNullableWithAggregatesFilter<"Service"> | string | null
   }
 
   export type CashRegisterSessionWhereInput = {
@@ -47928,6 +53155,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
     username?: StringNullableFilter<"User"> | string | null
+    name?: StringNullableFilter<"User"> | string | null
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     avatar?: StringNullableFilter<"User"> | string | null
@@ -47937,6 +53165,7 @@ export namespace Prisma {
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     username?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     password?: SortOrder
     avatar?: SortOrder
@@ -47950,6 +53179,7 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     username?: StringNullableFilter<"User"> | string | null
+    name?: StringNullableFilter<"User"> | string | null
     password?: StringFilter<"User"> | string
     avatar?: StringNullableFilter<"User"> | string | null
     sucursal?: StringNullableFilter<"User"> | string | null
@@ -47958,6 +53188,7 @@ export namespace Prisma {
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     username?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     password?: SortOrder
     avatar?: SortOrder
@@ -47973,6 +53204,7 @@ export namespace Prisma {
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
     username?: StringNullableWithAggregatesFilter<"User"> | string | null
+    name?: StringNullableWithAggregatesFilter<"User"> | string | null
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -48267,6 +53499,282 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Provider"> | Date | string
   }
 
+  export type ServiceCategoryWhereInput = {
+    AND?: ServiceCategoryWhereInput | ServiceCategoryWhereInput[]
+    OR?: ServiceCategoryWhereInput[]
+    NOT?: ServiceCategoryWhereInput | ServiceCategoryWhereInput[]
+    id?: StringFilter<"ServiceCategory"> | string
+    name?: StringFilter<"ServiceCategory"> | string
+    slug?: StringFilter<"ServiceCategory"> | string
+    icon?: StringNullableFilter<"ServiceCategory"> | string | null
+    isActive?: BoolFilter<"ServiceCategory"> | boolean
+    createdAt?: DateTimeFilter<"ServiceCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"ServiceCategory"> | Date | string
+    repairTypes?: RepairTypeListRelationFilter
+    brandLinks?: BrandRepairCategoryListRelationFilter
+    models?: ModelRepairListRelationFilter
+    services?: ServiceListRelationFilter
+  }
+
+  export type ServiceCategoryOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    repairTypes?: RepairTypeOrderByRelationAggregateInput
+    brandLinks?: BrandRepairCategoryOrderByRelationAggregateInput
+    models?: ModelRepairOrderByRelationAggregateInput
+    services?: ServiceOrderByRelationAggregateInput
+  }
+
+  export type ServiceCategoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    slug?: string
+    AND?: ServiceCategoryWhereInput | ServiceCategoryWhereInput[]
+    OR?: ServiceCategoryWhereInput[]
+    NOT?: ServiceCategoryWhereInput | ServiceCategoryWhereInput[]
+    icon?: StringNullableFilter<"ServiceCategory"> | string | null
+    isActive?: BoolFilter<"ServiceCategory"> | boolean
+    createdAt?: DateTimeFilter<"ServiceCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"ServiceCategory"> | Date | string
+    repairTypes?: RepairTypeListRelationFilter
+    brandLinks?: BrandRepairCategoryListRelationFilter
+    models?: ModelRepairListRelationFilter
+    services?: ServiceListRelationFilter
+  }, "id" | "name" | "slug">
+
+  export type ServiceCategoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ServiceCategoryCountOrderByAggregateInput
+    _max?: ServiceCategoryMaxOrderByAggregateInput
+    _min?: ServiceCategoryMinOrderByAggregateInput
+  }
+
+  export type ServiceCategoryScalarWhereWithAggregatesInput = {
+    AND?: ServiceCategoryScalarWhereWithAggregatesInput | ServiceCategoryScalarWhereWithAggregatesInput[]
+    OR?: ServiceCategoryScalarWhereWithAggregatesInput[]
+    NOT?: ServiceCategoryScalarWhereWithAggregatesInput | ServiceCategoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ServiceCategory"> | string
+    name?: StringWithAggregatesFilter<"ServiceCategory"> | string
+    slug?: StringWithAggregatesFilter<"ServiceCategory"> | string
+    icon?: StringNullableWithAggregatesFilter<"ServiceCategory"> | string | null
+    isActive?: BoolWithAggregatesFilter<"ServiceCategory"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ServiceCategory"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ServiceCategory"> | Date | string
+  }
+
+  export type BrandRepairCategoryWhereInput = {
+    AND?: BrandRepairCategoryWhereInput | BrandRepairCategoryWhereInput[]
+    OR?: BrandRepairCategoryWhereInput[]
+    NOT?: BrandRepairCategoryWhereInput | BrandRepairCategoryWhereInput[]
+    id?: StringFilter<"BrandRepairCategory"> | string
+    brandId?: StringFilter<"BrandRepairCategory"> | string
+    categoryId?: StringFilter<"BrandRepairCategory"> | string
+    brand?: XOR<BrandRepairScalarRelationFilter, BrandRepairWhereInput>
+    category?: XOR<ServiceCategoryScalarRelationFilter, ServiceCategoryWhereInput>
+  }
+
+  export type BrandRepairCategoryOrderByWithRelationInput = {
+    id?: SortOrder
+    brandId?: SortOrder
+    categoryId?: SortOrder
+    brand?: BrandRepairOrderByWithRelationInput
+    category?: ServiceCategoryOrderByWithRelationInput
+  }
+
+  export type BrandRepairCategoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    brandId_categoryId?: BrandRepairCategoryBrandIdCategoryIdCompoundUniqueInput
+    AND?: BrandRepairCategoryWhereInput | BrandRepairCategoryWhereInput[]
+    OR?: BrandRepairCategoryWhereInput[]
+    NOT?: BrandRepairCategoryWhereInput | BrandRepairCategoryWhereInput[]
+    brandId?: StringFilter<"BrandRepairCategory"> | string
+    categoryId?: StringFilter<"BrandRepairCategory"> | string
+    brand?: XOR<BrandRepairScalarRelationFilter, BrandRepairWhereInput>
+    category?: XOR<ServiceCategoryScalarRelationFilter, ServiceCategoryWhereInput>
+  }, "id" | "brandId_categoryId">
+
+  export type BrandRepairCategoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    brandId?: SortOrder
+    categoryId?: SortOrder
+    _count?: BrandRepairCategoryCountOrderByAggregateInput
+    _max?: BrandRepairCategoryMaxOrderByAggregateInput
+    _min?: BrandRepairCategoryMinOrderByAggregateInput
+  }
+
+  export type BrandRepairCategoryScalarWhereWithAggregatesInput = {
+    AND?: BrandRepairCategoryScalarWhereWithAggregatesInput | BrandRepairCategoryScalarWhereWithAggregatesInput[]
+    OR?: BrandRepairCategoryScalarWhereWithAggregatesInput[]
+    NOT?: BrandRepairCategoryScalarWhereWithAggregatesInput | BrandRepairCategoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BrandRepairCategory"> | string
+    brandId?: StringWithAggregatesFilter<"BrandRepairCategory"> | string
+    categoryId?: StringWithAggregatesFilter<"BrandRepairCategory"> | string
+  }
+
+  export type RepairTypeWhereInput = {
+    AND?: RepairTypeWhereInput | RepairTypeWhereInput[]
+    OR?: RepairTypeWhereInput[]
+    NOT?: RepairTypeWhereInput | RepairTypeWhereInput[]
+    id?: StringFilter<"RepairType"> | string
+    name?: StringFilter<"RepairType"> | string
+    categoryId?: StringFilter<"RepairType"> | string
+    position?: IntFilter<"RepairType"> | number
+    icon?: StringNullableFilter<"RepairType"> | string | null
+    isActive?: BoolFilter<"RepairType"> | boolean
+    createdAt?: DateTimeFilter<"RepairType"> | Date | string
+    category?: XOR<ServiceCategoryScalarRelationFilter, ServiceCategoryWhereInput>
+    repairOptions?: RepairOptionListRelationFilter
+    services?: ServiceListRelationFilter
+  }
+
+  export type RepairTypeOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    categoryId?: SortOrder
+    position?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    category?: ServiceCategoryOrderByWithRelationInput
+    repairOptions?: RepairOptionOrderByRelationAggregateInput
+    services?: ServiceOrderByRelationAggregateInput
+  }
+
+  export type RepairTypeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name_categoryId?: RepairTypeNameCategoryIdCompoundUniqueInput
+    AND?: RepairTypeWhereInput | RepairTypeWhereInput[]
+    OR?: RepairTypeWhereInput[]
+    NOT?: RepairTypeWhereInput | RepairTypeWhereInput[]
+    name?: StringFilter<"RepairType"> | string
+    categoryId?: StringFilter<"RepairType"> | string
+    position?: IntFilter<"RepairType"> | number
+    icon?: StringNullableFilter<"RepairType"> | string | null
+    isActive?: BoolFilter<"RepairType"> | boolean
+    createdAt?: DateTimeFilter<"RepairType"> | Date | string
+    category?: XOR<ServiceCategoryScalarRelationFilter, ServiceCategoryWhereInput>
+    repairOptions?: RepairOptionListRelationFilter
+    services?: ServiceListRelationFilter
+  }, "id" | "name_categoryId">
+
+  export type RepairTypeOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    categoryId?: SortOrder
+    position?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    _count?: RepairTypeCountOrderByAggregateInput
+    _avg?: RepairTypeAvgOrderByAggregateInput
+    _max?: RepairTypeMaxOrderByAggregateInput
+    _min?: RepairTypeMinOrderByAggregateInput
+    _sum?: RepairTypeSumOrderByAggregateInput
+  }
+
+  export type RepairTypeScalarWhereWithAggregatesInput = {
+    AND?: RepairTypeScalarWhereWithAggregatesInput | RepairTypeScalarWhereWithAggregatesInput[]
+    OR?: RepairTypeScalarWhereWithAggregatesInput[]
+    NOT?: RepairTypeScalarWhereWithAggregatesInput | RepairTypeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RepairType"> | string
+    name?: StringWithAggregatesFilter<"RepairType"> | string
+    categoryId?: StringWithAggregatesFilter<"RepairType"> | string
+    position?: IntWithAggregatesFilter<"RepairType"> | number
+    icon?: StringNullableWithAggregatesFilter<"RepairType"> | string | null
+    isActive?: BoolWithAggregatesFilter<"RepairType"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"RepairType"> | Date | string
+  }
+
+  export type RepairOptionWhereInput = {
+    AND?: RepairOptionWhereInput | RepairOptionWhereInput[]
+    OR?: RepairOptionWhereInput[]
+    NOT?: RepairOptionWhereInput | RepairOptionWhereInput[]
+    id?: StringFilter<"RepairOption"> | string
+    modelId?: StringFilter<"RepairOption"> | string
+    repairTypeId?: StringFilter<"RepairOption"> | string
+    quality?: EnumRepairQualityFilter<"RepairOption"> | $Enums.RepairQuality
+    price?: FloatFilter<"RepairOption"> | number
+    cost?: FloatNullableFilter<"RepairOption"> | number | null
+    isActive?: BoolFilter<"RepairOption"> | boolean
+    updatedAt?: DateTimeFilter<"RepairOption"> | Date | string
+    model?: XOR<ModelRepairScalarRelationFilter, ModelRepairWhereInput>
+    repairType?: XOR<RepairTypeScalarRelationFilter, RepairTypeWhereInput>
+    services?: ServiceListRelationFilter
+  }
+
+  export type RepairOptionOrderByWithRelationInput = {
+    id?: SortOrder
+    modelId?: SortOrder
+    repairTypeId?: SortOrder
+    quality?: SortOrder
+    price?: SortOrder
+    cost?: SortOrder
+    isActive?: SortOrder
+    updatedAt?: SortOrder
+    model?: ModelRepairOrderByWithRelationInput
+    repairType?: RepairTypeOrderByWithRelationInput
+    services?: ServiceOrderByRelationAggregateInput
+  }
+
+  export type RepairOptionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    modelId_repairTypeId_quality?: RepairOptionModelIdRepairTypeIdQualityCompoundUniqueInput
+    AND?: RepairOptionWhereInput | RepairOptionWhereInput[]
+    OR?: RepairOptionWhereInput[]
+    NOT?: RepairOptionWhereInput | RepairOptionWhereInput[]
+    modelId?: StringFilter<"RepairOption"> | string
+    repairTypeId?: StringFilter<"RepairOption"> | string
+    quality?: EnumRepairQualityFilter<"RepairOption"> | $Enums.RepairQuality
+    price?: FloatFilter<"RepairOption"> | number
+    cost?: FloatNullableFilter<"RepairOption"> | number | null
+    isActive?: BoolFilter<"RepairOption"> | boolean
+    updatedAt?: DateTimeFilter<"RepairOption"> | Date | string
+    model?: XOR<ModelRepairScalarRelationFilter, ModelRepairWhereInput>
+    repairType?: XOR<RepairTypeScalarRelationFilter, RepairTypeWhereInput>
+    services?: ServiceListRelationFilter
+  }, "id" | "modelId_repairTypeId_quality">
+
+  export type RepairOptionOrderByWithAggregationInput = {
+    id?: SortOrder
+    modelId?: SortOrder
+    repairTypeId?: SortOrder
+    quality?: SortOrder
+    price?: SortOrder
+    cost?: SortOrder
+    isActive?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RepairOptionCountOrderByAggregateInput
+    _avg?: RepairOptionAvgOrderByAggregateInput
+    _max?: RepairOptionMaxOrderByAggregateInput
+    _min?: RepairOptionMinOrderByAggregateInput
+    _sum?: RepairOptionSumOrderByAggregateInput
+  }
+
+  export type RepairOptionScalarWhereWithAggregatesInput = {
+    AND?: RepairOptionScalarWhereWithAggregatesInput | RepairOptionScalarWhereWithAggregatesInput[]
+    OR?: RepairOptionScalarWhereWithAggregatesInput[]
+    NOT?: RepairOptionScalarWhereWithAggregatesInput | RepairOptionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RepairOption"> | string
+    modelId?: StringWithAggregatesFilter<"RepairOption"> | string
+    repairTypeId?: StringWithAggregatesFilter<"RepairOption"> | string
+    quality?: EnumRepairQualityWithAggregatesFilter<"RepairOption"> | $Enums.RepairQuality
+    price?: FloatWithAggregatesFilter<"RepairOption"> | number
+    cost?: FloatNullableWithAggregatesFilter<"RepairOption"> | number | null
+    isActive?: BoolWithAggregatesFilter<"RepairOption"> | boolean
+    updatedAt?: DateTimeWithAggregatesFilter<"RepairOption"> | Date | string
+  }
+
   export type BrandRepairWhereInput = {
     AND?: BrandRepairWhereInput | BrandRepairWhereInput[]
     OR?: BrandRepairWhereInput[]
@@ -48275,6 +53783,8 @@ export namespace Prisma {
     name?: StringFilter<"BrandRepair"> | string
     createdAt?: DateTimeFilter<"BrandRepair"> | Date | string
     models?: ModelRepairListRelationFilter
+    categoryLinks?: BrandRepairCategoryListRelationFilter
+    services?: ServiceListRelationFilter
   }
 
   export type BrandRepairOrderByWithRelationInput = {
@@ -48282,6 +53792,8 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     models?: ModelRepairOrderByRelationAggregateInput
+    categoryLinks?: BrandRepairCategoryOrderByRelationAggregateInput
+    services?: ServiceOrderByRelationAggregateInput
   }
 
   export type BrandRepairWhereUniqueInput = Prisma.AtLeast<{
@@ -48292,6 +53804,8 @@ export namespace Prisma {
     NOT?: BrandRepairWhereInput | BrandRepairWhereInput[]
     createdAt?: DateTimeFilter<"BrandRepair"> | Date | string
     models?: ModelRepairListRelationFilter
+    categoryLinks?: BrandRepairCategoryListRelationFilter
+    services?: ServiceListRelationFilter
   }, "id" | "name">
 
   export type BrandRepairOrderByWithAggregationInput = {
@@ -48319,16 +53833,24 @@ export namespace Prisma {
     id?: StringFilter<"ModelRepair"> | string
     name?: StringFilter<"ModelRepair"> | string
     brandId?: StringFilter<"ModelRepair"> | string
+    categoryId?: StringNullableFilter<"ModelRepair"> | string | null
     brand?: XOR<BrandRepairScalarRelationFilter, BrandRepairWhereInput>
     serviceCatalog?: ServiceCatalogListRelationFilter
+    category?: XOR<ServiceCategoryNullableScalarRelationFilter, ServiceCategoryWhereInput> | null
+    repairOptions?: RepairOptionListRelationFilter
+    services?: ServiceListRelationFilter
   }
 
   export type ModelRepairOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     brandId?: SortOrder
+    categoryId?: SortOrder
     brand?: BrandRepairOrderByWithRelationInput
     serviceCatalog?: ServiceCatalogOrderByRelationAggregateInput
+    category?: ServiceCategoryOrderByWithRelationInput
+    repairOptions?: RepairOptionOrderByRelationAggregateInput
+    services?: ServiceOrderByRelationAggregateInput
   }
 
   export type ModelRepairWhereUniqueInput = Prisma.AtLeast<{
@@ -48339,14 +53861,19 @@ export namespace Prisma {
     NOT?: ModelRepairWhereInput | ModelRepairWhereInput[]
     name?: StringFilter<"ModelRepair"> | string
     brandId?: StringFilter<"ModelRepair"> | string
+    categoryId?: StringNullableFilter<"ModelRepair"> | string | null
     brand?: XOR<BrandRepairScalarRelationFilter, BrandRepairWhereInput>
     serviceCatalog?: ServiceCatalogListRelationFilter
+    category?: XOR<ServiceCategoryNullableScalarRelationFilter, ServiceCategoryWhereInput> | null
+    repairOptions?: RepairOptionListRelationFilter
+    services?: ServiceListRelationFilter
   }, "id" | "name_brandId">
 
   export type ModelRepairOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     brandId?: SortOrder
+    categoryId?: SortOrder
     _count?: ModelRepairCountOrderByAggregateInput
     _max?: ModelRepairMaxOrderByAggregateInput
     _min?: ModelRepairMinOrderByAggregateInput
@@ -48359,6 +53886,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"ModelRepair"> | string
     name?: StringWithAggregatesFilter<"ModelRepair"> | string
     brandId?: StringWithAggregatesFilter<"ModelRepair"> | string
+    categoryId?: StringNullableWithAggregatesFilter<"ModelRepair"> | string | null
   }
 
   export type ServiceCatalogWhereInput = {
@@ -50832,6 +56360,11 @@ export namespace Prisma {
     isWarranty?: boolean
     buyer?: BuyerCreateNestedOneWithoutServicesInput
     customerDevice?: CustomerDeviceCreateNestedOneWithoutServicesInput
+    serviceCategory?: ServiceCategoryCreateNestedOneWithoutServicesInput
+    brandRepair?: BrandRepairCreateNestedOneWithoutServicesInput
+    modelRepair?: ModelRepairCreateNestedOneWithoutServicesInput
+    repairType?: RepairTypeCreateNestedOneWithoutServicesInput
+    repairOption?: RepairOptionCreateNestedOneWithoutServicesInput
   }
 
   export type ServiceUncheckedCreateInput = {
@@ -50861,6 +56394,11 @@ export namespace Prisma {
     additionalDetails?: InputJsonValue | null
     privateNotes?: string | null
     isWarranty?: boolean
+    serviceCategoryId?: string | null
+    brandRepairId?: string | null
+    modelRepairId?: string | null
+    repairTypeId?: string | null
+    repairOptionId?: string | null
   }
 
   export type ServiceUpdateInput = {
@@ -50889,6 +56427,11 @@ export namespace Prisma {
     isWarranty?: BoolFieldUpdateOperationsInput | boolean
     buyer?: BuyerUpdateOneWithoutServicesNestedInput
     customerDevice?: CustomerDeviceUpdateOneWithoutServicesNestedInput
+    serviceCategory?: ServiceCategoryUpdateOneWithoutServicesNestedInput
+    brandRepair?: BrandRepairUpdateOneWithoutServicesNestedInput
+    modelRepair?: ModelRepairUpdateOneWithoutServicesNestedInput
+    repairType?: RepairTypeUpdateOneWithoutServicesNestedInput
+    repairOption?: RepairOptionUpdateOneWithoutServicesNestedInput
   }
 
   export type ServiceUncheckedUpdateInput = {
@@ -50917,6 +56460,11 @@ export namespace Prisma {
     additionalDetails?: InputJsonValue | InputJsonValue | null
     privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
     isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ServiceCreateManyInput = {
@@ -50946,6 +56494,11 @@ export namespace Prisma {
     additionalDetails?: InputJsonValue | null
     privateNotes?: string | null
     isWarranty?: boolean
+    serviceCategoryId?: string | null
+    brandRepairId?: string | null
+    modelRepairId?: string | null
+    repairTypeId?: string | null
+    repairOptionId?: string | null
   }
 
   export type ServiceUpdateManyMutationInput = {
@@ -51000,6 +56553,11 @@ export namespace Prisma {
     additionalDetails?: InputJsonValue | InputJsonValue | null
     privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
     isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CashRegisterSessionCreateInput = {
@@ -51271,6 +56829,7 @@ export namespace Prisma {
   export type UserCreateInput = {
     id?: string
     username?: string | null
+    name?: string | null
     email: string
     password: string
     avatar?: string | null
@@ -51280,6 +56839,7 @@ export namespace Prisma {
   export type UserUncheckedCreateInput = {
     id?: string
     username?: string | null
+    name?: string | null
     email: string
     password: string
     avatar?: string | null
@@ -51288,6 +56848,7 @@ export namespace Prisma {
 
   export type UserUpdateInput = {
     username?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
@@ -51296,6 +56857,7 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateInput = {
     username?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
@@ -51305,6 +56867,7 @@ export namespace Prisma {
   export type UserCreateManyInput = {
     id?: string
     username?: string | null
+    name?: string | null
     email: string
     password: string
     avatar?: string | null
@@ -51313,6 +56876,7 @@ export namespace Prisma {
 
   export type UserUpdateManyMutationInput = {
     username?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
@@ -51321,6 +56885,7 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateManyInput = {
     username?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
@@ -51636,11 +57201,280 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ServiceCategoryCreateInput = {
+    id?: string
+    name: string
+    slug: string
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repairTypes?: RepairTypeCreateNestedManyWithoutCategoryInput
+    brandLinks?: BrandRepairCategoryCreateNestedManyWithoutCategoryInput
+    models?: ModelRepairCreateNestedManyWithoutCategoryInput
+    services?: ServiceCreateNestedManyWithoutServiceCategoryInput
+  }
+
+  export type ServiceCategoryUncheckedCreateInput = {
+    id?: string
+    name: string
+    slug: string
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repairTypes?: RepairTypeUncheckedCreateNestedManyWithoutCategoryInput
+    brandLinks?: BrandRepairCategoryUncheckedCreateNestedManyWithoutCategoryInput
+    models?: ModelRepairUncheckedCreateNestedManyWithoutCategoryInput
+    services?: ServiceUncheckedCreateNestedManyWithoutServiceCategoryInput
+  }
+
+  export type ServiceCategoryUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairTypes?: RepairTypeUpdateManyWithoutCategoryNestedInput
+    brandLinks?: BrandRepairCategoryUpdateManyWithoutCategoryNestedInput
+    models?: ModelRepairUpdateManyWithoutCategoryNestedInput
+    services?: ServiceUpdateManyWithoutServiceCategoryNestedInput
+  }
+
+  export type ServiceCategoryUncheckedUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairTypes?: RepairTypeUncheckedUpdateManyWithoutCategoryNestedInput
+    brandLinks?: BrandRepairCategoryUncheckedUpdateManyWithoutCategoryNestedInput
+    models?: ModelRepairUncheckedUpdateManyWithoutCategoryNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutServiceCategoryNestedInput
+  }
+
+  export type ServiceCategoryCreateManyInput = {
+    id?: string
+    name: string
+    slug: string
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ServiceCategoryUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceCategoryUncheckedUpdateManyInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BrandRepairCategoryCreateInput = {
+    id?: string
+    brand: BrandRepairCreateNestedOneWithoutCategoryLinksInput
+    category: ServiceCategoryCreateNestedOneWithoutBrandLinksInput
+  }
+
+  export type BrandRepairCategoryUncheckedCreateInput = {
+    id?: string
+    brandId: string
+    categoryId: string
+  }
+
+  export type BrandRepairCategoryUpdateInput = {
+    brand?: BrandRepairUpdateOneRequiredWithoutCategoryLinksNestedInput
+    category?: ServiceCategoryUpdateOneRequiredWithoutBrandLinksNestedInput
+  }
+
+  export type BrandRepairCategoryUncheckedUpdateInput = {
+    brandId?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BrandRepairCategoryCreateManyInput = {
+    id?: string
+    brandId: string
+    categoryId: string
+  }
+
+  export type BrandRepairCategoryUpdateManyMutationInput = {
+
+  }
+
+  export type BrandRepairCategoryUncheckedUpdateManyInput = {
+    brandId?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type RepairTypeCreateInput = {
+    id?: string
+    name: string
+    position?: number
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    category: ServiceCategoryCreateNestedOneWithoutRepairTypesInput
+    repairOptions?: RepairOptionCreateNestedManyWithoutRepairTypeInput
+    services?: ServiceCreateNestedManyWithoutRepairTypeInput
+  }
+
+  export type RepairTypeUncheckedCreateInput = {
+    id?: string
+    name: string
+    categoryId: string
+    position?: number
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    repairOptions?: RepairOptionUncheckedCreateNestedManyWithoutRepairTypeInput
+    services?: ServiceUncheckedCreateNestedManyWithoutRepairTypeInput
+  }
+
+  export type RepairTypeUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: ServiceCategoryUpdateOneRequiredWithoutRepairTypesNestedInput
+    repairOptions?: RepairOptionUpdateManyWithoutRepairTypeNestedInput
+    services?: ServiceUpdateManyWithoutRepairTypeNestedInput
+  }
+
+  export type RepairTypeUncheckedUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairOptions?: RepairOptionUncheckedUpdateManyWithoutRepairTypeNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutRepairTypeNestedInput
+  }
+
+  export type RepairTypeCreateManyInput = {
+    id?: string
+    name: string
+    categoryId: string
+    position?: number
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type RepairTypeUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairTypeUncheckedUpdateManyInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairOptionCreateInput = {
+    id?: string
+    quality?: $Enums.RepairQuality
+    price: number
+    cost?: number | null
+    isActive?: boolean
+    updatedAt?: Date | string
+    model: ModelRepairCreateNestedOneWithoutRepairOptionsInput
+    repairType: RepairTypeCreateNestedOneWithoutRepairOptionsInput
+    services?: ServiceCreateNestedManyWithoutRepairOptionInput
+  }
+
+  export type RepairOptionUncheckedCreateInput = {
+    id?: string
+    modelId: string
+    repairTypeId: string
+    quality?: $Enums.RepairQuality
+    price: number
+    cost?: number | null
+    isActive?: boolean
+    updatedAt?: Date | string
+    services?: ServiceUncheckedCreateNestedManyWithoutRepairOptionInput
+  }
+
+  export type RepairOptionUpdateInput = {
+    quality?: EnumRepairQualityFieldUpdateOperationsInput | $Enums.RepairQuality
+    price?: FloatFieldUpdateOperationsInput | number
+    cost?: NullableFloatFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    model?: ModelRepairUpdateOneRequiredWithoutRepairOptionsNestedInput
+    repairType?: RepairTypeUpdateOneRequiredWithoutRepairOptionsNestedInput
+    services?: ServiceUpdateManyWithoutRepairOptionNestedInput
+  }
+
+  export type RepairOptionUncheckedUpdateInput = {
+    modelId?: StringFieldUpdateOperationsInput | string
+    repairTypeId?: StringFieldUpdateOperationsInput | string
+    quality?: EnumRepairQualityFieldUpdateOperationsInput | $Enums.RepairQuality
+    price?: FloatFieldUpdateOperationsInput | number
+    cost?: NullableFloatFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    services?: ServiceUncheckedUpdateManyWithoutRepairOptionNestedInput
+  }
+
+  export type RepairOptionCreateManyInput = {
+    id?: string
+    modelId: string
+    repairTypeId: string
+    quality?: $Enums.RepairQuality
+    price: number
+    cost?: number | null
+    isActive?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type RepairOptionUpdateManyMutationInput = {
+    quality?: EnumRepairQualityFieldUpdateOperationsInput | $Enums.RepairQuality
+    price?: FloatFieldUpdateOperationsInput | number
+    cost?: NullableFloatFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairOptionUncheckedUpdateManyInput = {
+    modelId?: StringFieldUpdateOperationsInput | string
+    repairTypeId?: StringFieldUpdateOperationsInput | string
+    quality?: EnumRepairQualityFieldUpdateOperationsInput | $Enums.RepairQuality
+    price?: FloatFieldUpdateOperationsInput | number
+    cost?: NullableFloatFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type BrandRepairCreateInput = {
     id?: string
     name: string
     createdAt?: Date | string
     models?: ModelRepairCreateNestedManyWithoutBrandInput
+    categoryLinks?: BrandRepairCategoryCreateNestedManyWithoutBrandInput
+    services?: ServiceCreateNestedManyWithoutBrandRepairInput
   }
 
   export type BrandRepairUncheckedCreateInput = {
@@ -51648,18 +57482,24 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     models?: ModelRepairUncheckedCreateNestedManyWithoutBrandInput
+    categoryLinks?: BrandRepairCategoryUncheckedCreateNestedManyWithoutBrandInput
+    services?: ServiceUncheckedCreateNestedManyWithoutBrandRepairInput
   }
 
   export type BrandRepairUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     models?: ModelRepairUpdateManyWithoutBrandNestedInput
+    categoryLinks?: BrandRepairCategoryUpdateManyWithoutBrandNestedInput
+    services?: ServiceUpdateManyWithoutBrandRepairNestedInput
   }
 
   export type BrandRepairUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     models?: ModelRepairUncheckedUpdateManyWithoutBrandNestedInput
+    categoryLinks?: BrandRepairCategoryUncheckedUpdateManyWithoutBrandNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutBrandRepairNestedInput
   }
 
   export type BrandRepairCreateManyInput = {
@@ -51683,31 +57523,44 @@ export namespace Prisma {
     name: string
     brand: BrandRepairCreateNestedOneWithoutModelsInput
     serviceCatalog?: ServiceCatalogCreateNestedManyWithoutModelInput
+    category?: ServiceCategoryCreateNestedOneWithoutModelsInput
+    repairOptions?: RepairOptionCreateNestedManyWithoutModelInput
+    services?: ServiceCreateNestedManyWithoutModelRepairInput
   }
 
   export type ModelRepairUncheckedCreateInput = {
     id?: string
     name: string
     brandId: string
+    categoryId?: string | null
     serviceCatalog?: ServiceCatalogUncheckedCreateNestedManyWithoutModelInput
+    repairOptions?: RepairOptionUncheckedCreateNestedManyWithoutModelInput
+    services?: ServiceUncheckedCreateNestedManyWithoutModelRepairInput
   }
 
   export type ModelRepairUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     brand?: BrandRepairUpdateOneRequiredWithoutModelsNestedInput
     serviceCatalog?: ServiceCatalogUpdateManyWithoutModelNestedInput
+    category?: ServiceCategoryUpdateOneWithoutModelsNestedInput
+    repairOptions?: RepairOptionUpdateManyWithoutModelNestedInput
+    services?: ServiceUpdateManyWithoutModelRepairNestedInput
   }
 
   export type ModelRepairUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     brandId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     serviceCatalog?: ServiceCatalogUncheckedUpdateManyWithoutModelNestedInput
+    repairOptions?: RepairOptionUncheckedUpdateManyWithoutModelNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutModelRepairNestedInput
   }
 
   export type ModelRepairCreateManyInput = {
     id?: string
     name: string
     brandId: string
+    categoryId?: string | null
   }
 
   export type ModelRepairUpdateManyMutationInput = {
@@ -51717,6 +57570,7 @@ export namespace Prisma {
   export type ModelRepairUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
     brandId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ServiceCatalogCreateInput = {
@@ -53609,6 +59463,31 @@ export namespace Prisma {
     isNot?: CustomerDeviceWhereInput | null
   }
 
+  export type ServiceCategoryNullableScalarRelationFilter = {
+    is?: ServiceCategoryWhereInput | null
+    isNot?: ServiceCategoryWhereInput | null
+  }
+
+  export type BrandRepairNullableScalarRelationFilter = {
+    is?: BrandRepairWhereInput | null
+    isNot?: BrandRepairWhereInput | null
+  }
+
+  export type ModelRepairNullableScalarRelationFilter = {
+    is?: ModelRepairWhereInput | null
+    isNot?: ModelRepairWhereInput | null
+  }
+
+  export type RepairTypeNullableScalarRelationFilter = {
+    is?: RepairTypeWhereInput | null
+    isNot?: RepairTypeWhereInput | null
+  }
+
+  export type RepairOptionNullableScalarRelationFilter = {
+    is?: RepairOptionWhereInput | null
+    isNot?: RepairOptionWhereInput | null
+  }
+
   export type ServiceCountOrderByAggregateInput = {
     id?: SortOrder
     buyerId?: SortOrder
@@ -53636,6 +59515,11 @@ export namespace Prisma {
     additionalDetails?: SortOrder
     privateNotes?: SortOrder
     isWarranty?: SortOrder
+    serviceCategoryId?: SortOrder
+    brandRepairId?: SortOrder
+    modelRepairId?: SortOrder
+    repairTypeId?: SortOrder
+    repairOptionId?: SortOrder
   }
 
   export type ServiceAvgOrderByAggregateInput = {
@@ -53665,6 +59549,11 @@ export namespace Prisma {
     defectId?: SortOrder
     privateNotes?: SortOrder
     isWarranty?: SortOrder
+    serviceCategoryId?: SortOrder
+    brandRepairId?: SortOrder
+    modelRepairId?: SortOrder
+    repairTypeId?: SortOrder
+    repairOptionId?: SortOrder
   }
 
   export type ServiceMinOrderByAggregateInput = {
@@ -53689,6 +59578,11 @@ export namespace Prisma {
     defectId?: SortOrder
     privateNotes?: SortOrder
     isWarranty?: SortOrder
+    serviceCategoryId?: SortOrder
+    brandRepairId?: SortOrder
+    modelRepairId?: SortOrder
+    repairTypeId?: SortOrder
+    repairOptionId?: SortOrder
   }
 
   export type ServiceSumOrderByAggregateInput = {
@@ -53932,6 +59826,7 @@ export namespace Prisma {
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     password?: SortOrder
     avatar?: SortOrder
@@ -53941,6 +59836,7 @@ export namespace Prisma {
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     password?: SortOrder
     avatar?: SortOrder
@@ -53950,6 +59846,7 @@ export namespace Prisma {
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     password?: SortOrder
     avatar?: SortOrder
@@ -54135,14 +60032,226 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type RepairTypeListRelationFilter = {
+    every?: RepairTypeWhereInput
+    some?: RepairTypeWhereInput
+    none?: RepairTypeWhereInput
+  }
+
+  export type BrandRepairCategoryListRelationFilter = {
+    every?: BrandRepairCategoryWhereInput
+    some?: BrandRepairCategoryWhereInput
+    none?: BrandRepairCategoryWhereInput
+  }
+
   export type ModelRepairListRelationFilter = {
     every?: ModelRepairWhereInput
     some?: ModelRepairWhereInput
     none?: ModelRepairWhereInput
   }
 
+  export type RepairTypeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BrandRepairCategoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type ModelRepairOrderByRelationAggregateInput = {
     _count?: SortOrder
+  }
+
+  export type ServiceCategoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ServiceCategoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ServiceCategoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BrandRepairScalarRelationFilter = {
+    is?: BrandRepairWhereInput
+    isNot?: BrandRepairWhereInput
+  }
+
+  export type ServiceCategoryScalarRelationFilter = {
+    is?: ServiceCategoryWhereInput
+    isNot?: ServiceCategoryWhereInput
+  }
+
+  export type BrandRepairCategoryBrandIdCategoryIdCompoundUniqueInput = {
+    brandId: string
+    categoryId: string
+  }
+
+  export type BrandRepairCategoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    brandId?: SortOrder
+    categoryId?: SortOrder
+  }
+
+  export type BrandRepairCategoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    brandId?: SortOrder
+    categoryId?: SortOrder
+  }
+
+  export type BrandRepairCategoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    brandId?: SortOrder
+    categoryId?: SortOrder
+  }
+
+  export type RepairOptionListRelationFilter = {
+    every?: RepairOptionWhereInput
+    some?: RepairOptionWhereInput
+    none?: RepairOptionWhereInput
+  }
+
+  export type RepairOptionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RepairTypeNameCategoryIdCompoundUniqueInput = {
+    name: string
+    categoryId: string
+  }
+
+  export type RepairTypeCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    categoryId?: SortOrder
+    position?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RepairTypeAvgOrderByAggregateInput = {
+    position?: SortOrder
+  }
+
+  export type RepairTypeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    categoryId?: SortOrder
+    position?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RepairTypeMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    categoryId?: SortOrder
+    position?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RepairTypeSumOrderByAggregateInput = {
+    position?: SortOrder
+  }
+
+  export type EnumRepairQualityFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairQuality | EnumRepairQualityFieldRefInput<$PrismaModel>
+    in?: $Enums.RepairQuality[] | ListEnumRepairQualityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RepairQuality[] | ListEnumRepairQualityFieldRefInput<$PrismaModel>
+    not?: NestedEnumRepairQualityFilter<$PrismaModel> | $Enums.RepairQuality
+  }
+
+  export type ModelRepairScalarRelationFilter = {
+    is?: ModelRepairWhereInput
+    isNot?: ModelRepairWhereInput
+  }
+
+  export type RepairTypeScalarRelationFilter = {
+    is?: RepairTypeWhereInput
+    isNot?: RepairTypeWhereInput
+  }
+
+  export type RepairOptionModelIdRepairTypeIdQualityCompoundUniqueInput = {
+    modelId: string
+    repairTypeId: string
+    quality: $Enums.RepairQuality
+  }
+
+  export type RepairOptionCountOrderByAggregateInput = {
+    id?: SortOrder
+    modelId?: SortOrder
+    repairTypeId?: SortOrder
+    quality?: SortOrder
+    price?: SortOrder
+    cost?: SortOrder
+    isActive?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RepairOptionAvgOrderByAggregateInput = {
+    price?: SortOrder
+    cost?: SortOrder
+  }
+
+  export type RepairOptionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    modelId?: SortOrder
+    repairTypeId?: SortOrder
+    quality?: SortOrder
+    price?: SortOrder
+    cost?: SortOrder
+    isActive?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RepairOptionMinOrderByAggregateInput = {
+    id?: SortOrder
+    modelId?: SortOrder
+    repairTypeId?: SortOrder
+    quality?: SortOrder
+    price?: SortOrder
+    cost?: SortOrder
+    isActive?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RepairOptionSumOrderByAggregateInput = {
+    price?: SortOrder
+    cost?: SortOrder
+  }
+
+  export type EnumRepairQualityWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairQuality | EnumRepairQualityFieldRefInput<$PrismaModel>
+    in?: $Enums.RepairQuality[] | ListEnumRepairQualityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RepairQuality[] | ListEnumRepairQualityFieldRefInput<$PrismaModel>
+    not?: NestedEnumRepairQualityWithAggregatesFilter<$PrismaModel> | $Enums.RepairQuality
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRepairQualityFilter<$PrismaModel>
+    _max?: NestedEnumRepairQualityFilter<$PrismaModel>
   }
 
   export type BrandRepairCountOrderByAggregateInput = {
@@ -54161,11 +60270,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
-  }
-
-  export type BrandRepairScalarRelationFilter = {
-    is?: BrandRepairWhereInput
-    isNot?: BrandRepairWhereInput
   }
 
   export type ServiceCatalogListRelationFilter = {
@@ -54187,23 +60291,21 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     brandId?: SortOrder
+    categoryId?: SortOrder
   }
 
   export type ModelRepairMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     brandId?: SortOrder
+    categoryId?: SortOrder
   }
 
   export type ModelRepairMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     brandId?: SortOrder
-  }
-
-  export type ModelRepairScalarRelationFilter = {
-    is?: ModelRepairWhereInput
-    isNot?: ModelRepairWhereInput
+    categoryId?: SortOrder
   }
 
   export type ServiceCatalogCountOrderByAggregateInput = {
@@ -55791,6 +61893,36 @@ export namespace Prisma {
     connect?: CustomerDeviceWhereUniqueInput
   }
 
+  export type ServiceCategoryCreateNestedOneWithoutServicesInput = {
+    create?: XOR<ServiceCategoryCreateWithoutServicesInput, ServiceCategoryUncheckedCreateWithoutServicesInput>
+    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput
+    connect?: ServiceCategoryWhereUniqueInput
+  }
+
+  export type BrandRepairCreateNestedOneWithoutServicesInput = {
+    create?: XOR<BrandRepairCreateWithoutServicesInput, BrandRepairUncheckedCreateWithoutServicesInput>
+    connectOrCreate?: BrandRepairCreateOrConnectWithoutServicesInput
+    connect?: BrandRepairWhereUniqueInput
+  }
+
+  export type ModelRepairCreateNestedOneWithoutServicesInput = {
+    create?: XOR<ModelRepairCreateWithoutServicesInput, ModelRepairUncheckedCreateWithoutServicesInput>
+    connectOrCreate?: ModelRepairCreateOrConnectWithoutServicesInput
+    connect?: ModelRepairWhereUniqueInput
+  }
+
+  export type RepairTypeCreateNestedOneWithoutServicesInput = {
+    create?: XOR<RepairTypeCreateWithoutServicesInput, RepairTypeUncheckedCreateWithoutServicesInput>
+    connectOrCreate?: RepairTypeCreateOrConnectWithoutServicesInput
+    connect?: RepairTypeWhereUniqueInput
+  }
+
+  export type RepairOptionCreateNestedOneWithoutServicesInput = {
+    create?: XOR<RepairOptionCreateWithoutServicesInput, RepairOptionUncheckedCreateWithoutServicesInput>
+    connectOrCreate?: RepairOptionCreateOrConnectWithoutServicesInput
+    connect?: RepairOptionWhereUniqueInput
+  }
+
   export type NullableEnumDeviceStatusFieldUpdateOperationsInput = {
     set?: $Enums.DeviceStatus | null
     unset?: boolean
@@ -55814,6 +61946,56 @@ export namespace Prisma {
     delete?: CustomerDeviceWhereInput | boolean
     connect?: CustomerDeviceWhereUniqueInput
     update?: XOR<XOR<CustomerDeviceUpdateToOneWithWhereWithoutServicesInput, CustomerDeviceUpdateWithoutServicesInput>, CustomerDeviceUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type ServiceCategoryUpdateOneWithoutServicesNestedInput = {
+    create?: XOR<ServiceCategoryCreateWithoutServicesInput, ServiceCategoryUncheckedCreateWithoutServicesInput>
+    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput
+    upsert?: ServiceCategoryUpsertWithoutServicesInput
+    disconnect?: boolean
+    delete?: ServiceCategoryWhereInput | boolean
+    connect?: ServiceCategoryWhereUniqueInput
+    update?: XOR<XOR<ServiceCategoryUpdateToOneWithWhereWithoutServicesInput, ServiceCategoryUpdateWithoutServicesInput>, ServiceCategoryUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type BrandRepairUpdateOneWithoutServicesNestedInput = {
+    create?: XOR<BrandRepairCreateWithoutServicesInput, BrandRepairUncheckedCreateWithoutServicesInput>
+    connectOrCreate?: BrandRepairCreateOrConnectWithoutServicesInput
+    upsert?: BrandRepairUpsertWithoutServicesInput
+    disconnect?: boolean
+    delete?: BrandRepairWhereInput | boolean
+    connect?: BrandRepairWhereUniqueInput
+    update?: XOR<XOR<BrandRepairUpdateToOneWithWhereWithoutServicesInput, BrandRepairUpdateWithoutServicesInput>, BrandRepairUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type ModelRepairUpdateOneWithoutServicesNestedInput = {
+    create?: XOR<ModelRepairCreateWithoutServicesInput, ModelRepairUncheckedCreateWithoutServicesInput>
+    connectOrCreate?: ModelRepairCreateOrConnectWithoutServicesInput
+    upsert?: ModelRepairUpsertWithoutServicesInput
+    disconnect?: boolean
+    delete?: ModelRepairWhereInput | boolean
+    connect?: ModelRepairWhereUniqueInput
+    update?: XOR<XOR<ModelRepairUpdateToOneWithWhereWithoutServicesInput, ModelRepairUpdateWithoutServicesInput>, ModelRepairUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type RepairTypeUpdateOneWithoutServicesNestedInput = {
+    create?: XOR<RepairTypeCreateWithoutServicesInput, RepairTypeUncheckedCreateWithoutServicesInput>
+    connectOrCreate?: RepairTypeCreateOrConnectWithoutServicesInput
+    upsert?: RepairTypeUpsertWithoutServicesInput
+    disconnect?: boolean
+    delete?: RepairTypeWhereInput | boolean
+    connect?: RepairTypeWhereUniqueInput
+    update?: XOR<XOR<RepairTypeUpdateToOneWithWhereWithoutServicesInput, RepairTypeUpdateWithoutServicesInput>, RepairTypeUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type RepairOptionUpdateOneWithoutServicesNestedInput = {
+    create?: XOR<RepairOptionCreateWithoutServicesInput, RepairOptionUncheckedCreateWithoutServicesInput>
+    connectOrCreate?: RepairOptionCreateOrConnectWithoutServicesInput
+    upsert?: RepairOptionUpsertWithoutServicesInput
+    disconnect?: boolean
+    delete?: RepairOptionWhereInput | boolean
+    connect?: RepairOptionWhereUniqueInput
+    update?: XOR<XOR<RepairOptionUpdateToOneWithWhereWithoutServicesInput, RepairOptionUpdateWithoutServicesInput>, RepairOptionUncheckedUpdateWithoutServicesInput>
   }
 
   export type CashMovementCreateNestedManyWithoutCashRegisterSessionInput = {
@@ -56062,6 +62244,374 @@ export namespace Prisma {
     update?: XOR<XOR<StockEntryUpdateToOneWithWhereWithoutItemsInput, StockEntryUpdateWithoutItemsInput>, StockEntryUncheckedUpdateWithoutItemsInput>
   }
 
+  export type RepairTypeCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<RepairTypeCreateWithoutCategoryInput, RepairTypeUncheckedCreateWithoutCategoryInput> | RepairTypeCreateWithoutCategoryInput[] | RepairTypeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: RepairTypeCreateOrConnectWithoutCategoryInput | RepairTypeCreateOrConnectWithoutCategoryInput[]
+    createMany?: RepairTypeCreateManyCategoryInputEnvelope
+    connect?: RepairTypeWhereUniqueInput | RepairTypeWhereUniqueInput[]
+  }
+
+  export type BrandRepairCategoryCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<BrandRepairCategoryCreateWithoutCategoryInput, BrandRepairCategoryUncheckedCreateWithoutCategoryInput> | BrandRepairCategoryCreateWithoutCategoryInput[] | BrandRepairCategoryUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: BrandRepairCategoryCreateOrConnectWithoutCategoryInput | BrandRepairCategoryCreateOrConnectWithoutCategoryInput[]
+    createMany?: BrandRepairCategoryCreateManyCategoryInputEnvelope
+    connect?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+  }
+
+  export type ModelRepairCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<ModelRepairCreateWithoutCategoryInput, ModelRepairUncheckedCreateWithoutCategoryInput> | ModelRepairCreateWithoutCategoryInput[] | ModelRepairUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: ModelRepairCreateOrConnectWithoutCategoryInput | ModelRepairCreateOrConnectWithoutCategoryInput[]
+    createMany?: ModelRepairCreateManyCategoryInputEnvelope
+    connect?: ModelRepairWhereUniqueInput | ModelRepairWhereUniqueInput[]
+  }
+
+  export type ServiceCreateNestedManyWithoutServiceCategoryInput = {
+    create?: XOR<ServiceCreateWithoutServiceCategoryInput, ServiceUncheckedCreateWithoutServiceCategoryInput> | ServiceCreateWithoutServiceCategoryInput[] | ServiceUncheckedCreateWithoutServiceCategoryInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutServiceCategoryInput | ServiceCreateOrConnectWithoutServiceCategoryInput[]
+    createMany?: ServiceCreateManyServiceCategoryInputEnvelope
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+  }
+
+  export type RepairTypeUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<RepairTypeCreateWithoutCategoryInput, RepairTypeUncheckedCreateWithoutCategoryInput> | RepairTypeCreateWithoutCategoryInput[] | RepairTypeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: RepairTypeCreateOrConnectWithoutCategoryInput | RepairTypeCreateOrConnectWithoutCategoryInput[]
+    createMany?: RepairTypeCreateManyCategoryInputEnvelope
+    connect?: RepairTypeWhereUniqueInput | RepairTypeWhereUniqueInput[]
+  }
+
+  export type BrandRepairCategoryUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<BrandRepairCategoryCreateWithoutCategoryInput, BrandRepairCategoryUncheckedCreateWithoutCategoryInput> | BrandRepairCategoryCreateWithoutCategoryInput[] | BrandRepairCategoryUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: BrandRepairCategoryCreateOrConnectWithoutCategoryInput | BrandRepairCategoryCreateOrConnectWithoutCategoryInput[]
+    createMany?: BrandRepairCategoryCreateManyCategoryInputEnvelope
+    connect?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+  }
+
+  export type ModelRepairUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<ModelRepairCreateWithoutCategoryInput, ModelRepairUncheckedCreateWithoutCategoryInput> | ModelRepairCreateWithoutCategoryInput[] | ModelRepairUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: ModelRepairCreateOrConnectWithoutCategoryInput | ModelRepairCreateOrConnectWithoutCategoryInput[]
+    createMany?: ModelRepairCreateManyCategoryInputEnvelope
+    connect?: ModelRepairWhereUniqueInput | ModelRepairWhereUniqueInput[]
+  }
+
+  export type ServiceUncheckedCreateNestedManyWithoutServiceCategoryInput = {
+    create?: XOR<ServiceCreateWithoutServiceCategoryInput, ServiceUncheckedCreateWithoutServiceCategoryInput> | ServiceCreateWithoutServiceCategoryInput[] | ServiceUncheckedCreateWithoutServiceCategoryInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutServiceCategoryInput | ServiceCreateOrConnectWithoutServiceCategoryInput[]
+    createMany?: ServiceCreateManyServiceCategoryInputEnvelope
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+  }
+
+  export type RepairTypeUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<RepairTypeCreateWithoutCategoryInput, RepairTypeUncheckedCreateWithoutCategoryInput> | RepairTypeCreateWithoutCategoryInput[] | RepairTypeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: RepairTypeCreateOrConnectWithoutCategoryInput | RepairTypeCreateOrConnectWithoutCategoryInput[]
+    upsert?: RepairTypeUpsertWithWhereUniqueWithoutCategoryInput | RepairTypeUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: RepairTypeCreateManyCategoryInputEnvelope
+    set?: RepairTypeWhereUniqueInput | RepairTypeWhereUniqueInput[]
+    disconnect?: RepairTypeWhereUniqueInput | RepairTypeWhereUniqueInput[]
+    delete?: RepairTypeWhereUniqueInput | RepairTypeWhereUniqueInput[]
+    connect?: RepairTypeWhereUniqueInput | RepairTypeWhereUniqueInput[]
+    update?: RepairTypeUpdateWithWhereUniqueWithoutCategoryInput | RepairTypeUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: RepairTypeUpdateManyWithWhereWithoutCategoryInput | RepairTypeUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: RepairTypeScalarWhereInput | RepairTypeScalarWhereInput[]
+  }
+
+  export type BrandRepairCategoryUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<BrandRepairCategoryCreateWithoutCategoryInput, BrandRepairCategoryUncheckedCreateWithoutCategoryInput> | BrandRepairCategoryCreateWithoutCategoryInput[] | BrandRepairCategoryUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: BrandRepairCategoryCreateOrConnectWithoutCategoryInput | BrandRepairCategoryCreateOrConnectWithoutCategoryInput[]
+    upsert?: BrandRepairCategoryUpsertWithWhereUniqueWithoutCategoryInput | BrandRepairCategoryUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: BrandRepairCategoryCreateManyCategoryInputEnvelope
+    set?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    disconnect?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    delete?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    connect?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    update?: BrandRepairCategoryUpdateWithWhereUniqueWithoutCategoryInput | BrandRepairCategoryUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: BrandRepairCategoryUpdateManyWithWhereWithoutCategoryInput | BrandRepairCategoryUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: BrandRepairCategoryScalarWhereInput | BrandRepairCategoryScalarWhereInput[]
+  }
+
+  export type ModelRepairUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<ModelRepairCreateWithoutCategoryInput, ModelRepairUncheckedCreateWithoutCategoryInput> | ModelRepairCreateWithoutCategoryInput[] | ModelRepairUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: ModelRepairCreateOrConnectWithoutCategoryInput | ModelRepairCreateOrConnectWithoutCategoryInput[]
+    upsert?: ModelRepairUpsertWithWhereUniqueWithoutCategoryInput | ModelRepairUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: ModelRepairCreateManyCategoryInputEnvelope
+    set?: ModelRepairWhereUniqueInput | ModelRepairWhereUniqueInput[]
+    disconnect?: ModelRepairWhereUniqueInput | ModelRepairWhereUniqueInput[]
+    delete?: ModelRepairWhereUniqueInput | ModelRepairWhereUniqueInput[]
+    connect?: ModelRepairWhereUniqueInput | ModelRepairWhereUniqueInput[]
+    update?: ModelRepairUpdateWithWhereUniqueWithoutCategoryInput | ModelRepairUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: ModelRepairUpdateManyWithWhereWithoutCategoryInput | ModelRepairUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: ModelRepairScalarWhereInput | ModelRepairScalarWhereInput[]
+  }
+
+  export type ServiceUpdateManyWithoutServiceCategoryNestedInput = {
+    create?: XOR<ServiceCreateWithoutServiceCategoryInput, ServiceUncheckedCreateWithoutServiceCategoryInput> | ServiceCreateWithoutServiceCategoryInput[] | ServiceUncheckedCreateWithoutServiceCategoryInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutServiceCategoryInput | ServiceCreateOrConnectWithoutServiceCategoryInput[]
+    upsert?: ServiceUpsertWithWhereUniqueWithoutServiceCategoryInput | ServiceUpsertWithWhereUniqueWithoutServiceCategoryInput[]
+    createMany?: ServiceCreateManyServiceCategoryInputEnvelope
+    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    update?: ServiceUpdateWithWhereUniqueWithoutServiceCategoryInput | ServiceUpdateWithWhereUniqueWithoutServiceCategoryInput[]
+    updateMany?: ServiceUpdateManyWithWhereWithoutServiceCategoryInput | ServiceUpdateManyWithWhereWithoutServiceCategoryInput[]
+    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
+  }
+
+  export type RepairTypeUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<RepairTypeCreateWithoutCategoryInput, RepairTypeUncheckedCreateWithoutCategoryInput> | RepairTypeCreateWithoutCategoryInput[] | RepairTypeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: RepairTypeCreateOrConnectWithoutCategoryInput | RepairTypeCreateOrConnectWithoutCategoryInput[]
+    upsert?: RepairTypeUpsertWithWhereUniqueWithoutCategoryInput | RepairTypeUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: RepairTypeCreateManyCategoryInputEnvelope
+    set?: RepairTypeWhereUniqueInput | RepairTypeWhereUniqueInput[]
+    disconnect?: RepairTypeWhereUniqueInput | RepairTypeWhereUniqueInput[]
+    delete?: RepairTypeWhereUniqueInput | RepairTypeWhereUniqueInput[]
+    connect?: RepairTypeWhereUniqueInput | RepairTypeWhereUniqueInput[]
+    update?: RepairTypeUpdateWithWhereUniqueWithoutCategoryInput | RepairTypeUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: RepairTypeUpdateManyWithWhereWithoutCategoryInput | RepairTypeUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: RepairTypeScalarWhereInput | RepairTypeScalarWhereInput[]
+  }
+
+  export type BrandRepairCategoryUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<BrandRepairCategoryCreateWithoutCategoryInput, BrandRepairCategoryUncheckedCreateWithoutCategoryInput> | BrandRepairCategoryCreateWithoutCategoryInput[] | BrandRepairCategoryUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: BrandRepairCategoryCreateOrConnectWithoutCategoryInput | BrandRepairCategoryCreateOrConnectWithoutCategoryInput[]
+    upsert?: BrandRepairCategoryUpsertWithWhereUniqueWithoutCategoryInput | BrandRepairCategoryUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: BrandRepairCategoryCreateManyCategoryInputEnvelope
+    set?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    disconnect?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    delete?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    connect?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    update?: BrandRepairCategoryUpdateWithWhereUniqueWithoutCategoryInput | BrandRepairCategoryUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: BrandRepairCategoryUpdateManyWithWhereWithoutCategoryInput | BrandRepairCategoryUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: BrandRepairCategoryScalarWhereInput | BrandRepairCategoryScalarWhereInput[]
+  }
+
+  export type ModelRepairUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<ModelRepairCreateWithoutCategoryInput, ModelRepairUncheckedCreateWithoutCategoryInput> | ModelRepairCreateWithoutCategoryInput[] | ModelRepairUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: ModelRepairCreateOrConnectWithoutCategoryInput | ModelRepairCreateOrConnectWithoutCategoryInput[]
+    upsert?: ModelRepairUpsertWithWhereUniqueWithoutCategoryInput | ModelRepairUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: ModelRepairCreateManyCategoryInputEnvelope
+    set?: ModelRepairWhereUniqueInput | ModelRepairWhereUniqueInput[]
+    disconnect?: ModelRepairWhereUniqueInput | ModelRepairWhereUniqueInput[]
+    delete?: ModelRepairWhereUniqueInput | ModelRepairWhereUniqueInput[]
+    connect?: ModelRepairWhereUniqueInput | ModelRepairWhereUniqueInput[]
+    update?: ModelRepairUpdateWithWhereUniqueWithoutCategoryInput | ModelRepairUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: ModelRepairUpdateManyWithWhereWithoutCategoryInput | ModelRepairUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: ModelRepairScalarWhereInput | ModelRepairScalarWhereInput[]
+  }
+
+  export type ServiceUncheckedUpdateManyWithoutServiceCategoryNestedInput = {
+    create?: XOR<ServiceCreateWithoutServiceCategoryInput, ServiceUncheckedCreateWithoutServiceCategoryInput> | ServiceCreateWithoutServiceCategoryInput[] | ServiceUncheckedCreateWithoutServiceCategoryInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutServiceCategoryInput | ServiceCreateOrConnectWithoutServiceCategoryInput[]
+    upsert?: ServiceUpsertWithWhereUniqueWithoutServiceCategoryInput | ServiceUpsertWithWhereUniqueWithoutServiceCategoryInput[]
+    createMany?: ServiceCreateManyServiceCategoryInputEnvelope
+    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    update?: ServiceUpdateWithWhereUniqueWithoutServiceCategoryInput | ServiceUpdateWithWhereUniqueWithoutServiceCategoryInput[]
+    updateMany?: ServiceUpdateManyWithWhereWithoutServiceCategoryInput | ServiceUpdateManyWithWhereWithoutServiceCategoryInput[]
+    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
+  }
+
+  export type BrandRepairCreateNestedOneWithoutCategoryLinksInput = {
+    create?: XOR<BrandRepairCreateWithoutCategoryLinksInput, BrandRepairUncheckedCreateWithoutCategoryLinksInput>
+    connectOrCreate?: BrandRepairCreateOrConnectWithoutCategoryLinksInput
+    connect?: BrandRepairWhereUniqueInput
+  }
+
+  export type ServiceCategoryCreateNestedOneWithoutBrandLinksInput = {
+    create?: XOR<ServiceCategoryCreateWithoutBrandLinksInput, ServiceCategoryUncheckedCreateWithoutBrandLinksInput>
+    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutBrandLinksInput
+    connect?: ServiceCategoryWhereUniqueInput
+  }
+
+  export type BrandRepairUpdateOneRequiredWithoutCategoryLinksNestedInput = {
+    create?: XOR<BrandRepairCreateWithoutCategoryLinksInput, BrandRepairUncheckedCreateWithoutCategoryLinksInput>
+    connectOrCreate?: BrandRepairCreateOrConnectWithoutCategoryLinksInput
+    upsert?: BrandRepairUpsertWithoutCategoryLinksInput
+    connect?: BrandRepairWhereUniqueInput
+    update?: XOR<XOR<BrandRepairUpdateToOneWithWhereWithoutCategoryLinksInput, BrandRepairUpdateWithoutCategoryLinksInput>, BrandRepairUncheckedUpdateWithoutCategoryLinksInput>
+  }
+
+  export type ServiceCategoryUpdateOneRequiredWithoutBrandLinksNestedInput = {
+    create?: XOR<ServiceCategoryCreateWithoutBrandLinksInput, ServiceCategoryUncheckedCreateWithoutBrandLinksInput>
+    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutBrandLinksInput
+    upsert?: ServiceCategoryUpsertWithoutBrandLinksInput
+    connect?: ServiceCategoryWhereUniqueInput
+    update?: XOR<XOR<ServiceCategoryUpdateToOneWithWhereWithoutBrandLinksInput, ServiceCategoryUpdateWithoutBrandLinksInput>, ServiceCategoryUncheckedUpdateWithoutBrandLinksInput>
+  }
+
+  export type ServiceCategoryCreateNestedOneWithoutRepairTypesInput = {
+    create?: XOR<ServiceCategoryCreateWithoutRepairTypesInput, ServiceCategoryUncheckedCreateWithoutRepairTypesInput>
+    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutRepairTypesInput
+    connect?: ServiceCategoryWhereUniqueInput
+  }
+
+  export type RepairOptionCreateNestedManyWithoutRepairTypeInput = {
+    create?: XOR<RepairOptionCreateWithoutRepairTypeInput, RepairOptionUncheckedCreateWithoutRepairTypeInput> | RepairOptionCreateWithoutRepairTypeInput[] | RepairOptionUncheckedCreateWithoutRepairTypeInput[]
+    connectOrCreate?: RepairOptionCreateOrConnectWithoutRepairTypeInput | RepairOptionCreateOrConnectWithoutRepairTypeInput[]
+    createMany?: RepairOptionCreateManyRepairTypeInputEnvelope
+    connect?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+  }
+
+  export type ServiceCreateNestedManyWithoutRepairTypeInput = {
+    create?: XOR<ServiceCreateWithoutRepairTypeInput, ServiceUncheckedCreateWithoutRepairTypeInput> | ServiceCreateWithoutRepairTypeInput[] | ServiceUncheckedCreateWithoutRepairTypeInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutRepairTypeInput | ServiceCreateOrConnectWithoutRepairTypeInput[]
+    createMany?: ServiceCreateManyRepairTypeInputEnvelope
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+  }
+
+  export type RepairOptionUncheckedCreateNestedManyWithoutRepairTypeInput = {
+    create?: XOR<RepairOptionCreateWithoutRepairTypeInput, RepairOptionUncheckedCreateWithoutRepairTypeInput> | RepairOptionCreateWithoutRepairTypeInput[] | RepairOptionUncheckedCreateWithoutRepairTypeInput[]
+    connectOrCreate?: RepairOptionCreateOrConnectWithoutRepairTypeInput | RepairOptionCreateOrConnectWithoutRepairTypeInput[]
+    createMany?: RepairOptionCreateManyRepairTypeInputEnvelope
+    connect?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+  }
+
+  export type ServiceUncheckedCreateNestedManyWithoutRepairTypeInput = {
+    create?: XOR<ServiceCreateWithoutRepairTypeInput, ServiceUncheckedCreateWithoutRepairTypeInput> | ServiceCreateWithoutRepairTypeInput[] | ServiceUncheckedCreateWithoutRepairTypeInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutRepairTypeInput | ServiceCreateOrConnectWithoutRepairTypeInput[]
+    createMany?: ServiceCreateManyRepairTypeInputEnvelope
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+  }
+
+  export type ServiceCategoryUpdateOneRequiredWithoutRepairTypesNestedInput = {
+    create?: XOR<ServiceCategoryCreateWithoutRepairTypesInput, ServiceCategoryUncheckedCreateWithoutRepairTypesInput>
+    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutRepairTypesInput
+    upsert?: ServiceCategoryUpsertWithoutRepairTypesInput
+    connect?: ServiceCategoryWhereUniqueInput
+    update?: XOR<XOR<ServiceCategoryUpdateToOneWithWhereWithoutRepairTypesInput, ServiceCategoryUpdateWithoutRepairTypesInput>, ServiceCategoryUncheckedUpdateWithoutRepairTypesInput>
+  }
+
+  export type RepairOptionUpdateManyWithoutRepairTypeNestedInput = {
+    create?: XOR<RepairOptionCreateWithoutRepairTypeInput, RepairOptionUncheckedCreateWithoutRepairTypeInput> | RepairOptionCreateWithoutRepairTypeInput[] | RepairOptionUncheckedCreateWithoutRepairTypeInput[]
+    connectOrCreate?: RepairOptionCreateOrConnectWithoutRepairTypeInput | RepairOptionCreateOrConnectWithoutRepairTypeInput[]
+    upsert?: RepairOptionUpsertWithWhereUniqueWithoutRepairTypeInput | RepairOptionUpsertWithWhereUniqueWithoutRepairTypeInput[]
+    createMany?: RepairOptionCreateManyRepairTypeInputEnvelope
+    set?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    disconnect?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    delete?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    connect?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    update?: RepairOptionUpdateWithWhereUniqueWithoutRepairTypeInput | RepairOptionUpdateWithWhereUniqueWithoutRepairTypeInput[]
+    updateMany?: RepairOptionUpdateManyWithWhereWithoutRepairTypeInput | RepairOptionUpdateManyWithWhereWithoutRepairTypeInput[]
+    deleteMany?: RepairOptionScalarWhereInput | RepairOptionScalarWhereInput[]
+  }
+
+  export type ServiceUpdateManyWithoutRepairTypeNestedInput = {
+    create?: XOR<ServiceCreateWithoutRepairTypeInput, ServiceUncheckedCreateWithoutRepairTypeInput> | ServiceCreateWithoutRepairTypeInput[] | ServiceUncheckedCreateWithoutRepairTypeInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutRepairTypeInput | ServiceCreateOrConnectWithoutRepairTypeInput[]
+    upsert?: ServiceUpsertWithWhereUniqueWithoutRepairTypeInput | ServiceUpsertWithWhereUniqueWithoutRepairTypeInput[]
+    createMany?: ServiceCreateManyRepairTypeInputEnvelope
+    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    update?: ServiceUpdateWithWhereUniqueWithoutRepairTypeInput | ServiceUpdateWithWhereUniqueWithoutRepairTypeInput[]
+    updateMany?: ServiceUpdateManyWithWhereWithoutRepairTypeInput | ServiceUpdateManyWithWhereWithoutRepairTypeInput[]
+    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
+  }
+
+  export type RepairOptionUncheckedUpdateManyWithoutRepairTypeNestedInput = {
+    create?: XOR<RepairOptionCreateWithoutRepairTypeInput, RepairOptionUncheckedCreateWithoutRepairTypeInput> | RepairOptionCreateWithoutRepairTypeInput[] | RepairOptionUncheckedCreateWithoutRepairTypeInput[]
+    connectOrCreate?: RepairOptionCreateOrConnectWithoutRepairTypeInput | RepairOptionCreateOrConnectWithoutRepairTypeInput[]
+    upsert?: RepairOptionUpsertWithWhereUniqueWithoutRepairTypeInput | RepairOptionUpsertWithWhereUniqueWithoutRepairTypeInput[]
+    createMany?: RepairOptionCreateManyRepairTypeInputEnvelope
+    set?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    disconnect?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    delete?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    connect?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    update?: RepairOptionUpdateWithWhereUniqueWithoutRepairTypeInput | RepairOptionUpdateWithWhereUniqueWithoutRepairTypeInput[]
+    updateMany?: RepairOptionUpdateManyWithWhereWithoutRepairTypeInput | RepairOptionUpdateManyWithWhereWithoutRepairTypeInput[]
+    deleteMany?: RepairOptionScalarWhereInput | RepairOptionScalarWhereInput[]
+  }
+
+  export type ServiceUncheckedUpdateManyWithoutRepairTypeNestedInput = {
+    create?: XOR<ServiceCreateWithoutRepairTypeInput, ServiceUncheckedCreateWithoutRepairTypeInput> | ServiceCreateWithoutRepairTypeInput[] | ServiceUncheckedCreateWithoutRepairTypeInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutRepairTypeInput | ServiceCreateOrConnectWithoutRepairTypeInput[]
+    upsert?: ServiceUpsertWithWhereUniqueWithoutRepairTypeInput | ServiceUpsertWithWhereUniqueWithoutRepairTypeInput[]
+    createMany?: ServiceCreateManyRepairTypeInputEnvelope
+    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    update?: ServiceUpdateWithWhereUniqueWithoutRepairTypeInput | ServiceUpdateWithWhereUniqueWithoutRepairTypeInput[]
+    updateMany?: ServiceUpdateManyWithWhereWithoutRepairTypeInput | ServiceUpdateManyWithWhereWithoutRepairTypeInput[]
+    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
+  }
+
+  export type ModelRepairCreateNestedOneWithoutRepairOptionsInput = {
+    create?: XOR<ModelRepairCreateWithoutRepairOptionsInput, ModelRepairUncheckedCreateWithoutRepairOptionsInput>
+    connectOrCreate?: ModelRepairCreateOrConnectWithoutRepairOptionsInput
+    connect?: ModelRepairWhereUniqueInput
+  }
+
+  export type RepairTypeCreateNestedOneWithoutRepairOptionsInput = {
+    create?: XOR<RepairTypeCreateWithoutRepairOptionsInput, RepairTypeUncheckedCreateWithoutRepairOptionsInput>
+    connectOrCreate?: RepairTypeCreateOrConnectWithoutRepairOptionsInput
+    connect?: RepairTypeWhereUniqueInput
+  }
+
+  export type ServiceCreateNestedManyWithoutRepairOptionInput = {
+    create?: XOR<ServiceCreateWithoutRepairOptionInput, ServiceUncheckedCreateWithoutRepairOptionInput> | ServiceCreateWithoutRepairOptionInput[] | ServiceUncheckedCreateWithoutRepairOptionInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutRepairOptionInput | ServiceCreateOrConnectWithoutRepairOptionInput[]
+    createMany?: ServiceCreateManyRepairOptionInputEnvelope
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+  }
+
+  export type ServiceUncheckedCreateNestedManyWithoutRepairOptionInput = {
+    create?: XOR<ServiceCreateWithoutRepairOptionInput, ServiceUncheckedCreateWithoutRepairOptionInput> | ServiceCreateWithoutRepairOptionInput[] | ServiceUncheckedCreateWithoutRepairOptionInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutRepairOptionInput | ServiceCreateOrConnectWithoutRepairOptionInput[]
+    createMany?: ServiceCreateManyRepairOptionInputEnvelope
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+  }
+
+  export type EnumRepairQualityFieldUpdateOperationsInput = {
+    set?: $Enums.RepairQuality
+  }
+
+  export type ModelRepairUpdateOneRequiredWithoutRepairOptionsNestedInput = {
+    create?: XOR<ModelRepairCreateWithoutRepairOptionsInput, ModelRepairUncheckedCreateWithoutRepairOptionsInput>
+    connectOrCreate?: ModelRepairCreateOrConnectWithoutRepairOptionsInput
+    upsert?: ModelRepairUpsertWithoutRepairOptionsInput
+    connect?: ModelRepairWhereUniqueInput
+    update?: XOR<XOR<ModelRepairUpdateToOneWithWhereWithoutRepairOptionsInput, ModelRepairUpdateWithoutRepairOptionsInput>, ModelRepairUncheckedUpdateWithoutRepairOptionsInput>
+  }
+
+  export type RepairTypeUpdateOneRequiredWithoutRepairOptionsNestedInput = {
+    create?: XOR<RepairTypeCreateWithoutRepairOptionsInput, RepairTypeUncheckedCreateWithoutRepairOptionsInput>
+    connectOrCreate?: RepairTypeCreateOrConnectWithoutRepairOptionsInput
+    upsert?: RepairTypeUpsertWithoutRepairOptionsInput
+    connect?: RepairTypeWhereUniqueInput
+    update?: XOR<XOR<RepairTypeUpdateToOneWithWhereWithoutRepairOptionsInput, RepairTypeUpdateWithoutRepairOptionsInput>, RepairTypeUncheckedUpdateWithoutRepairOptionsInput>
+  }
+
+  export type ServiceUpdateManyWithoutRepairOptionNestedInput = {
+    create?: XOR<ServiceCreateWithoutRepairOptionInput, ServiceUncheckedCreateWithoutRepairOptionInput> | ServiceCreateWithoutRepairOptionInput[] | ServiceUncheckedCreateWithoutRepairOptionInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutRepairOptionInput | ServiceCreateOrConnectWithoutRepairOptionInput[]
+    upsert?: ServiceUpsertWithWhereUniqueWithoutRepairOptionInput | ServiceUpsertWithWhereUniqueWithoutRepairOptionInput[]
+    createMany?: ServiceCreateManyRepairOptionInputEnvelope
+    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    update?: ServiceUpdateWithWhereUniqueWithoutRepairOptionInput | ServiceUpdateWithWhereUniqueWithoutRepairOptionInput[]
+    updateMany?: ServiceUpdateManyWithWhereWithoutRepairOptionInput | ServiceUpdateManyWithWhereWithoutRepairOptionInput[]
+    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
+  }
+
+  export type ServiceUncheckedUpdateManyWithoutRepairOptionNestedInput = {
+    create?: XOR<ServiceCreateWithoutRepairOptionInput, ServiceUncheckedCreateWithoutRepairOptionInput> | ServiceCreateWithoutRepairOptionInput[] | ServiceUncheckedCreateWithoutRepairOptionInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutRepairOptionInput | ServiceCreateOrConnectWithoutRepairOptionInput[]
+    upsert?: ServiceUpsertWithWhereUniqueWithoutRepairOptionInput | ServiceUpsertWithWhereUniqueWithoutRepairOptionInput[]
+    createMany?: ServiceCreateManyRepairOptionInputEnvelope
+    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    update?: ServiceUpdateWithWhereUniqueWithoutRepairOptionInput | ServiceUpdateWithWhereUniqueWithoutRepairOptionInput[]
+    updateMany?: ServiceUpdateManyWithWhereWithoutRepairOptionInput | ServiceUpdateManyWithWhereWithoutRepairOptionInput[]
+    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
+  }
+
   export type ModelRepairCreateNestedManyWithoutBrandInput = {
     create?: XOR<ModelRepairCreateWithoutBrandInput, ModelRepairUncheckedCreateWithoutBrandInput> | ModelRepairCreateWithoutBrandInput[] | ModelRepairUncheckedCreateWithoutBrandInput[]
     connectOrCreate?: ModelRepairCreateOrConnectWithoutBrandInput | ModelRepairCreateOrConnectWithoutBrandInput[]
@@ -56069,11 +62619,39 @@ export namespace Prisma {
     connect?: ModelRepairWhereUniqueInput | ModelRepairWhereUniqueInput[]
   }
 
+  export type BrandRepairCategoryCreateNestedManyWithoutBrandInput = {
+    create?: XOR<BrandRepairCategoryCreateWithoutBrandInput, BrandRepairCategoryUncheckedCreateWithoutBrandInput> | BrandRepairCategoryCreateWithoutBrandInput[] | BrandRepairCategoryUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: BrandRepairCategoryCreateOrConnectWithoutBrandInput | BrandRepairCategoryCreateOrConnectWithoutBrandInput[]
+    createMany?: BrandRepairCategoryCreateManyBrandInputEnvelope
+    connect?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+  }
+
+  export type ServiceCreateNestedManyWithoutBrandRepairInput = {
+    create?: XOR<ServiceCreateWithoutBrandRepairInput, ServiceUncheckedCreateWithoutBrandRepairInput> | ServiceCreateWithoutBrandRepairInput[] | ServiceUncheckedCreateWithoutBrandRepairInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutBrandRepairInput | ServiceCreateOrConnectWithoutBrandRepairInput[]
+    createMany?: ServiceCreateManyBrandRepairInputEnvelope
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+  }
+
   export type ModelRepairUncheckedCreateNestedManyWithoutBrandInput = {
     create?: XOR<ModelRepairCreateWithoutBrandInput, ModelRepairUncheckedCreateWithoutBrandInput> | ModelRepairCreateWithoutBrandInput[] | ModelRepairUncheckedCreateWithoutBrandInput[]
     connectOrCreate?: ModelRepairCreateOrConnectWithoutBrandInput | ModelRepairCreateOrConnectWithoutBrandInput[]
     createMany?: ModelRepairCreateManyBrandInputEnvelope
     connect?: ModelRepairWhereUniqueInput | ModelRepairWhereUniqueInput[]
+  }
+
+  export type BrandRepairCategoryUncheckedCreateNestedManyWithoutBrandInput = {
+    create?: XOR<BrandRepairCategoryCreateWithoutBrandInput, BrandRepairCategoryUncheckedCreateWithoutBrandInput> | BrandRepairCategoryCreateWithoutBrandInput[] | BrandRepairCategoryUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: BrandRepairCategoryCreateOrConnectWithoutBrandInput | BrandRepairCategoryCreateOrConnectWithoutBrandInput[]
+    createMany?: BrandRepairCategoryCreateManyBrandInputEnvelope
+    connect?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+  }
+
+  export type ServiceUncheckedCreateNestedManyWithoutBrandRepairInput = {
+    create?: XOR<ServiceCreateWithoutBrandRepairInput, ServiceUncheckedCreateWithoutBrandRepairInput> | ServiceCreateWithoutBrandRepairInput[] | ServiceUncheckedCreateWithoutBrandRepairInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutBrandRepairInput | ServiceCreateOrConnectWithoutBrandRepairInput[]
+    createMany?: ServiceCreateManyBrandRepairInputEnvelope
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
   }
 
   export type ModelRepairUpdateManyWithoutBrandNestedInput = {
@@ -56090,6 +62668,34 @@ export namespace Prisma {
     deleteMany?: ModelRepairScalarWhereInput | ModelRepairScalarWhereInput[]
   }
 
+  export type BrandRepairCategoryUpdateManyWithoutBrandNestedInput = {
+    create?: XOR<BrandRepairCategoryCreateWithoutBrandInput, BrandRepairCategoryUncheckedCreateWithoutBrandInput> | BrandRepairCategoryCreateWithoutBrandInput[] | BrandRepairCategoryUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: BrandRepairCategoryCreateOrConnectWithoutBrandInput | BrandRepairCategoryCreateOrConnectWithoutBrandInput[]
+    upsert?: BrandRepairCategoryUpsertWithWhereUniqueWithoutBrandInput | BrandRepairCategoryUpsertWithWhereUniqueWithoutBrandInput[]
+    createMany?: BrandRepairCategoryCreateManyBrandInputEnvelope
+    set?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    disconnect?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    delete?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    connect?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    update?: BrandRepairCategoryUpdateWithWhereUniqueWithoutBrandInput | BrandRepairCategoryUpdateWithWhereUniqueWithoutBrandInput[]
+    updateMany?: BrandRepairCategoryUpdateManyWithWhereWithoutBrandInput | BrandRepairCategoryUpdateManyWithWhereWithoutBrandInput[]
+    deleteMany?: BrandRepairCategoryScalarWhereInput | BrandRepairCategoryScalarWhereInput[]
+  }
+
+  export type ServiceUpdateManyWithoutBrandRepairNestedInput = {
+    create?: XOR<ServiceCreateWithoutBrandRepairInput, ServiceUncheckedCreateWithoutBrandRepairInput> | ServiceCreateWithoutBrandRepairInput[] | ServiceUncheckedCreateWithoutBrandRepairInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutBrandRepairInput | ServiceCreateOrConnectWithoutBrandRepairInput[]
+    upsert?: ServiceUpsertWithWhereUniqueWithoutBrandRepairInput | ServiceUpsertWithWhereUniqueWithoutBrandRepairInput[]
+    createMany?: ServiceCreateManyBrandRepairInputEnvelope
+    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    update?: ServiceUpdateWithWhereUniqueWithoutBrandRepairInput | ServiceUpdateWithWhereUniqueWithoutBrandRepairInput[]
+    updateMany?: ServiceUpdateManyWithWhereWithoutBrandRepairInput | ServiceUpdateManyWithWhereWithoutBrandRepairInput[]
+    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
+  }
+
   export type ModelRepairUncheckedUpdateManyWithoutBrandNestedInput = {
     create?: XOR<ModelRepairCreateWithoutBrandInput, ModelRepairUncheckedCreateWithoutBrandInput> | ModelRepairCreateWithoutBrandInput[] | ModelRepairUncheckedCreateWithoutBrandInput[]
     connectOrCreate?: ModelRepairCreateOrConnectWithoutBrandInput | ModelRepairCreateOrConnectWithoutBrandInput[]
@@ -56102,6 +62708,34 @@ export namespace Prisma {
     update?: ModelRepairUpdateWithWhereUniqueWithoutBrandInput | ModelRepairUpdateWithWhereUniqueWithoutBrandInput[]
     updateMany?: ModelRepairUpdateManyWithWhereWithoutBrandInput | ModelRepairUpdateManyWithWhereWithoutBrandInput[]
     deleteMany?: ModelRepairScalarWhereInput | ModelRepairScalarWhereInput[]
+  }
+
+  export type BrandRepairCategoryUncheckedUpdateManyWithoutBrandNestedInput = {
+    create?: XOR<BrandRepairCategoryCreateWithoutBrandInput, BrandRepairCategoryUncheckedCreateWithoutBrandInput> | BrandRepairCategoryCreateWithoutBrandInput[] | BrandRepairCategoryUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: BrandRepairCategoryCreateOrConnectWithoutBrandInput | BrandRepairCategoryCreateOrConnectWithoutBrandInput[]
+    upsert?: BrandRepairCategoryUpsertWithWhereUniqueWithoutBrandInput | BrandRepairCategoryUpsertWithWhereUniqueWithoutBrandInput[]
+    createMany?: BrandRepairCategoryCreateManyBrandInputEnvelope
+    set?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    disconnect?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    delete?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    connect?: BrandRepairCategoryWhereUniqueInput | BrandRepairCategoryWhereUniqueInput[]
+    update?: BrandRepairCategoryUpdateWithWhereUniqueWithoutBrandInput | BrandRepairCategoryUpdateWithWhereUniqueWithoutBrandInput[]
+    updateMany?: BrandRepairCategoryUpdateManyWithWhereWithoutBrandInput | BrandRepairCategoryUpdateManyWithWhereWithoutBrandInput[]
+    deleteMany?: BrandRepairCategoryScalarWhereInput | BrandRepairCategoryScalarWhereInput[]
+  }
+
+  export type ServiceUncheckedUpdateManyWithoutBrandRepairNestedInput = {
+    create?: XOR<ServiceCreateWithoutBrandRepairInput, ServiceUncheckedCreateWithoutBrandRepairInput> | ServiceCreateWithoutBrandRepairInput[] | ServiceUncheckedCreateWithoutBrandRepairInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutBrandRepairInput | ServiceCreateOrConnectWithoutBrandRepairInput[]
+    upsert?: ServiceUpsertWithWhereUniqueWithoutBrandRepairInput | ServiceUpsertWithWhereUniqueWithoutBrandRepairInput[]
+    createMany?: ServiceCreateManyBrandRepairInputEnvelope
+    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    update?: ServiceUpdateWithWhereUniqueWithoutBrandRepairInput | ServiceUpdateWithWhereUniqueWithoutBrandRepairInput[]
+    updateMany?: ServiceUpdateManyWithWhereWithoutBrandRepairInput | ServiceUpdateManyWithWhereWithoutBrandRepairInput[]
+    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
   }
 
   export type BrandRepairCreateNestedOneWithoutModelsInput = {
@@ -56117,11 +62751,45 @@ export namespace Prisma {
     connect?: ServiceCatalogWhereUniqueInput | ServiceCatalogWhereUniqueInput[]
   }
 
+  export type ServiceCategoryCreateNestedOneWithoutModelsInput = {
+    create?: XOR<ServiceCategoryCreateWithoutModelsInput, ServiceCategoryUncheckedCreateWithoutModelsInput>
+    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutModelsInput
+    connect?: ServiceCategoryWhereUniqueInput
+  }
+
+  export type RepairOptionCreateNestedManyWithoutModelInput = {
+    create?: XOR<RepairOptionCreateWithoutModelInput, RepairOptionUncheckedCreateWithoutModelInput> | RepairOptionCreateWithoutModelInput[] | RepairOptionUncheckedCreateWithoutModelInput[]
+    connectOrCreate?: RepairOptionCreateOrConnectWithoutModelInput | RepairOptionCreateOrConnectWithoutModelInput[]
+    createMany?: RepairOptionCreateManyModelInputEnvelope
+    connect?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+  }
+
+  export type ServiceCreateNestedManyWithoutModelRepairInput = {
+    create?: XOR<ServiceCreateWithoutModelRepairInput, ServiceUncheckedCreateWithoutModelRepairInput> | ServiceCreateWithoutModelRepairInput[] | ServiceUncheckedCreateWithoutModelRepairInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutModelRepairInput | ServiceCreateOrConnectWithoutModelRepairInput[]
+    createMany?: ServiceCreateManyModelRepairInputEnvelope
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+  }
+
   export type ServiceCatalogUncheckedCreateNestedManyWithoutModelInput = {
     create?: XOR<ServiceCatalogCreateWithoutModelInput, ServiceCatalogUncheckedCreateWithoutModelInput> | ServiceCatalogCreateWithoutModelInput[] | ServiceCatalogUncheckedCreateWithoutModelInput[]
     connectOrCreate?: ServiceCatalogCreateOrConnectWithoutModelInput | ServiceCatalogCreateOrConnectWithoutModelInput[]
     createMany?: ServiceCatalogCreateManyModelInputEnvelope
     connect?: ServiceCatalogWhereUniqueInput | ServiceCatalogWhereUniqueInput[]
+  }
+
+  export type RepairOptionUncheckedCreateNestedManyWithoutModelInput = {
+    create?: XOR<RepairOptionCreateWithoutModelInput, RepairOptionUncheckedCreateWithoutModelInput> | RepairOptionCreateWithoutModelInput[] | RepairOptionUncheckedCreateWithoutModelInput[]
+    connectOrCreate?: RepairOptionCreateOrConnectWithoutModelInput | RepairOptionCreateOrConnectWithoutModelInput[]
+    createMany?: RepairOptionCreateManyModelInputEnvelope
+    connect?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+  }
+
+  export type ServiceUncheckedCreateNestedManyWithoutModelRepairInput = {
+    create?: XOR<ServiceCreateWithoutModelRepairInput, ServiceUncheckedCreateWithoutModelRepairInput> | ServiceCreateWithoutModelRepairInput[] | ServiceUncheckedCreateWithoutModelRepairInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutModelRepairInput | ServiceCreateOrConnectWithoutModelRepairInput[]
+    createMany?: ServiceCreateManyModelRepairInputEnvelope
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
   }
 
   export type BrandRepairUpdateOneRequiredWithoutModelsNestedInput = {
@@ -56146,6 +62814,44 @@ export namespace Prisma {
     deleteMany?: ServiceCatalogScalarWhereInput | ServiceCatalogScalarWhereInput[]
   }
 
+  export type ServiceCategoryUpdateOneWithoutModelsNestedInput = {
+    create?: XOR<ServiceCategoryCreateWithoutModelsInput, ServiceCategoryUncheckedCreateWithoutModelsInput>
+    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutModelsInput
+    upsert?: ServiceCategoryUpsertWithoutModelsInput
+    disconnect?: boolean
+    delete?: ServiceCategoryWhereInput | boolean
+    connect?: ServiceCategoryWhereUniqueInput
+    update?: XOR<XOR<ServiceCategoryUpdateToOneWithWhereWithoutModelsInput, ServiceCategoryUpdateWithoutModelsInput>, ServiceCategoryUncheckedUpdateWithoutModelsInput>
+  }
+
+  export type RepairOptionUpdateManyWithoutModelNestedInput = {
+    create?: XOR<RepairOptionCreateWithoutModelInput, RepairOptionUncheckedCreateWithoutModelInput> | RepairOptionCreateWithoutModelInput[] | RepairOptionUncheckedCreateWithoutModelInput[]
+    connectOrCreate?: RepairOptionCreateOrConnectWithoutModelInput | RepairOptionCreateOrConnectWithoutModelInput[]
+    upsert?: RepairOptionUpsertWithWhereUniqueWithoutModelInput | RepairOptionUpsertWithWhereUniqueWithoutModelInput[]
+    createMany?: RepairOptionCreateManyModelInputEnvelope
+    set?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    disconnect?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    delete?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    connect?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    update?: RepairOptionUpdateWithWhereUniqueWithoutModelInput | RepairOptionUpdateWithWhereUniqueWithoutModelInput[]
+    updateMany?: RepairOptionUpdateManyWithWhereWithoutModelInput | RepairOptionUpdateManyWithWhereWithoutModelInput[]
+    deleteMany?: RepairOptionScalarWhereInput | RepairOptionScalarWhereInput[]
+  }
+
+  export type ServiceUpdateManyWithoutModelRepairNestedInput = {
+    create?: XOR<ServiceCreateWithoutModelRepairInput, ServiceUncheckedCreateWithoutModelRepairInput> | ServiceCreateWithoutModelRepairInput[] | ServiceUncheckedCreateWithoutModelRepairInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutModelRepairInput | ServiceCreateOrConnectWithoutModelRepairInput[]
+    upsert?: ServiceUpsertWithWhereUniqueWithoutModelRepairInput | ServiceUpsertWithWhereUniqueWithoutModelRepairInput[]
+    createMany?: ServiceCreateManyModelRepairInputEnvelope
+    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    update?: ServiceUpdateWithWhereUniqueWithoutModelRepairInput | ServiceUpdateWithWhereUniqueWithoutModelRepairInput[]
+    updateMany?: ServiceUpdateManyWithWhereWithoutModelRepairInput | ServiceUpdateManyWithWhereWithoutModelRepairInput[]
+    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
+  }
+
   export type ServiceCatalogUncheckedUpdateManyWithoutModelNestedInput = {
     create?: XOR<ServiceCatalogCreateWithoutModelInput, ServiceCatalogUncheckedCreateWithoutModelInput> | ServiceCatalogCreateWithoutModelInput[] | ServiceCatalogUncheckedCreateWithoutModelInput[]
     connectOrCreate?: ServiceCatalogCreateOrConnectWithoutModelInput | ServiceCatalogCreateOrConnectWithoutModelInput[]
@@ -56158,6 +62864,34 @@ export namespace Prisma {
     update?: ServiceCatalogUpdateWithWhereUniqueWithoutModelInput | ServiceCatalogUpdateWithWhereUniqueWithoutModelInput[]
     updateMany?: ServiceCatalogUpdateManyWithWhereWithoutModelInput | ServiceCatalogUpdateManyWithWhereWithoutModelInput[]
     deleteMany?: ServiceCatalogScalarWhereInput | ServiceCatalogScalarWhereInput[]
+  }
+
+  export type RepairOptionUncheckedUpdateManyWithoutModelNestedInput = {
+    create?: XOR<RepairOptionCreateWithoutModelInput, RepairOptionUncheckedCreateWithoutModelInput> | RepairOptionCreateWithoutModelInput[] | RepairOptionUncheckedCreateWithoutModelInput[]
+    connectOrCreate?: RepairOptionCreateOrConnectWithoutModelInput | RepairOptionCreateOrConnectWithoutModelInput[]
+    upsert?: RepairOptionUpsertWithWhereUniqueWithoutModelInput | RepairOptionUpsertWithWhereUniqueWithoutModelInput[]
+    createMany?: RepairOptionCreateManyModelInputEnvelope
+    set?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    disconnect?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    delete?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    connect?: RepairOptionWhereUniqueInput | RepairOptionWhereUniqueInput[]
+    update?: RepairOptionUpdateWithWhereUniqueWithoutModelInput | RepairOptionUpdateWithWhereUniqueWithoutModelInput[]
+    updateMany?: RepairOptionUpdateManyWithWhereWithoutModelInput | RepairOptionUpdateManyWithWhereWithoutModelInput[]
+    deleteMany?: RepairOptionScalarWhereInput | RepairOptionScalarWhereInput[]
+  }
+
+  export type ServiceUncheckedUpdateManyWithoutModelRepairNestedInput = {
+    create?: XOR<ServiceCreateWithoutModelRepairInput, ServiceUncheckedCreateWithoutModelRepairInput> | ServiceCreateWithoutModelRepairInput[] | ServiceUncheckedCreateWithoutModelRepairInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutModelRepairInput | ServiceCreateOrConnectWithoutModelRepairInput[]
+    upsert?: ServiceUpsertWithWhereUniqueWithoutModelRepairInput | ServiceUpsertWithWhereUniqueWithoutModelRepairInput[]
+    createMany?: ServiceCreateManyModelRepairInputEnvelope
+    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    update?: ServiceUpdateWithWhereUniqueWithoutModelRepairInput | ServiceUpdateWithWhereUniqueWithoutModelRepairInput[]
+    updateMany?: ServiceUpdateManyWithWhereWithoutModelRepairInput | ServiceUpdateManyWithWhereWithoutModelRepairInput[]
+    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
   }
 
   export type ModelRepairCreateNestedOneWithoutServiceCatalogInput = {
@@ -56557,6 +63291,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCashMovementTypeFilter<$PrismaModel>
     _max?: NestedEnumCashMovementTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumRepairQualityFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairQuality | EnumRepairQualityFieldRefInput<$PrismaModel>
+    in?: $Enums.RepairQuality[] | ListEnumRepairQualityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RepairQuality[] | ListEnumRepairQualityFieldRefInput<$PrismaModel>
+    not?: NestedEnumRepairQualityFilter<$PrismaModel> | $Enums.RepairQuality
+  }
+
+  export type NestedEnumRepairQualityWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairQuality | EnumRepairQualityFieldRefInput<$PrismaModel>
+    in?: $Enums.RepairQuality[] | ListEnumRepairQualityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RepairQuality[] | ListEnumRepairQualityFieldRefInput<$PrismaModel>
+    not?: NestedEnumRepairQualityWithAggregatesFilter<$PrismaModel> | $Enums.RepairQuality
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRepairQualityFilter<$PrismaModel>
+    _max?: NestedEnumRepairQualityFilter<$PrismaModel>
   }
 
   export type CategoryCreateWithoutProductsInput = {
@@ -58761,6 +65512,11 @@ export namespace Prisma {
     privateNotes?: string | null
     isWarranty?: boolean
     customerDevice?: CustomerDeviceCreateNestedOneWithoutServicesInput
+    serviceCategory?: ServiceCategoryCreateNestedOneWithoutServicesInput
+    brandRepair?: BrandRepairCreateNestedOneWithoutServicesInput
+    modelRepair?: ModelRepairCreateNestedOneWithoutServicesInput
+    repairType?: RepairTypeCreateNestedOneWithoutServicesInput
+    repairOption?: RepairOptionCreateNestedOneWithoutServicesInput
   }
 
   export type ServiceUncheckedCreateWithoutBuyerInput = {
@@ -58789,6 +65545,11 @@ export namespace Prisma {
     additionalDetails?: InputJsonValue | null
     privateNotes?: string | null
     isWarranty?: boolean
+    serviceCategoryId?: string | null
+    brandRepairId?: string | null
+    modelRepairId?: string | null
+    repairTypeId?: string | null
+    repairOptionId?: string | null
   }
 
   export type ServiceCreateOrConnectWithoutBuyerInput = {
@@ -59108,6 +65869,11 @@ export namespace Prisma {
     additionalDetails?: JsonNullableFilter<"Service">
     privateNotes?: StringNullableFilter<"Service"> | string | null
     isWarranty?: BoolFilter<"Service"> | boolean
+    serviceCategoryId?: StringNullableFilter<"Service"> | string | null
+    brandRepairId?: StringNullableFilter<"Service"> | string | null
+    modelRepairId?: StringNullableFilter<"Service"> | string | null
+    repairTypeId?: StringNullableFilter<"Service"> | string | null
+    repairOptionId?: StringNullableFilter<"Service"> | string | null
   }
 
   export type BuyerCreateWithoutCommunication_preferencesInput = {
@@ -59341,6 +66107,11 @@ export namespace Prisma {
     privateNotes?: string | null
     isWarranty?: boolean
     buyer?: BuyerCreateNestedOneWithoutServicesInput
+    serviceCategory?: ServiceCategoryCreateNestedOneWithoutServicesInput
+    brandRepair?: BrandRepairCreateNestedOneWithoutServicesInput
+    modelRepair?: ModelRepairCreateNestedOneWithoutServicesInput
+    repairType?: RepairTypeCreateNestedOneWithoutServicesInput
+    repairOption?: RepairOptionCreateNestedOneWithoutServicesInput
   }
 
   export type ServiceUncheckedCreateWithoutCustomerDeviceInput = {
@@ -59369,6 +66140,11 @@ export namespace Prisma {
     additionalDetails?: InputJsonValue | null
     privateNotes?: string | null
     isWarranty?: boolean
+    serviceCategoryId?: string | null
+    brandRepairId?: string | null
+    modelRepairId?: string | null
+    repairTypeId?: string | null
+    repairOptionId?: string | null
   }
 
   export type ServiceCreateOrConnectWithoutCustomerDeviceInput = {
@@ -60703,6 +67479,135 @@ export namespace Prisma {
     create: XOR<CustomerDeviceCreateWithoutServicesInput, CustomerDeviceUncheckedCreateWithoutServicesInput>
   }
 
+  export type ServiceCategoryCreateWithoutServicesInput = {
+    id?: string
+    name: string
+    slug: string
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repairTypes?: RepairTypeCreateNestedManyWithoutCategoryInput
+    brandLinks?: BrandRepairCategoryCreateNestedManyWithoutCategoryInput
+    models?: ModelRepairCreateNestedManyWithoutCategoryInput
+  }
+
+  export type ServiceCategoryUncheckedCreateWithoutServicesInput = {
+    id?: string
+    name: string
+    slug: string
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repairTypes?: RepairTypeUncheckedCreateNestedManyWithoutCategoryInput
+    brandLinks?: BrandRepairCategoryUncheckedCreateNestedManyWithoutCategoryInput
+    models?: ModelRepairUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type ServiceCategoryCreateOrConnectWithoutServicesInput = {
+    where: ServiceCategoryWhereUniqueInput
+    create: XOR<ServiceCategoryCreateWithoutServicesInput, ServiceCategoryUncheckedCreateWithoutServicesInput>
+  }
+
+  export type BrandRepairCreateWithoutServicesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    models?: ModelRepairCreateNestedManyWithoutBrandInput
+    categoryLinks?: BrandRepairCategoryCreateNestedManyWithoutBrandInput
+  }
+
+  export type BrandRepairUncheckedCreateWithoutServicesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    models?: ModelRepairUncheckedCreateNestedManyWithoutBrandInput
+    categoryLinks?: BrandRepairCategoryUncheckedCreateNestedManyWithoutBrandInput
+  }
+
+  export type BrandRepairCreateOrConnectWithoutServicesInput = {
+    where: BrandRepairWhereUniqueInput
+    create: XOR<BrandRepairCreateWithoutServicesInput, BrandRepairUncheckedCreateWithoutServicesInput>
+  }
+
+  export type ModelRepairCreateWithoutServicesInput = {
+    id?: string
+    name: string
+    brand: BrandRepairCreateNestedOneWithoutModelsInput
+    serviceCatalog?: ServiceCatalogCreateNestedManyWithoutModelInput
+    category?: ServiceCategoryCreateNestedOneWithoutModelsInput
+    repairOptions?: RepairOptionCreateNestedManyWithoutModelInput
+  }
+
+  export type ModelRepairUncheckedCreateWithoutServicesInput = {
+    id?: string
+    name: string
+    brandId: string
+    categoryId?: string | null
+    serviceCatalog?: ServiceCatalogUncheckedCreateNestedManyWithoutModelInput
+    repairOptions?: RepairOptionUncheckedCreateNestedManyWithoutModelInput
+  }
+
+  export type ModelRepairCreateOrConnectWithoutServicesInput = {
+    where: ModelRepairWhereUniqueInput
+    create: XOR<ModelRepairCreateWithoutServicesInput, ModelRepairUncheckedCreateWithoutServicesInput>
+  }
+
+  export type RepairTypeCreateWithoutServicesInput = {
+    id?: string
+    name: string
+    position?: number
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    category: ServiceCategoryCreateNestedOneWithoutRepairTypesInput
+    repairOptions?: RepairOptionCreateNestedManyWithoutRepairTypeInput
+  }
+
+  export type RepairTypeUncheckedCreateWithoutServicesInput = {
+    id?: string
+    name: string
+    categoryId: string
+    position?: number
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    repairOptions?: RepairOptionUncheckedCreateNestedManyWithoutRepairTypeInput
+  }
+
+  export type RepairTypeCreateOrConnectWithoutServicesInput = {
+    where: RepairTypeWhereUniqueInput
+    create: XOR<RepairTypeCreateWithoutServicesInput, RepairTypeUncheckedCreateWithoutServicesInput>
+  }
+
+  export type RepairOptionCreateWithoutServicesInput = {
+    id?: string
+    quality?: $Enums.RepairQuality
+    price: number
+    cost?: number | null
+    isActive?: boolean
+    updatedAt?: Date | string
+    model: ModelRepairCreateNestedOneWithoutRepairOptionsInput
+    repairType: RepairTypeCreateNestedOneWithoutRepairOptionsInput
+  }
+
+  export type RepairOptionUncheckedCreateWithoutServicesInput = {
+    id?: string
+    modelId: string
+    repairTypeId: string
+    quality?: $Enums.RepairQuality
+    price: number
+    cost?: number | null
+    isActive?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type RepairOptionCreateOrConnectWithoutServicesInput = {
+    where: RepairOptionWhereUniqueInput
+    create: XOR<RepairOptionCreateWithoutServicesInput, RepairOptionUncheckedCreateWithoutServicesInput>
+  }
+
   export type BuyerUpsertWithoutServicesInput = {
     update: XOR<BuyerUpdateWithoutServicesInput, BuyerUncheckedUpdateWithoutServicesInput>
     create: XOR<BuyerCreateWithoutServicesInput, BuyerUncheckedCreateWithoutServicesInput>
@@ -60818,6 +67723,155 @@ export namespace Prisma {
     garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceCategoryUpsertWithoutServicesInput = {
+    update: XOR<ServiceCategoryUpdateWithoutServicesInput, ServiceCategoryUncheckedUpdateWithoutServicesInput>
+    create: XOR<ServiceCategoryCreateWithoutServicesInput, ServiceCategoryUncheckedCreateWithoutServicesInput>
+    where?: ServiceCategoryWhereInput
+  }
+
+  export type ServiceCategoryUpdateToOneWithWhereWithoutServicesInput = {
+    where?: ServiceCategoryWhereInput
+    data: XOR<ServiceCategoryUpdateWithoutServicesInput, ServiceCategoryUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type ServiceCategoryUpdateWithoutServicesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairTypes?: RepairTypeUpdateManyWithoutCategoryNestedInput
+    brandLinks?: BrandRepairCategoryUpdateManyWithoutCategoryNestedInput
+    models?: ModelRepairUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type ServiceCategoryUncheckedUpdateWithoutServicesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairTypes?: RepairTypeUncheckedUpdateManyWithoutCategoryNestedInput
+    brandLinks?: BrandRepairCategoryUncheckedUpdateManyWithoutCategoryNestedInput
+    models?: ModelRepairUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type BrandRepairUpsertWithoutServicesInput = {
+    update: XOR<BrandRepairUpdateWithoutServicesInput, BrandRepairUncheckedUpdateWithoutServicesInput>
+    create: XOR<BrandRepairCreateWithoutServicesInput, BrandRepairUncheckedCreateWithoutServicesInput>
+    where?: BrandRepairWhereInput
+  }
+
+  export type BrandRepairUpdateToOneWithWhereWithoutServicesInput = {
+    where?: BrandRepairWhereInput
+    data: XOR<BrandRepairUpdateWithoutServicesInput, BrandRepairUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type BrandRepairUpdateWithoutServicesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    models?: ModelRepairUpdateManyWithoutBrandNestedInput
+    categoryLinks?: BrandRepairCategoryUpdateManyWithoutBrandNestedInput
+  }
+
+  export type BrandRepairUncheckedUpdateWithoutServicesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    models?: ModelRepairUncheckedUpdateManyWithoutBrandNestedInput
+    categoryLinks?: BrandRepairCategoryUncheckedUpdateManyWithoutBrandNestedInput
+  }
+
+  export type ModelRepairUpsertWithoutServicesInput = {
+    update: XOR<ModelRepairUpdateWithoutServicesInput, ModelRepairUncheckedUpdateWithoutServicesInput>
+    create: XOR<ModelRepairCreateWithoutServicesInput, ModelRepairUncheckedCreateWithoutServicesInput>
+    where?: ModelRepairWhereInput
+  }
+
+  export type ModelRepairUpdateToOneWithWhereWithoutServicesInput = {
+    where?: ModelRepairWhereInput
+    data: XOR<ModelRepairUpdateWithoutServicesInput, ModelRepairUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type ModelRepairUpdateWithoutServicesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    brand?: BrandRepairUpdateOneRequiredWithoutModelsNestedInput
+    serviceCatalog?: ServiceCatalogUpdateManyWithoutModelNestedInput
+    category?: ServiceCategoryUpdateOneWithoutModelsNestedInput
+    repairOptions?: RepairOptionUpdateManyWithoutModelNestedInput
+  }
+
+  export type ModelRepairUncheckedUpdateWithoutServicesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    brandId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    serviceCatalog?: ServiceCatalogUncheckedUpdateManyWithoutModelNestedInput
+    repairOptions?: RepairOptionUncheckedUpdateManyWithoutModelNestedInput
+  }
+
+  export type RepairTypeUpsertWithoutServicesInput = {
+    update: XOR<RepairTypeUpdateWithoutServicesInput, RepairTypeUncheckedUpdateWithoutServicesInput>
+    create: XOR<RepairTypeCreateWithoutServicesInput, RepairTypeUncheckedCreateWithoutServicesInput>
+    where?: RepairTypeWhereInput
+  }
+
+  export type RepairTypeUpdateToOneWithWhereWithoutServicesInput = {
+    where?: RepairTypeWhereInput
+    data: XOR<RepairTypeUpdateWithoutServicesInput, RepairTypeUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type RepairTypeUpdateWithoutServicesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: ServiceCategoryUpdateOneRequiredWithoutRepairTypesNestedInput
+    repairOptions?: RepairOptionUpdateManyWithoutRepairTypeNestedInput
+  }
+
+  export type RepairTypeUncheckedUpdateWithoutServicesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairOptions?: RepairOptionUncheckedUpdateManyWithoutRepairTypeNestedInput
+  }
+
+  export type RepairOptionUpsertWithoutServicesInput = {
+    update: XOR<RepairOptionUpdateWithoutServicesInput, RepairOptionUncheckedUpdateWithoutServicesInput>
+    create: XOR<RepairOptionCreateWithoutServicesInput, RepairOptionUncheckedCreateWithoutServicesInput>
+    where?: RepairOptionWhereInput
+  }
+
+  export type RepairOptionUpdateToOneWithWhereWithoutServicesInput = {
+    where?: RepairOptionWhereInput
+    data: XOR<RepairOptionUpdateWithoutServicesInput, RepairOptionUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type RepairOptionUpdateWithoutServicesInput = {
+    quality?: EnumRepairQualityFieldUpdateOperationsInput | $Enums.RepairQuality
+    price?: FloatFieldUpdateOperationsInput | number
+    cost?: NullableFloatFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    model?: ModelRepairUpdateOneRequiredWithoutRepairOptionsNestedInput
+    repairType?: RepairTypeUpdateOneRequiredWithoutRepairOptionsNestedInput
+  }
+
+  export type RepairOptionUncheckedUpdateWithoutServicesInput = {
+    modelId?: StringFieldUpdateOperationsInput | string
+    repairTypeId?: StringFieldUpdateOperationsInput | string
+    quality?: EnumRepairQualityFieldUpdateOperationsInput | $Enums.RepairQuality
+    price?: FloatFieldUpdateOperationsInput | number
+    cost?: NullableFloatFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -61322,16 +68376,799 @@ export namespace Prisma {
     auditNotes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type RepairTypeCreateWithoutCategoryInput = {
+    id?: string
+    name: string
+    position?: number
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    repairOptions?: RepairOptionCreateNestedManyWithoutRepairTypeInput
+    services?: ServiceCreateNestedManyWithoutRepairTypeInput
+  }
+
+  export type RepairTypeUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    name: string
+    position?: number
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    repairOptions?: RepairOptionUncheckedCreateNestedManyWithoutRepairTypeInput
+    services?: ServiceUncheckedCreateNestedManyWithoutRepairTypeInput
+  }
+
+  export type RepairTypeCreateOrConnectWithoutCategoryInput = {
+    where: RepairTypeWhereUniqueInput
+    create: XOR<RepairTypeCreateWithoutCategoryInput, RepairTypeUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type RepairTypeCreateManyCategoryInputEnvelope = {
+    data: RepairTypeCreateManyCategoryInput | RepairTypeCreateManyCategoryInput[]
+  }
+
+  export type BrandRepairCategoryCreateWithoutCategoryInput = {
+    id?: string
+    brand: BrandRepairCreateNestedOneWithoutCategoryLinksInput
+  }
+
+  export type BrandRepairCategoryUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    brandId: string
+  }
+
+  export type BrandRepairCategoryCreateOrConnectWithoutCategoryInput = {
+    where: BrandRepairCategoryWhereUniqueInput
+    create: XOR<BrandRepairCategoryCreateWithoutCategoryInput, BrandRepairCategoryUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type BrandRepairCategoryCreateManyCategoryInputEnvelope = {
+    data: BrandRepairCategoryCreateManyCategoryInput | BrandRepairCategoryCreateManyCategoryInput[]
+  }
+
+  export type ModelRepairCreateWithoutCategoryInput = {
+    id?: string
+    name: string
+    brand: BrandRepairCreateNestedOneWithoutModelsInput
+    serviceCatalog?: ServiceCatalogCreateNestedManyWithoutModelInput
+    repairOptions?: RepairOptionCreateNestedManyWithoutModelInput
+    services?: ServiceCreateNestedManyWithoutModelRepairInput
+  }
+
+  export type ModelRepairUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    name: string
+    brandId: string
+    serviceCatalog?: ServiceCatalogUncheckedCreateNestedManyWithoutModelInput
+    repairOptions?: RepairOptionUncheckedCreateNestedManyWithoutModelInput
+    services?: ServiceUncheckedCreateNestedManyWithoutModelRepairInput
+  }
+
+  export type ModelRepairCreateOrConnectWithoutCategoryInput = {
+    where: ModelRepairWhereUniqueInput
+    create: XOR<ModelRepairCreateWithoutCategoryInput, ModelRepairUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type ModelRepairCreateManyCategoryInputEnvelope = {
+    data: ModelRepairCreateManyCategoryInput | ModelRepairCreateManyCategoryInput[]
+  }
+
+  export type ServiceCreateWithoutServiceCategoryInput = {
+    id?: string
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    buyer?: BuyerCreateNestedOneWithoutServicesInput
+    customerDevice?: CustomerDeviceCreateNestedOneWithoutServicesInput
+    brandRepair?: BrandRepairCreateNestedOneWithoutServicesInput
+    modelRepair?: ModelRepairCreateNestedOneWithoutServicesInput
+    repairType?: RepairTypeCreateNestedOneWithoutServicesInput
+    repairOption?: RepairOptionCreateNestedOneWithoutServicesInput
+  }
+
+  export type ServiceUncheckedCreateWithoutServiceCategoryInput = {
+    id?: string
+    buyerId?: string | null
+    customerDeviceId?: string | null
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    brandRepairId?: string | null
+    modelRepairId?: string | null
+    repairTypeId?: string | null
+    repairOptionId?: string | null
+  }
+
+  export type ServiceCreateOrConnectWithoutServiceCategoryInput = {
+    where: ServiceWhereUniqueInput
+    create: XOR<ServiceCreateWithoutServiceCategoryInput, ServiceUncheckedCreateWithoutServiceCategoryInput>
+  }
+
+  export type ServiceCreateManyServiceCategoryInputEnvelope = {
+    data: ServiceCreateManyServiceCategoryInput | ServiceCreateManyServiceCategoryInput[]
+  }
+
+  export type RepairTypeUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: RepairTypeWhereUniqueInput
+    update: XOR<RepairTypeUpdateWithoutCategoryInput, RepairTypeUncheckedUpdateWithoutCategoryInput>
+    create: XOR<RepairTypeCreateWithoutCategoryInput, RepairTypeUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type RepairTypeUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: RepairTypeWhereUniqueInput
+    data: XOR<RepairTypeUpdateWithoutCategoryInput, RepairTypeUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type RepairTypeUpdateManyWithWhereWithoutCategoryInput = {
+    where: RepairTypeScalarWhereInput
+    data: XOR<RepairTypeUpdateManyMutationInput, RepairTypeUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type RepairTypeScalarWhereInput = {
+    AND?: RepairTypeScalarWhereInput | RepairTypeScalarWhereInput[]
+    OR?: RepairTypeScalarWhereInput[]
+    NOT?: RepairTypeScalarWhereInput | RepairTypeScalarWhereInput[]
+    id?: StringFilter<"RepairType"> | string
+    name?: StringFilter<"RepairType"> | string
+    categoryId?: StringFilter<"RepairType"> | string
+    position?: IntFilter<"RepairType"> | number
+    icon?: StringNullableFilter<"RepairType"> | string | null
+    isActive?: BoolFilter<"RepairType"> | boolean
+    createdAt?: DateTimeFilter<"RepairType"> | Date | string
+  }
+
+  export type BrandRepairCategoryUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: BrandRepairCategoryWhereUniqueInput
+    update: XOR<BrandRepairCategoryUpdateWithoutCategoryInput, BrandRepairCategoryUncheckedUpdateWithoutCategoryInput>
+    create: XOR<BrandRepairCategoryCreateWithoutCategoryInput, BrandRepairCategoryUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type BrandRepairCategoryUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: BrandRepairCategoryWhereUniqueInput
+    data: XOR<BrandRepairCategoryUpdateWithoutCategoryInput, BrandRepairCategoryUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type BrandRepairCategoryUpdateManyWithWhereWithoutCategoryInput = {
+    where: BrandRepairCategoryScalarWhereInput
+    data: XOR<BrandRepairCategoryUpdateManyMutationInput, BrandRepairCategoryUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type BrandRepairCategoryScalarWhereInput = {
+    AND?: BrandRepairCategoryScalarWhereInput | BrandRepairCategoryScalarWhereInput[]
+    OR?: BrandRepairCategoryScalarWhereInput[]
+    NOT?: BrandRepairCategoryScalarWhereInput | BrandRepairCategoryScalarWhereInput[]
+    id?: StringFilter<"BrandRepairCategory"> | string
+    brandId?: StringFilter<"BrandRepairCategory"> | string
+    categoryId?: StringFilter<"BrandRepairCategory"> | string
+  }
+
+  export type ModelRepairUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: ModelRepairWhereUniqueInput
+    update: XOR<ModelRepairUpdateWithoutCategoryInput, ModelRepairUncheckedUpdateWithoutCategoryInput>
+    create: XOR<ModelRepairCreateWithoutCategoryInput, ModelRepairUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type ModelRepairUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: ModelRepairWhereUniqueInput
+    data: XOR<ModelRepairUpdateWithoutCategoryInput, ModelRepairUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type ModelRepairUpdateManyWithWhereWithoutCategoryInput = {
+    where: ModelRepairScalarWhereInput
+    data: XOR<ModelRepairUpdateManyMutationInput, ModelRepairUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type ModelRepairScalarWhereInput = {
+    AND?: ModelRepairScalarWhereInput | ModelRepairScalarWhereInput[]
+    OR?: ModelRepairScalarWhereInput[]
+    NOT?: ModelRepairScalarWhereInput | ModelRepairScalarWhereInput[]
+    id?: StringFilter<"ModelRepair"> | string
+    name?: StringFilter<"ModelRepair"> | string
+    brandId?: StringFilter<"ModelRepair"> | string
+    categoryId?: StringNullableFilter<"ModelRepair"> | string | null
+  }
+
+  export type ServiceUpsertWithWhereUniqueWithoutServiceCategoryInput = {
+    where: ServiceWhereUniqueInput
+    update: XOR<ServiceUpdateWithoutServiceCategoryInput, ServiceUncheckedUpdateWithoutServiceCategoryInput>
+    create: XOR<ServiceCreateWithoutServiceCategoryInput, ServiceUncheckedCreateWithoutServiceCategoryInput>
+  }
+
+  export type ServiceUpdateWithWhereUniqueWithoutServiceCategoryInput = {
+    where: ServiceWhereUniqueInput
+    data: XOR<ServiceUpdateWithoutServiceCategoryInput, ServiceUncheckedUpdateWithoutServiceCategoryInput>
+  }
+
+  export type ServiceUpdateManyWithWhereWithoutServiceCategoryInput = {
+    where: ServiceScalarWhereInput
+    data: XOR<ServiceUpdateManyMutationInput, ServiceUncheckedUpdateManyWithoutServiceCategoryInput>
+  }
+
+  export type BrandRepairCreateWithoutCategoryLinksInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    models?: ModelRepairCreateNestedManyWithoutBrandInput
+    services?: ServiceCreateNestedManyWithoutBrandRepairInput
+  }
+
+  export type BrandRepairUncheckedCreateWithoutCategoryLinksInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    models?: ModelRepairUncheckedCreateNestedManyWithoutBrandInput
+    services?: ServiceUncheckedCreateNestedManyWithoutBrandRepairInput
+  }
+
+  export type BrandRepairCreateOrConnectWithoutCategoryLinksInput = {
+    where: BrandRepairWhereUniqueInput
+    create: XOR<BrandRepairCreateWithoutCategoryLinksInput, BrandRepairUncheckedCreateWithoutCategoryLinksInput>
+  }
+
+  export type ServiceCategoryCreateWithoutBrandLinksInput = {
+    id?: string
+    name: string
+    slug: string
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repairTypes?: RepairTypeCreateNestedManyWithoutCategoryInput
+    models?: ModelRepairCreateNestedManyWithoutCategoryInput
+    services?: ServiceCreateNestedManyWithoutServiceCategoryInput
+  }
+
+  export type ServiceCategoryUncheckedCreateWithoutBrandLinksInput = {
+    id?: string
+    name: string
+    slug: string
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repairTypes?: RepairTypeUncheckedCreateNestedManyWithoutCategoryInput
+    models?: ModelRepairUncheckedCreateNestedManyWithoutCategoryInput
+    services?: ServiceUncheckedCreateNestedManyWithoutServiceCategoryInput
+  }
+
+  export type ServiceCategoryCreateOrConnectWithoutBrandLinksInput = {
+    where: ServiceCategoryWhereUniqueInput
+    create: XOR<ServiceCategoryCreateWithoutBrandLinksInput, ServiceCategoryUncheckedCreateWithoutBrandLinksInput>
+  }
+
+  export type BrandRepairUpsertWithoutCategoryLinksInput = {
+    update: XOR<BrandRepairUpdateWithoutCategoryLinksInput, BrandRepairUncheckedUpdateWithoutCategoryLinksInput>
+    create: XOR<BrandRepairCreateWithoutCategoryLinksInput, BrandRepairUncheckedCreateWithoutCategoryLinksInput>
+    where?: BrandRepairWhereInput
+  }
+
+  export type BrandRepairUpdateToOneWithWhereWithoutCategoryLinksInput = {
+    where?: BrandRepairWhereInput
+    data: XOR<BrandRepairUpdateWithoutCategoryLinksInput, BrandRepairUncheckedUpdateWithoutCategoryLinksInput>
+  }
+
+  export type BrandRepairUpdateWithoutCategoryLinksInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    models?: ModelRepairUpdateManyWithoutBrandNestedInput
+    services?: ServiceUpdateManyWithoutBrandRepairNestedInput
+  }
+
+  export type BrandRepairUncheckedUpdateWithoutCategoryLinksInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    models?: ModelRepairUncheckedUpdateManyWithoutBrandNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutBrandRepairNestedInput
+  }
+
+  export type ServiceCategoryUpsertWithoutBrandLinksInput = {
+    update: XOR<ServiceCategoryUpdateWithoutBrandLinksInput, ServiceCategoryUncheckedUpdateWithoutBrandLinksInput>
+    create: XOR<ServiceCategoryCreateWithoutBrandLinksInput, ServiceCategoryUncheckedCreateWithoutBrandLinksInput>
+    where?: ServiceCategoryWhereInput
+  }
+
+  export type ServiceCategoryUpdateToOneWithWhereWithoutBrandLinksInput = {
+    where?: ServiceCategoryWhereInput
+    data: XOR<ServiceCategoryUpdateWithoutBrandLinksInput, ServiceCategoryUncheckedUpdateWithoutBrandLinksInput>
+  }
+
+  export type ServiceCategoryUpdateWithoutBrandLinksInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairTypes?: RepairTypeUpdateManyWithoutCategoryNestedInput
+    models?: ModelRepairUpdateManyWithoutCategoryNestedInput
+    services?: ServiceUpdateManyWithoutServiceCategoryNestedInput
+  }
+
+  export type ServiceCategoryUncheckedUpdateWithoutBrandLinksInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairTypes?: RepairTypeUncheckedUpdateManyWithoutCategoryNestedInput
+    models?: ModelRepairUncheckedUpdateManyWithoutCategoryNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutServiceCategoryNestedInput
+  }
+
+  export type ServiceCategoryCreateWithoutRepairTypesInput = {
+    id?: string
+    name: string
+    slug: string
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    brandLinks?: BrandRepairCategoryCreateNestedManyWithoutCategoryInput
+    models?: ModelRepairCreateNestedManyWithoutCategoryInput
+    services?: ServiceCreateNestedManyWithoutServiceCategoryInput
+  }
+
+  export type ServiceCategoryUncheckedCreateWithoutRepairTypesInput = {
+    id?: string
+    name: string
+    slug: string
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    brandLinks?: BrandRepairCategoryUncheckedCreateNestedManyWithoutCategoryInput
+    models?: ModelRepairUncheckedCreateNestedManyWithoutCategoryInput
+    services?: ServiceUncheckedCreateNestedManyWithoutServiceCategoryInput
+  }
+
+  export type ServiceCategoryCreateOrConnectWithoutRepairTypesInput = {
+    where: ServiceCategoryWhereUniqueInput
+    create: XOR<ServiceCategoryCreateWithoutRepairTypesInput, ServiceCategoryUncheckedCreateWithoutRepairTypesInput>
+  }
+
+  export type RepairOptionCreateWithoutRepairTypeInput = {
+    id?: string
+    quality?: $Enums.RepairQuality
+    price: number
+    cost?: number | null
+    isActive?: boolean
+    updatedAt?: Date | string
+    model: ModelRepairCreateNestedOneWithoutRepairOptionsInput
+    services?: ServiceCreateNestedManyWithoutRepairOptionInput
+  }
+
+  export type RepairOptionUncheckedCreateWithoutRepairTypeInput = {
+    id?: string
+    modelId: string
+    quality?: $Enums.RepairQuality
+    price: number
+    cost?: number | null
+    isActive?: boolean
+    updatedAt?: Date | string
+    services?: ServiceUncheckedCreateNestedManyWithoutRepairOptionInput
+  }
+
+  export type RepairOptionCreateOrConnectWithoutRepairTypeInput = {
+    where: RepairOptionWhereUniqueInput
+    create: XOR<RepairOptionCreateWithoutRepairTypeInput, RepairOptionUncheckedCreateWithoutRepairTypeInput>
+  }
+
+  export type RepairOptionCreateManyRepairTypeInputEnvelope = {
+    data: RepairOptionCreateManyRepairTypeInput | RepairOptionCreateManyRepairTypeInput[]
+  }
+
+  export type ServiceCreateWithoutRepairTypeInput = {
+    id?: string
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    buyer?: BuyerCreateNestedOneWithoutServicesInput
+    customerDevice?: CustomerDeviceCreateNestedOneWithoutServicesInput
+    serviceCategory?: ServiceCategoryCreateNestedOneWithoutServicesInput
+    brandRepair?: BrandRepairCreateNestedOneWithoutServicesInput
+    modelRepair?: ModelRepairCreateNestedOneWithoutServicesInput
+    repairOption?: RepairOptionCreateNestedOneWithoutServicesInput
+  }
+
+  export type ServiceUncheckedCreateWithoutRepairTypeInput = {
+    id?: string
+    buyerId?: string | null
+    customerDeviceId?: string | null
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    serviceCategoryId?: string | null
+    brandRepairId?: string | null
+    modelRepairId?: string | null
+    repairOptionId?: string | null
+  }
+
+  export type ServiceCreateOrConnectWithoutRepairTypeInput = {
+    where: ServiceWhereUniqueInput
+    create: XOR<ServiceCreateWithoutRepairTypeInput, ServiceUncheckedCreateWithoutRepairTypeInput>
+  }
+
+  export type ServiceCreateManyRepairTypeInputEnvelope = {
+    data: ServiceCreateManyRepairTypeInput | ServiceCreateManyRepairTypeInput[]
+  }
+
+  export type ServiceCategoryUpsertWithoutRepairTypesInput = {
+    update: XOR<ServiceCategoryUpdateWithoutRepairTypesInput, ServiceCategoryUncheckedUpdateWithoutRepairTypesInput>
+    create: XOR<ServiceCategoryCreateWithoutRepairTypesInput, ServiceCategoryUncheckedCreateWithoutRepairTypesInput>
+    where?: ServiceCategoryWhereInput
+  }
+
+  export type ServiceCategoryUpdateToOneWithWhereWithoutRepairTypesInput = {
+    where?: ServiceCategoryWhereInput
+    data: XOR<ServiceCategoryUpdateWithoutRepairTypesInput, ServiceCategoryUncheckedUpdateWithoutRepairTypesInput>
+  }
+
+  export type ServiceCategoryUpdateWithoutRepairTypesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    brandLinks?: BrandRepairCategoryUpdateManyWithoutCategoryNestedInput
+    models?: ModelRepairUpdateManyWithoutCategoryNestedInput
+    services?: ServiceUpdateManyWithoutServiceCategoryNestedInput
+  }
+
+  export type ServiceCategoryUncheckedUpdateWithoutRepairTypesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    brandLinks?: BrandRepairCategoryUncheckedUpdateManyWithoutCategoryNestedInput
+    models?: ModelRepairUncheckedUpdateManyWithoutCategoryNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutServiceCategoryNestedInput
+  }
+
+  export type RepairOptionUpsertWithWhereUniqueWithoutRepairTypeInput = {
+    where: RepairOptionWhereUniqueInput
+    update: XOR<RepairOptionUpdateWithoutRepairTypeInput, RepairOptionUncheckedUpdateWithoutRepairTypeInput>
+    create: XOR<RepairOptionCreateWithoutRepairTypeInput, RepairOptionUncheckedCreateWithoutRepairTypeInput>
+  }
+
+  export type RepairOptionUpdateWithWhereUniqueWithoutRepairTypeInput = {
+    where: RepairOptionWhereUniqueInput
+    data: XOR<RepairOptionUpdateWithoutRepairTypeInput, RepairOptionUncheckedUpdateWithoutRepairTypeInput>
+  }
+
+  export type RepairOptionUpdateManyWithWhereWithoutRepairTypeInput = {
+    where: RepairOptionScalarWhereInput
+    data: XOR<RepairOptionUpdateManyMutationInput, RepairOptionUncheckedUpdateManyWithoutRepairTypeInput>
+  }
+
+  export type RepairOptionScalarWhereInput = {
+    AND?: RepairOptionScalarWhereInput | RepairOptionScalarWhereInput[]
+    OR?: RepairOptionScalarWhereInput[]
+    NOT?: RepairOptionScalarWhereInput | RepairOptionScalarWhereInput[]
+    id?: StringFilter<"RepairOption"> | string
+    modelId?: StringFilter<"RepairOption"> | string
+    repairTypeId?: StringFilter<"RepairOption"> | string
+    quality?: EnumRepairQualityFilter<"RepairOption"> | $Enums.RepairQuality
+    price?: FloatFilter<"RepairOption"> | number
+    cost?: FloatNullableFilter<"RepairOption"> | number | null
+    isActive?: BoolFilter<"RepairOption"> | boolean
+    updatedAt?: DateTimeFilter<"RepairOption"> | Date | string
+  }
+
+  export type ServiceUpsertWithWhereUniqueWithoutRepairTypeInput = {
+    where: ServiceWhereUniqueInput
+    update: XOR<ServiceUpdateWithoutRepairTypeInput, ServiceUncheckedUpdateWithoutRepairTypeInput>
+    create: XOR<ServiceCreateWithoutRepairTypeInput, ServiceUncheckedCreateWithoutRepairTypeInput>
+  }
+
+  export type ServiceUpdateWithWhereUniqueWithoutRepairTypeInput = {
+    where: ServiceWhereUniqueInput
+    data: XOR<ServiceUpdateWithoutRepairTypeInput, ServiceUncheckedUpdateWithoutRepairTypeInput>
+  }
+
+  export type ServiceUpdateManyWithWhereWithoutRepairTypeInput = {
+    where: ServiceScalarWhereInput
+    data: XOR<ServiceUpdateManyMutationInput, ServiceUncheckedUpdateManyWithoutRepairTypeInput>
+  }
+
+  export type ModelRepairCreateWithoutRepairOptionsInput = {
+    id?: string
+    name: string
+    brand: BrandRepairCreateNestedOneWithoutModelsInput
+    serviceCatalog?: ServiceCatalogCreateNestedManyWithoutModelInput
+    category?: ServiceCategoryCreateNestedOneWithoutModelsInput
+    services?: ServiceCreateNestedManyWithoutModelRepairInput
+  }
+
+  export type ModelRepairUncheckedCreateWithoutRepairOptionsInput = {
+    id?: string
+    name: string
+    brandId: string
+    categoryId?: string | null
+    serviceCatalog?: ServiceCatalogUncheckedCreateNestedManyWithoutModelInput
+    services?: ServiceUncheckedCreateNestedManyWithoutModelRepairInput
+  }
+
+  export type ModelRepairCreateOrConnectWithoutRepairOptionsInput = {
+    where: ModelRepairWhereUniqueInput
+    create: XOR<ModelRepairCreateWithoutRepairOptionsInput, ModelRepairUncheckedCreateWithoutRepairOptionsInput>
+  }
+
+  export type RepairTypeCreateWithoutRepairOptionsInput = {
+    id?: string
+    name: string
+    position?: number
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    category: ServiceCategoryCreateNestedOneWithoutRepairTypesInput
+    services?: ServiceCreateNestedManyWithoutRepairTypeInput
+  }
+
+  export type RepairTypeUncheckedCreateWithoutRepairOptionsInput = {
+    id?: string
+    name: string
+    categoryId: string
+    position?: number
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    services?: ServiceUncheckedCreateNestedManyWithoutRepairTypeInput
+  }
+
+  export type RepairTypeCreateOrConnectWithoutRepairOptionsInput = {
+    where: RepairTypeWhereUniqueInput
+    create: XOR<RepairTypeCreateWithoutRepairOptionsInput, RepairTypeUncheckedCreateWithoutRepairOptionsInput>
+  }
+
+  export type ServiceCreateWithoutRepairOptionInput = {
+    id?: string
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    buyer?: BuyerCreateNestedOneWithoutServicesInput
+    customerDevice?: CustomerDeviceCreateNestedOneWithoutServicesInput
+    serviceCategory?: ServiceCategoryCreateNestedOneWithoutServicesInput
+    brandRepair?: BrandRepairCreateNestedOneWithoutServicesInput
+    modelRepair?: ModelRepairCreateNestedOneWithoutServicesInput
+    repairType?: RepairTypeCreateNestedOneWithoutServicesInput
+  }
+
+  export type ServiceUncheckedCreateWithoutRepairOptionInput = {
+    id?: string
+    buyerId?: string | null
+    customerDeviceId?: string | null
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    serviceCategoryId?: string | null
+    brandRepairId?: string | null
+    modelRepairId?: string | null
+    repairTypeId?: string | null
+  }
+
+  export type ServiceCreateOrConnectWithoutRepairOptionInput = {
+    where: ServiceWhereUniqueInput
+    create: XOR<ServiceCreateWithoutRepairOptionInput, ServiceUncheckedCreateWithoutRepairOptionInput>
+  }
+
+  export type ServiceCreateManyRepairOptionInputEnvelope = {
+    data: ServiceCreateManyRepairOptionInput | ServiceCreateManyRepairOptionInput[]
+  }
+
+  export type ModelRepairUpsertWithoutRepairOptionsInput = {
+    update: XOR<ModelRepairUpdateWithoutRepairOptionsInput, ModelRepairUncheckedUpdateWithoutRepairOptionsInput>
+    create: XOR<ModelRepairCreateWithoutRepairOptionsInput, ModelRepairUncheckedCreateWithoutRepairOptionsInput>
+    where?: ModelRepairWhereInput
+  }
+
+  export type ModelRepairUpdateToOneWithWhereWithoutRepairOptionsInput = {
+    where?: ModelRepairWhereInput
+    data: XOR<ModelRepairUpdateWithoutRepairOptionsInput, ModelRepairUncheckedUpdateWithoutRepairOptionsInput>
+  }
+
+  export type ModelRepairUpdateWithoutRepairOptionsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    brand?: BrandRepairUpdateOneRequiredWithoutModelsNestedInput
+    serviceCatalog?: ServiceCatalogUpdateManyWithoutModelNestedInput
+    category?: ServiceCategoryUpdateOneWithoutModelsNestedInput
+    services?: ServiceUpdateManyWithoutModelRepairNestedInput
+  }
+
+  export type ModelRepairUncheckedUpdateWithoutRepairOptionsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    brandId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    serviceCatalog?: ServiceCatalogUncheckedUpdateManyWithoutModelNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutModelRepairNestedInput
+  }
+
+  export type RepairTypeUpsertWithoutRepairOptionsInput = {
+    update: XOR<RepairTypeUpdateWithoutRepairOptionsInput, RepairTypeUncheckedUpdateWithoutRepairOptionsInput>
+    create: XOR<RepairTypeCreateWithoutRepairOptionsInput, RepairTypeUncheckedCreateWithoutRepairOptionsInput>
+    where?: RepairTypeWhereInput
+  }
+
+  export type RepairTypeUpdateToOneWithWhereWithoutRepairOptionsInput = {
+    where?: RepairTypeWhereInput
+    data: XOR<RepairTypeUpdateWithoutRepairOptionsInput, RepairTypeUncheckedUpdateWithoutRepairOptionsInput>
+  }
+
+  export type RepairTypeUpdateWithoutRepairOptionsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: ServiceCategoryUpdateOneRequiredWithoutRepairTypesNestedInput
+    services?: ServiceUpdateManyWithoutRepairTypeNestedInput
+  }
+
+  export type RepairTypeUncheckedUpdateWithoutRepairOptionsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    services?: ServiceUncheckedUpdateManyWithoutRepairTypeNestedInput
+  }
+
+  export type ServiceUpsertWithWhereUniqueWithoutRepairOptionInput = {
+    where: ServiceWhereUniqueInput
+    update: XOR<ServiceUpdateWithoutRepairOptionInput, ServiceUncheckedUpdateWithoutRepairOptionInput>
+    create: XOR<ServiceCreateWithoutRepairOptionInput, ServiceUncheckedCreateWithoutRepairOptionInput>
+  }
+
+  export type ServiceUpdateWithWhereUniqueWithoutRepairOptionInput = {
+    where: ServiceWhereUniqueInput
+    data: XOR<ServiceUpdateWithoutRepairOptionInput, ServiceUncheckedUpdateWithoutRepairOptionInput>
+  }
+
+  export type ServiceUpdateManyWithWhereWithoutRepairOptionInput = {
+    where: ServiceScalarWhereInput
+    data: XOR<ServiceUpdateManyMutationInput, ServiceUncheckedUpdateManyWithoutRepairOptionInput>
+  }
+
   export type ModelRepairCreateWithoutBrandInput = {
     id?: string
     name: string
     serviceCatalog?: ServiceCatalogCreateNestedManyWithoutModelInput
+    category?: ServiceCategoryCreateNestedOneWithoutModelsInput
+    repairOptions?: RepairOptionCreateNestedManyWithoutModelInput
+    services?: ServiceCreateNestedManyWithoutModelRepairInput
   }
 
   export type ModelRepairUncheckedCreateWithoutBrandInput = {
     id?: string
     name: string
+    categoryId?: string | null
     serviceCatalog?: ServiceCatalogUncheckedCreateNestedManyWithoutModelInput
+    repairOptions?: RepairOptionUncheckedCreateNestedManyWithoutModelInput
+    services?: ServiceUncheckedCreateNestedManyWithoutModelRepairInput
   }
 
   export type ModelRepairCreateOrConnectWithoutBrandInput = {
@@ -61341,6 +69178,100 @@ export namespace Prisma {
 
   export type ModelRepairCreateManyBrandInputEnvelope = {
     data: ModelRepairCreateManyBrandInput | ModelRepairCreateManyBrandInput[]
+  }
+
+  export type BrandRepairCategoryCreateWithoutBrandInput = {
+    id?: string
+    category: ServiceCategoryCreateNestedOneWithoutBrandLinksInput
+  }
+
+  export type BrandRepairCategoryUncheckedCreateWithoutBrandInput = {
+    id?: string
+    categoryId: string
+  }
+
+  export type BrandRepairCategoryCreateOrConnectWithoutBrandInput = {
+    where: BrandRepairCategoryWhereUniqueInput
+    create: XOR<BrandRepairCategoryCreateWithoutBrandInput, BrandRepairCategoryUncheckedCreateWithoutBrandInput>
+  }
+
+  export type BrandRepairCategoryCreateManyBrandInputEnvelope = {
+    data: BrandRepairCategoryCreateManyBrandInput | BrandRepairCategoryCreateManyBrandInput[]
+  }
+
+  export type ServiceCreateWithoutBrandRepairInput = {
+    id?: string
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    buyer?: BuyerCreateNestedOneWithoutServicesInput
+    customerDevice?: CustomerDeviceCreateNestedOneWithoutServicesInput
+    serviceCategory?: ServiceCategoryCreateNestedOneWithoutServicesInput
+    modelRepair?: ModelRepairCreateNestedOneWithoutServicesInput
+    repairType?: RepairTypeCreateNestedOneWithoutServicesInput
+    repairOption?: RepairOptionCreateNestedOneWithoutServicesInput
+  }
+
+  export type ServiceUncheckedCreateWithoutBrandRepairInput = {
+    id?: string
+    buyerId?: string | null
+    customerDeviceId?: string | null
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    serviceCategoryId?: string | null
+    modelRepairId?: string | null
+    repairTypeId?: string | null
+    repairOptionId?: string | null
+  }
+
+  export type ServiceCreateOrConnectWithoutBrandRepairInput = {
+    where: ServiceWhereUniqueInput
+    create: XOR<ServiceCreateWithoutBrandRepairInput, ServiceUncheckedCreateWithoutBrandRepairInput>
+  }
+
+  export type ServiceCreateManyBrandRepairInputEnvelope = {
+    data: ServiceCreateManyBrandRepairInput | ServiceCreateManyBrandRepairInput[]
   }
 
   export type ModelRepairUpsertWithWhereUniqueWithoutBrandInput = {
@@ -61359,25 +69290,52 @@ export namespace Prisma {
     data: XOR<ModelRepairUpdateManyMutationInput, ModelRepairUncheckedUpdateManyWithoutBrandInput>
   }
 
-  export type ModelRepairScalarWhereInput = {
-    AND?: ModelRepairScalarWhereInput | ModelRepairScalarWhereInput[]
-    OR?: ModelRepairScalarWhereInput[]
-    NOT?: ModelRepairScalarWhereInput | ModelRepairScalarWhereInput[]
-    id?: StringFilter<"ModelRepair"> | string
-    name?: StringFilter<"ModelRepair"> | string
-    brandId?: StringFilter<"ModelRepair"> | string
+  export type BrandRepairCategoryUpsertWithWhereUniqueWithoutBrandInput = {
+    where: BrandRepairCategoryWhereUniqueInput
+    update: XOR<BrandRepairCategoryUpdateWithoutBrandInput, BrandRepairCategoryUncheckedUpdateWithoutBrandInput>
+    create: XOR<BrandRepairCategoryCreateWithoutBrandInput, BrandRepairCategoryUncheckedCreateWithoutBrandInput>
+  }
+
+  export type BrandRepairCategoryUpdateWithWhereUniqueWithoutBrandInput = {
+    where: BrandRepairCategoryWhereUniqueInput
+    data: XOR<BrandRepairCategoryUpdateWithoutBrandInput, BrandRepairCategoryUncheckedUpdateWithoutBrandInput>
+  }
+
+  export type BrandRepairCategoryUpdateManyWithWhereWithoutBrandInput = {
+    where: BrandRepairCategoryScalarWhereInput
+    data: XOR<BrandRepairCategoryUpdateManyMutationInput, BrandRepairCategoryUncheckedUpdateManyWithoutBrandInput>
+  }
+
+  export type ServiceUpsertWithWhereUniqueWithoutBrandRepairInput = {
+    where: ServiceWhereUniqueInput
+    update: XOR<ServiceUpdateWithoutBrandRepairInput, ServiceUncheckedUpdateWithoutBrandRepairInput>
+    create: XOR<ServiceCreateWithoutBrandRepairInput, ServiceUncheckedCreateWithoutBrandRepairInput>
+  }
+
+  export type ServiceUpdateWithWhereUniqueWithoutBrandRepairInput = {
+    where: ServiceWhereUniqueInput
+    data: XOR<ServiceUpdateWithoutBrandRepairInput, ServiceUncheckedUpdateWithoutBrandRepairInput>
+  }
+
+  export type ServiceUpdateManyWithWhereWithoutBrandRepairInput = {
+    where: ServiceScalarWhereInput
+    data: XOR<ServiceUpdateManyMutationInput, ServiceUncheckedUpdateManyWithoutBrandRepairInput>
   }
 
   export type BrandRepairCreateWithoutModelsInput = {
     id?: string
     name: string
     createdAt?: Date | string
+    categoryLinks?: BrandRepairCategoryCreateNestedManyWithoutBrandInput
+    services?: ServiceCreateNestedManyWithoutBrandRepairInput
   }
 
   export type BrandRepairUncheckedCreateWithoutModelsInput = {
     id?: string
     name: string
     createdAt?: Date | string
+    categoryLinks?: BrandRepairCategoryUncheckedCreateNestedManyWithoutBrandInput
+    services?: ServiceUncheckedCreateNestedManyWithoutBrandRepairInput
   }
 
   export type BrandRepairCreateOrConnectWithoutModelsInput = {
@@ -61408,6 +69366,143 @@ export namespace Prisma {
     data: ServiceCatalogCreateManyModelInput | ServiceCatalogCreateManyModelInput[]
   }
 
+  export type ServiceCategoryCreateWithoutModelsInput = {
+    id?: string
+    name: string
+    slug: string
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repairTypes?: RepairTypeCreateNestedManyWithoutCategoryInput
+    brandLinks?: BrandRepairCategoryCreateNestedManyWithoutCategoryInput
+    services?: ServiceCreateNestedManyWithoutServiceCategoryInput
+  }
+
+  export type ServiceCategoryUncheckedCreateWithoutModelsInput = {
+    id?: string
+    name: string
+    slug: string
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repairTypes?: RepairTypeUncheckedCreateNestedManyWithoutCategoryInput
+    brandLinks?: BrandRepairCategoryUncheckedCreateNestedManyWithoutCategoryInput
+    services?: ServiceUncheckedCreateNestedManyWithoutServiceCategoryInput
+  }
+
+  export type ServiceCategoryCreateOrConnectWithoutModelsInput = {
+    where: ServiceCategoryWhereUniqueInput
+    create: XOR<ServiceCategoryCreateWithoutModelsInput, ServiceCategoryUncheckedCreateWithoutModelsInput>
+  }
+
+  export type RepairOptionCreateWithoutModelInput = {
+    id?: string
+    quality?: $Enums.RepairQuality
+    price: number
+    cost?: number | null
+    isActive?: boolean
+    updatedAt?: Date | string
+    repairType: RepairTypeCreateNestedOneWithoutRepairOptionsInput
+    services?: ServiceCreateNestedManyWithoutRepairOptionInput
+  }
+
+  export type RepairOptionUncheckedCreateWithoutModelInput = {
+    id?: string
+    repairTypeId: string
+    quality?: $Enums.RepairQuality
+    price: number
+    cost?: number | null
+    isActive?: boolean
+    updatedAt?: Date | string
+    services?: ServiceUncheckedCreateNestedManyWithoutRepairOptionInput
+  }
+
+  export type RepairOptionCreateOrConnectWithoutModelInput = {
+    where: RepairOptionWhereUniqueInput
+    create: XOR<RepairOptionCreateWithoutModelInput, RepairOptionUncheckedCreateWithoutModelInput>
+  }
+
+  export type RepairOptionCreateManyModelInputEnvelope = {
+    data: RepairOptionCreateManyModelInput | RepairOptionCreateManyModelInput[]
+  }
+
+  export type ServiceCreateWithoutModelRepairInput = {
+    id?: string
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    buyer?: BuyerCreateNestedOneWithoutServicesInput
+    customerDevice?: CustomerDeviceCreateNestedOneWithoutServicesInput
+    serviceCategory?: ServiceCategoryCreateNestedOneWithoutServicesInput
+    brandRepair?: BrandRepairCreateNestedOneWithoutServicesInput
+    repairType?: RepairTypeCreateNestedOneWithoutServicesInput
+    repairOption?: RepairOptionCreateNestedOneWithoutServicesInput
+  }
+
+  export type ServiceUncheckedCreateWithoutModelRepairInput = {
+    id?: string
+    buyerId?: string | null
+    customerDeviceId?: string | null
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    serviceCategoryId?: string | null
+    brandRepairId?: string | null
+    repairTypeId?: string | null
+    repairOptionId?: string | null
+  }
+
+  export type ServiceCreateOrConnectWithoutModelRepairInput = {
+    where: ServiceWhereUniqueInput
+    create: XOR<ServiceCreateWithoutModelRepairInput, ServiceUncheckedCreateWithoutModelRepairInput>
+  }
+
+  export type ServiceCreateManyModelRepairInputEnvelope = {
+    data: ServiceCreateManyModelRepairInput | ServiceCreateManyModelRepairInput[]
+  }
+
   export type BrandRepairUpsertWithoutModelsInput = {
     update: XOR<BrandRepairUpdateWithoutModelsInput, BrandRepairUncheckedUpdateWithoutModelsInput>
     create: XOR<BrandRepairCreateWithoutModelsInput, BrandRepairUncheckedCreateWithoutModelsInput>
@@ -61422,11 +69517,15 @@ export namespace Prisma {
   export type BrandRepairUpdateWithoutModelsInput = {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    categoryLinks?: BrandRepairCategoryUpdateManyWithoutBrandNestedInput
+    services?: ServiceUpdateManyWithoutBrandRepairNestedInput
   }
 
   export type BrandRepairUncheckedUpdateWithoutModelsInput = {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    categoryLinks?: BrandRepairCategoryUncheckedUpdateManyWithoutBrandNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutBrandRepairNestedInput
   }
 
   export type ServiceCatalogUpsertWithWhereUniqueWithoutModelInput = {
@@ -61456,16 +69555,89 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ServiceCatalog"> | Date | string
   }
 
+  export type ServiceCategoryUpsertWithoutModelsInput = {
+    update: XOR<ServiceCategoryUpdateWithoutModelsInput, ServiceCategoryUncheckedUpdateWithoutModelsInput>
+    create: XOR<ServiceCategoryCreateWithoutModelsInput, ServiceCategoryUncheckedCreateWithoutModelsInput>
+    where?: ServiceCategoryWhereInput
+  }
+
+  export type ServiceCategoryUpdateToOneWithWhereWithoutModelsInput = {
+    where?: ServiceCategoryWhereInput
+    data: XOR<ServiceCategoryUpdateWithoutModelsInput, ServiceCategoryUncheckedUpdateWithoutModelsInput>
+  }
+
+  export type ServiceCategoryUpdateWithoutModelsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairTypes?: RepairTypeUpdateManyWithoutCategoryNestedInput
+    brandLinks?: BrandRepairCategoryUpdateManyWithoutCategoryNestedInput
+    services?: ServiceUpdateManyWithoutServiceCategoryNestedInput
+  }
+
+  export type ServiceCategoryUncheckedUpdateWithoutModelsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairTypes?: RepairTypeUncheckedUpdateManyWithoutCategoryNestedInput
+    brandLinks?: BrandRepairCategoryUncheckedUpdateManyWithoutCategoryNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutServiceCategoryNestedInput
+  }
+
+  export type RepairOptionUpsertWithWhereUniqueWithoutModelInput = {
+    where: RepairOptionWhereUniqueInput
+    update: XOR<RepairOptionUpdateWithoutModelInput, RepairOptionUncheckedUpdateWithoutModelInput>
+    create: XOR<RepairOptionCreateWithoutModelInput, RepairOptionUncheckedCreateWithoutModelInput>
+  }
+
+  export type RepairOptionUpdateWithWhereUniqueWithoutModelInput = {
+    where: RepairOptionWhereUniqueInput
+    data: XOR<RepairOptionUpdateWithoutModelInput, RepairOptionUncheckedUpdateWithoutModelInput>
+  }
+
+  export type RepairOptionUpdateManyWithWhereWithoutModelInput = {
+    where: RepairOptionScalarWhereInput
+    data: XOR<RepairOptionUpdateManyMutationInput, RepairOptionUncheckedUpdateManyWithoutModelInput>
+  }
+
+  export type ServiceUpsertWithWhereUniqueWithoutModelRepairInput = {
+    where: ServiceWhereUniqueInput
+    update: XOR<ServiceUpdateWithoutModelRepairInput, ServiceUncheckedUpdateWithoutModelRepairInput>
+    create: XOR<ServiceCreateWithoutModelRepairInput, ServiceUncheckedCreateWithoutModelRepairInput>
+  }
+
+  export type ServiceUpdateWithWhereUniqueWithoutModelRepairInput = {
+    where: ServiceWhereUniqueInput
+    data: XOR<ServiceUpdateWithoutModelRepairInput, ServiceUncheckedUpdateWithoutModelRepairInput>
+  }
+
+  export type ServiceUpdateManyWithWhereWithoutModelRepairInput = {
+    where: ServiceScalarWhereInput
+    data: XOR<ServiceUpdateManyMutationInput, ServiceUncheckedUpdateManyWithoutModelRepairInput>
+  }
+
   export type ModelRepairCreateWithoutServiceCatalogInput = {
     id?: string
     name: string
     brand: BrandRepairCreateNestedOneWithoutModelsInput
+    category?: ServiceCategoryCreateNestedOneWithoutModelsInput
+    repairOptions?: RepairOptionCreateNestedManyWithoutModelInput
+    services?: ServiceCreateNestedManyWithoutModelRepairInput
   }
 
   export type ModelRepairUncheckedCreateWithoutServiceCatalogInput = {
     id?: string
     name: string
     brandId: string
+    categoryId?: string | null
+    repairOptions?: RepairOptionUncheckedCreateNestedManyWithoutModelInput
+    services?: ServiceUncheckedCreateNestedManyWithoutModelRepairInput
   }
 
   export type ModelRepairCreateOrConnectWithoutServiceCatalogInput = {
@@ -61487,11 +69659,17 @@ export namespace Prisma {
   export type ModelRepairUpdateWithoutServiceCatalogInput = {
     name?: StringFieldUpdateOperationsInput | string
     brand?: BrandRepairUpdateOneRequiredWithoutModelsNestedInput
+    category?: ServiceCategoryUpdateOneWithoutModelsNestedInput
+    repairOptions?: RepairOptionUpdateManyWithoutModelNestedInput
+    services?: ServiceUpdateManyWithoutModelRepairNestedInput
   }
 
   export type ModelRepairUncheckedUpdateWithoutServiceCatalogInput = {
     name?: StringFieldUpdateOperationsInput | string
     brandId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptions?: RepairOptionUncheckedUpdateManyWithoutModelNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutModelRepairNestedInput
   }
 
   export type ProductVariantCreateManyProductInput = {
@@ -62194,6 +70372,11 @@ export namespace Prisma {
     additionalDetails?: InputJsonValue | null
     privateNotes?: string | null
     isWarranty?: boolean
+    serviceCategoryId?: string | null
+    brandRepairId?: string | null
+    modelRepairId?: string | null
+    repairTypeId?: string | null
+    repairOptionId?: string | null
   }
 
   export type OrderUpdateWithoutBuyerInput = {
@@ -62518,6 +70701,11 @@ export namespace Prisma {
     privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
     isWarranty?: BoolFieldUpdateOperationsInput | boolean
     customerDevice?: CustomerDeviceUpdateOneWithoutServicesNestedInput
+    serviceCategory?: ServiceCategoryUpdateOneWithoutServicesNestedInput
+    brandRepair?: BrandRepairUpdateOneWithoutServicesNestedInput
+    modelRepair?: ModelRepairUpdateOneWithoutServicesNestedInput
+    repairType?: RepairTypeUpdateOneWithoutServicesNestedInput
+    repairOption?: RepairOptionUpdateOneWithoutServicesNestedInput
   }
 
   export type ServiceUncheckedUpdateWithoutBuyerInput = {
@@ -62545,6 +70733,11 @@ export namespace Prisma {
     additionalDetails?: InputJsonValue | InputJsonValue | null
     privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
     isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ServiceUncheckedUpdateManyWithoutBuyerInput = {
@@ -62572,6 +70765,11 @@ export namespace Prisma {
     additionalDetails?: InputJsonValue | InputJsonValue | null
     privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
     isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ServiceCreateManyCustomerDeviceInput = {
@@ -62600,6 +70798,11 @@ export namespace Prisma {
     additionalDetails?: InputJsonValue | null
     privateNotes?: string | null
     isWarranty?: boolean
+    serviceCategoryId?: string | null
+    brandRepairId?: string | null
+    modelRepairId?: string | null
+    repairTypeId?: string | null
+    repairOptionId?: string | null
   }
 
   export type ServiceUpdateWithoutCustomerDeviceInput = {
@@ -62627,6 +70830,11 @@ export namespace Prisma {
     privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
     isWarranty?: BoolFieldUpdateOperationsInput | boolean
     buyer?: BuyerUpdateOneWithoutServicesNestedInput
+    serviceCategory?: ServiceCategoryUpdateOneWithoutServicesNestedInput
+    brandRepair?: BrandRepairUpdateOneWithoutServicesNestedInput
+    modelRepair?: ModelRepairUpdateOneWithoutServicesNestedInput
+    repairType?: RepairTypeUpdateOneWithoutServicesNestedInput
+    repairOption?: RepairOptionUpdateOneWithoutServicesNestedInput
   }
 
   export type ServiceUncheckedUpdateWithoutCustomerDeviceInput = {
@@ -62654,6 +70862,11 @@ export namespace Prisma {
     additionalDetails?: InputJsonValue | InputJsonValue | null
     privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
     isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ServiceUncheckedUpdateManyWithoutCustomerDeviceInput = {
@@ -62681,6 +70894,11 @@ export namespace Prisma {
     additionalDetails?: InputJsonValue | InputJsonValue | null
     privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
     isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrderDetailCreateManyOrderInput = {
@@ -62968,23 +71186,684 @@ export namespace Prisma {
     profitMargin?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
+  export type RepairTypeCreateManyCategoryInput = {
+    id?: string
+    name: string
+    position?: number
+    icon?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type BrandRepairCategoryCreateManyCategoryInput = {
+    id?: string
+    brandId: string
+  }
+
+  export type ModelRepairCreateManyCategoryInput = {
+    id?: string
+    name: string
+    brandId: string
+  }
+
+  export type ServiceCreateManyServiceCategoryInput = {
+    id?: string
+    buyerId?: string | null
+    customerDeviceId?: string | null
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    brandRepairId?: string | null
+    modelRepairId?: string | null
+    repairTypeId?: string | null
+    repairOptionId?: string | null
+  }
+
+  export type RepairTypeUpdateWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairOptions?: RepairOptionUpdateManyWithoutRepairTypeNestedInput
+    services?: ServiceUpdateManyWithoutRepairTypeNestedInput
+  }
+
+  export type RepairTypeUncheckedUpdateWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairOptions?: RepairOptionUncheckedUpdateManyWithoutRepairTypeNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutRepairTypeNestedInput
+  }
+
+  export type RepairTypeUncheckedUpdateManyWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BrandRepairCategoryUpdateWithoutCategoryInput = {
+    brand?: BrandRepairUpdateOneRequiredWithoutCategoryLinksNestedInput
+  }
+
+  export type BrandRepairCategoryUncheckedUpdateWithoutCategoryInput = {
+    brandId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BrandRepairCategoryUncheckedUpdateManyWithoutCategoryInput = {
+    brandId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModelRepairUpdateWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    brand?: BrandRepairUpdateOneRequiredWithoutModelsNestedInput
+    serviceCatalog?: ServiceCatalogUpdateManyWithoutModelNestedInput
+    repairOptions?: RepairOptionUpdateManyWithoutModelNestedInput
+    services?: ServiceUpdateManyWithoutModelRepairNestedInput
+  }
+
+  export type ModelRepairUncheckedUpdateWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    brandId?: StringFieldUpdateOperationsInput | string
+    serviceCatalog?: ServiceCatalogUncheckedUpdateManyWithoutModelNestedInput
+    repairOptions?: RepairOptionUncheckedUpdateManyWithoutModelNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutModelRepairNestedInput
+  }
+
+  export type ModelRepairUncheckedUpdateManyWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    brandId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServiceUpdateWithoutServiceCategoryInput = {
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    buyer?: BuyerUpdateOneWithoutServicesNestedInput
+    customerDevice?: CustomerDeviceUpdateOneWithoutServicesNestedInput
+    brandRepair?: BrandRepairUpdateOneWithoutServicesNestedInput
+    modelRepair?: ModelRepairUpdateOneWithoutServicesNestedInput
+    repairType?: RepairTypeUpdateOneWithoutServicesNestedInput
+    repairOption?: RepairOptionUpdateOneWithoutServicesNestedInput
+  }
+
+  export type ServiceUncheckedUpdateWithoutServiceCategoryInput = {
+    buyerId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerDeviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ServiceUncheckedUpdateManyWithoutServiceCategoryInput = {
+    buyerId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerDeviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type RepairOptionCreateManyRepairTypeInput = {
+    id?: string
+    modelId: string
+    quality?: $Enums.RepairQuality
+    price: number
+    cost?: number | null
+    isActive?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type ServiceCreateManyRepairTypeInput = {
+    id?: string
+    buyerId?: string | null
+    customerDeviceId?: string | null
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    serviceCategoryId?: string | null
+    brandRepairId?: string | null
+    modelRepairId?: string | null
+    repairOptionId?: string | null
+  }
+
+  export type RepairOptionUpdateWithoutRepairTypeInput = {
+    quality?: EnumRepairQualityFieldUpdateOperationsInput | $Enums.RepairQuality
+    price?: FloatFieldUpdateOperationsInput | number
+    cost?: NullableFloatFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    model?: ModelRepairUpdateOneRequiredWithoutRepairOptionsNestedInput
+    services?: ServiceUpdateManyWithoutRepairOptionNestedInput
+  }
+
+  export type RepairOptionUncheckedUpdateWithoutRepairTypeInput = {
+    modelId?: StringFieldUpdateOperationsInput | string
+    quality?: EnumRepairQualityFieldUpdateOperationsInput | $Enums.RepairQuality
+    price?: FloatFieldUpdateOperationsInput | number
+    cost?: NullableFloatFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    services?: ServiceUncheckedUpdateManyWithoutRepairOptionNestedInput
+  }
+
+  export type RepairOptionUncheckedUpdateManyWithoutRepairTypeInput = {
+    modelId?: StringFieldUpdateOperationsInput | string
+    quality?: EnumRepairQualityFieldUpdateOperationsInput | $Enums.RepairQuality
+    price?: FloatFieldUpdateOperationsInput | number
+    cost?: NullableFloatFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceUpdateWithoutRepairTypeInput = {
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    buyer?: BuyerUpdateOneWithoutServicesNestedInput
+    customerDevice?: CustomerDeviceUpdateOneWithoutServicesNestedInput
+    serviceCategory?: ServiceCategoryUpdateOneWithoutServicesNestedInput
+    brandRepair?: BrandRepairUpdateOneWithoutServicesNestedInput
+    modelRepair?: ModelRepairUpdateOneWithoutServicesNestedInput
+    repairOption?: RepairOptionUpdateOneWithoutServicesNestedInput
+  }
+
+  export type ServiceUncheckedUpdateWithoutRepairTypeInput = {
+    buyerId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerDeviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ServiceUncheckedUpdateManyWithoutRepairTypeInput = {
+    buyerId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerDeviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ServiceCreateManyRepairOptionInput = {
+    id?: string
+    buyerId?: string | null
+    customerDeviceId?: string | null
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    serviceCategoryId?: string | null
+    brandRepairId?: string | null
+    modelRepairId?: string | null
+    repairTypeId?: string | null
+  }
+
+  export type ServiceUpdateWithoutRepairOptionInput = {
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    buyer?: BuyerUpdateOneWithoutServicesNestedInput
+    customerDevice?: CustomerDeviceUpdateOneWithoutServicesNestedInput
+    serviceCategory?: ServiceCategoryUpdateOneWithoutServicesNestedInput
+    brandRepair?: BrandRepairUpdateOneWithoutServicesNestedInput
+    modelRepair?: ModelRepairUpdateOneWithoutServicesNestedInput
+    repairType?: RepairTypeUpdateOneWithoutServicesNestedInput
+  }
+
+  export type ServiceUncheckedUpdateWithoutRepairOptionInput = {
+    buyerId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerDeviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ServiceUncheckedUpdateManyWithoutRepairOptionInput = {
+    buyerId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerDeviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type ModelRepairCreateManyBrandInput = {
     id?: string
     name: string
+    categoryId?: string | null
+  }
+
+  export type BrandRepairCategoryCreateManyBrandInput = {
+    id?: string
+    categoryId: string
+  }
+
+  export type ServiceCreateManyBrandRepairInput = {
+    id?: string
+    buyerId?: string | null
+    customerDeviceId?: string | null
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    serviceCategoryId?: string | null
+    modelRepairId?: string | null
+    repairTypeId?: string | null
+    repairOptionId?: string | null
   }
 
   export type ModelRepairUpdateWithoutBrandInput = {
     name?: StringFieldUpdateOperationsInput | string
     serviceCatalog?: ServiceCatalogUpdateManyWithoutModelNestedInput
+    category?: ServiceCategoryUpdateOneWithoutModelsNestedInput
+    repairOptions?: RepairOptionUpdateManyWithoutModelNestedInput
+    services?: ServiceUpdateManyWithoutModelRepairNestedInput
   }
 
   export type ModelRepairUncheckedUpdateWithoutBrandInput = {
     name?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     serviceCatalog?: ServiceCatalogUncheckedUpdateManyWithoutModelNestedInput
+    repairOptions?: RepairOptionUncheckedUpdateManyWithoutModelNestedInput
+    services?: ServiceUncheckedUpdateManyWithoutModelRepairNestedInput
   }
 
   export type ModelRepairUncheckedUpdateManyWithoutBrandInput = {
     name?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BrandRepairCategoryUpdateWithoutBrandInput = {
+    category?: ServiceCategoryUpdateOneRequiredWithoutBrandLinksNestedInput
+  }
+
+  export type BrandRepairCategoryUncheckedUpdateWithoutBrandInput = {
+    categoryId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BrandRepairCategoryUncheckedUpdateManyWithoutBrandInput = {
+    categoryId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServiceUpdateWithoutBrandRepairInput = {
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    buyer?: BuyerUpdateOneWithoutServicesNestedInput
+    customerDevice?: CustomerDeviceUpdateOneWithoutServicesNestedInput
+    serviceCategory?: ServiceCategoryUpdateOneWithoutServicesNestedInput
+    modelRepair?: ModelRepairUpdateOneWithoutServicesNestedInput
+    repairType?: RepairTypeUpdateOneWithoutServicesNestedInput
+    repairOption?: RepairOptionUpdateOneWithoutServicesNestedInput
+  }
+
+  export type ServiceUncheckedUpdateWithoutBrandRepairInput = {
+    buyerId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerDeviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ServiceUncheckedUpdateManyWithoutBrandRepairInput = {
+    buyerId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerDeviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ServiceCatalogCreateManyModelInput = {
@@ -62992,6 +71871,49 @@ export namespace Prisma {
     type: string
     price: number
     updatedAt?: Date | string
+  }
+
+  export type RepairOptionCreateManyModelInput = {
+    id?: string
+    repairTypeId: string
+    quality?: $Enums.RepairQuality
+    price: number
+    cost?: number | null
+    isActive?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type ServiceCreateManyModelRepairInput = {
+    id?: string
+    buyerId?: string | null
+    customerDeviceId?: string | null
+    device: InputJsonValue
+    client: InputJsonValue
+    state: string
+    diagnostico?: string | null
+    estado_dispositivo_al_ingresar?: $Enums.DeviceStatus | null
+    observaciones?: string | null
+    repair: string
+    piezas?: InputJsonValue | null
+    total: number
+    discount?: number | null
+    date: Date | string
+    dateOut?: Date | string | null
+    fecha_presupuesto?: Date | string | null
+    fecha_aprobacion?: Date | string | null
+    garantia_hasta?: Date | string | null
+    observaciones_garantia?: string | null
+    warrantyReturnDate?: Date | string | null
+    warrantyReturnReason?: string | null
+    payments?: InputJsonValue | null
+    defectId?: string | null
+    additionalDetails?: InputJsonValue | null
+    privateNotes?: string | null
+    isWarranty?: boolean
+    serviceCategoryId?: string | null
+    brandRepairId?: string | null
+    repairTypeId?: string | null
+    repairOptionId?: string | null
   }
 
   export type ServiceCatalogUpdateWithoutModelInput = {
@@ -63010,6 +71932,131 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairOptionUpdateWithoutModelInput = {
+    quality?: EnumRepairQualityFieldUpdateOperationsInput | $Enums.RepairQuality
+    price?: FloatFieldUpdateOperationsInput | number
+    cost?: NullableFloatFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairType?: RepairTypeUpdateOneRequiredWithoutRepairOptionsNestedInput
+    services?: ServiceUpdateManyWithoutRepairOptionNestedInput
+  }
+
+  export type RepairOptionUncheckedUpdateWithoutModelInput = {
+    repairTypeId?: StringFieldUpdateOperationsInput | string
+    quality?: EnumRepairQualityFieldUpdateOperationsInput | $Enums.RepairQuality
+    price?: FloatFieldUpdateOperationsInput | number
+    cost?: NullableFloatFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    services?: ServiceUncheckedUpdateManyWithoutRepairOptionNestedInput
+  }
+
+  export type RepairOptionUncheckedUpdateManyWithoutModelInput = {
+    repairTypeId?: StringFieldUpdateOperationsInput | string
+    quality?: EnumRepairQualityFieldUpdateOperationsInput | $Enums.RepairQuality
+    price?: FloatFieldUpdateOperationsInput | number
+    cost?: NullableFloatFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceUpdateWithoutModelRepairInput = {
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    buyer?: BuyerUpdateOneWithoutServicesNestedInput
+    customerDevice?: CustomerDeviceUpdateOneWithoutServicesNestedInput
+    serviceCategory?: ServiceCategoryUpdateOneWithoutServicesNestedInput
+    brandRepair?: BrandRepairUpdateOneWithoutServicesNestedInput
+    repairType?: RepairTypeUpdateOneWithoutServicesNestedInput
+    repairOption?: RepairOptionUpdateOneWithoutServicesNestedInput
+  }
+
+  export type ServiceUncheckedUpdateWithoutModelRepairInput = {
+    buyerId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerDeviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ServiceUncheckedUpdateManyWithoutModelRepairInput = {
+    buyerId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerDeviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    device?: InputJsonValue | InputJsonValue
+    client?: InputJsonValue | InputJsonValue
+    state?: StringFieldUpdateOperationsInput | string
+    diagnostico?: NullableStringFieldUpdateOperationsInput | string | null
+    estado_dispositivo_al_ingresar?: NullableEnumDeviceStatusFieldUpdateOperationsInput | $Enums.DeviceStatus | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    repair?: StringFieldUpdateOperationsInput | string
+    piezas?: InputJsonValue | InputJsonValue | null
+    total?: FloatFieldUpdateOperationsInput | number
+    discount?: NullableFloatFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateOut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_presupuesto?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fecha_aprobacion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    garantia_hasta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observaciones_garantia?: NullableStringFieldUpdateOperationsInput | string | null
+    warrantyReturnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    warrantyReturnReason?: NullableStringFieldUpdateOperationsInput | string | null
+    payments?: InputJsonValue | InputJsonValue | null
+    defectId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalDetails?: InputJsonValue | InputJsonValue | null
+    privateNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isWarranty?: BoolFieldUpdateOperationsInput | boolean
+    serviceCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    brandRepairId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    repairOptionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

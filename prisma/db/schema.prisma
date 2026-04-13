@@ -605,6 +605,19 @@ model Service {
 
   // Flags de auditoría
   isWarranty Boolean @default(false)
+
+  // Matriz Relacional — Fase 1 (opcionales). Todos nullable para no romper servicios legacy.
+  // En Fase 4 se harán obligatorios post-migración.
+  serviceCategoryId String?          @db.ObjectId
+  serviceCategory   ServiceCategory? @relation(fields: [serviceCategoryId], references: [id])
+  brandRepairId     String?          @db.ObjectId
+  brandRepair       BrandRepair?     @relation("ServiceBrand", fields: [brandRepairId], references: [id])
+  modelRepairId     String?          @db.ObjectId
+  modelRepair       ModelRepair?     @relation("ServiceModel", fields: [modelRepairId], references: [id])
+  repairTypeId      String?          @db.ObjectId
+  repairType        RepairType?      @relation(fields: [repairTypeId], references: [id])
+  repairOptionId    String?          @db.ObjectId
+  repairOption      RepairOption?    @relation(fields: [repairOptionId], references: [id])
 }
 
 model CashRegisterSession {
@@ -741,12 +754,89 @@ model Provider {
   updatedAt DateTime @updatedAt
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// MATRIZ DE SERVICIOS TÉCNICOS — Modelos nuevos (Fase 1 / Abril 2026)
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Calidad del repuesto en RepairOption
+enum RepairQuality {
+  ORIGINAL
+  ALTERNATIVE
+}
+
+// Categoría técnica — INDEPENDIENTE de Category (inventario). NO MEZCLAR.
+model ServiceCategory {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String   @unique // "Celular", "Notebook", "Tablet"
+  slug      String   @unique // "celular", "notebook" (para match legacy)
+  icon      String? // nombre ícono lucide-react
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  repairTypes RepairType[]
+  brandLinks  BrandRepairCategory[]
+  models      ModelRepair[] // modelos con categoryId directo
+  services    Service[]
+}
+
+// Join table many-to-many: BrandRepair ↔ ServiceCategory
+model BrandRepairCategory {
+  id         String          @id @default(auto()) @map("_id") @db.ObjectId
+  brandId    String          @db.ObjectId
+  brand      BrandRepair     @relation(fields: [brandId], references: [id])
+  categoryId String          @db.ObjectId
+  category   ServiceCategory @relation(fields: [categoryId], references: [id])
+
+  @@unique([brandId, categoryId])
+}
+
+// Tipo de reparación por categoría — reemplaza ServiceDefect a futuro
+model RepairType {
+  id         String          @id @default(auto()) @map("_id") @db.ObjectId
+  name       String // "Cambio de batería" — canónico, normalizado
+  categoryId String          @db.ObjectId
+  category   ServiceCategory @relation(fields: [categoryId], references: [id])
+  position   Int             @default(0) // orden visual en UI
+  icon       String? // ícono lucide-react (ej: "Battery")
+  isActive   Boolean         @default(true)
+  createdAt  DateTime        @default(now())
+
+  repairOptions RepairOption[]
+  services      Service[]
+
+  @@unique([name, categoryId])
+}
+
+// Opción de reparación por modelo — reemplaza ServiceCatalog a futuro
+model RepairOption {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  modelId      String        @db.ObjectId
+  model        ModelRepair   @relation(fields: [modelId], references: [id])
+  repairTypeId String        @db.ObjectId
+  repairType   RepairType    @relation(fields: [repairTypeId], references: [id])
+  quality      RepairQuality @default(ORIGINAL)
+  price        Float // precio de venta al cliente
+  cost         Float? // costo del repuesto (para analytics de margen futuro)
+  isActive     Boolean       @default(true)
+  updatedAt    DateTime      @updatedAt
+
+  services Service[]
+
+  @@unique([modelId, repairTypeId, quality])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Marcas específicas de Servicio Técnico (Samsung, iPhone, etc.)
 model BrandRepair {
-  id        String        @id @default(auto()) @map("_id") @db.ObjectId
-  name      String        @unique // Ej: "Motorola"
-  models    ModelRepair[]
-  createdAt DateTime      @default(now())
+  id            String                @id @default(auto()) @map("_id") @db.ObjectId
+  name          String                @unique // Ej: "Motorola"
+  models        ModelRepair[]
+  createdAt     DateTime              @default(now())
+  // Matriz relacional:
+  categoryLinks BrandRepairCategory[]
+  services      Service[]             @relation("ServiceBrand")
 }
 
 // Modelos específicos de Servicio Técnico
@@ -756,6 +846,12 @@ model ModelRepair {
   brandId        String           @db.ObjectId
   brand          BrandRepair      @relation(fields: [brandId], references: [id])
   serviceCatalog ServiceCatalog[]
+  // Categoría directa — scope explícito sin navegar brand (CRÍTICO para filtros)
+  categoryId     String?          @db.ObjectId // opcional Fase 1/2, obligatorio Fase 4
+  category       ServiceCategory? @relation(fields: [categoryId], references: [id])
+  // Matriz relacional:
+  repairOptions  RepairOption[]
+  services       Service[]        @relation("ServiceModel")
 
   @@unique([name, brandId]) // Un modelo no se repite dentro de la misma marca
 }

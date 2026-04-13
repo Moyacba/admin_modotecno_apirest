@@ -18,13 +18,17 @@ import catalogRoutes from "./catalogRoutes.js";
 import providerRoutes from "./providerRoutes.js";
 import repairCatalogRoutes from "./repairCatalogRoutes.js";
 import serviceMatrixRoutes from "./serviceMatrixRoutes.js";
+// Matriz de Servicios Técnicos — Fase 1
+import serviceCategoryRoutes from "./serviceCategoryRoutes.js";
+import repairTypeRoutes from "./repairTypeRoutes.js";
+import repairOptionRoutes from "./repairOptionRoutes.js";
 
 const router = Router();
 
-// Nuevas rutas híbridas optimizadas para cache (PRIORIDAD)
+// Rutas híbridas optimizadas para cache (PRIORIDAD)
 router.use("/", hybridRoutes);
 
-// Rutas tradicionales (compatibilidad)
+// Rutas tradicionales
 router.use("/auth", authRoutes);
 router.use("/product", productRoutes);
 router.use("/sale", saleRoutes);
@@ -43,5 +47,9 @@ router.use("/catalog", catalogRoutes);
 router.use("/providers", providerRoutes);
 router.use("/repair-catalog", repairCatalogRoutes);
 router.use("/service-matrix", serviceMatrixRoutes);
+// Matriz Servicios Técnicos
+router.use("/service-categories", serviceCategoryRoutes);
+router.use("/repair-types", repairTypeRoutes);
+router.use("/repair-options", repairOptionRoutes);
 
 export default router;

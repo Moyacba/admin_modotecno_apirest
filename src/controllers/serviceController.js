@@ -135,6 +135,12 @@ export const createService = async (req, res) => {
     additionalDetails,
     privateNotes,
     isWarranty,
+    // Nuevos campos relacionales (opcionales — Fase 1/2)
+    serviceCategoryId,
+    brandRepairId,
+    modelRepairId,
+    repairTypeId,
+    repairOptionId,
   } = req.body;
 
   try {
@@ -251,6 +257,34 @@ export const createService = async (req, res) => {
       }
     }
 
+    // 3.9 VALIDACIÓN DE JERARQUÍA RELACIONAL (solo cuando se proveen los campos nuevos)
+    // Si faltan los IDs, el servicio se crea con los campos legacy — sin cambios en el flujo.
+    if (brandRepairId && serviceCategoryId) {
+      const link = await prisma.brandRepairCategory.findUnique({
+        where: { brandId_categoryId: { brandId: brandRepairId, categoryId: serviceCategoryId } },
+      });
+      if (!link) return res.status(400).json({ error: 'La marca no pertenece a la categoría indicada' });
+    }
+    if (modelRepairId && brandRepairId) {
+      const model = await prisma.modelRepair.findUnique({ where: { id: modelRepairId } });
+      if (model && model.brandId !== brandRepairId)
+        return res.status(400).json({ error: 'El modelo no pertenece a la marca indicada' });
+    }
+    if (repairTypeId && serviceCategoryId) {
+      const rt = await prisma.repairType.findUnique({ where: { id: repairTypeId } });
+      if (rt && rt.categoryId !== serviceCategoryId)
+        return res.status(400).json({ error: 'El tipo de reparación no pertenece a la categoría indicada' });
+    }
+    if (repairOptionId && (modelRepairId || repairTypeId)) {
+      const opt = await prisma.repairOption.findUnique({ where: { id: repairOptionId } });
+      if (opt) {
+        if (modelRepairId && opt.modelId !== modelRepairId)
+          return res.status(400).json({ error: 'La opción de reparación no corresponde al modelo' });
+        if (repairTypeId && opt.repairTypeId !== repairTypeId)
+          return res.status(400).json({ error: 'La opción de reparación no corresponde al tipo de reparación' });
+      }
+    }
+
     const newService = await prisma.service.create({
       data: {
         device,
@@ -266,6 +300,12 @@ export const createService = async (req, res) => {
         additionalDetails,
         privateNotes,
         isWarranty: isWarranty || false,
+        // Campos relacionales opcionales:
+        serviceCategoryId: serviceCategoryId || null,
+        brandRepairId: brandRepairId || null,
+        modelRepairId: modelRepairId || null,
+        repairTypeId: repairTypeId || null,
+        repairOptionId: repairOptionId || null,
       },
     });
 

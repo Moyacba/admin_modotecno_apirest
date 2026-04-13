@@ -1,11 +1,17 @@
 import jwt from "jsonwebtoken";
 
 export const verifyToken = (req, res, next) => {
-  const token = req.cookies.jwtToken;
-  console.log(req.cookies.jwtToken)
+  // 1. Obtener token de Cookies o Header (Bearer)
+  let token = req.cookies.jwtToken;
+  
+  if (!token && req.headers.authorization && req.headers.authorization.startsWith("Bearer ")) {
+    token = req.headers.authorization.split(" ")[1];
+  }
 
-  if (!token) {
-    return res.status(401).json({ message: "Acceso denegado" });
+  // console.log('Auth Token detected:', token ? 'YES' : 'NO');
+
+  if (!token || token === "undefined") {
+    return res.status(401).json({ message: "Acceso denegado - No hay token" });
   }
 
   try {
@@ -13,9 +19,11 @@ export const verifyToken = (req, res, next) => {
     req.user = verified;
     next();
   } catch (error) {
-    res.status(400).json({ message: "Token no válido" });
+    console.error('Auth Error:', error.message);
+    res.status(401).json({ message: "Token no válido o expirado" });
   }
 };
+
 
 // Alias para compatibilidad con rutas híbridas
 export const requireAuth = verifyToken;

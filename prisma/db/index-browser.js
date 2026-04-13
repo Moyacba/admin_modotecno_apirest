@@ -469,7 +469,12 @@ exports.Prisma.ServiceScalarFieldEnum = {
   defectId: 'defectId',
   additionalDetails: 'additionalDetails',
   privateNotes: 'privateNotes',
-  isWarranty: 'isWarranty'
+  isWarranty: 'isWarranty',
+  serviceCategoryId: 'serviceCategoryId',
+  brandRepairId: 'brandRepairId',
+  modelRepairId: 'modelRepairId',
+  repairTypeId: 'repairTypeId',
+  repairOptionId: 'repairOptionId'
 };
 
 exports.Prisma.CashRegisterSessionScalarFieldEnum = {
@@ -512,6 +517,7 @@ exports.Prisma.CashMovementScalarFieldEnum = {
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   username: 'username',
+  name: 'name',
   email: 'email',
   password: 'password',
   avatar: 'avatar',
@@ -564,6 +570,43 @@ exports.Prisma.ProviderScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ServiceCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  icon: 'icon',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BrandRepairCategoryScalarFieldEnum = {
+  id: 'id',
+  brandId: 'brandId',
+  categoryId: 'categoryId'
+};
+
+exports.Prisma.RepairTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  categoryId: 'categoryId',
+  position: 'position',
+  icon: 'icon',
+  isActive: 'isActive',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RepairOptionScalarFieldEnum = {
+  id: 'id',
+  modelId: 'modelId',
+  repairTypeId: 'repairTypeId',
+  quality: 'quality',
+  price: 'price',
+  cost: 'cost',
+  isActive: 'isActive',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.BrandRepairScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -573,7 +616,8 @@ exports.Prisma.BrandRepairScalarFieldEnum = {
 exports.Prisma.ModelRepairScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  brandId: 'brandId'
+  brandId: 'brandId',
+  categoryId: 'categoryId'
 };
 
 exports.Prisma.ServiceCatalogScalarFieldEnum = {
@@ -663,6 +707,11 @@ exports.CashMovementType = exports.$Enums.CashMovementType = {
   VENTA: 'VENTA'
 };
 
+exports.RepairQuality = exports.$Enums.RepairQuality = {
+  ORIGINAL: 'ORIGINAL',
+  ALTERNATIVE: 'ALTERNATIVE'
+};
+
 exports.Prisma.ModelName = {
   Product: 'Product',
   Category: 'Category',
@@ -696,6 +745,10 @@ exports.Prisma.ModelName = {
   StockEntry: 'StockEntry',
   StockEntryItem: 'StockEntryItem',
   Provider: 'Provider',
+  ServiceCategory: 'ServiceCategory',
+  BrandRepairCategory: 'BrandRepairCategory',
+  RepairType: 'RepairType',
+  RepairOption: 'RepairOption',
   BrandRepair: 'BrandRepair',
   ModelRepair: 'ModelRepair',
   ServiceCatalog: 'ServiceCatalog',
