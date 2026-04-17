@@ -84,9 +84,11 @@ export const createStockEntry = async (req, res) => {
                     throw new Error(`La cantidad para el producto ${item.productName} debe ser mayor a 0`);
                 }
 
-                const updateData = {
+            const updateData = {
                     stock: { increment: item.quantity },
-                    lastCost: Number(item.costPrice) || 0
+                    lastCost: Number(item.costPrice) || 0,
+                    costPrice: Number(item.costPrice) || 0,
+                    ...(provider ? { provider } : {}),
                 };
 
                 if (item.isVariant) {
