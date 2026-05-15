@@ -735,22 +735,32 @@ export const getLowStockProducts = async (req, res) => {
     const provider = req.query.provider || "";
     const categoryId = req.query.categoryId || "";
     const subcategoryId = req.query.subcategoryId || "";
+    const brand = req.query.brand || "";
+    const model = req.query.model || "";
 
     // Construir where base para filtrar en BD antes de la lógica de stock bajo
-    let productWhere = { minStock: { gt: 0 } };
-    let variantWhere = { isActive: true, minStock: { gt: 0 } };
+    let productWhere = { AND: [{ minStock: { gt: 0 } }] };
+    let variantWhere = { isActive: true, minStock: { gt: 0 }, product: {} };
 
     if (provider) {
-      productWhere.provider = provider;
-      variantWhere.product = { provider: provider };
+      productWhere.AND.push({ provider: provider });
+      variantWhere.product.provider = provider;
     }
 
     if (subcategoryId) {
-      productWhere.subcategoryId = subcategoryId;
-      variantWhere.product = { ...variantWhere.product, subcategoryId: subcategoryId };
+      productWhere.AND.push({ subcategoryId: subcategoryId });
+      variantWhere.product.subcategoryId = subcategoryId;
     } else if (categoryId) {
-      productWhere.categoryId = categoryId;
-      variantWhere.product = { ...variantWhere.product, categoryId: categoryId };
+      productWhere.AND.push({ categoryId: categoryId });
+      variantWhere.product.categoryId = categoryId;
+    }
+
+    if (brand) {
+      // Filtramos en memoria más abajo para evitar problemas de compatibilidad con JSON path en MongoDB
+    }
+
+    if (model) {
+      // Filtramos en memoria más abajo para evitar problemas de compatibilidad con JSON path en MongoDB
     }
 
     const stockLevel = req.query.stockLevel || "";
@@ -772,7 +782,8 @@ export const getLowStockProducts = async (req, res) => {
         sku: true,
         isAlertMarked: true,
         categoryRel: true,
-        subcategoryRel: true
+        subcategoryRel: true,
+        attributes: true
       }
     });
 
@@ -782,6 +793,11 @@ export const getLowStockProducts = async (req, res) => {
         if (!isLow) return false;
         if (stockLevel === '0' && p.stock !== 0) return false;
         if (stockLevel === '1' && p.stock !== 1) return false;
+
+        // Filtros de Atributos Dinámicos
+        if (brand && p.attributes?.marca !== brand) return false;
+        if (model && p.attributes?.modelo !== model) return false;
+
         return true;
       })
       .map(p => ({
@@ -823,7 +839,8 @@ export const getLowStockProducts = async (req, res) => {
             provider: true,
             sku: true,
             categoryRel: true,
-            subcategoryRel: true
+            subcategoryRel: true,
+            attributes: true
           }
         }
       }
@@ -835,6 +852,11 @@ export const getLowStockProducts = async (req, res) => {
         if (!isLow) return false;
         if (stockLevel === '0' && v.stock !== 0) return false;
         if (stockLevel === '1' && v.stock !== 1) return false;
+
+        // Filtros de Atributos Dinámicos (del producto padre)
+        if (brand && v.product.attributes?.marca !== brand) return false;
+        if (model && v.product.attributes?.modelo !== model) return false;
+
         return true;
       })
       .map(v => ({
