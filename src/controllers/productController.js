@@ -87,6 +87,8 @@ export const getProducts = async (req, res) => {
     const keyword = (req.query.keyword || "").trim();
     const categoryId = req.query.categoryId || "";
     const subcategoryId = req.query.subcategoryId || "";
+    const brand = req.query.brand || "";
+    const model = req.query.model || "";
     const includeVariants = req.query.includeVariants === 'true';
 
     let where = {};
@@ -96,6 +98,15 @@ export const getProducts = async (req, res) => {
     } else if (categoryId) {
       where.categoryId = categoryId;
     }
+
+    // Helper function to apply brand/model filters in memory
+    const applyInAppFilters = (productList) => {
+      return productList.filter(p => {
+        if (brand && p.attributes?.marca !== brand) return false;
+        if (model && p.attributes?.modelo !== model) return false;
+        return true;
+      });
+    };
 
     if (keyword) {
       const keywordConditions = keyword.split(' ').filter(k => k).map(key => ({
@@ -108,24 +119,26 @@ export const getProducts = async (req, res) => {
 
       // Primero intentar con AND
       const andWhere = { ...where, AND: keywordConditions };
-      let totalCount = await prisma.product.count({ where: andWhere });
+      
+      // Obtener TODOS los resultados para poder filtrar y ordenar por score en memoria
+      let allProducts = await prisma.product.findMany({
+        where: andWhere,
+        include: {
+          categoryRel: true,
+          subcategoryRel: true,
+          ...(includeVariants ? {
+            variants: {
+              where: { isActive: true },
+              orderBy: { createdAt: 'desc' },
+            }
+          } : {})
+        },
+      });
 
-      if (totalCount > 0) {
-        // Obtener TODOS los resultados para poder ordenarlos por score
-        const allProducts = await prisma.product.findMany({
-          where: andWhere,
-          include: {
-            categoryRel: true,
-            subcategoryRel: true,
-            ...(includeVariants ? {
-              variants: {
-                where: { isActive: true },
-                orderBy: { createdAt: 'desc' },
-              }
-            } : {})
-          },
-        });
+      // Aplicar filtros de marca/modelo en memoria
+      allProducts = applyInAppFilters(allProducts);
 
+      if (allProducts.length > 0) {
         // Calcular score y ordenar por relevancia
         const productsWithScore = allProducts.map(product => ({
           ...product,
@@ -133,66 +146,61 @@ export const getProducts = async (req, res) => {
         }));
 
         productsWithScore.sort((a, b) => {
-          // Primero por score (descendente)
-          if (b._score !== a._score) {
-            return b._score - a._score;
-          }
-          // Si tienen el mismo score, por fecha de creación
+          if (b._score !== a._score) return b._score - a._score;
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
 
-        // Aplicar paginación después del ordenamiento
+        const totalCount = productsWithScore.length;
+        const totalStock = productsWithScore.reduce((acc, p) => acc + (p.stock || 0), 0);
         const paginatedProducts = productsWithScore
           .slice(skip, skip + pageSize)
-          .map(({ _score, ...product }) => product); // Remover el score del resultado
+          .map(({ _score, ...product }) => product);
 
-        return res.status(200).json({ products: paginatedProducts, totalCount });
+        return res.status(200).json({ products: paginatedProducts, totalCount, totalStock });
       }
 
       // Si no hay resultados con AND, usar OR
       const orWhere = { ...where, OR: keywordConditions.flatMap(c => c.OR) };
-      totalCount = await prisma.product.count({ where: orWhere });
-
-      // Obtener TODOS los resultados para poder ordenarlos por score
-      const allProducts = await prisma.product.findMany({
+      let allProductsOr = await prisma.product.findMany({
         where: orWhere,
-        include: includeVariants ? {
-          variants: {
-            where: { isActive: true },
-            orderBy: { createdAt: 'desc' },
-          }
-        } : undefined,
+        include: {
+          categoryRel: true,
+          subcategoryRel: true,
+          ...(includeVariants ? {
+            variants: {
+              where: { isActive: true },
+              orderBy: { createdAt: 'desc' },
+            }
+          } : {})
+        },
       });
 
+      // Aplicar filtros de marca/modelo en memoria
+      allProductsOr = applyInAppFilters(allProductsOr);
+
       // Calcular score y ordenar por relevancia
-      const productsWithScore = allProducts.map(product => ({
+      const productsWithScoreOr = allProductsOr.map(product => ({
         ...product,
         _score: calculateSearchScore(product, keyword)
       }));
 
-      productsWithScore.sort((a, b) => {
-        // Primero por score (descendente)
-        if (b._score !== a._score) {
-          return b._score - a._score;
-        }
-        // Si tienen el mismo score, por fecha de creación
+      productsWithScoreOr.sort((a, b) => {
+        if (b._score !== a._score) return b._score - a._score;
         return new Date(b.createdAt) - new Date(a.createdAt);
       });
 
-      // Aplicar paginación después del ordenamiento
-      const paginatedProducts = productsWithScore
+      const totalCountOr = productsWithScoreOr.length;
+      const totalStockOr = productsWithScoreOr.reduce((acc, p) => acc + (p.stock || 0), 0);
+      const paginatedProductsOr = productsWithScoreOr
         .slice(skip, skip + pageSize)
-        .map(({ _score, ...product }) => product); // Remover el score del resultado
+        .map(({ _score, ...product }) => product);
 
-      return res.status(200).json({ products: paginatedProducts, totalCount });
+      return res.status(200).json({ products: paginatedProductsOr, totalCount: totalCountOr, totalStock: totalStockOr });
     }
 
-    // Si no hay keyword, solo filtrar por categoría (si existe)
-    const totalCount = await prisma.product.count({ where });
-    const products = await prisma.product.findMany({
+    // Si no hay keyword, solo filtrar por categoría (si existe) y luego por marca/modelo en memoria
+    let allProductsNoKeyword = await prisma.product.findMany({
       where,
-      skip,
-      take: pageSize,
       include: {
         categoryRel: true,
         subcategoryRel: true,
@@ -206,7 +214,14 @@ export const getProducts = async (req, res) => {
       orderBy: { createdAt: 'desc' },
     });
 
-    res.status(200).json({ products, totalCount });
+    // Aplicar filtros de marca/modelo en memoria
+    allProductsNoKeyword = applyInAppFilters(allProductsNoKeyword);
+
+    const totalCount = allProductsNoKeyword.length;
+    const totalStock = allProductsNoKeyword.reduce((acc, p) => acc + (p.stock || 0), 0);
+    const paginatedProducts = allProductsNoKeyword.slice(skip, skip + pageSize);
+
+    res.status(200).json({ products: paginatedProducts, totalCount, totalStock });
 
   } catch (err) {
     console.log(err);
