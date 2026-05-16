@@ -77,6 +77,21 @@ const calculateSearchScore = (product, searchKeyword) => {
   return score;
 };
 
+/**
+ * Aplica filtros de marca y modelo sobre el campo JSON attributes
+ */
+const applyInAppFilters = (products, brand, model) => {
+  if (!brand && !model) return products;
+
+  return products.filter(product => {
+    const attrs = product.attributes || {};
+    // Buscamos coincidencia exacta (case insensitive) en el campo attributes.marca y attributes.modelo
+    const matchesBrand = !brand || (attrs.marca && String(attrs.marca).toLowerCase() === String(brand).toLowerCase());
+    const matchesModel = !model || (attrs.modelo && String(attrs.modelo).toLowerCase() === String(model).toLowerCase());
+    return matchesBrand && matchesModel;
+  });
+};
+
 // Obtener todos los productos (incluyendo variantes en búsqueda)
 export const getProducts = async (req, res) => {
   try {
@@ -90,7 +105,6 @@ export const getProducts = async (req, res) => {
     const brand = req.query.brand || "";
     const model = req.query.model || "";
     const includeVariants = req.query.includeVariants === 'true';
-
     let where = {};
 
     if (subcategoryId) {
@@ -99,14 +113,7 @@ export const getProducts = async (req, res) => {
       where.categoryId = categoryId;
     }
 
-    // Helper function to apply brand/model filters in memory
-    const applyInAppFilters = (productList) => {
-      return productList.filter(p => {
-        if (brand && p.attributes?.marca !== brand) return false;
-        if (model && p.attributes?.modelo !== model) return false;
-        return true;
-      });
-    };
+
 
     if (keyword) {
       const keywordConditions = keyword.split(' ').filter(k => k).map(key => ({
@@ -119,7 +126,7 @@ export const getProducts = async (req, res) => {
 
       // Primero intentar con AND
       const andWhere = { ...where, AND: keywordConditions };
-      
+
       // Obtener TODOS los resultados para poder filtrar y ordenar por score en memoria
       let allProducts = await prisma.product.findMany({
         where: andWhere,
@@ -136,10 +143,14 @@ export const getProducts = async (req, res) => {
       });
 
       // Aplicar filtros de marca/modelo en memoria
-      allProducts = applyInAppFilters(allProducts);
+      allProducts = applyInAppFilters(allProducts, brand, model);
 
       if (allProducts.length > 0) {
-        // Calcular score y ordenar por relevancia
+        // Calcular métricas sobre el conjunto filtrado (antes de paginar)
+        const totalCount = allProducts.length;
+        const totalUniqueInStock = allProducts.filter(p => Number(p.stock || 0) > 0).length;
+        const totalStock = allProducts.reduce((acc, p) => acc + Number(p.stock || 0), 0);
+
         const productsWithScore = allProducts.map(product => ({
           ...product,
           _score: calculateSearchScore(product, keyword)
@@ -150,14 +161,13 @@ export const getProducts = async (req, res) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
 
-        const totalCount = productsWithScore.length;
-        const totalStock = productsWithScore.reduce((acc, p) => acc + (p.stock || 0), 0);
         const paginatedProducts = productsWithScore
           .slice(skip, skip + pageSize)
           .map(({ _score, ...product }) => product);
 
-        return res.status(200).json({ products: paginatedProducts, totalCount, totalStock });
+        return res.status(200).json({ products: paginatedProducts, totalCount, totalUniqueInStock, totalStock });
       }
+
 
       // Si no hay resultados con AND, usar OR
       const orWhere = { ...where, OR: keywordConditions.flatMap(c => c.OR) };
@@ -176,9 +186,13 @@ export const getProducts = async (req, res) => {
       });
 
       // Aplicar filtros de marca/modelo en memoria
-      allProductsOr = applyInAppFilters(allProductsOr);
+      allProductsOr = applyInAppFilters(allProductsOr, brand, model);
 
-      // Calcular score y ordenar por relevancia
+      // Calcular métricas
+      const totalCountOr = allProductsOr.length;
+      const totalUniqueInStockOr = allProductsOr.filter(p => Number(p.stock || 0) > 0).length;
+      const totalStockOr = allProductsOr.reduce((acc, p) => acc + Number(p.stock || 0), 0);
+
       const productsWithScoreOr = allProductsOr.map(product => ({
         ...product,
         _score: calculateSearchScore(product, keyword)
@@ -189,13 +203,11 @@ export const getProducts = async (req, res) => {
         return new Date(b.createdAt) - new Date(a.createdAt);
       });
 
-      const totalCountOr = productsWithScoreOr.length;
-      const totalStockOr = productsWithScoreOr.reduce((acc, p) => acc + (p.stock || 0), 0);
       const paginatedProductsOr = productsWithScoreOr
         .slice(skip, skip + pageSize)
         .map(({ _score, ...product }) => product);
 
-      return res.status(200).json({ products: paginatedProductsOr, totalCount: totalCountOr, totalStock: totalStockOr });
+      return res.status(200).json({ products: paginatedProductsOr, totalCount: totalCountOr, totalUniqueInStock: totalUniqueInStockOr, totalStock: totalStockOr });
     }
 
     // Si no hay keyword, solo filtrar por categoría (si existe) y luego por marca/modelo en memoria
@@ -215,13 +227,21 @@ export const getProducts = async (req, res) => {
     });
 
     // Aplicar filtros de marca/modelo en memoria
-    allProductsNoKeyword = applyInAppFilters(allProductsNoKeyword);
+    allProductsNoKeyword = applyInAppFilters(allProductsNoKeyword, brand, model);
 
     const totalCount = allProductsNoKeyword.length;
-    const totalStock = allProductsNoKeyword.reduce((acc, p) => acc + (p.stock || 0), 0);
+    const totalUniqueInStock = allProductsNoKeyword.filter(p => Number(p.stock || 0) > 0).length;
+    const totalStock = allProductsNoKeyword.reduce((acc, p) => acc + Number(p.stock || 0), 0);
     const paginatedProducts = allProductsNoKeyword.slice(skip, skip + pageSize);
 
-    res.status(200).json({ products: paginatedProducts, totalCount, totalStock });
+    console.log("keyword", keyword)
+
+    console.log("totalCount", totalCount)
+    console.log("totalUniqueInStock", totalUniqueInStock)
+    console.log("totalStock", totalStock)
+    console.log("paginatedProducts", paginatedProducts)
+
+    res.status(200).json({ products: paginatedProducts, totalCount, totalUniqueInStock, totalStock });
 
   } catch (err) {
     console.log(err);
@@ -721,6 +741,8 @@ export const searchProducts = async (req, res) => {
         });
       }
     });
+
+    console.log("results", results)
 
     // 4. Convertir a Array y limitar
     // Chequeo si existe match exacto para priorizar
