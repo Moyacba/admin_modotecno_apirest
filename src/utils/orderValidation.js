@@ -14,6 +14,17 @@ export function validateOrderInput(input) {
     throw new Error('Datos de comprador incompletos');
   }
   
+  // Validar DNI para mercadopago y qr
+  if (['mercadopago', 'qr'].includes(metodo_pago)) {
+    if (!buyer.dni || typeof buyer.dni !== 'string' || !/^\d{7,8}$/.test(buyer.dni)) {
+      throw new Error('DNI inválido: debe ser un string de 7-8 dígitos numéricos');
+    }
+  } else if (buyer.dni) {
+    if (typeof buyer.dni !== 'string' || !/^\d{7,8}$/.test(buyer.dni)) {
+      throw new Error('DNI inválido: debe ser un string de 7-8 dígitos numéricos');
+    }
+  }
+  
   // Validar items
   if (!Array.isArray(items) || items.length === 0) {
     throw new Error('Debe haber al menos un producto en la orden');

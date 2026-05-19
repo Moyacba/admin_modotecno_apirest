@@ -2,6 +2,26 @@ import { PrismaClient } from "db";
 import * as productService from "../services/productService.js";
 const prisma = new PrismaClient();
 
+const triggerRevalidation = async (product) => {
+  if (!process.env.NEXTJS_BASE_URL) return;
+  const paths = [
+    '/api/product/static',
+    '/api/product/dynamic',
+  ];
+  if (product?.slug) {
+    paths.push(`/producto/${product.slug}`);
+  }
+  try {
+    await fetch(`${process.env.NEXTJS_BASE_URL}/api/revalidate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ paths }),
+    });
+  } catch (err) {
+    console.error('Revalidation trigger failed:', err.message);
+  }
+};
+
 /**
  * Calcula un score de relevancia para ordenar resultados de búsqueda
  * Mayor score = más relevante
@@ -282,6 +302,7 @@ export const createProduct = async (req, res) => {
 
   try {
     const newProduct = await productService.createFullProduct(req.body, variants, compatibilities);
+    triggerRevalidation(newProduct);
     res.status(201).json(newProduct);
   } catch (error) {
     console.log(error);
@@ -296,6 +317,7 @@ export const updateProduct = async (req, res) => {
 
   try {
     const updatedProduct = await productService.updateFullProduct(id, req.body, variants, compatibilities);
+    triggerRevalidation(updatedProduct);
     res.status(200).json(updatedProduct);
   } catch (error) {
     console.log(error);
@@ -311,13 +333,14 @@ export const deleteProduct = async (req, res) => {
   const { id } = req.params;
 
   try {
+    const product = await prisma.product.findUnique({ where: { id } });
     await prisma.product.delete({
       where: { id },
     });
-    res.status(204).send(); // No content
+    triggerRevalidation(product);
+    res.status(204).send();
   } catch (error) {
     if (error.code === "P2025") {
-      // Product not found
       return res.status(404).json({ error: "Product not found" });
     }
     res.status(500).json({ error: "Error deleting product" });

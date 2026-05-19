@@ -18,6 +18,7 @@ model Product {
   barcode        String?
   sku            String
   name           String
+  slug           String           @unique
   description    String
   brand          String
   provider       String

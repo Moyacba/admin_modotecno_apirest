@@ -118,6 +118,7 @@ exports.Prisma.ProductScalarFieldEnum = {
   barcode: 'barcode',
   sku: 'sku',
   name: 'name',
+  slug: 'slug',
   description: 'description',
   brand: 'brand',
   provider: 'provider',

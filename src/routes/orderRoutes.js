@@ -1,5 +1,5 @@
 import express from "express";
-import { createOrder, mercadoPagoWebhook, getOrderStatus, getAllOrders, updateOrderStatus } from "../controllers/orderController.js";
+import { createOrder, mercadoPagoWebhook, getOrderStatus, getAllOrders, updateOrderStatus, cancelOrder } from "../controllers/orderController.js";
 
 const router = express.Router();
 
@@ -11,6 +11,9 @@ router.post("/", createOrder);
 
 // Actualizar estado de una orden
 router.put("/:id", updateOrderStatus);
+
+// Cancelar una orden pendiente
+router.post("/:id/cancel", cancelOrder);
 
 // Consultar estado de una orden
 router.get("/:id", getOrderStatus);

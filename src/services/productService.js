@@ -1,4 +1,5 @@
 import { PrismaClient } from '../../prisma/db/index.js';
+import { generateSlug, ensureUniqueSlug } from '../utils/slugify.js';
 const prisma = new PrismaClient();
 
 /**
@@ -6,10 +7,15 @@ const prisma = new PrismaClient();
  */
 export const createFullProduct = async (productData, variants = [], compatibilities = []) => {
     return prisma.$transaction(async (tx) => {
+        // 0. Generar slug único
+        const baseSlug = generateSlug(productData.name);
+        const slug = await ensureUniqueSlug(tx, baseSlug);
+
         // 1. Crear el producto base
         const product = await tx.product.create({
             data: {
                 name: productData.name,
+                slug,
                 description: productData.description,
                 sku: productData.sku,
                 barcode: productData.barcode,
@@ -61,11 +67,21 @@ export const createFullProduct = async (productData, variants = [], compatibilit
 
 export const updateFullProduct = async (id, productData, variants = [], compatibilities = []) => {
     return prisma.$transaction(async (tx) => {
+        // 0. Regenerar slug si cambió el nombre
+        const existingProduct = await tx.product.findUnique({ where: { id }, select: { name: true } });
+        let slugUpdate = {};
+        if (existingProduct && productData.name && productData.name !== existingProduct.name) {
+            const baseSlug = generateSlug(productData.name);
+            const newSlug = await ensureUniqueSlug(tx, baseSlug, id);
+            slugUpdate = { slug: newSlug };
+        }
+
         // 1. Actualizar producto base
         const product = await tx.product.update({
             where: { id },
             data: {
                 name: productData.name,
+                ...slugUpdate,
                 description: productData.description,
                 sku: productData.sku,
                 barcode: productData.barcode,

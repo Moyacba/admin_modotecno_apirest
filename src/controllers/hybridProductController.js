@@ -13,6 +13,13 @@ export const getProductsStatic = async (req, res) => {
     const keyword = (req.query.keyword || "").trim();
     const category = req.query.category || "";
     const includeVariants = req.query.includeVariants === 'true';
+    const brand = req.query.brand || "";
+    const model = req.query.model || "";
+    const minPrice = req.query.minPrice ? parseFloat(req.query.minPrice) : null;
+    const maxPrice = req.query.maxPrice ? parseFloat(req.query.maxPrice) : null;
+    const categoryId = req.query.categoryId || "";
+    const subcategoryId = req.query.subcategoryId || "";
+    const attribute = req.query.attribute || "";
 
     let where = {};
 
@@ -20,8 +27,61 @@ export const getProductsStatic = async (req, res) => {
       where.category = category;
     }
 
-    if (keyword) {
-      const keywordConditions = keyword.split(' ').filter(k => k).map(key => ({
+    if (brand) {
+      where.brand = { equals: brand, mode: 'insensitive' };
+    }
+
+    if (minPrice !== null) {
+      where.salePrice = { ...where.salePrice, gte: minPrice };
+    }
+
+    if (maxPrice !== null) {
+      where.salePrice = { ...where.salePrice, lte: maxPrice };
+    }
+
+    if (categoryId) {
+      where.categoryId = categoryId;
+    }
+
+    if (subcategoryId) {
+      where.subcategoryId = subcategoryId;
+    }
+
+    const selectFields = {
+      id: true,
+      sku: true,
+      barcode: true,
+      name: true,
+      description: true,
+      category: true,
+      brand: true,
+      provider: true,
+      images: true,
+      specifications: true,
+      hasVariants: true,
+      minStock: true,
+      salePrice: true,
+      promoPrice: true,
+      categoryId: true,
+      subcategoryId: true,
+      createdAt: true,
+      updatedAt: true,
+      variants: includeVariants ? {
+        select: {
+          id: true,
+          name: true,
+          specifications: true,
+          barcode: true,
+          sku: true,
+          isActive: true,
+        },
+        where: { isActive: true },
+        orderBy: { createdAt: 'desc' }
+      } : false
+    };
+
+    const buildKeywordConditions = (keyword) =>
+      keyword.split(' ').filter(k => k).map(key => ({
         OR: [
           { name: { contains: key, mode: 'insensitive' } },
           { barcode: { contains: key, mode: 'insensitive' } },
@@ -29,128 +89,85 @@ export const getProductsStatic = async (req, res) => {
         ],
       }));
 
-      // Usar AND para búsqueda precisa
+    let filteredProducts = [];
+    let totalCount = 0;
+
+    if (keyword) {
+      const keywordConditions = buildKeywordConditions(keyword);
       const andWhere = { ...where, AND: keywordConditions };
-      let totalCount = await prisma.product.count({ where: andWhere });
+      totalCount = await prisma.product.count({ where: andWhere });
 
       if (totalCount > 0) {
-        const products = await prisma.product.findMany({
+        filteredProducts = await prisma.product.findMany({
           where: andWhere,
-          skip,
-          take: pageSize,
-          select: {
-            id: true,
-            sku: true,
-            barcode: true,
-            name: true,
-            description: true,
-            category: true,
-            brand: true,
-            provider: true,
-            images: true,
-            specifications: true,
-            hasVariants: true,
-            minStock: true,
-            createdAt: true,
-            updatedAt: true,
-            // NO incluir: stock, costPrice, salePrice, promoPrice, percentPrice
-            variants: includeVariants ? {
-              select: {
-                id: true,
-                name: true,
-                specifications: true,
-                barcode: true,
-                sku: true,
-                isActive: true,
-                // NO incluir: stock, costPrice, salePrice
-              },
-              where: { isActive: true },
-              orderBy: { createdAt: 'desc' }
-            } : false
-          },
+          select: selectFields,
           orderBy: { createdAt: 'desc' },
         });
-        return res.status(200).json({ products, totalCount });
+      } else {
+        const orWhere = { ...where, OR: keywordConditions.flatMap(c => c.OR) };
+        totalCount = await prisma.product.count({ where: orWhere });
+        filteredProducts = await prisma.product.findMany({
+          where: orWhere,
+          select: selectFields,
+          orderBy: { createdAt: 'desc' },
+        });
       }
-
-      // Fallback a OR si no hay resultados
-      const orWhere = { ...where, OR: keywordConditions.flatMap(c => c.OR) };
-      totalCount = await prisma.product.count({ where: orWhere });
-      const products = await prisma.product.findMany({
-        where: orWhere,
-        skip,
-        take: pageSize,
-        select: {
-          id: true,
-          sku: true,
-          barcode: true,
-          name: true,
-          description: true,
-          category: true,
-          brand: true,
-          provider: true,
-          images: true,
-          specifications: true,
-          hasVariants: true,
-          minStock: true,
-          createdAt: true,
-          updatedAt: true,
-          variants: includeVariants ? {
-            select: {
-              id: true,
-              name: true,
-              specifications: true,
-              barcode: true,
-              sku: true,
-              isActive: true,
-            },
-            where: { isActive: true },
-            orderBy: { createdAt: 'desc' }
-          } : false
-        },
+    } else {
+      totalCount = await prisma.product.count({ where });
+      filteredProducts = await prisma.product.findMany({
+        where,
+        select: selectFields,
         orderBy: { createdAt: 'desc' },
       });
-      return res.status(200).json({ products, totalCount });
     }
 
-    // Sin keyword, solo filtros
-    const totalCount = await prisma.product.count({ where });
-    const products = await prisma.product.findMany({
-      where,
-      skip,
-      take: pageSize,
-      select: {
-        id: true,
-        sku: true,
-        barcode: true,
-        name: true,
-        description: true,
-        category: true,
-        brand: true,
-        provider: true,
-        images: true,
-        specifications: true,
-        hasVariants: true,
-        minStock: true,
-        createdAt: true,
-        updatedAt: true,
-        variants: includeVariants ? {
-          select: {
-            id: true,
-            name: true,
-            specifications: true,
-            barcode: true,
-            sku: true,
-            isActive: true,
-          },
-          where: { isActive: true },
-          orderBy: { createdAt: 'desc' }
-        } : false
-      },
-      orderBy: { createdAt: 'desc' },
-    });
+    if (model) {
+      filteredProducts = filteredProducts.filter(p => {
+        const attrs = p.specifications || {};
+        return attrs.modelo && attrs.modelo.toLowerCase().includes(model.toLowerCase());
+      });
+      totalCount = filteredProducts.length;
+    }
 
-    res.status(200).json({ products, totalCount });
+    if (attribute) {
+      const [attrKey, attrValue] = attribute.split(':');
+      if (attrKey && attrValue !== undefined) {
+        filteredProducts = filteredProducts.filter(p => {
+          const attrs = p.specifications || {};
+          return attrs[attrKey] && String(attrs[attrKey]).toLowerCase() === attrValue.toLowerCase();
+        });
+        totalCount = filteredProducts.length;
+      }
+    }
+
+    const brands = [...new Set(filteredProducts.map(p => p.brand).filter(Boolean))];
+    const models = [...new Set(filteredProducts.map(p => {
+      const attrs = p.specifications || {};
+      return attrs.modelo;
+    }).filter(Boolean))];
+    const salePrices = filteredProducts.map(p => p.salePrice).filter(p => p !== null && p !== undefined);
+    const priceRange = salePrices.length > 0 ? {
+      min: Math.min(...salePrices),
+      max: Math.max(...salePrices),
+    } : { min: 0, max: 0 };
+    const categoryMap = {};
+    filteredProducts.forEach(p => {
+      if (p.category) {
+        categoryMap[p.category] = (categoryMap[p.category] || 0) + 1;
+      }
+    });
+    const categories = Object.entries(categoryMap).map(([name, count]) => ({ name, count }));
+
+    const availableFilters = {
+      brands,
+      models,
+      priceRange,
+      categories,
+    };
+
+    const paginatedProducts = filteredProducts.slice(skip, skip + pageSize);
+
+    res.status(200).json({ products: paginatedProducts, totalCount, availableFilters });
 
   } catch (err) {
     console.error('Error fetching static products:', err);

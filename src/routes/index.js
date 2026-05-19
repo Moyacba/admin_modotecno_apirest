@@ -11,6 +11,7 @@ import cloudinaryRoutes from "./cloudinaryRoutes.js";
 import orderRoutes from "./orderRoutes.js";
 import posSalesRoutes from "./posSalesRoutes.js";
 import hybridRoutes from "./hybridRoutes.js";
+import revalidateRoutes from "./revalidateRoutes.js";
 import cashRegisterRoutes from "./cashRegisterRoutes.js";
 import stockEntryRoutes from "./stockEntryRoutes.js";
 import categoryRoutes from "./categoryRoutes.js";
@@ -27,6 +28,9 @@ const router = Router();
 
 // Rutas híbridas optimizadas para cache (PRIORIDAD)
 router.use("/", hybridRoutes);
+
+// Revalidación de cache Next.js
+router.use("/", revalidateRoutes);
 
 // Rutas tradicionales
 router.use("/auth", authRoutes);

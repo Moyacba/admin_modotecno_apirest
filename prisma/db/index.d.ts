@@ -5363,6 +5363,7 @@ export namespace Prisma {
     barcode: string | null
     sku: string | null
     name: string | null
+    slug: string | null
     description: string | null
     brand: string | null
     provider: string | null
@@ -5387,6 +5388,7 @@ export namespace Prisma {
     barcode: string | null
     sku: string | null
     name: string | null
+    slug: string | null
     description: string | null
     brand: string | null
     provider: string | null
@@ -5411,6 +5413,7 @@ export namespace Prisma {
     barcode: number
     sku: number
     name: number
+    slug: number
     description: number
     brand: number
     provider: number
@@ -5460,6 +5463,7 @@ export namespace Prisma {
     barcode?: true
     sku?: true
     name?: true
+    slug?: true
     description?: true
     brand?: true
     provider?: true
@@ -5484,6 +5488,7 @@ export namespace Prisma {
     barcode?: true
     sku?: true
     name?: true
+    slug?: true
     description?: true
     brand?: true
     provider?: true
@@ -5508,6 +5513,7 @@ export namespace Prisma {
     barcode?: true
     sku?: true
     name?: true
+    slug?: true
     description?: true
     brand?: true
     provider?: true
@@ -5622,6 +5628,7 @@ export namespace Prisma {
     barcode: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -5668,6 +5675,7 @@ export namespace Prisma {
     barcode?: boolean
     sku?: boolean
     name?: boolean
+    slug?: boolean
     description?: boolean
     brand?: boolean
     provider?: boolean
@@ -5702,6 +5710,7 @@ export namespace Prisma {
     barcode?: boolean
     sku?: boolean
     name?: boolean
+    slug?: boolean
     description?: boolean
     brand?: boolean
     provider?: boolean
@@ -5724,7 +5733,7 @@ export namespace Prisma {
     lastCost?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "barcode" | "sku" | "name" | "description" | "brand" | "provider" | "costPrice" | "salePrice" | "promoPrice" | "percentPrice" | "stock" | "minStock" | "images" | "specifications" | "attributes" | "hasVariants" | "categoryId" | "subcategoryId" | "category" | "createdAt" | "updatedAt" | "isAlertMarked" | "lastCost", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "barcode" | "sku" | "name" | "slug" | "description" | "brand" | "provider" | "costPrice" | "salePrice" | "promoPrice" | "percentPrice" | "stock" | "minStock" | "images" | "specifications" | "attributes" | "hasVariants" | "categoryId" | "subcategoryId" | "category" | "createdAt" | "updatedAt" | "isAlertMarked" | "lastCost", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     categoryRel?: boolean | Product$categoryRelArgs<ExtArgs>
     subcategoryRel?: boolean | Product$subcategoryRelArgs<ExtArgs>
@@ -5746,6 +5755,7 @@ export namespace Prisma {
       barcode: string | null
       sku: string
       name: string
+      slug: string
       description: string
       brand: string
       provider: string
@@ -6166,6 +6176,7 @@ export namespace Prisma {
     readonly barcode: FieldRef<"Product", 'String'>
     readonly sku: FieldRef<"Product", 'String'>
     readonly name: FieldRef<"Product", 'String'>
+    readonly slug: FieldRef<"Product", 'String'>
     readonly description: FieldRef<"Product", 'String'>
     readonly brand: FieldRef<"Product", 'String'>
     readonly provider: FieldRef<"Product", 'String'>
@@ -49749,6 +49760,7 @@ export namespace Prisma {
     barcode: 'barcode',
     sku: 'sku',
     name: 'name',
+    slug: 'slug',
     description: 'description',
     brand: 'brand',
     provider: 'provider',
@@ -50611,6 +50623,7 @@ export namespace Prisma {
     barcode?: StringNullableFilter<"Product"> | string | null
     sku?: StringFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
+    slug?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
     brand?: StringFilter<"Product"> | string
     provider?: StringFilter<"Product"> | string
@@ -50642,6 +50655,7 @@ export namespace Prisma {
     barcode?: SortOrder
     sku?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     description?: SortOrder
     brand?: SortOrder
     provider?: SortOrder
@@ -50670,6 +50684,7 @@ export namespace Prisma {
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    slug?: string
     AND?: ProductWhereInput | ProductWhereInput[]
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
@@ -50700,13 +50715,14 @@ export namespace Prisma {
     subcategoryRel?: XOR<SubcategoryNullableScalarRelationFilter, SubcategoryWhereInput> | null
     variants?: ProductVariantListRelationFilter
     compatibilities?: ProductCompatibilityListRelationFilter
-  }, "id">
+  }, "id" | "slug">
 
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
     barcode?: SortOrder
     sku?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     description?: SortOrder
     brand?: SortOrder
     provider?: SortOrder
@@ -50742,6 +50758,7 @@ export namespace Prisma {
     barcode?: StringNullableWithAggregatesFilter<"Product"> | string | null
     sku?: StringWithAggregatesFilter<"Product"> | string
     name?: StringWithAggregatesFilter<"Product"> | string
+    slug?: StringWithAggregatesFilter<"Product"> | string
     description?: StringWithAggregatesFilter<"Product"> | string
     brand?: StringWithAggregatesFilter<"Product"> | string
     provider?: StringWithAggregatesFilter<"Product"> | string
@@ -54052,6 +54069,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -54081,6 +54099,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -54109,6 +54128,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -54137,6 +54157,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -54166,6 +54187,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -54192,6 +54214,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -54216,6 +54239,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -57857,6 +57881,7 @@ export namespace Prisma {
     barcode?: SortOrder
     sku?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     description?: SortOrder
     brand?: SortOrder
     provider?: SortOrder
@@ -57894,6 +57919,7 @@ export namespace Prisma {
     barcode?: SortOrder
     sku?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     description?: SortOrder
     brand?: SortOrder
     provider?: SortOrder
@@ -57918,6 +57944,7 @@ export namespace Prisma {
     barcode?: SortOrder
     sku?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     description?: SortOrder
     brand?: SortOrder
     provider?: SortOrder
@@ -63646,6 +63673,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -63674,6 +63702,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -63787,6 +63816,7 @@ export namespace Prisma {
     barcode?: StringNullableFilter<"Product"> | string | null
     sku?: StringFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
+    slug?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
     brand?: StringFilter<"Product"> | string
     provider?: StringFilter<"Product"> | string
@@ -63864,6 +63894,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -63892,6 +63923,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -64409,6 +64441,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -64437,6 +64470,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -64480,6 +64514,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -64507,6 +64542,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -64650,6 +64686,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -64678,6 +64715,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -64738,6 +64776,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -64765,6 +64804,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -69812,6 +69852,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -69890,6 +69931,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -69917,6 +69959,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -69944,6 +69987,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -69978,6 +70022,7 @@ export namespace Prisma {
     barcode?: string | null
     sku: string
     name: string
+    slug: string
     description: string
     brand: string
     provider: string
@@ -70038,6 +70083,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -70065,6 +70111,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -70092,6 +70139,7 @@ export namespace Prisma {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string

@@ -118,6 +118,7 @@ export const createOrder = async (req, res) => {
         email: comprador.email,
         phone: { number: comprador.telefono },
         address: comprador.direccion,
+        ...(comprador.dni && { identification: { type: 'DNI', number: comprador.dni } }),
       };
 
       const mpPref = await mp.createPreference(order, productosDB, { payer });
@@ -131,6 +132,7 @@ export const createOrder = async (req, res) => {
         email: comprador.email,
         phone: { number: comprador.telefono },
         address: comprador.direccion,
+        ...(comprador.dni && { identification: { type: 'DNI', number: comprador.dni } }),
       };
 
       const qrResult = await mp.createQRCode(order, productosDB, { payer });
@@ -288,6 +290,59 @@ export const updateOrderStatus = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message || 'Error actualizando la orden.' });
+  }
+};
+
+export const cancelOrder = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const order = await prisma.order.findUnique({
+      where: { id },
+      include: { detalles: true },
+    });
+
+    if (!order) {
+      return res.status(404).json({ error: 'Orden no encontrada.' });
+    }
+
+    if (order.estado !== 'PENDIENTE_PAGO') {
+      return res.status(400).json({ error: 'Solo se pueden cancelar órdenes pendientes de pago.' });
+    }
+
+    const updatedOrder = await prisma.$transaction(async (tx) => {
+      for (const item of order.detalles) {
+        await tx.product.update({
+          where: { id: item.productoId },
+          data: { stock: { increment: item.cantidad } },
+        });
+      }
+
+      return tx.order.update({
+        where: { id },
+        data: { estado: 'CANCELADO' },
+        include: { detalles: true, buyer: true },
+      });
+    });
+
+    res.json({
+      id: updatedOrder.id,
+      estado: updatedOrder.estado,
+      metodo_pago: updatedOrder.metodo_pago,
+      monto_total: updatedOrder.monto_total,
+      buyer: { nombre: updatedOrder.buyer.nombre, email: updatedOrder.buyer.email },
+      detalles: updatedOrder.detalles.map(d => ({
+        productoId: d.productoId,
+        cantidad: d.cantidad,
+        productoName: d.productoName,
+        precio_unitario: d.precio_unitario_al_momento_de_compra,
+      })),
+      createdAt: updatedOrder.fecha_creacion,
+      info_envio: updatedOrder.info_envio,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message || 'Error cancelando la orden.' });
   }
 };
 
