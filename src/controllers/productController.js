@@ -185,9 +185,9 @@ export const getProducts = async (req, res) => {
           .slice(skip, skip + pageSize)
           .map(({ _score, ...product }) => product);
 
+
         return res.status(200).json({ products: paginatedProducts, totalCount, totalUniqueInStock, totalStock });
       }
-
 
       // Si no hay resultados con AND, usar OR
       const orWhere = { ...where, OR: keywordConditions.flatMap(c => c.OR) };
@@ -253,13 +253,6 @@ export const getProducts = async (req, res) => {
     const totalUniqueInStock = allProductsNoKeyword.filter(p => Number(p.stock || 0) > 0).length;
     const totalStock = allProductsNoKeyword.reduce((acc, p) => acc + Number(p.stock || 0), 0);
     const paginatedProducts = allProductsNoKeyword.slice(skip, skip + pageSize);
-
-    console.log("keyword", keyword)
-
-    console.log("totalCount", totalCount)
-    console.log("totalUniqueInStock", totalUniqueInStock)
-    console.log("totalStock", totalStock)
-    console.log("paginatedProducts", paginatedProducts)
 
     res.status(200).json({ products: paginatedProducts, totalCount, totalUniqueInStock, totalStock });
 
@@ -764,8 +757,6 @@ export const searchProducts = async (req, res) => {
         });
       }
     });
-
-    console.log("results", results)
 
     // 4. Convertir a Array y limitar
     // Chequeo si existe match exacto para priorizar

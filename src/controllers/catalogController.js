@@ -24,6 +24,25 @@ export const getSubcategoryAttributes = async (req, res) => {
     }
 };
 
+export const getSubcategoriesByCategory = async (req, res) => {
+    try {
+        const { categoryId } = req.params;
+        const category = await prisma.category.findUnique({
+            where: { id: categoryId }
+        });
+        if (!category) {
+            return res.status(404).json({ error: 'Categoría no encontrada' });
+        }
+        const subcategories = await prisma.subcategory.findMany({
+            where: { categoryId },
+            orderBy: { name: 'asc' }
+        });
+        res.json(subcategories);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 export const getProductRecommendations = async (req, res) => {
     try {
         const { id } = req.params;

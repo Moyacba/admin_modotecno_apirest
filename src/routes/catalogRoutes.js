@@ -5,6 +5,7 @@ const router = express.Router();
 
 // ─── Lecturas existentes ─────────────────────────────────────────────────────
 router.get('/categories', catalogController.getCategories);
+router.get('/categories/:categoryId/subcategories', catalogController.getSubcategoriesByCategory);
 router.get('/subcategories/:id/attributes', catalogController.getSubcategoryAttributes);
 router.get('/products/:id/recommendations', catalogController.getProductRecommendations);
 

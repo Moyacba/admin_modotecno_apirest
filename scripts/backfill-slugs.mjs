@@ -13,7 +13,7 @@ async function backfillSlugs() {
   while (true) {
     const products = await prisma.$runCommandRaw({
       find: 'Product',
-      filter: { slug: { $exists: false } },
+      filter: { $or: [{ slug: null }, { slug: { $exists: false } }] },
       projection: { _id: 1, name: 1 },
       batchSize: 500
     });
