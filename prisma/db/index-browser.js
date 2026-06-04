@@ -145,6 +145,7 @@ exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
   key: 'key',
+  image: 'image',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

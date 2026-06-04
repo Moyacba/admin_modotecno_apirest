@@ -6685,6 +6685,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     key: string | null
+    image: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6693,6 +6694,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     key: string | null
+    image: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6701,6 +6703,7 @@ export namespace Prisma {
     id: number
     name: number
     key: number
+    image: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6711,6 +6714,7 @@ export namespace Prisma {
     id?: true
     name?: true
     key?: true
+    image?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6719,6 +6723,7 @@ export namespace Prisma {
     id?: true
     name?: true
     key?: true
+    image?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6727,6 +6732,7 @@ export namespace Prisma {
     id?: true
     name?: true
     key?: true
+    image?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -6808,6 +6814,7 @@ export namespace Prisma {
     id: string
     name: string
     key: string | null
+    image: string | null
     createdAt: Date
     updatedAt: Date
     _count: CategoryCountAggregateOutputType | null
@@ -6833,6 +6840,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     key?: boolean
+    image?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     attributes?: boolean | Category$attributesArgs<ExtArgs>
@@ -6847,11 +6855,12 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     key?: boolean
+    image?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "key" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "key" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     attributes?: boolean | Category$attributesArgs<ExtArgs>
     subcategories?: boolean | Category$subcategoriesArgs<ExtArgs>
@@ -6870,6 +6879,7 @@ export namespace Prisma {
       id: string
       name: string
       key: string | null
+      image: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["category"]>
@@ -7270,6 +7280,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Category", 'String'>
     readonly name: FieldRef<"Category", 'String'>
     readonly key: FieldRef<"Category", 'String'>
+    readonly image: FieldRef<"Category", 'String'>
     readonly createdAt: FieldRef<"Category", 'DateTime'>
     readonly updatedAt: FieldRef<"Category", 'DateTime'>
   }
@@ -49790,6 +49801,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     key: 'key',
+    image: 'image',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -50788,6 +50800,7 @@ export namespace Prisma {
     id?: StringFilter<"Category"> | string
     name?: StringFilter<"Category"> | string
     key?: StringNullableFilter<"Category"> | string | null
+    image?: StringNullableFilter<"Category"> | string | null
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
     attributes?: CategoryAttributeListRelationFilter
@@ -50799,6 +50812,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     key?: SortOrder
+    image?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     attributes?: CategoryAttributeOrderByRelationAggregateInput
@@ -50813,6 +50827,7 @@ export namespace Prisma {
     AND?: CategoryWhereInput | CategoryWhereInput[]
     OR?: CategoryWhereInput[]
     NOT?: CategoryWhereInput | CategoryWhereInput[]
+    image?: StringNullableFilter<"Category"> | string | null
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
     attributes?: CategoryAttributeListRelationFilter
@@ -50824,6 +50839,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     key?: SortOrder
+    image?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CategoryCountOrderByAggregateInput
@@ -50838,6 +50854,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Category"> | string
     name?: StringWithAggregatesFilter<"Category"> | string
     key?: StringNullableWithAggregatesFilter<"Category"> | string | null
+    image?: StringNullableWithAggregatesFilter<"Category"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
   }
@@ -54266,6 +54283,7 @@ export namespace Prisma {
     id?: string
     name: string
     key?: string | null
+    image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     attributes?: CategoryAttributeCreateNestedManyWithoutCategoryInput
@@ -54277,6 +54295,7 @@ export namespace Prisma {
     id?: string
     name: string
     key?: string | null
+    image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     attributes?: CategoryAttributeUncheckedCreateNestedManyWithoutCategoryInput
@@ -54287,6 +54306,7 @@ export namespace Prisma {
   export type CategoryUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     key?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attributes?: CategoryAttributeUpdateManyWithoutCategoryNestedInput
@@ -54297,6 +54317,7 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     key?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attributes?: CategoryAttributeUncheckedUpdateManyWithoutCategoryNestedInput
@@ -54308,6 +54329,7 @@ export namespace Prisma {
     id?: string
     name: string
     key?: string | null
+    image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -54315,6 +54337,7 @@ export namespace Prisma {
   export type CategoryUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     key?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -54322,6 +54345,7 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
     key?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -58131,6 +58155,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     key?: SortOrder
+    image?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -58139,6 +58164,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     key?: SortOrder
+    image?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -58147,6 +58173,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     key?: SortOrder
+    image?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -63341,6 +63368,7 @@ export namespace Prisma {
     id?: string
     name: string
     key?: string | null
+    image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     attributes?: CategoryAttributeCreateNestedManyWithoutCategoryInput
@@ -63351,6 +63379,7 @@ export namespace Prisma {
     id?: string
     name: string
     key?: string | null
+    image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     attributes?: CategoryAttributeUncheckedCreateNestedManyWithoutCategoryInput
@@ -63487,6 +63516,7 @@ export namespace Prisma {
   export type CategoryUpdateWithoutProductsInput = {
     name?: StringFieldUpdateOperationsInput | string
     key?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attributes?: CategoryAttributeUpdateManyWithoutCategoryNestedInput
@@ -63496,6 +63526,7 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateWithoutProductsInput = {
     name?: StringFieldUpdateOperationsInput | string
     key?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attributes?: CategoryAttributeUncheckedUpdateManyWithoutCategoryNestedInput
@@ -63843,6 +63874,7 @@ export namespace Prisma {
     id?: string
     name: string
     key?: string | null
+    image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     attributes?: CategoryAttributeCreateNestedManyWithoutCategoryInput
@@ -63853,6 +63885,7 @@ export namespace Prisma {
     id?: string
     name: string
     key?: string | null
+    image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     attributes?: CategoryAttributeUncheckedCreateNestedManyWithoutCategoryInput
@@ -64016,6 +64049,7 @@ export namespace Prisma {
   export type CategoryUpdateWithoutSubcategoriesInput = {
     name?: StringFieldUpdateOperationsInput | string
     key?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attributes?: CategoryAttributeUpdateManyWithoutCategoryNestedInput
@@ -64025,6 +64059,7 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateWithoutSubcategoriesInput = {
     name?: StringFieldUpdateOperationsInput | string
     key?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attributes?: CategoryAttributeUncheckedUpdateManyWithoutCategoryNestedInput
@@ -64204,6 +64239,7 @@ export namespace Prisma {
     id?: string
     name: string
     key?: string | null
+    image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     subcategories?: SubcategoryCreateNestedManyWithoutCategoryInput
@@ -64214,6 +64250,7 @@ export namespace Prisma {
     id?: string
     name: string
     key?: string | null
+    image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     subcategories?: SubcategoryUncheckedCreateNestedManyWithoutCategoryInput
@@ -64266,6 +64303,7 @@ export namespace Prisma {
   export type CategoryUpdateWithoutAttributesInput = {
     name?: StringFieldUpdateOperationsInput | string
     key?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     subcategories?: SubcategoryUpdateManyWithoutCategoryNestedInput
@@ -64275,6 +64313,7 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateWithoutAttributesInput = {
     name?: StringFieldUpdateOperationsInput | string
     key?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     subcategories?: SubcategoryUncheckedUpdateManyWithoutCategoryNestedInput

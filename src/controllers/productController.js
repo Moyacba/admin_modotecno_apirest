@@ -117,6 +117,7 @@ export const getProducts = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const pageSize = 12;
+    const all = req.query.all === 'true';
     const skip = (page - 1) * pageSize;
 
     const keyword = (req.query.keyword || "").trim();
@@ -181,9 +182,11 @@ export const getProducts = async (req, res) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
 
-        const paginatedProducts = productsWithScore
-          .slice(skip, skip + pageSize)
-          .map(({ _score, ...product }) => product);
+        const paginatedProducts = all
+          ? productsWithScore.map(({ _score, ...product }) => product)
+          : productsWithScore
+              .slice(skip, skip + pageSize)
+              .map(({ _score, ...product }) => product);
 
 
         return res.status(200).json({ products: paginatedProducts, totalCount, totalUniqueInStock, totalStock });
@@ -223,9 +226,11 @@ export const getProducts = async (req, res) => {
         return new Date(b.createdAt) - new Date(a.createdAt);
       });
 
-      const paginatedProductsOr = productsWithScoreOr
-        .slice(skip, skip + pageSize)
-        .map(({ _score, ...product }) => product);
+      const paginatedProductsOr = all
+        ? productsWithScoreOr.map(({ _score, ...product }) => product)
+        : productsWithScoreOr
+            .slice(skip, skip + pageSize)
+            .map(({ _score, ...product }) => product);
 
       return res.status(200).json({ products: paginatedProductsOr, totalCount: totalCountOr, totalUniqueInStock: totalUniqueInStockOr, totalStock: totalStockOr });
     }
@@ -252,7 +257,7 @@ export const getProducts = async (req, res) => {
     const totalCount = allProductsNoKeyword.length;
     const totalUniqueInStock = allProductsNoKeyword.filter(p => Number(p.stock || 0) > 0).length;
     const totalStock = allProductsNoKeyword.reduce((acc, p) => acc + Number(p.stock || 0), 0);
-    const paginatedProducts = allProductsNoKeyword.slice(skip, skip + pageSize);
+    const paginatedProducts = all ? allProductsNoKeyword : allProductsNoKeyword.slice(skip, skip + pageSize);
 
     res.status(200).json({ products: paginatedProducts, totalCount, totalUniqueInStock, totalStock });
 

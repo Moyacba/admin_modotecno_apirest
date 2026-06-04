@@ -54,6 +54,7 @@ model Category {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String   @unique
   key         String?  @unique // Opcional para seeding estable
+  image       String?
   
   attributes  CategoryAttribute[]
   subcategories Subcategory[]
