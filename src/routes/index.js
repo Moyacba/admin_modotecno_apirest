@@ -23,6 +23,7 @@ import serviceMatrixRoutes from "./serviceMatrixRoutes.js";
 import serviceCategoryRoutes from "./serviceCategoryRoutes.js";
 import repairTypeRoutes from "./repairTypeRoutes.js";
 import repairOptionRoutes from "./repairOptionRoutes.js";
+import equivalenceGroupRoutes from "./equivalenceGroupRoutes.js";
 
 const router = Router();
 
@@ -55,5 +56,6 @@ router.use("/service-matrix", serviceMatrixRoutes);
 router.use("/service-categories", serviceCategoryRoutes);
 router.use("/repair-types", repairTypeRoutes);
 router.use("/repair-options", repairOptionRoutes);
+router.use("/equivalence-groups", equivalenceGroupRoutes);
 
 export default router;

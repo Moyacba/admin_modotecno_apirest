@@ -43,12 +43,38 @@ model Product {
   
   variants       ProductVariant[]
   compatibilities ProductCompatibility[]
+  equivalenceGroupMembers EquivalenceGroupMember[]
+
+  equivalenceGroupId String?             @db.ObjectId
+  equivalenceGroup   EquivalenceGroup?   @relation(fields: [equivalenceGroupId], references: [id])
 
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
   isAlertMarked  Boolean          @default(false)
   isActive       Boolean          @default(true)
   lastCost       Float?           // Último costo de compra registrado
+}
+
+model EquivalenceGroup {
+  id          String                   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String                   @unique
+  description String?
+  minStock    Int                      @default(0)
+  isActive    Boolean                  @default(true)
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  members     EquivalenceGroupMember[]
+  products    Product[]
+}
+
+model EquivalenceGroupMember {
+  id        String           @id @default(auto()) @map("_id") @db.ObjectId
+  groupId   String           @db.ObjectId
+  group     EquivalenceGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  productId String           @db.ObjectId
+  product   Product          @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId])
 }
 
 model Category {

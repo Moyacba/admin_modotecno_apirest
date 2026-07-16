@@ -19,6 +19,16 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Product = $Result.DefaultSelection<Prisma.$ProductPayload>
 /**
+ * Model EquivalenceGroup
+ * 
+ */
+export type EquivalenceGroup = $Result.DefaultSelection<Prisma.$EquivalenceGroupPayload>
+/**
+ * Model EquivalenceGroupMember
+ * 
+ */
+export type EquivalenceGroupMember = $Result.DefaultSelection<Prisma.$EquivalenceGroupMemberPayload>
+/**
  * Model Category
  * 
  */
@@ -441,6 +451,26 @@ export class PrismaClient<
     * ```
     */
   get product(): Prisma.ProductDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.equivalenceGroup`: Exposes CRUD operations for the **EquivalenceGroup** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EquivalenceGroups
+    * const equivalenceGroups = await prisma.equivalenceGroup.findMany()
+    * ```
+    */
+  get equivalenceGroup(): Prisma.EquivalenceGroupDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.equivalenceGroupMember`: Exposes CRUD operations for the **EquivalenceGroupMember** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EquivalenceGroupMembers
+    * const equivalenceGroupMembers = await prisma.equivalenceGroupMember.findMany()
+    * ```
+    */
+  get equivalenceGroupMember(): Prisma.EquivalenceGroupMemberDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.category`: Exposes CRUD operations for the **Category** model.
@@ -1282,6 +1312,8 @@ export namespace Prisma {
 
   export const ModelName: {
     Product: 'Product',
+    EquivalenceGroup: 'EquivalenceGroup',
+    EquivalenceGroupMember: 'EquivalenceGroupMember',
     Category: 'Category',
     Subcategory: 'Subcategory',
     AttributeDefinition: 'AttributeDefinition',
@@ -1340,7 +1372,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "product" | "category" | "subcategory" | "attributeDefinition" | "categoryAttribute" | "subcategoryAttribute" | "productVariant" | "deviceBrand" | "deviceModel" | "productCompatibility" | "recommendationRule" | "customer" | "sale" | "expense" | "buyer" | "communicationPreferences" | "customerDevice" | "productInteraction" | "browsingEvent" | "feedback" | "order" | "orderDetail" | "pOSSale" | "pOSSaleDetail" | "service" | "cashRegisterSession" | "cashMovement" | "user" | "favoriteImage" | "stockEntry" | "stockEntryItem" | "provider" | "serviceCategory" | "brandRepairCategory" | "repairType" | "repairOption" | "brandRepair" | "modelRepair" | "serviceCatalog" | "serviceDefect" | "serviceAttribute"
+      modelProps: "product" | "equivalenceGroup" | "equivalenceGroupMember" | "category" | "subcategory" | "attributeDefinition" | "categoryAttribute" | "subcategoryAttribute" | "productVariant" | "deviceBrand" | "deviceModel" | "productCompatibility" | "recommendationRule" | "customer" | "sale" | "expense" | "buyer" | "communicationPreferences" | "customerDevice" | "productInteraction" | "browsingEvent" | "feedback" | "order" | "orderDetail" | "pOSSale" | "pOSSaleDetail" | "service" | "cashRegisterSession" | "cashMovement" | "user" | "favoriteImage" | "stockEntry" | "stockEntryItem" | "provider" | "serviceCategory" | "brandRepairCategory" | "repairType" | "repairOption" | "brandRepair" | "modelRepair" | "serviceCatalog" | "serviceDefect" | "serviceAttribute"
       txIsolationLevel: never
     }
     model: {
@@ -1415,6 +1447,154 @@ export namespace Prisma {
           count: {
             args: Prisma.ProductCountArgs<ExtArgs>
             result: $Utils.Optional<ProductCountAggregateOutputType> | number
+          }
+        }
+      }
+      EquivalenceGroup: {
+        payload: Prisma.$EquivalenceGroupPayload<ExtArgs>
+        fields: Prisma.EquivalenceGroupFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EquivalenceGroupFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EquivalenceGroupFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupPayload>
+          }
+          findFirst: {
+            args: Prisma.EquivalenceGroupFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EquivalenceGroupFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupPayload>
+          }
+          findMany: {
+            args: Prisma.EquivalenceGroupFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupPayload>[]
+          }
+          create: {
+            args: Prisma.EquivalenceGroupCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupPayload>
+          }
+          createMany: {
+            args: Prisma.EquivalenceGroupCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.EquivalenceGroupDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupPayload>
+          }
+          update: {
+            args: Prisma.EquivalenceGroupUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupPayload>
+          }
+          deleteMany: {
+            args: Prisma.EquivalenceGroupDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EquivalenceGroupUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.EquivalenceGroupUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupPayload>
+          }
+          aggregate: {
+            args: Prisma.EquivalenceGroupAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEquivalenceGroup>
+          }
+          groupBy: {
+            args: Prisma.EquivalenceGroupGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EquivalenceGroupGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.EquivalenceGroupFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.EquivalenceGroupAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.EquivalenceGroupCountArgs<ExtArgs>
+            result: $Utils.Optional<EquivalenceGroupCountAggregateOutputType> | number
+          }
+        }
+      }
+      EquivalenceGroupMember: {
+        payload: Prisma.$EquivalenceGroupMemberPayload<ExtArgs>
+        fields: Prisma.EquivalenceGroupMemberFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EquivalenceGroupMemberFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupMemberPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EquivalenceGroupMemberFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupMemberPayload>
+          }
+          findFirst: {
+            args: Prisma.EquivalenceGroupMemberFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupMemberPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EquivalenceGroupMemberFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupMemberPayload>
+          }
+          findMany: {
+            args: Prisma.EquivalenceGroupMemberFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupMemberPayload>[]
+          }
+          create: {
+            args: Prisma.EquivalenceGroupMemberCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupMemberPayload>
+          }
+          createMany: {
+            args: Prisma.EquivalenceGroupMemberCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.EquivalenceGroupMemberDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupMemberPayload>
+          }
+          update: {
+            args: Prisma.EquivalenceGroupMemberUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupMemberPayload>
+          }
+          deleteMany: {
+            args: Prisma.EquivalenceGroupMemberDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EquivalenceGroupMemberUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.EquivalenceGroupMemberUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquivalenceGroupMemberPayload>
+          }
+          aggregate: {
+            args: Prisma.EquivalenceGroupMemberAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEquivalenceGroupMember>
+          }
+          groupBy: {
+            args: Prisma.EquivalenceGroupMemberGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EquivalenceGroupMemberGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.EquivalenceGroupMemberFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.EquivalenceGroupMemberAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.EquivalenceGroupMemberCountArgs<ExtArgs>
+            result: $Utils.Optional<EquivalenceGroupMemberCountAggregateOutputType> | number
           }
         }
       }
@@ -4450,6 +4630,8 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     product?: ProductOmit
+    equivalenceGroup?: EquivalenceGroupOmit
+    equivalenceGroupMember?: EquivalenceGroupMemberOmit
     category?: CategoryOmit
     subcategory?: SubcategoryOmit
     attributeDefinition?: AttributeDefinitionOmit
@@ -4586,11 +4768,13 @@ export namespace Prisma {
   export type ProductCountOutputType = {
     variants: number
     compatibilities: number
+    equivalenceGroupMembers: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     variants?: boolean | ProductCountOutputTypeCountVariantsArgs
     compatibilities?: boolean | ProductCountOutputTypeCountCompatibilitiesArgs
+    equivalenceGroupMembers?: boolean | ProductCountOutputTypeCountEquivalenceGroupMembersArgs
   }
 
   // Custom InputTypes
@@ -4616,6 +4800,53 @@ export namespace Prisma {
    */
   export type ProductCountOutputTypeCountCompatibilitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProductCompatibilityWhereInput
+  }
+
+  /**
+   * ProductCountOutputType without action
+   */
+  export type ProductCountOutputTypeCountEquivalenceGroupMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EquivalenceGroupMemberWhereInput
+  }
+
+
+  /**
+   * Count Type EquivalenceGroupCountOutputType
+   */
+
+  export type EquivalenceGroupCountOutputType = {
+    members: number
+    products: number
+  }
+
+  export type EquivalenceGroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    members?: boolean | EquivalenceGroupCountOutputTypeCountMembersArgs
+    products?: boolean | EquivalenceGroupCountOutputTypeCountProductsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EquivalenceGroupCountOutputType without action
+   */
+  export type EquivalenceGroupCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupCountOutputType
+     */
+    select?: EquivalenceGroupCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EquivalenceGroupCountOutputType without action
+   */
+  export type EquivalenceGroupCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EquivalenceGroupMemberWhereInput
+  }
+
+  /**
+   * EquivalenceGroupCountOutputType without action
+   */
+  export type EquivalenceGroupCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductWhereInput
   }
 
 
@@ -5377,9 +5608,11 @@ export namespace Prisma {
     categoryId: string | null
     subcategoryId: string | null
     category: string | null
+    equivalenceGroupId: string | null
     createdAt: Date | null
     updatedAt: Date | null
     isAlertMarked: boolean | null
+    isActive: boolean | null
     lastCost: number | null
   }
 
@@ -5402,9 +5635,11 @@ export namespace Prisma {
     categoryId: string | null
     subcategoryId: string | null
     category: string | null
+    equivalenceGroupId: string | null
     createdAt: Date | null
     updatedAt: Date | null
     isAlertMarked: boolean | null
+    isActive: boolean | null
     lastCost: number | null
   }
 
@@ -5430,9 +5665,11 @@ export namespace Prisma {
     categoryId: number
     subcategoryId: number
     category: number
+    equivalenceGroupId: number
     createdAt: number
     updatedAt: number
     isAlertMarked: number
+    isActive: number
     lastCost: number
     _all: number
   }
@@ -5477,9 +5714,11 @@ export namespace Prisma {
     categoryId?: true
     subcategoryId?: true
     category?: true
+    equivalenceGroupId?: true
     createdAt?: true
     updatedAt?: true
     isAlertMarked?: true
+    isActive?: true
     lastCost?: true
   }
 
@@ -5502,9 +5741,11 @@ export namespace Prisma {
     categoryId?: true
     subcategoryId?: true
     category?: true
+    equivalenceGroupId?: true
     createdAt?: true
     updatedAt?: true
     isAlertMarked?: true
+    isActive?: true
     lastCost?: true
   }
 
@@ -5530,9 +5771,11 @@ export namespace Prisma {
     categoryId?: true
     subcategoryId?: true
     category?: true
+    equivalenceGroupId?: true
     createdAt?: true
     updatedAt?: true
     isAlertMarked?: true
+    isActive?: true
     lastCost?: true
     _all?: true
   }
@@ -5645,9 +5888,11 @@ export namespace Prisma {
     categoryId: string | null
     subcategoryId: string | null
     category: string | null
+    equivalenceGroupId: string | null
     createdAt: Date
     updatedAt: Date
     isAlertMarked: boolean
+    isActive: boolean
     lastCost: number | null
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
@@ -5692,14 +5937,18 @@ export namespace Prisma {
     categoryId?: boolean
     subcategoryId?: boolean
     category?: boolean
+    equivalenceGroupId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: boolean
     categoryRel?: boolean | Product$categoryRelArgs<ExtArgs>
     subcategoryRel?: boolean | Product$subcategoryRelArgs<ExtArgs>
     variants?: boolean | Product$variantsArgs<ExtArgs>
     compatibilities?: boolean | Product$compatibilitiesArgs<ExtArgs>
+    equivalenceGroupMembers?: boolean | Product$equivalenceGroupMembersArgs<ExtArgs>
+    equivalenceGroup?: boolean | Product$equivalenceGroupArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -5727,18 +5976,22 @@ export namespace Prisma {
     categoryId?: boolean
     subcategoryId?: boolean
     category?: boolean
+    equivalenceGroupId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "barcode" | "sku" | "name" | "slug" | "description" | "brand" | "provider" | "costPrice" | "salePrice" | "promoPrice" | "percentPrice" | "stock" | "minStock" | "images" | "specifications" | "attributes" | "hasVariants" | "categoryId" | "subcategoryId" | "category" | "createdAt" | "updatedAt" | "isAlertMarked" | "lastCost", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "barcode" | "sku" | "name" | "slug" | "description" | "brand" | "provider" | "costPrice" | "salePrice" | "promoPrice" | "percentPrice" | "stock" | "minStock" | "images" | "specifications" | "attributes" | "hasVariants" | "categoryId" | "subcategoryId" | "category" | "equivalenceGroupId" | "createdAt" | "updatedAt" | "isAlertMarked" | "isActive" | "lastCost", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     categoryRel?: boolean | Product$categoryRelArgs<ExtArgs>
     subcategoryRel?: boolean | Product$subcategoryRelArgs<ExtArgs>
     variants?: boolean | Product$variantsArgs<ExtArgs>
     compatibilities?: boolean | Product$compatibilitiesArgs<ExtArgs>
+    equivalenceGroupMembers?: boolean | Product$equivalenceGroupMembersArgs<ExtArgs>
+    equivalenceGroup?: boolean | Product$equivalenceGroupArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5749,6 +6002,8 @@ export namespace Prisma {
       subcategoryRel: Prisma.$SubcategoryPayload<ExtArgs> | null
       variants: Prisma.$ProductVariantPayload<ExtArgs>[]
       compatibilities: Prisma.$ProductCompatibilityPayload<ExtArgs>[]
+      equivalenceGroupMembers: Prisma.$EquivalenceGroupMemberPayload<ExtArgs>[]
+      equivalenceGroup: Prisma.$EquivalenceGroupPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5772,9 +6027,11 @@ export namespace Prisma {
       categoryId: string | null
       subcategoryId: string | null
       category: string | null
+      equivalenceGroupId: string | null
       createdAt: Date
       updatedAt: Date
       isAlertMarked: boolean
+      isActive: boolean
       lastCost: number | null
     }, ExtArgs["result"]["product"]>
     composites: {}
@@ -6143,6 +6400,8 @@ export namespace Prisma {
     subcategoryRel<T extends Product$subcategoryRelArgs<ExtArgs> = {}>(args?: Subset<T, Product$subcategoryRelArgs<ExtArgs>>): Prisma__SubcategoryClient<$Result.GetResult<Prisma.$SubcategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     variants<T extends Product$variantsArgs<ExtArgs> = {}>(args?: Subset<T, Product$variantsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductVariantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     compatibilities<T extends Product$compatibilitiesArgs<ExtArgs> = {}>(args?: Subset<T, Product$compatibilitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductCompatibilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    equivalenceGroupMembers<T extends Product$equivalenceGroupMembersArgs<ExtArgs> = {}>(args?: Subset<T, Product$equivalenceGroupMembersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquivalenceGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    equivalenceGroup<T extends Product$equivalenceGroupArgs<ExtArgs> = {}>(args?: Subset<T, Product$equivalenceGroupArgs<ExtArgs>>): Prisma__EquivalenceGroupClient<$Result.GetResult<Prisma.$EquivalenceGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6193,9 +6452,11 @@ export namespace Prisma {
     readonly categoryId: FieldRef<"Product", 'String'>
     readonly subcategoryId: FieldRef<"Product", 'String'>
     readonly category: FieldRef<"Product", 'String'>
+    readonly equivalenceGroupId: FieldRef<"Product", 'String'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly updatedAt: FieldRef<"Product", 'DateTime'>
     readonly isAlertMarked: FieldRef<"Product", 'Boolean'>
+    readonly isActive: FieldRef<"Product", 'Boolean'>
     readonly lastCost: FieldRef<"Product", 'Float'>
   }
     
@@ -6653,6 +6914,49 @@ export namespace Prisma {
   }
 
   /**
+   * Product.equivalenceGroupMembers
+   */
+  export type Product$equivalenceGroupMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupMember
+     */
+    select?: EquivalenceGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroupMember
+     */
+    omit?: EquivalenceGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupMemberInclude<ExtArgs> | null
+    where?: EquivalenceGroupMemberWhereInput
+    orderBy?: EquivalenceGroupMemberOrderByWithRelationInput | EquivalenceGroupMemberOrderByWithRelationInput[]
+    cursor?: EquivalenceGroupMemberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EquivalenceGroupMemberScalarFieldEnum | EquivalenceGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * Product.equivalenceGroup
+   */
+  export type Product$equivalenceGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroup
+     */
+    select?: EquivalenceGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroup
+     */
+    omit?: EquivalenceGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupInclude<ExtArgs> | null
+    where?: EquivalenceGroupWhereInput
+  }
+
+  /**
    * Product without action
    */
   export type ProductDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6668,6 +6972,2056 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProductInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EquivalenceGroup
+   */
+
+  export type AggregateEquivalenceGroup = {
+    _count: EquivalenceGroupCountAggregateOutputType | null
+    _avg: EquivalenceGroupAvgAggregateOutputType | null
+    _sum: EquivalenceGroupSumAggregateOutputType | null
+    _min: EquivalenceGroupMinAggregateOutputType | null
+    _max: EquivalenceGroupMaxAggregateOutputType | null
+  }
+
+  export type EquivalenceGroupAvgAggregateOutputType = {
+    minStock: number | null
+  }
+
+  export type EquivalenceGroupSumAggregateOutputType = {
+    minStock: number | null
+  }
+
+  export type EquivalenceGroupMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    minStock: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EquivalenceGroupMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    minStock: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EquivalenceGroupCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    minStock: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type EquivalenceGroupAvgAggregateInputType = {
+    minStock?: true
+  }
+
+  export type EquivalenceGroupSumAggregateInputType = {
+    minStock?: true
+  }
+
+  export type EquivalenceGroupMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    minStock?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EquivalenceGroupMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    minStock?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EquivalenceGroupCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    minStock?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type EquivalenceGroupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EquivalenceGroup to aggregate.
+     */
+    where?: EquivalenceGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EquivalenceGroups to fetch.
+     */
+    orderBy?: EquivalenceGroupOrderByWithRelationInput | EquivalenceGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EquivalenceGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EquivalenceGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EquivalenceGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EquivalenceGroups
+    **/
+    _count?: true | EquivalenceGroupCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EquivalenceGroupAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EquivalenceGroupSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EquivalenceGroupMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EquivalenceGroupMaxAggregateInputType
+  }
+
+  export type GetEquivalenceGroupAggregateType<T extends EquivalenceGroupAggregateArgs> = {
+        [P in keyof T & keyof AggregateEquivalenceGroup]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEquivalenceGroup[P]>
+      : GetScalarType<T[P], AggregateEquivalenceGroup[P]>
+  }
+
+
+
+
+  export type EquivalenceGroupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EquivalenceGroupWhereInput
+    orderBy?: EquivalenceGroupOrderByWithAggregationInput | EquivalenceGroupOrderByWithAggregationInput[]
+    by: EquivalenceGroupScalarFieldEnum[] | EquivalenceGroupScalarFieldEnum
+    having?: EquivalenceGroupScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EquivalenceGroupCountAggregateInputType | true
+    _avg?: EquivalenceGroupAvgAggregateInputType
+    _sum?: EquivalenceGroupSumAggregateInputType
+    _min?: EquivalenceGroupMinAggregateInputType
+    _max?: EquivalenceGroupMaxAggregateInputType
+  }
+
+  export type EquivalenceGroupGroupByOutputType = {
+    id: string
+    name: string
+    description: string | null
+    minStock: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: EquivalenceGroupCountAggregateOutputType | null
+    _avg: EquivalenceGroupAvgAggregateOutputType | null
+    _sum: EquivalenceGroupSumAggregateOutputType | null
+    _min: EquivalenceGroupMinAggregateOutputType | null
+    _max: EquivalenceGroupMaxAggregateOutputType | null
+  }
+
+  type GetEquivalenceGroupGroupByPayload<T extends EquivalenceGroupGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EquivalenceGroupGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EquivalenceGroupGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EquivalenceGroupGroupByOutputType[P]>
+            : GetScalarType<T[P], EquivalenceGroupGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EquivalenceGroupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    minStock?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    members?: boolean | EquivalenceGroup$membersArgs<ExtArgs>
+    products?: boolean | EquivalenceGroup$productsArgs<ExtArgs>
+    _count?: boolean | EquivalenceGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["equivalenceGroup"]>
+
+
+
+  export type EquivalenceGroupSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    minStock?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type EquivalenceGroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "minStock" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["equivalenceGroup"]>
+  export type EquivalenceGroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    members?: boolean | EquivalenceGroup$membersArgs<ExtArgs>
+    products?: boolean | EquivalenceGroup$productsArgs<ExtArgs>
+    _count?: boolean | EquivalenceGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $EquivalenceGroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EquivalenceGroup"
+    objects: {
+      members: Prisma.$EquivalenceGroupMemberPayload<ExtArgs>[]
+      products: Prisma.$ProductPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string | null
+      minStock: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["equivalenceGroup"]>
+    composites: {}
+  }
+
+  type EquivalenceGroupGetPayload<S extends boolean | null | undefined | EquivalenceGroupDefaultArgs> = $Result.GetResult<Prisma.$EquivalenceGroupPayload, S>
+
+  type EquivalenceGroupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EquivalenceGroupFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EquivalenceGroupCountAggregateInputType | true
+    }
+
+  export interface EquivalenceGroupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EquivalenceGroup'], meta: { name: 'EquivalenceGroup' } }
+    /**
+     * Find zero or one EquivalenceGroup that matches the filter.
+     * @param {EquivalenceGroupFindUniqueArgs} args - Arguments to find a EquivalenceGroup
+     * @example
+     * // Get one EquivalenceGroup
+     * const equivalenceGroup = await prisma.equivalenceGroup.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EquivalenceGroupFindUniqueArgs>(args: SelectSubset<T, EquivalenceGroupFindUniqueArgs<ExtArgs>>): Prisma__EquivalenceGroupClient<$Result.GetResult<Prisma.$EquivalenceGroupPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EquivalenceGroup that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EquivalenceGroupFindUniqueOrThrowArgs} args - Arguments to find a EquivalenceGroup
+     * @example
+     * // Get one EquivalenceGroup
+     * const equivalenceGroup = await prisma.equivalenceGroup.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EquivalenceGroupFindUniqueOrThrowArgs>(args: SelectSubset<T, EquivalenceGroupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EquivalenceGroupClient<$Result.GetResult<Prisma.$EquivalenceGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EquivalenceGroup that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupFindFirstArgs} args - Arguments to find a EquivalenceGroup
+     * @example
+     * // Get one EquivalenceGroup
+     * const equivalenceGroup = await prisma.equivalenceGroup.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EquivalenceGroupFindFirstArgs>(args?: SelectSubset<T, EquivalenceGroupFindFirstArgs<ExtArgs>>): Prisma__EquivalenceGroupClient<$Result.GetResult<Prisma.$EquivalenceGroupPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EquivalenceGroup that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupFindFirstOrThrowArgs} args - Arguments to find a EquivalenceGroup
+     * @example
+     * // Get one EquivalenceGroup
+     * const equivalenceGroup = await prisma.equivalenceGroup.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EquivalenceGroupFindFirstOrThrowArgs>(args?: SelectSubset<T, EquivalenceGroupFindFirstOrThrowArgs<ExtArgs>>): Prisma__EquivalenceGroupClient<$Result.GetResult<Prisma.$EquivalenceGroupPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EquivalenceGroups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EquivalenceGroups
+     * const equivalenceGroups = await prisma.equivalenceGroup.findMany()
+     * 
+     * // Get first 10 EquivalenceGroups
+     * const equivalenceGroups = await prisma.equivalenceGroup.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const equivalenceGroupWithIdOnly = await prisma.equivalenceGroup.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EquivalenceGroupFindManyArgs>(args?: SelectSubset<T, EquivalenceGroupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquivalenceGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EquivalenceGroup.
+     * @param {EquivalenceGroupCreateArgs} args - Arguments to create a EquivalenceGroup.
+     * @example
+     * // Create one EquivalenceGroup
+     * const EquivalenceGroup = await prisma.equivalenceGroup.create({
+     *   data: {
+     *     // ... data to create a EquivalenceGroup
+     *   }
+     * })
+     * 
+     */
+    create<T extends EquivalenceGroupCreateArgs>(args: SelectSubset<T, EquivalenceGroupCreateArgs<ExtArgs>>): Prisma__EquivalenceGroupClient<$Result.GetResult<Prisma.$EquivalenceGroupPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EquivalenceGroups.
+     * @param {EquivalenceGroupCreateManyArgs} args - Arguments to create many EquivalenceGroups.
+     * @example
+     * // Create many EquivalenceGroups
+     * const equivalenceGroup = await prisma.equivalenceGroup.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EquivalenceGroupCreateManyArgs>(args?: SelectSubset<T, EquivalenceGroupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a EquivalenceGroup.
+     * @param {EquivalenceGroupDeleteArgs} args - Arguments to delete one EquivalenceGroup.
+     * @example
+     * // Delete one EquivalenceGroup
+     * const EquivalenceGroup = await prisma.equivalenceGroup.delete({
+     *   where: {
+     *     // ... filter to delete one EquivalenceGroup
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EquivalenceGroupDeleteArgs>(args: SelectSubset<T, EquivalenceGroupDeleteArgs<ExtArgs>>): Prisma__EquivalenceGroupClient<$Result.GetResult<Prisma.$EquivalenceGroupPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EquivalenceGroup.
+     * @param {EquivalenceGroupUpdateArgs} args - Arguments to update one EquivalenceGroup.
+     * @example
+     * // Update one EquivalenceGroup
+     * const equivalenceGroup = await prisma.equivalenceGroup.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EquivalenceGroupUpdateArgs>(args: SelectSubset<T, EquivalenceGroupUpdateArgs<ExtArgs>>): Prisma__EquivalenceGroupClient<$Result.GetResult<Prisma.$EquivalenceGroupPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EquivalenceGroups.
+     * @param {EquivalenceGroupDeleteManyArgs} args - Arguments to filter EquivalenceGroups to delete.
+     * @example
+     * // Delete a few EquivalenceGroups
+     * const { count } = await prisma.equivalenceGroup.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EquivalenceGroupDeleteManyArgs>(args?: SelectSubset<T, EquivalenceGroupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EquivalenceGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EquivalenceGroups
+     * const equivalenceGroup = await prisma.equivalenceGroup.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EquivalenceGroupUpdateManyArgs>(args: SelectSubset<T, EquivalenceGroupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one EquivalenceGroup.
+     * @param {EquivalenceGroupUpsertArgs} args - Arguments to update or create a EquivalenceGroup.
+     * @example
+     * // Update or create a EquivalenceGroup
+     * const equivalenceGroup = await prisma.equivalenceGroup.upsert({
+     *   create: {
+     *     // ... data to create a EquivalenceGroup
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EquivalenceGroup we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EquivalenceGroupUpsertArgs>(args: SelectSubset<T, EquivalenceGroupUpsertArgs<ExtArgs>>): Prisma__EquivalenceGroupClient<$Result.GetResult<Prisma.$EquivalenceGroupPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EquivalenceGroups that matches the filter.
+     * @param {EquivalenceGroupFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const equivalenceGroup = await prisma.equivalenceGroup.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: EquivalenceGroupFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a EquivalenceGroup.
+     * @param {EquivalenceGroupAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const equivalenceGroup = await prisma.equivalenceGroup.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: EquivalenceGroupAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of EquivalenceGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupCountArgs} args - Arguments to filter EquivalenceGroups to count.
+     * @example
+     * // Count the number of EquivalenceGroups
+     * const count = await prisma.equivalenceGroup.count({
+     *   where: {
+     *     // ... the filter for the EquivalenceGroups we want to count
+     *   }
+     * })
+    **/
+    count<T extends EquivalenceGroupCountArgs>(
+      args?: Subset<T, EquivalenceGroupCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EquivalenceGroupCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EquivalenceGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EquivalenceGroupAggregateArgs>(args: Subset<T, EquivalenceGroupAggregateArgs>): Prisma.PrismaPromise<GetEquivalenceGroupAggregateType<T>>
+
+    /**
+     * Group by EquivalenceGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EquivalenceGroupGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EquivalenceGroupGroupByArgs['orderBy'] }
+        : { orderBy?: EquivalenceGroupGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EquivalenceGroupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEquivalenceGroupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EquivalenceGroup model
+   */
+  readonly fields: EquivalenceGroupFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EquivalenceGroup.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EquivalenceGroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    members<T extends EquivalenceGroup$membersArgs<ExtArgs> = {}>(args?: Subset<T, EquivalenceGroup$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquivalenceGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    products<T extends EquivalenceGroup$productsArgs<ExtArgs> = {}>(args?: Subset<T, EquivalenceGroup$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EquivalenceGroup model
+   */
+  interface EquivalenceGroupFieldRefs {
+    readonly id: FieldRef<"EquivalenceGroup", 'String'>
+    readonly name: FieldRef<"EquivalenceGroup", 'String'>
+    readonly description: FieldRef<"EquivalenceGroup", 'String'>
+    readonly minStock: FieldRef<"EquivalenceGroup", 'Int'>
+    readonly isActive: FieldRef<"EquivalenceGroup", 'Boolean'>
+    readonly createdAt: FieldRef<"EquivalenceGroup", 'DateTime'>
+    readonly updatedAt: FieldRef<"EquivalenceGroup", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EquivalenceGroup findUnique
+   */
+  export type EquivalenceGroupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroup
+     */
+    select?: EquivalenceGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroup
+     */
+    omit?: EquivalenceGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which EquivalenceGroup to fetch.
+     */
+    where: EquivalenceGroupWhereUniqueInput
+  }
+
+  /**
+   * EquivalenceGroup findUniqueOrThrow
+   */
+  export type EquivalenceGroupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroup
+     */
+    select?: EquivalenceGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroup
+     */
+    omit?: EquivalenceGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which EquivalenceGroup to fetch.
+     */
+    where: EquivalenceGroupWhereUniqueInput
+  }
+
+  /**
+   * EquivalenceGroup findFirst
+   */
+  export type EquivalenceGroupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroup
+     */
+    select?: EquivalenceGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroup
+     */
+    omit?: EquivalenceGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which EquivalenceGroup to fetch.
+     */
+    where?: EquivalenceGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EquivalenceGroups to fetch.
+     */
+    orderBy?: EquivalenceGroupOrderByWithRelationInput | EquivalenceGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EquivalenceGroups.
+     */
+    cursor?: EquivalenceGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EquivalenceGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EquivalenceGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EquivalenceGroups.
+     */
+    distinct?: EquivalenceGroupScalarFieldEnum | EquivalenceGroupScalarFieldEnum[]
+  }
+
+  /**
+   * EquivalenceGroup findFirstOrThrow
+   */
+  export type EquivalenceGroupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroup
+     */
+    select?: EquivalenceGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroup
+     */
+    omit?: EquivalenceGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which EquivalenceGroup to fetch.
+     */
+    where?: EquivalenceGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EquivalenceGroups to fetch.
+     */
+    orderBy?: EquivalenceGroupOrderByWithRelationInput | EquivalenceGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EquivalenceGroups.
+     */
+    cursor?: EquivalenceGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EquivalenceGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EquivalenceGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EquivalenceGroups.
+     */
+    distinct?: EquivalenceGroupScalarFieldEnum | EquivalenceGroupScalarFieldEnum[]
+  }
+
+  /**
+   * EquivalenceGroup findMany
+   */
+  export type EquivalenceGroupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroup
+     */
+    select?: EquivalenceGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroup
+     */
+    omit?: EquivalenceGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which EquivalenceGroups to fetch.
+     */
+    where?: EquivalenceGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EquivalenceGroups to fetch.
+     */
+    orderBy?: EquivalenceGroupOrderByWithRelationInput | EquivalenceGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EquivalenceGroups.
+     */
+    cursor?: EquivalenceGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EquivalenceGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EquivalenceGroups.
+     */
+    skip?: number
+    distinct?: EquivalenceGroupScalarFieldEnum | EquivalenceGroupScalarFieldEnum[]
+  }
+
+  /**
+   * EquivalenceGroup create
+   */
+  export type EquivalenceGroupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroup
+     */
+    select?: EquivalenceGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroup
+     */
+    omit?: EquivalenceGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EquivalenceGroup.
+     */
+    data: XOR<EquivalenceGroupCreateInput, EquivalenceGroupUncheckedCreateInput>
+  }
+
+  /**
+   * EquivalenceGroup createMany
+   */
+  export type EquivalenceGroupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EquivalenceGroups.
+     */
+    data: EquivalenceGroupCreateManyInput | EquivalenceGroupCreateManyInput[]
+  }
+
+  /**
+   * EquivalenceGroup update
+   */
+  export type EquivalenceGroupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroup
+     */
+    select?: EquivalenceGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroup
+     */
+    omit?: EquivalenceGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EquivalenceGroup.
+     */
+    data: XOR<EquivalenceGroupUpdateInput, EquivalenceGroupUncheckedUpdateInput>
+    /**
+     * Choose, which EquivalenceGroup to update.
+     */
+    where: EquivalenceGroupWhereUniqueInput
+  }
+
+  /**
+   * EquivalenceGroup updateMany
+   */
+  export type EquivalenceGroupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EquivalenceGroups.
+     */
+    data: XOR<EquivalenceGroupUpdateManyMutationInput, EquivalenceGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which EquivalenceGroups to update
+     */
+    where?: EquivalenceGroupWhereInput
+    /**
+     * Limit how many EquivalenceGroups to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EquivalenceGroup upsert
+   */
+  export type EquivalenceGroupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroup
+     */
+    select?: EquivalenceGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroup
+     */
+    omit?: EquivalenceGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EquivalenceGroup to update in case it exists.
+     */
+    where: EquivalenceGroupWhereUniqueInput
+    /**
+     * In case the EquivalenceGroup found by the `where` argument doesn't exist, create a new EquivalenceGroup with this data.
+     */
+    create: XOR<EquivalenceGroupCreateInput, EquivalenceGroupUncheckedCreateInput>
+    /**
+     * In case the EquivalenceGroup was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EquivalenceGroupUpdateInput, EquivalenceGroupUncheckedUpdateInput>
+  }
+
+  /**
+   * EquivalenceGroup delete
+   */
+  export type EquivalenceGroupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroup
+     */
+    select?: EquivalenceGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroup
+     */
+    omit?: EquivalenceGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupInclude<ExtArgs> | null
+    /**
+     * Filter which EquivalenceGroup to delete.
+     */
+    where: EquivalenceGroupWhereUniqueInput
+  }
+
+  /**
+   * EquivalenceGroup deleteMany
+   */
+  export type EquivalenceGroupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EquivalenceGroups to delete
+     */
+    where?: EquivalenceGroupWhereInput
+    /**
+     * Limit how many EquivalenceGroups to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EquivalenceGroup findRaw
+   */
+  export type EquivalenceGroupFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * EquivalenceGroup aggregateRaw
+   */
+  export type EquivalenceGroupAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * EquivalenceGroup.members
+   */
+  export type EquivalenceGroup$membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupMember
+     */
+    select?: EquivalenceGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroupMember
+     */
+    omit?: EquivalenceGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupMemberInclude<ExtArgs> | null
+    where?: EquivalenceGroupMemberWhereInput
+    orderBy?: EquivalenceGroupMemberOrderByWithRelationInput | EquivalenceGroupMemberOrderByWithRelationInput[]
+    cursor?: EquivalenceGroupMemberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EquivalenceGroupMemberScalarFieldEnum | EquivalenceGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * EquivalenceGroup.products
+   */
+  export type EquivalenceGroup$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Product
+     */
+    select?: ProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Product
+     */
+    omit?: ProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductInclude<ExtArgs> | null
+    where?: ProductWhereInput
+    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
+    cursor?: ProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
+  }
+
+  /**
+   * EquivalenceGroup without action
+   */
+  export type EquivalenceGroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroup
+     */
+    select?: EquivalenceGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroup
+     */
+    omit?: EquivalenceGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EquivalenceGroupMember
+   */
+
+  export type AggregateEquivalenceGroupMember = {
+    _count: EquivalenceGroupMemberCountAggregateOutputType | null
+    _min: EquivalenceGroupMemberMinAggregateOutputType | null
+    _max: EquivalenceGroupMemberMaxAggregateOutputType | null
+  }
+
+  export type EquivalenceGroupMemberMinAggregateOutputType = {
+    id: string | null
+    groupId: string | null
+    productId: string | null
+  }
+
+  export type EquivalenceGroupMemberMaxAggregateOutputType = {
+    id: string | null
+    groupId: string | null
+    productId: string | null
+  }
+
+  export type EquivalenceGroupMemberCountAggregateOutputType = {
+    id: number
+    groupId: number
+    productId: number
+    _all: number
+  }
+
+
+  export type EquivalenceGroupMemberMinAggregateInputType = {
+    id?: true
+    groupId?: true
+    productId?: true
+  }
+
+  export type EquivalenceGroupMemberMaxAggregateInputType = {
+    id?: true
+    groupId?: true
+    productId?: true
+  }
+
+  export type EquivalenceGroupMemberCountAggregateInputType = {
+    id?: true
+    groupId?: true
+    productId?: true
+    _all?: true
+  }
+
+  export type EquivalenceGroupMemberAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EquivalenceGroupMember to aggregate.
+     */
+    where?: EquivalenceGroupMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EquivalenceGroupMembers to fetch.
+     */
+    orderBy?: EquivalenceGroupMemberOrderByWithRelationInput | EquivalenceGroupMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EquivalenceGroupMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EquivalenceGroupMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EquivalenceGroupMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EquivalenceGroupMembers
+    **/
+    _count?: true | EquivalenceGroupMemberCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EquivalenceGroupMemberMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EquivalenceGroupMemberMaxAggregateInputType
+  }
+
+  export type GetEquivalenceGroupMemberAggregateType<T extends EquivalenceGroupMemberAggregateArgs> = {
+        [P in keyof T & keyof AggregateEquivalenceGroupMember]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEquivalenceGroupMember[P]>
+      : GetScalarType<T[P], AggregateEquivalenceGroupMember[P]>
+  }
+
+
+
+
+  export type EquivalenceGroupMemberGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EquivalenceGroupMemberWhereInput
+    orderBy?: EquivalenceGroupMemberOrderByWithAggregationInput | EquivalenceGroupMemberOrderByWithAggregationInput[]
+    by: EquivalenceGroupMemberScalarFieldEnum[] | EquivalenceGroupMemberScalarFieldEnum
+    having?: EquivalenceGroupMemberScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EquivalenceGroupMemberCountAggregateInputType | true
+    _min?: EquivalenceGroupMemberMinAggregateInputType
+    _max?: EquivalenceGroupMemberMaxAggregateInputType
+  }
+
+  export type EquivalenceGroupMemberGroupByOutputType = {
+    id: string
+    groupId: string
+    productId: string
+    _count: EquivalenceGroupMemberCountAggregateOutputType | null
+    _min: EquivalenceGroupMemberMinAggregateOutputType | null
+    _max: EquivalenceGroupMemberMaxAggregateOutputType | null
+  }
+
+  type GetEquivalenceGroupMemberGroupByPayload<T extends EquivalenceGroupMemberGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EquivalenceGroupMemberGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EquivalenceGroupMemberGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EquivalenceGroupMemberGroupByOutputType[P]>
+            : GetScalarType<T[P], EquivalenceGroupMemberGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EquivalenceGroupMemberSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    groupId?: boolean
+    productId?: boolean
+    group?: boolean | EquivalenceGroupDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["equivalenceGroupMember"]>
+
+
+
+  export type EquivalenceGroupMemberSelectScalar = {
+    id?: boolean
+    groupId?: boolean
+    productId?: boolean
+  }
+
+  export type EquivalenceGroupMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "groupId" | "productId", ExtArgs["result"]["equivalenceGroupMember"]>
+  export type EquivalenceGroupMemberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    group?: boolean | EquivalenceGroupDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }
+
+  export type $EquivalenceGroupMemberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EquivalenceGroupMember"
+    objects: {
+      group: Prisma.$EquivalenceGroupPayload<ExtArgs>
+      product: Prisma.$ProductPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      groupId: string
+      productId: string
+    }, ExtArgs["result"]["equivalenceGroupMember"]>
+    composites: {}
+  }
+
+  type EquivalenceGroupMemberGetPayload<S extends boolean | null | undefined | EquivalenceGroupMemberDefaultArgs> = $Result.GetResult<Prisma.$EquivalenceGroupMemberPayload, S>
+
+  type EquivalenceGroupMemberCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EquivalenceGroupMemberFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EquivalenceGroupMemberCountAggregateInputType | true
+    }
+
+  export interface EquivalenceGroupMemberDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EquivalenceGroupMember'], meta: { name: 'EquivalenceGroupMember' } }
+    /**
+     * Find zero or one EquivalenceGroupMember that matches the filter.
+     * @param {EquivalenceGroupMemberFindUniqueArgs} args - Arguments to find a EquivalenceGroupMember
+     * @example
+     * // Get one EquivalenceGroupMember
+     * const equivalenceGroupMember = await prisma.equivalenceGroupMember.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EquivalenceGroupMemberFindUniqueArgs>(args: SelectSubset<T, EquivalenceGroupMemberFindUniqueArgs<ExtArgs>>): Prisma__EquivalenceGroupMemberClient<$Result.GetResult<Prisma.$EquivalenceGroupMemberPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EquivalenceGroupMember that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EquivalenceGroupMemberFindUniqueOrThrowArgs} args - Arguments to find a EquivalenceGroupMember
+     * @example
+     * // Get one EquivalenceGroupMember
+     * const equivalenceGroupMember = await prisma.equivalenceGroupMember.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EquivalenceGroupMemberFindUniqueOrThrowArgs>(args: SelectSubset<T, EquivalenceGroupMemberFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EquivalenceGroupMemberClient<$Result.GetResult<Prisma.$EquivalenceGroupMemberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EquivalenceGroupMember that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupMemberFindFirstArgs} args - Arguments to find a EquivalenceGroupMember
+     * @example
+     * // Get one EquivalenceGroupMember
+     * const equivalenceGroupMember = await prisma.equivalenceGroupMember.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EquivalenceGroupMemberFindFirstArgs>(args?: SelectSubset<T, EquivalenceGroupMemberFindFirstArgs<ExtArgs>>): Prisma__EquivalenceGroupMemberClient<$Result.GetResult<Prisma.$EquivalenceGroupMemberPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EquivalenceGroupMember that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupMemberFindFirstOrThrowArgs} args - Arguments to find a EquivalenceGroupMember
+     * @example
+     * // Get one EquivalenceGroupMember
+     * const equivalenceGroupMember = await prisma.equivalenceGroupMember.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EquivalenceGroupMemberFindFirstOrThrowArgs>(args?: SelectSubset<T, EquivalenceGroupMemberFindFirstOrThrowArgs<ExtArgs>>): Prisma__EquivalenceGroupMemberClient<$Result.GetResult<Prisma.$EquivalenceGroupMemberPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EquivalenceGroupMembers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupMemberFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EquivalenceGroupMembers
+     * const equivalenceGroupMembers = await prisma.equivalenceGroupMember.findMany()
+     * 
+     * // Get first 10 EquivalenceGroupMembers
+     * const equivalenceGroupMembers = await prisma.equivalenceGroupMember.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const equivalenceGroupMemberWithIdOnly = await prisma.equivalenceGroupMember.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EquivalenceGroupMemberFindManyArgs>(args?: SelectSubset<T, EquivalenceGroupMemberFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquivalenceGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EquivalenceGroupMember.
+     * @param {EquivalenceGroupMemberCreateArgs} args - Arguments to create a EquivalenceGroupMember.
+     * @example
+     * // Create one EquivalenceGroupMember
+     * const EquivalenceGroupMember = await prisma.equivalenceGroupMember.create({
+     *   data: {
+     *     // ... data to create a EquivalenceGroupMember
+     *   }
+     * })
+     * 
+     */
+    create<T extends EquivalenceGroupMemberCreateArgs>(args: SelectSubset<T, EquivalenceGroupMemberCreateArgs<ExtArgs>>): Prisma__EquivalenceGroupMemberClient<$Result.GetResult<Prisma.$EquivalenceGroupMemberPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EquivalenceGroupMembers.
+     * @param {EquivalenceGroupMemberCreateManyArgs} args - Arguments to create many EquivalenceGroupMembers.
+     * @example
+     * // Create many EquivalenceGroupMembers
+     * const equivalenceGroupMember = await prisma.equivalenceGroupMember.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EquivalenceGroupMemberCreateManyArgs>(args?: SelectSubset<T, EquivalenceGroupMemberCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a EquivalenceGroupMember.
+     * @param {EquivalenceGroupMemberDeleteArgs} args - Arguments to delete one EquivalenceGroupMember.
+     * @example
+     * // Delete one EquivalenceGroupMember
+     * const EquivalenceGroupMember = await prisma.equivalenceGroupMember.delete({
+     *   where: {
+     *     // ... filter to delete one EquivalenceGroupMember
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EquivalenceGroupMemberDeleteArgs>(args: SelectSubset<T, EquivalenceGroupMemberDeleteArgs<ExtArgs>>): Prisma__EquivalenceGroupMemberClient<$Result.GetResult<Prisma.$EquivalenceGroupMemberPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EquivalenceGroupMember.
+     * @param {EquivalenceGroupMemberUpdateArgs} args - Arguments to update one EquivalenceGroupMember.
+     * @example
+     * // Update one EquivalenceGroupMember
+     * const equivalenceGroupMember = await prisma.equivalenceGroupMember.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EquivalenceGroupMemberUpdateArgs>(args: SelectSubset<T, EquivalenceGroupMemberUpdateArgs<ExtArgs>>): Prisma__EquivalenceGroupMemberClient<$Result.GetResult<Prisma.$EquivalenceGroupMemberPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EquivalenceGroupMembers.
+     * @param {EquivalenceGroupMemberDeleteManyArgs} args - Arguments to filter EquivalenceGroupMembers to delete.
+     * @example
+     * // Delete a few EquivalenceGroupMembers
+     * const { count } = await prisma.equivalenceGroupMember.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EquivalenceGroupMemberDeleteManyArgs>(args?: SelectSubset<T, EquivalenceGroupMemberDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EquivalenceGroupMembers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupMemberUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EquivalenceGroupMembers
+     * const equivalenceGroupMember = await prisma.equivalenceGroupMember.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EquivalenceGroupMemberUpdateManyArgs>(args: SelectSubset<T, EquivalenceGroupMemberUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one EquivalenceGroupMember.
+     * @param {EquivalenceGroupMemberUpsertArgs} args - Arguments to update or create a EquivalenceGroupMember.
+     * @example
+     * // Update or create a EquivalenceGroupMember
+     * const equivalenceGroupMember = await prisma.equivalenceGroupMember.upsert({
+     *   create: {
+     *     // ... data to create a EquivalenceGroupMember
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EquivalenceGroupMember we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EquivalenceGroupMemberUpsertArgs>(args: SelectSubset<T, EquivalenceGroupMemberUpsertArgs<ExtArgs>>): Prisma__EquivalenceGroupMemberClient<$Result.GetResult<Prisma.$EquivalenceGroupMemberPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EquivalenceGroupMembers that matches the filter.
+     * @param {EquivalenceGroupMemberFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const equivalenceGroupMember = await prisma.equivalenceGroupMember.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: EquivalenceGroupMemberFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a EquivalenceGroupMember.
+     * @param {EquivalenceGroupMemberAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const equivalenceGroupMember = await prisma.equivalenceGroupMember.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: EquivalenceGroupMemberAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of EquivalenceGroupMembers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupMemberCountArgs} args - Arguments to filter EquivalenceGroupMembers to count.
+     * @example
+     * // Count the number of EquivalenceGroupMembers
+     * const count = await prisma.equivalenceGroupMember.count({
+     *   where: {
+     *     // ... the filter for the EquivalenceGroupMembers we want to count
+     *   }
+     * })
+    **/
+    count<T extends EquivalenceGroupMemberCountArgs>(
+      args?: Subset<T, EquivalenceGroupMemberCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EquivalenceGroupMemberCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EquivalenceGroupMember.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupMemberAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EquivalenceGroupMemberAggregateArgs>(args: Subset<T, EquivalenceGroupMemberAggregateArgs>): Prisma.PrismaPromise<GetEquivalenceGroupMemberAggregateType<T>>
+
+    /**
+     * Group by EquivalenceGroupMember.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquivalenceGroupMemberGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EquivalenceGroupMemberGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EquivalenceGroupMemberGroupByArgs['orderBy'] }
+        : { orderBy?: EquivalenceGroupMemberGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EquivalenceGroupMemberGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEquivalenceGroupMemberGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EquivalenceGroupMember model
+   */
+  readonly fields: EquivalenceGroupMemberFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EquivalenceGroupMember.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EquivalenceGroupMemberClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    group<T extends EquivalenceGroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EquivalenceGroupDefaultArgs<ExtArgs>>): Prisma__EquivalenceGroupClient<$Result.GetResult<Prisma.$EquivalenceGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EquivalenceGroupMember model
+   */
+  interface EquivalenceGroupMemberFieldRefs {
+    readonly id: FieldRef<"EquivalenceGroupMember", 'String'>
+    readonly groupId: FieldRef<"EquivalenceGroupMember", 'String'>
+    readonly productId: FieldRef<"EquivalenceGroupMember", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EquivalenceGroupMember findUnique
+   */
+  export type EquivalenceGroupMemberFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupMember
+     */
+    select?: EquivalenceGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroupMember
+     */
+    omit?: EquivalenceGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which EquivalenceGroupMember to fetch.
+     */
+    where: EquivalenceGroupMemberWhereUniqueInput
+  }
+
+  /**
+   * EquivalenceGroupMember findUniqueOrThrow
+   */
+  export type EquivalenceGroupMemberFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupMember
+     */
+    select?: EquivalenceGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroupMember
+     */
+    omit?: EquivalenceGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which EquivalenceGroupMember to fetch.
+     */
+    where: EquivalenceGroupMemberWhereUniqueInput
+  }
+
+  /**
+   * EquivalenceGroupMember findFirst
+   */
+  export type EquivalenceGroupMemberFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupMember
+     */
+    select?: EquivalenceGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroupMember
+     */
+    omit?: EquivalenceGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which EquivalenceGroupMember to fetch.
+     */
+    where?: EquivalenceGroupMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EquivalenceGroupMembers to fetch.
+     */
+    orderBy?: EquivalenceGroupMemberOrderByWithRelationInput | EquivalenceGroupMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EquivalenceGroupMembers.
+     */
+    cursor?: EquivalenceGroupMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EquivalenceGroupMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EquivalenceGroupMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EquivalenceGroupMembers.
+     */
+    distinct?: EquivalenceGroupMemberScalarFieldEnum | EquivalenceGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * EquivalenceGroupMember findFirstOrThrow
+   */
+  export type EquivalenceGroupMemberFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupMember
+     */
+    select?: EquivalenceGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroupMember
+     */
+    omit?: EquivalenceGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which EquivalenceGroupMember to fetch.
+     */
+    where?: EquivalenceGroupMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EquivalenceGroupMembers to fetch.
+     */
+    orderBy?: EquivalenceGroupMemberOrderByWithRelationInput | EquivalenceGroupMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EquivalenceGroupMembers.
+     */
+    cursor?: EquivalenceGroupMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EquivalenceGroupMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EquivalenceGroupMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EquivalenceGroupMembers.
+     */
+    distinct?: EquivalenceGroupMemberScalarFieldEnum | EquivalenceGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * EquivalenceGroupMember findMany
+   */
+  export type EquivalenceGroupMemberFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupMember
+     */
+    select?: EquivalenceGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroupMember
+     */
+    omit?: EquivalenceGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which EquivalenceGroupMembers to fetch.
+     */
+    where?: EquivalenceGroupMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EquivalenceGroupMembers to fetch.
+     */
+    orderBy?: EquivalenceGroupMemberOrderByWithRelationInput | EquivalenceGroupMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EquivalenceGroupMembers.
+     */
+    cursor?: EquivalenceGroupMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EquivalenceGroupMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EquivalenceGroupMembers.
+     */
+    skip?: number
+    distinct?: EquivalenceGroupMemberScalarFieldEnum | EquivalenceGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * EquivalenceGroupMember create
+   */
+  export type EquivalenceGroupMemberCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupMember
+     */
+    select?: EquivalenceGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroupMember
+     */
+    omit?: EquivalenceGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupMemberInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EquivalenceGroupMember.
+     */
+    data: XOR<EquivalenceGroupMemberCreateInput, EquivalenceGroupMemberUncheckedCreateInput>
+  }
+
+  /**
+   * EquivalenceGroupMember createMany
+   */
+  export type EquivalenceGroupMemberCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EquivalenceGroupMembers.
+     */
+    data: EquivalenceGroupMemberCreateManyInput | EquivalenceGroupMemberCreateManyInput[]
+  }
+
+  /**
+   * EquivalenceGroupMember update
+   */
+  export type EquivalenceGroupMemberUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupMember
+     */
+    select?: EquivalenceGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroupMember
+     */
+    omit?: EquivalenceGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupMemberInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EquivalenceGroupMember.
+     */
+    data: XOR<EquivalenceGroupMemberUpdateInput, EquivalenceGroupMemberUncheckedUpdateInput>
+    /**
+     * Choose, which EquivalenceGroupMember to update.
+     */
+    where: EquivalenceGroupMemberWhereUniqueInput
+  }
+
+  /**
+   * EquivalenceGroupMember updateMany
+   */
+  export type EquivalenceGroupMemberUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EquivalenceGroupMembers.
+     */
+    data: XOR<EquivalenceGroupMemberUpdateManyMutationInput, EquivalenceGroupMemberUncheckedUpdateManyInput>
+    /**
+     * Filter which EquivalenceGroupMembers to update
+     */
+    where?: EquivalenceGroupMemberWhereInput
+    /**
+     * Limit how many EquivalenceGroupMembers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EquivalenceGroupMember upsert
+   */
+  export type EquivalenceGroupMemberUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupMember
+     */
+    select?: EquivalenceGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroupMember
+     */
+    omit?: EquivalenceGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupMemberInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EquivalenceGroupMember to update in case it exists.
+     */
+    where: EquivalenceGroupMemberWhereUniqueInput
+    /**
+     * In case the EquivalenceGroupMember found by the `where` argument doesn't exist, create a new EquivalenceGroupMember with this data.
+     */
+    create: XOR<EquivalenceGroupMemberCreateInput, EquivalenceGroupMemberUncheckedCreateInput>
+    /**
+     * In case the EquivalenceGroupMember was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EquivalenceGroupMemberUpdateInput, EquivalenceGroupMemberUncheckedUpdateInput>
+  }
+
+  /**
+   * EquivalenceGroupMember delete
+   */
+  export type EquivalenceGroupMemberDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupMember
+     */
+    select?: EquivalenceGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroupMember
+     */
+    omit?: EquivalenceGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter which EquivalenceGroupMember to delete.
+     */
+    where: EquivalenceGroupMemberWhereUniqueInput
+  }
+
+  /**
+   * EquivalenceGroupMember deleteMany
+   */
+  export type EquivalenceGroupMemberDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EquivalenceGroupMembers to delete
+     */
+    where?: EquivalenceGroupMemberWhereInput
+    /**
+     * Limit how many EquivalenceGroupMembers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EquivalenceGroupMember findRaw
+   */
+  export type EquivalenceGroupMemberFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * EquivalenceGroupMember aggregateRaw
+   */
+  export type EquivalenceGroupMemberAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * EquivalenceGroupMember without action
+   */
+  export type EquivalenceGroupMemberDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquivalenceGroupMember
+     */
+    select?: EquivalenceGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquivalenceGroupMember
+     */
+    omit?: EquivalenceGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquivalenceGroupMemberInclude<ExtArgs> | null
   }
 
 
@@ -49788,13 +52142,37 @@ export namespace Prisma {
     categoryId: 'categoryId',
     subcategoryId: 'subcategoryId',
     category: 'category',
+    equivalenceGroupId: 'equivalenceGroupId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     isAlertMarked: 'isAlertMarked',
+    isActive: 'isActive',
     lastCost: 'lastCost'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+  export const EquivalenceGroupScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    minStock: 'minStock',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type EquivalenceGroupScalarFieldEnum = (typeof EquivalenceGroupScalarFieldEnum)[keyof typeof EquivalenceGroupScalarFieldEnum]
+
+
+  export const EquivalenceGroupMemberScalarFieldEnum: {
+    id: 'id',
+    groupId: 'groupId',
+    productId: 'productId'
+  };
+
+  export type EquivalenceGroupMemberScalarFieldEnum = (typeof EquivalenceGroupMemberScalarFieldEnum)[keyof typeof EquivalenceGroupMemberScalarFieldEnum]
 
 
   export const CategoryScalarFieldEnum: {
@@ -50652,14 +53030,18 @@ export namespace Prisma {
     categoryId?: StringNullableFilter<"Product"> | string | null
     subcategoryId?: StringNullableFilter<"Product"> | string | null
     category?: StringNullableFilter<"Product"> | string | null
+    equivalenceGroupId?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     isAlertMarked?: BoolFilter<"Product"> | boolean
+    isActive?: BoolFilter<"Product"> | boolean
     lastCost?: FloatNullableFilter<"Product"> | number | null
     categoryRel?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
     subcategoryRel?: XOR<SubcategoryNullableScalarRelationFilter, SubcategoryWhereInput> | null
     variants?: ProductVariantListRelationFilter
     compatibilities?: ProductCompatibilityListRelationFilter
+    equivalenceGroupMembers?: EquivalenceGroupMemberListRelationFilter
+    equivalenceGroup?: XOR<EquivalenceGroupNullableScalarRelationFilter, EquivalenceGroupWhereInput> | null
   }
 
   export type ProductOrderByWithRelationInput = {
@@ -50684,14 +53066,18 @@ export namespace Prisma {
     categoryId?: SortOrder
     subcategoryId?: SortOrder
     category?: SortOrder
+    equivalenceGroupId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isAlertMarked?: SortOrder
+    isActive?: SortOrder
     lastCost?: SortOrder
     categoryRel?: CategoryOrderByWithRelationInput
     subcategoryRel?: SubcategoryOrderByWithRelationInput
     variants?: ProductVariantOrderByRelationAggregateInput
     compatibilities?: ProductCompatibilityOrderByRelationAggregateInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberOrderByRelationAggregateInput
+    equivalenceGroup?: EquivalenceGroupOrderByWithRelationInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -50719,14 +53105,18 @@ export namespace Prisma {
     categoryId?: StringNullableFilter<"Product"> | string | null
     subcategoryId?: StringNullableFilter<"Product"> | string | null
     category?: StringNullableFilter<"Product"> | string | null
+    equivalenceGroupId?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     isAlertMarked?: BoolFilter<"Product"> | boolean
+    isActive?: BoolFilter<"Product"> | boolean
     lastCost?: FloatNullableFilter<"Product"> | number | null
     categoryRel?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
     subcategoryRel?: XOR<SubcategoryNullableScalarRelationFilter, SubcategoryWhereInput> | null
     variants?: ProductVariantListRelationFilter
     compatibilities?: ProductCompatibilityListRelationFilter
+    equivalenceGroupMembers?: EquivalenceGroupMemberListRelationFilter
+    equivalenceGroup?: XOR<EquivalenceGroupNullableScalarRelationFilter, EquivalenceGroupWhereInput> | null
   }, "id" | "slug">
 
   export type ProductOrderByWithAggregationInput = {
@@ -50751,9 +53141,11 @@ export namespace Prisma {
     categoryId?: SortOrder
     subcategoryId?: SortOrder
     category?: SortOrder
+    equivalenceGroupId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isAlertMarked?: SortOrder
+    isActive?: SortOrder
     lastCost?: SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
@@ -50787,10 +53179,130 @@ export namespace Prisma {
     categoryId?: StringNullableWithAggregatesFilter<"Product"> | string | null
     subcategoryId?: StringNullableWithAggregatesFilter<"Product"> | string | null
     category?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    equivalenceGroupId?: StringNullableWithAggregatesFilter<"Product"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     isAlertMarked?: BoolWithAggregatesFilter<"Product"> | boolean
+    isActive?: BoolWithAggregatesFilter<"Product"> | boolean
     lastCost?: FloatNullableWithAggregatesFilter<"Product"> | number | null
+  }
+
+  export type EquivalenceGroupWhereInput = {
+    AND?: EquivalenceGroupWhereInput | EquivalenceGroupWhereInput[]
+    OR?: EquivalenceGroupWhereInput[]
+    NOT?: EquivalenceGroupWhereInput | EquivalenceGroupWhereInput[]
+    id?: StringFilter<"EquivalenceGroup"> | string
+    name?: StringFilter<"EquivalenceGroup"> | string
+    description?: StringNullableFilter<"EquivalenceGroup"> | string | null
+    minStock?: IntFilter<"EquivalenceGroup"> | number
+    isActive?: BoolFilter<"EquivalenceGroup"> | boolean
+    createdAt?: DateTimeFilter<"EquivalenceGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"EquivalenceGroup"> | Date | string
+    members?: EquivalenceGroupMemberListRelationFilter
+    products?: ProductListRelationFilter
+  }
+
+  export type EquivalenceGroupOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    minStock?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    members?: EquivalenceGroupMemberOrderByRelationAggregateInput
+    products?: ProductOrderByRelationAggregateInput
+  }
+
+  export type EquivalenceGroupWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: EquivalenceGroupWhereInput | EquivalenceGroupWhereInput[]
+    OR?: EquivalenceGroupWhereInput[]
+    NOT?: EquivalenceGroupWhereInput | EquivalenceGroupWhereInput[]
+    description?: StringNullableFilter<"EquivalenceGroup"> | string | null
+    minStock?: IntFilter<"EquivalenceGroup"> | number
+    isActive?: BoolFilter<"EquivalenceGroup"> | boolean
+    createdAt?: DateTimeFilter<"EquivalenceGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"EquivalenceGroup"> | Date | string
+    members?: EquivalenceGroupMemberListRelationFilter
+    products?: ProductListRelationFilter
+  }, "id" | "name">
+
+  export type EquivalenceGroupOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    minStock?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: EquivalenceGroupCountOrderByAggregateInput
+    _avg?: EquivalenceGroupAvgOrderByAggregateInput
+    _max?: EquivalenceGroupMaxOrderByAggregateInput
+    _min?: EquivalenceGroupMinOrderByAggregateInput
+    _sum?: EquivalenceGroupSumOrderByAggregateInput
+  }
+
+  export type EquivalenceGroupScalarWhereWithAggregatesInput = {
+    AND?: EquivalenceGroupScalarWhereWithAggregatesInput | EquivalenceGroupScalarWhereWithAggregatesInput[]
+    OR?: EquivalenceGroupScalarWhereWithAggregatesInput[]
+    NOT?: EquivalenceGroupScalarWhereWithAggregatesInput | EquivalenceGroupScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EquivalenceGroup"> | string
+    name?: StringWithAggregatesFilter<"EquivalenceGroup"> | string
+    description?: StringNullableWithAggregatesFilter<"EquivalenceGroup"> | string | null
+    minStock?: IntWithAggregatesFilter<"EquivalenceGroup"> | number
+    isActive?: BoolWithAggregatesFilter<"EquivalenceGroup"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"EquivalenceGroup"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"EquivalenceGroup"> | Date | string
+  }
+
+  export type EquivalenceGroupMemberWhereInput = {
+    AND?: EquivalenceGroupMemberWhereInput | EquivalenceGroupMemberWhereInput[]
+    OR?: EquivalenceGroupMemberWhereInput[]
+    NOT?: EquivalenceGroupMemberWhereInput | EquivalenceGroupMemberWhereInput[]
+    id?: StringFilter<"EquivalenceGroupMember"> | string
+    groupId?: StringFilter<"EquivalenceGroupMember"> | string
+    productId?: StringFilter<"EquivalenceGroupMember"> | string
+    group?: XOR<EquivalenceGroupScalarRelationFilter, EquivalenceGroupWhereInput>
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+  }
+
+  export type EquivalenceGroupMemberOrderByWithRelationInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+    productId?: SortOrder
+    group?: EquivalenceGroupOrderByWithRelationInput
+    product?: ProductOrderByWithRelationInput
+  }
+
+  export type EquivalenceGroupMemberWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    productId?: string
+    AND?: EquivalenceGroupMemberWhereInput | EquivalenceGroupMemberWhereInput[]
+    OR?: EquivalenceGroupMemberWhereInput[]
+    NOT?: EquivalenceGroupMemberWhereInput | EquivalenceGroupMemberWhereInput[]
+    groupId?: StringFilter<"EquivalenceGroupMember"> | string
+    group?: XOR<EquivalenceGroupScalarRelationFilter, EquivalenceGroupWhereInput>
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+  }, "id" | "productId">
+
+  export type EquivalenceGroupMemberOrderByWithAggregationInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+    productId?: SortOrder
+    _count?: EquivalenceGroupMemberCountOrderByAggregateInput
+    _max?: EquivalenceGroupMemberMaxOrderByAggregateInput
+    _min?: EquivalenceGroupMemberMinOrderByAggregateInput
+  }
+
+  export type EquivalenceGroupMemberScalarWhereWithAggregatesInput = {
+    AND?: EquivalenceGroupMemberScalarWhereWithAggregatesInput | EquivalenceGroupMemberScalarWhereWithAggregatesInput[]
+    OR?: EquivalenceGroupMemberScalarWhereWithAggregatesInput[]
+    NOT?: EquivalenceGroupMemberScalarWhereWithAggregatesInput | EquivalenceGroupMemberScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EquivalenceGroupMember"> | string
+    groupId?: StringWithAggregatesFilter<"EquivalenceGroupMember"> | string
+    productId?: StringWithAggregatesFilter<"EquivalenceGroupMember"> | string
   }
 
   export type CategoryWhereInput = {
@@ -54104,11 +56616,14 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
     categoryRel?: CategoryCreateNestedOneWithoutProductsInput
     subcategoryRel?: SubcategoryCreateNestedOneWithoutProductsInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
     compatibilities?: ProductCompatibilityCreateNestedManyWithoutProductInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberCreateNestedManyWithoutProductInput
+    equivalenceGroup?: EquivalenceGroupCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateInput = {
@@ -54133,12 +56648,15 @@ export namespace Prisma {
     categoryId?: string | null
     subcategoryId?: string | null
     category?: string | null
+    equivalenceGroupId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
     compatibilities?: ProductCompatibilityUncheckedCreateNestedManyWithoutProductInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductUpdateInput = {
@@ -54163,11 +56681,14 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     categoryRel?: CategoryUpdateOneWithoutProductsNestedInput
     subcategoryRel?: SubcategoryUpdateOneWithoutProductsNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
     compatibilities?: ProductCompatibilityUpdateManyWithoutProductNestedInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUpdateManyWithoutProductNestedInput
+    equivalenceGroup?: EquivalenceGroupUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
@@ -54191,12 +56712,15 @@ export namespace Prisma {
     categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    equivalenceGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
     compatibilities?: ProductCompatibilityUncheckedUpdateManyWithoutProductNestedInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
@@ -54221,9 +56745,11 @@ export namespace Prisma {
     categoryId?: string | null
     subcategoryId?: string | null
     category?: string | null
+    equivalenceGroupId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
   }
 
@@ -54249,6 +56775,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
@@ -54273,10 +56800,123 @@ export namespace Prisma {
     categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    equivalenceGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type EquivalenceGroupCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    minStock?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: EquivalenceGroupMemberCreateNestedManyWithoutGroupInput
+    products?: ProductCreateNestedManyWithoutEquivalenceGroupInput
+  }
+
+  export type EquivalenceGroupUncheckedCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    minStock?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: EquivalenceGroupMemberUncheckedCreateNestedManyWithoutGroupInput
+    products?: ProductUncheckedCreateNestedManyWithoutEquivalenceGroupInput
+  }
+
+  export type EquivalenceGroupUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    minStock?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: EquivalenceGroupMemberUpdateManyWithoutGroupNestedInput
+    products?: ProductUpdateManyWithoutEquivalenceGroupNestedInput
+  }
+
+  export type EquivalenceGroupUncheckedUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    minStock?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: EquivalenceGroupMemberUncheckedUpdateManyWithoutGroupNestedInput
+    products?: ProductUncheckedUpdateManyWithoutEquivalenceGroupNestedInput
+  }
+
+  export type EquivalenceGroupCreateManyInput = {
+    id?: string
+    name: string
+    description?: string | null
+    minStock?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EquivalenceGroupUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    minStock?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EquivalenceGroupUncheckedUpdateManyInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    minStock?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EquivalenceGroupMemberCreateInput = {
+    id?: string
+    group: EquivalenceGroupCreateNestedOneWithoutMembersInput
+    product: ProductCreateNestedOneWithoutEquivalenceGroupMembersInput
+  }
+
+  export type EquivalenceGroupMemberUncheckedCreateInput = {
+    id?: string
+    groupId: string
+    productId: string
+  }
+
+  export type EquivalenceGroupMemberUpdateInput = {
+    group?: EquivalenceGroupUpdateOneRequiredWithoutMembersNestedInput
+    product?: ProductUpdateOneRequiredWithoutEquivalenceGroupMembersNestedInput
+  }
+
+  export type EquivalenceGroupMemberUncheckedUpdateInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EquivalenceGroupMemberCreateManyInput = {
+    id?: string
+    groupId: string
+    productId: string
+  }
+
+  export type EquivalenceGroupMemberUpdateManyMutationInput = {
+
+  }
+
+  export type EquivalenceGroupMemberUncheckedUpdateManyInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
   }
 
   export type CategoryCreateInput = {
@@ -57892,11 +60532,26 @@ export namespace Prisma {
     none?: ProductCompatibilityWhereInput
   }
 
+  export type EquivalenceGroupMemberListRelationFilter = {
+    every?: EquivalenceGroupMemberWhereInput
+    some?: EquivalenceGroupMemberWhereInput
+    none?: EquivalenceGroupMemberWhereInput
+  }
+
+  export type EquivalenceGroupNullableScalarRelationFilter = {
+    is?: EquivalenceGroupWhereInput | null
+    isNot?: EquivalenceGroupWhereInput | null
+  }
+
   export type ProductVariantOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type ProductCompatibilityOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EquivalenceGroupMemberOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -57922,9 +60577,11 @@ export namespace Prisma {
     categoryId?: SortOrder
     subcategoryId?: SortOrder
     category?: SortOrder
+    equivalenceGroupId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isAlertMarked?: SortOrder
+    isActive?: SortOrder
     lastCost?: SortOrder
   }
 
@@ -57957,9 +60614,11 @@ export namespace Prisma {
     categoryId?: SortOrder
     subcategoryId?: SortOrder
     category?: SortOrder
+    equivalenceGroupId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isAlertMarked?: SortOrder
+    isActive?: SortOrder
     lastCost?: SortOrder
   }
 
@@ -57982,9 +60641,11 @@ export namespace Prisma {
     categoryId?: SortOrder
     subcategoryId?: SortOrder
     category?: SortOrder
+    equivalenceGroupId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isAlertMarked?: SortOrder
+    isActive?: SortOrder
     lastCost?: SortOrder
   }
 
@@ -58121,6 +60782,82 @@ export namespace Prisma {
     isSet?: boolean
   }
 
+  export type ProductListRelationFilter = {
+    every?: ProductWhereInput
+    some?: ProductWhereInput
+    none?: ProductWhereInput
+  }
+
+  export type ProductOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EquivalenceGroupCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    minStock?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EquivalenceGroupAvgOrderByAggregateInput = {
+    minStock?: SortOrder
+  }
+
+  export type EquivalenceGroupMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    minStock?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EquivalenceGroupMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    minStock?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EquivalenceGroupSumOrderByAggregateInput = {
+    minStock?: SortOrder
+  }
+
+  export type EquivalenceGroupScalarRelationFilter = {
+    is?: EquivalenceGroupWhereInput
+    isNot?: EquivalenceGroupWhereInput
+  }
+
+  export type ProductScalarRelationFilter = {
+    is?: ProductWhereInput
+    isNot?: ProductWhereInput
+  }
+
+  export type EquivalenceGroupMemberCountOrderByAggregateInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+    productId?: SortOrder
+  }
+
+  export type EquivalenceGroupMemberMaxOrderByAggregateInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+    productId?: SortOrder
+  }
+
+  export type EquivalenceGroupMemberMinOrderByAggregateInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+    productId?: SortOrder
+  }
+
   export type CategoryAttributeListRelationFilter = {
     every?: CategoryAttributeWhereInput
     some?: CategoryAttributeWhereInput
@@ -58133,21 +60870,11 @@ export namespace Prisma {
     none?: SubcategoryWhereInput
   }
 
-  export type ProductListRelationFilter = {
-    every?: ProductWhereInput
-    some?: ProductWhereInput
-    none?: ProductWhereInput
-  }
-
   export type CategoryAttributeOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type SubcategoryOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type ProductOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -58339,11 +61066,6 @@ export namespace Prisma {
 
   export type SubcategoryAttributeSumOrderByAggregateInput = {
     position?: SortOrder
-  }
-
-  export type ProductScalarRelationFilter = {
-    is?: ProductWhereInput
-    isNot?: ProductWhereInput
   }
 
   export type ProductVariantCountOrderByAggregateInput = {
@@ -60479,6 +63201,19 @@ export namespace Prisma {
     connect?: ProductCompatibilityWhereUniqueInput | ProductCompatibilityWhereUniqueInput[]
   }
 
+  export type EquivalenceGroupMemberCreateNestedManyWithoutProductInput = {
+    create?: XOR<EquivalenceGroupMemberCreateWithoutProductInput, EquivalenceGroupMemberUncheckedCreateWithoutProductInput> | EquivalenceGroupMemberCreateWithoutProductInput[] | EquivalenceGroupMemberUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: EquivalenceGroupMemberCreateOrConnectWithoutProductInput | EquivalenceGroupMemberCreateOrConnectWithoutProductInput[]
+    createMany?: EquivalenceGroupMemberCreateManyProductInputEnvelope
+    connect?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+  }
+
+  export type EquivalenceGroupCreateNestedOneWithoutProductsInput = {
+    create?: XOR<EquivalenceGroupCreateWithoutProductsInput, EquivalenceGroupUncheckedCreateWithoutProductsInput>
+    connectOrCreate?: EquivalenceGroupCreateOrConnectWithoutProductsInput
+    connect?: EquivalenceGroupWhereUniqueInput
+  }
+
   export type ProductVariantUncheckedCreateNestedManyWithoutProductInput = {
     create?: XOR<ProductVariantCreateWithoutProductInput, ProductVariantUncheckedCreateWithoutProductInput> | ProductVariantCreateWithoutProductInput[] | ProductVariantUncheckedCreateWithoutProductInput[]
     connectOrCreate?: ProductVariantCreateOrConnectWithoutProductInput | ProductVariantCreateOrConnectWithoutProductInput[]
@@ -60491,6 +63226,13 @@ export namespace Prisma {
     connectOrCreate?: ProductCompatibilityCreateOrConnectWithoutProductInput | ProductCompatibilityCreateOrConnectWithoutProductInput[]
     createMany?: ProductCompatibilityCreateManyProductInputEnvelope
     connect?: ProductCompatibilityWhereUniqueInput | ProductCompatibilityWhereUniqueInput[]
+  }
+
+  export type EquivalenceGroupMemberUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<EquivalenceGroupMemberCreateWithoutProductInput, EquivalenceGroupMemberUncheckedCreateWithoutProductInput> | EquivalenceGroupMemberCreateWithoutProductInput[] | EquivalenceGroupMemberUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: EquivalenceGroupMemberCreateOrConnectWithoutProductInput | EquivalenceGroupMemberCreateOrConnectWithoutProductInput[]
+    createMany?: EquivalenceGroupMemberCreateManyProductInputEnvelope
+    connect?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -60588,6 +63330,30 @@ export namespace Prisma {
     deleteMany?: ProductCompatibilityScalarWhereInput | ProductCompatibilityScalarWhereInput[]
   }
 
+  export type EquivalenceGroupMemberUpdateManyWithoutProductNestedInput = {
+    create?: XOR<EquivalenceGroupMemberCreateWithoutProductInput, EquivalenceGroupMemberUncheckedCreateWithoutProductInput> | EquivalenceGroupMemberCreateWithoutProductInput[] | EquivalenceGroupMemberUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: EquivalenceGroupMemberCreateOrConnectWithoutProductInput | EquivalenceGroupMemberCreateOrConnectWithoutProductInput[]
+    upsert?: EquivalenceGroupMemberUpsertWithWhereUniqueWithoutProductInput | EquivalenceGroupMemberUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: EquivalenceGroupMemberCreateManyProductInputEnvelope
+    set?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    disconnect?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    delete?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    connect?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    update?: EquivalenceGroupMemberUpdateWithWhereUniqueWithoutProductInput | EquivalenceGroupMemberUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: EquivalenceGroupMemberUpdateManyWithWhereWithoutProductInput | EquivalenceGroupMemberUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: EquivalenceGroupMemberScalarWhereInput | EquivalenceGroupMemberScalarWhereInput[]
+  }
+
+  export type EquivalenceGroupUpdateOneWithoutProductsNestedInput = {
+    create?: XOR<EquivalenceGroupCreateWithoutProductsInput, EquivalenceGroupUncheckedCreateWithoutProductsInput>
+    connectOrCreate?: EquivalenceGroupCreateOrConnectWithoutProductsInput
+    upsert?: EquivalenceGroupUpsertWithoutProductsInput
+    disconnect?: boolean
+    delete?: EquivalenceGroupWhereInput | boolean
+    connect?: EquivalenceGroupWhereUniqueInput
+    update?: XOR<XOR<EquivalenceGroupUpdateToOneWithWhereWithoutProductsInput, EquivalenceGroupUpdateWithoutProductsInput>, EquivalenceGroupUncheckedUpdateWithoutProductsInput>
+  }
+
   export type ProductVariantUncheckedUpdateManyWithoutProductNestedInput = {
     create?: XOR<ProductVariantCreateWithoutProductInput, ProductVariantUncheckedCreateWithoutProductInput> | ProductVariantCreateWithoutProductInput[] | ProductVariantUncheckedCreateWithoutProductInput[]
     connectOrCreate?: ProductVariantCreateOrConnectWithoutProductInput | ProductVariantCreateOrConnectWithoutProductInput[]
@@ -60614,6 +63380,132 @@ export namespace Prisma {
     update?: ProductCompatibilityUpdateWithWhereUniqueWithoutProductInput | ProductCompatibilityUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: ProductCompatibilityUpdateManyWithWhereWithoutProductInput | ProductCompatibilityUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: ProductCompatibilityScalarWhereInput | ProductCompatibilityScalarWhereInput[]
+  }
+
+  export type EquivalenceGroupMemberUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<EquivalenceGroupMemberCreateWithoutProductInput, EquivalenceGroupMemberUncheckedCreateWithoutProductInput> | EquivalenceGroupMemberCreateWithoutProductInput[] | EquivalenceGroupMemberUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: EquivalenceGroupMemberCreateOrConnectWithoutProductInput | EquivalenceGroupMemberCreateOrConnectWithoutProductInput[]
+    upsert?: EquivalenceGroupMemberUpsertWithWhereUniqueWithoutProductInput | EquivalenceGroupMemberUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: EquivalenceGroupMemberCreateManyProductInputEnvelope
+    set?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    disconnect?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    delete?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    connect?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    update?: EquivalenceGroupMemberUpdateWithWhereUniqueWithoutProductInput | EquivalenceGroupMemberUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: EquivalenceGroupMemberUpdateManyWithWhereWithoutProductInput | EquivalenceGroupMemberUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: EquivalenceGroupMemberScalarWhereInput | EquivalenceGroupMemberScalarWhereInput[]
+  }
+
+  export type EquivalenceGroupMemberCreateNestedManyWithoutGroupInput = {
+    create?: XOR<EquivalenceGroupMemberCreateWithoutGroupInput, EquivalenceGroupMemberUncheckedCreateWithoutGroupInput> | EquivalenceGroupMemberCreateWithoutGroupInput[] | EquivalenceGroupMemberUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: EquivalenceGroupMemberCreateOrConnectWithoutGroupInput | EquivalenceGroupMemberCreateOrConnectWithoutGroupInput[]
+    createMany?: EquivalenceGroupMemberCreateManyGroupInputEnvelope
+    connect?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+  }
+
+  export type ProductCreateNestedManyWithoutEquivalenceGroupInput = {
+    create?: XOR<ProductCreateWithoutEquivalenceGroupInput, ProductUncheckedCreateWithoutEquivalenceGroupInput> | ProductCreateWithoutEquivalenceGroupInput[] | ProductUncheckedCreateWithoutEquivalenceGroupInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutEquivalenceGroupInput | ProductCreateOrConnectWithoutEquivalenceGroupInput[]
+    createMany?: ProductCreateManyEquivalenceGroupInputEnvelope
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type EquivalenceGroupMemberUncheckedCreateNestedManyWithoutGroupInput = {
+    create?: XOR<EquivalenceGroupMemberCreateWithoutGroupInput, EquivalenceGroupMemberUncheckedCreateWithoutGroupInput> | EquivalenceGroupMemberCreateWithoutGroupInput[] | EquivalenceGroupMemberUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: EquivalenceGroupMemberCreateOrConnectWithoutGroupInput | EquivalenceGroupMemberCreateOrConnectWithoutGroupInput[]
+    createMany?: EquivalenceGroupMemberCreateManyGroupInputEnvelope
+    connect?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+  }
+
+  export type ProductUncheckedCreateNestedManyWithoutEquivalenceGroupInput = {
+    create?: XOR<ProductCreateWithoutEquivalenceGroupInput, ProductUncheckedCreateWithoutEquivalenceGroupInput> | ProductCreateWithoutEquivalenceGroupInput[] | ProductUncheckedCreateWithoutEquivalenceGroupInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutEquivalenceGroupInput | ProductCreateOrConnectWithoutEquivalenceGroupInput[]
+    createMany?: ProductCreateManyEquivalenceGroupInputEnvelope
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type EquivalenceGroupMemberUpdateManyWithoutGroupNestedInput = {
+    create?: XOR<EquivalenceGroupMemberCreateWithoutGroupInput, EquivalenceGroupMemberUncheckedCreateWithoutGroupInput> | EquivalenceGroupMemberCreateWithoutGroupInput[] | EquivalenceGroupMemberUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: EquivalenceGroupMemberCreateOrConnectWithoutGroupInput | EquivalenceGroupMemberCreateOrConnectWithoutGroupInput[]
+    upsert?: EquivalenceGroupMemberUpsertWithWhereUniqueWithoutGroupInput | EquivalenceGroupMemberUpsertWithWhereUniqueWithoutGroupInput[]
+    createMany?: EquivalenceGroupMemberCreateManyGroupInputEnvelope
+    set?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    disconnect?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    delete?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    connect?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    update?: EquivalenceGroupMemberUpdateWithWhereUniqueWithoutGroupInput | EquivalenceGroupMemberUpdateWithWhereUniqueWithoutGroupInput[]
+    updateMany?: EquivalenceGroupMemberUpdateManyWithWhereWithoutGroupInput | EquivalenceGroupMemberUpdateManyWithWhereWithoutGroupInput[]
+    deleteMany?: EquivalenceGroupMemberScalarWhereInput | EquivalenceGroupMemberScalarWhereInput[]
+  }
+
+  export type ProductUpdateManyWithoutEquivalenceGroupNestedInput = {
+    create?: XOR<ProductCreateWithoutEquivalenceGroupInput, ProductUncheckedCreateWithoutEquivalenceGroupInput> | ProductCreateWithoutEquivalenceGroupInput[] | ProductUncheckedCreateWithoutEquivalenceGroupInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutEquivalenceGroupInput | ProductCreateOrConnectWithoutEquivalenceGroupInput[]
+    upsert?: ProductUpsertWithWhereUniqueWithoutEquivalenceGroupInput | ProductUpsertWithWhereUniqueWithoutEquivalenceGroupInput[]
+    createMany?: ProductCreateManyEquivalenceGroupInputEnvelope
+    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    update?: ProductUpdateWithWhereUniqueWithoutEquivalenceGroupInput | ProductUpdateWithWhereUniqueWithoutEquivalenceGroupInput[]
+    updateMany?: ProductUpdateManyWithWhereWithoutEquivalenceGroupInput | ProductUpdateManyWithWhereWithoutEquivalenceGroupInput[]
+    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  }
+
+  export type EquivalenceGroupMemberUncheckedUpdateManyWithoutGroupNestedInput = {
+    create?: XOR<EquivalenceGroupMemberCreateWithoutGroupInput, EquivalenceGroupMemberUncheckedCreateWithoutGroupInput> | EquivalenceGroupMemberCreateWithoutGroupInput[] | EquivalenceGroupMemberUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: EquivalenceGroupMemberCreateOrConnectWithoutGroupInput | EquivalenceGroupMemberCreateOrConnectWithoutGroupInput[]
+    upsert?: EquivalenceGroupMemberUpsertWithWhereUniqueWithoutGroupInput | EquivalenceGroupMemberUpsertWithWhereUniqueWithoutGroupInput[]
+    createMany?: EquivalenceGroupMemberCreateManyGroupInputEnvelope
+    set?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    disconnect?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    delete?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    connect?: EquivalenceGroupMemberWhereUniqueInput | EquivalenceGroupMemberWhereUniqueInput[]
+    update?: EquivalenceGroupMemberUpdateWithWhereUniqueWithoutGroupInput | EquivalenceGroupMemberUpdateWithWhereUniqueWithoutGroupInput[]
+    updateMany?: EquivalenceGroupMemberUpdateManyWithWhereWithoutGroupInput | EquivalenceGroupMemberUpdateManyWithWhereWithoutGroupInput[]
+    deleteMany?: EquivalenceGroupMemberScalarWhereInput | EquivalenceGroupMemberScalarWhereInput[]
+  }
+
+  export type ProductUncheckedUpdateManyWithoutEquivalenceGroupNestedInput = {
+    create?: XOR<ProductCreateWithoutEquivalenceGroupInput, ProductUncheckedCreateWithoutEquivalenceGroupInput> | ProductCreateWithoutEquivalenceGroupInput[] | ProductUncheckedCreateWithoutEquivalenceGroupInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutEquivalenceGroupInput | ProductCreateOrConnectWithoutEquivalenceGroupInput[]
+    upsert?: ProductUpsertWithWhereUniqueWithoutEquivalenceGroupInput | ProductUpsertWithWhereUniqueWithoutEquivalenceGroupInput[]
+    createMany?: ProductCreateManyEquivalenceGroupInputEnvelope
+    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    update?: ProductUpdateWithWhereUniqueWithoutEquivalenceGroupInput | ProductUpdateWithWhereUniqueWithoutEquivalenceGroupInput[]
+    updateMany?: ProductUpdateManyWithWhereWithoutEquivalenceGroupInput | ProductUpdateManyWithWhereWithoutEquivalenceGroupInput[]
+    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  }
+
+  export type EquivalenceGroupCreateNestedOneWithoutMembersInput = {
+    create?: XOR<EquivalenceGroupCreateWithoutMembersInput, EquivalenceGroupUncheckedCreateWithoutMembersInput>
+    connectOrCreate?: EquivalenceGroupCreateOrConnectWithoutMembersInput
+    connect?: EquivalenceGroupWhereUniqueInput
+  }
+
+  export type ProductCreateNestedOneWithoutEquivalenceGroupMembersInput = {
+    create?: XOR<ProductCreateWithoutEquivalenceGroupMembersInput, ProductUncheckedCreateWithoutEquivalenceGroupMembersInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutEquivalenceGroupMembersInput
+    connect?: ProductWhereUniqueInput
+  }
+
+  export type EquivalenceGroupUpdateOneRequiredWithoutMembersNestedInput = {
+    create?: XOR<EquivalenceGroupCreateWithoutMembersInput, EquivalenceGroupUncheckedCreateWithoutMembersInput>
+    connectOrCreate?: EquivalenceGroupCreateOrConnectWithoutMembersInput
+    upsert?: EquivalenceGroupUpsertWithoutMembersInput
+    connect?: EquivalenceGroupWhereUniqueInput
+    update?: XOR<XOR<EquivalenceGroupUpdateToOneWithWhereWithoutMembersInput, EquivalenceGroupUpdateWithoutMembersInput>, EquivalenceGroupUncheckedUpdateWithoutMembersInput>
+  }
+
+  export type ProductUpdateOneRequiredWithoutEquivalenceGroupMembersNestedInput = {
+    create?: XOR<ProductCreateWithoutEquivalenceGroupMembersInput, ProductUncheckedCreateWithoutEquivalenceGroupMembersInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutEquivalenceGroupMembersInput
+    upsert?: ProductUpsertWithoutEquivalenceGroupMembersInput
+    connect?: ProductWhereUniqueInput
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutEquivalenceGroupMembersInput, ProductUpdateWithoutEquivalenceGroupMembersInput>, ProductUncheckedUpdateWithoutEquivalenceGroupMembersInput>
   }
 
   export type CategoryAttributeCreateNestedManyWithoutCategoryInput = {
@@ -63502,6 +66394,52 @@ export namespace Prisma {
     data: ProductCompatibilityCreateManyProductInput | ProductCompatibilityCreateManyProductInput[]
   }
 
+  export type EquivalenceGroupMemberCreateWithoutProductInput = {
+    id?: string
+    group: EquivalenceGroupCreateNestedOneWithoutMembersInput
+  }
+
+  export type EquivalenceGroupMemberUncheckedCreateWithoutProductInput = {
+    id?: string
+    groupId: string
+  }
+
+  export type EquivalenceGroupMemberCreateOrConnectWithoutProductInput = {
+    where: EquivalenceGroupMemberWhereUniqueInput
+    create: XOR<EquivalenceGroupMemberCreateWithoutProductInput, EquivalenceGroupMemberUncheckedCreateWithoutProductInput>
+  }
+
+  export type EquivalenceGroupMemberCreateManyProductInputEnvelope = {
+    data: EquivalenceGroupMemberCreateManyProductInput | EquivalenceGroupMemberCreateManyProductInput[]
+  }
+
+  export type EquivalenceGroupCreateWithoutProductsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    minStock?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: EquivalenceGroupMemberCreateNestedManyWithoutGroupInput
+  }
+
+  export type EquivalenceGroupUncheckedCreateWithoutProductsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    minStock?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: EquivalenceGroupMemberUncheckedCreateNestedManyWithoutGroupInput
+  }
+
+  export type EquivalenceGroupCreateOrConnectWithoutProductsInput = {
+    where: EquivalenceGroupWhereUniqueInput
+    create: XOR<EquivalenceGroupCreateWithoutProductsInput, EquivalenceGroupUncheckedCreateWithoutProductsInput>
+  }
+
   export type CategoryUpsertWithoutProductsInput = {
     update: XOR<CategoryUpdateWithoutProductsInput, CategoryUncheckedUpdateWithoutProductsInput>
     create: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
@@ -63639,6 +66577,419 @@ export namespace Prisma {
     deviceModelId?: StringFilter<"ProductCompatibility"> | string
   }
 
+  export type EquivalenceGroupMemberUpsertWithWhereUniqueWithoutProductInput = {
+    where: EquivalenceGroupMemberWhereUniqueInput
+    update: XOR<EquivalenceGroupMemberUpdateWithoutProductInput, EquivalenceGroupMemberUncheckedUpdateWithoutProductInput>
+    create: XOR<EquivalenceGroupMemberCreateWithoutProductInput, EquivalenceGroupMemberUncheckedCreateWithoutProductInput>
+  }
+
+  export type EquivalenceGroupMemberUpdateWithWhereUniqueWithoutProductInput = {
+    where: EquivalenceGroupMemberWhereUniqueInput
+    data: XOR<EquivalenceGroupMemberUpdateWithoutProductInput, EquivalenceGroupMemberUncheckedUpdateWithoutProductInput>
+  }
+
+  export type EquivalenceGroupMemberUpdateManyWithWhereWithoutProductInput = {
+    where: EquivalenceGroupMemberScalarWhereInput
+    data: XOR<EquivalenceGroupMemberUpdateManyMutationInput, EquivalenceGroupMemberUncheckedUpdateManyWithoutProductInput>
+  }
+
+  export type EquivalenceGroupMemberScalarWhereInput = {
+    AND?: EquivalenceGroupMemberScalarWhereInput | EquivalenceGroupMemberScalarWhereInput[]
+    OR?: EquivalenceGroupMemberScalarWhereInput[]
+    NOT?: EquivalenceGroupMemberScalarWhereInput | EquivalenceGroupMemberScalarWhereInput[]
+    id?: StringFilter<"EquivalenceGroupMember"> | string
+    groupId?: StringFilter<"EquivalenceGroupMember"> | string
+    productId?: StringFilter<"EquivalenceGroupMember"> | string
+  }
+
+  export type EquivalenceGroupUpsertWithoutProductsInput = {
+    update: XOR<EquivalenceGroupUpdateWithoutProductsInput, EquivalenceGroupUncheckedUpdateWithoutProductsInput>
+    create: XOR<EquivalenceGroupCreateWithoutProductsInput, EquivalenceGroupUncheckedCreateWithoutProductsInput>
+    where?: EquivalenceGroupWhereInput
+  }
+
+  export type EquivalenceGroupUpdateToOneWithWhereWithoutProductsInput = {
+    where?: EquivalenceGroupWhereInput
+    data: XOR<EquivalenceGroupUpdateWithoutProductsInput, EquivalenceGroupUncheckedUpdateWithoutProductsInput>
+  }
+
+  export type EquivalenceGroupUpdateWithoutProductsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    minStock?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: EquivalenceGroupMemberUpdateManyWithoutGroupNestedInput
+  }
+
+  export type EquivalenceGroupUncheckedUpdateWithoutProductsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    minStock?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: EquivalenceGroupMemberUncheckedUpdateManyWithoutGroupNestedInput
+  }
+
+  export type EquivalenceGroupMemberCreateWithoutGroupInput = {
+    id?: string
+    product: ProductCreateNestedOneWithoutEquivalenceGroupMembersInput
+  }
+
+  export type EquivalenceGroupMemberUncheckedCreateWithoutGroupInput = {
+    id?: string
+    productId: string
+  }
+
+  export type EquivalenceGroupMemberCreateOrConnectWithoutGroupInput = {
+    where: EquivalenceGroupMemberWhereUniqueInput
+    create: XOR<EquivalenceGroupMemberCreateWithoutGroupInput, EquivalenceGroupMemberUncheckedCreateWithoutGroupInput>
+  }
+
+  export type EquivalenceGroupMemberCreateManyGroupInputEnvelope = {
+    data: EquivalenceGroupMemberCreateManyGroupInput | EquivalenceGroupMemberCreateManyGroupInput[]
+  }
+
+  export type ProductCreateWithoutEquivalenceGroupInput = {
+    id?: string
+    barcode?: string | null
+    sku: string
+    name: string
+    slug: string
+    description: string
+    brand: string
+    provider: string
+    costPrice: number
+    salePrice: number
+    promoPrice: number
+    percentPrice: number
+    stock: number
+    minStock?: number
+    images?: ProductCreateimagesInput | string[]
+    specifications?: InputJsonValue | null
+    attributes?: InputJsonValue | null
+    hasVariants?: boolean
+    category?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isAlertMarked?: boolean
+    isActive?: boolean
+    lastCost?: number | null
+    categoryRel?: CategoryCreateNestedOneWithoutProductsInput
+    subcategoryRel?: SubcategoryCreateNestedOneWithoutProductsInput
+    variants?: ProductVariantCreateNestedManyWithoutProductInput
+    compatibilities?: ProductCompatibilityCreateNestedManyWithoutProductInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductUncheckedCreateWithoutEquivalenceGroupInput = {
+    id?: string
+    barcode?: string | null
+    sku: string
+    name: string
+    slug: string
+    description: string
+    brand: string
+    provider: string
+    costPrice: number
+    salePrice: number
+    promoPrice: number
+    percentPrice: number
+    stock: number
+    minStock?: number
+    images?: ProductCreateimagesInput | string[]
+    specifications?: InputJsonValue | null
+    attributes?: InputJsonValue | null
+    hasVariants?: boolean
+    categoryId?: string | null
+    subcategoryId?: string | null
+    category?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isAlertMarked?: boolean
+    isActive?: boolean
+    lastCost?: number | null
+    variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
+    compatibilities?: ProductCompatibilityUncheckedCreateNestedManyWithoutProductInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUncheckedCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductCreateOrConnectWithoutEquivalenceGroupInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutEquivalenceGroupInput, ProductUncheckedCreateWithoutEquivalenceGroupInput>
+  }
+
+  export type ProductCreateManyEquivalenceGroupInputEnvelope = {
+    data: ProductCreateManyEquivalenceGroupInput | ProductCreateManyEquivalenceGroupInput[]
+  }
+
+  export type EquivalenceGroupMemberUpsertWithWhereUniqueWithoutGroupInput = {
+    where: EquivalenceGroupMemberWhereUniqueInput
+    update: XOR<EquivalenceGroupMemberUpdateWithoutGroupInput, EquivalenceGroupMemberUncheckedUpdateWithoutGroupInput>
+    create: XOR<EquivalenceGroupMemberCreateWithoutGroupInput, EquivalenceGroupMemberUncheckedCreateWithoutGroupInput>
+  }
+
+  export type EquivalenceGroupMemberUpdateWithWhereUniqueWithoutGroupInput = {
+    where: EquivalenceGroupMemberWhereUniqueInput
+    data: XOR<EquivalenceGroupMemberUpdateWithoutGroupInput, EquivalenceGroupMemberUncheckedUpdateWithoutGroupInput>
+  }
+
+  export type EquivalenceGroupMemberUpdateManyWithWhereWithoutGroupInput = {
+    where: EquivalenceGroupMemberScalarWhereInput
+    data: XOR<EquivalenceGroupMemberUpdateManyMutationInput, EquivalenceGroupMemberUncheckedUpdateManyWithoutGroupInput>
+  }
+
+  export type ProductUpsertWithWhereUniqueWithoutEquivalenceGroupInput = {
+    where: ProductWhereUniqueInput
+    update: XOR<ProductUpdateWithoutEquivalenceGroupInput, ProductUncheckedUpdateWithoutEquivalenceGroupInput>
+    create: XOR<ProductCreateWithoutEquivalenceGroupInput, ProductUncheckedCreateWithoutEquivalenceGroupInput>
+  }
+
+  export type ProductUpdateWithWhereUniqueWithoutEquivalenceGroupInput = {
+    where: ProductWhereUniqueInput
+    data: XOR<ProductUpdateWithoutEquivalenceGroupInput, ProductUncheckedUpdateWithoutEquivalenceGroupInput>
+  }
+
+  export type ProductUpdateManyWithWhereWithoutEquivalenceGroupInput = {
+    where: ProductScalarWhereInput
+    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutEquivalenceGroupInput>
+  }
+
+  export type ProductScalarWhereInput = {
+    AND?: ProductScalarWhereInput | ProductScalarWhereInput[]
+    OR?: ProductScalarWhereInput[]
+    NOT?: ProductScalarWhereInput | ProductScalarWhereInput[]
+    id?: StringFilter<"Product"> | string
+    barcode?: StringNullableFilter<"Product"> | string | null
+    sku?: StringFilter<"Product"> | string
+    name?: StringFilter<"Product"> | string
+    slug?: StringFilter<"Product"> | string
+    description?: StringFilter<"Product"> | string
+    brand?: StringFilter<"Product"> | string
+    provider?: StringFilter<"Product"> | string
+    costPrice?: FloatFilter<"Product"> | number
+    salePrice?: FloatFilter<"Product"> | number
+    promoPrice?: FloatFilter<"Product"> | number
+    percentPrice?: FloatFilter<"Product"> | number
+    stock?: IntFilter<"Product"> | number
+    minStock?: IntFilter<"Product"> | number
+    images?: StringNullableListFilter<"Product">
+    specifications?: JsonNullableFilter<"Product">
+    attributes?: JsonNullableFilter<"Product">
+    hasVariants?: BoolFilter<"Product"> | boolean
+    categoryId?: StringNullableFilter<"Product"> | string | null
+    subcategoryId?: StringNullableFilter<"Product"> | string | null
+    category?: StringNullableFilter<"Product"> | string | null
+    equivalenceGroupId?: StringNullableFilter<"Product"> | string | null
+    createdAt?: DateTimeFilter<"Product"> | Date | string
+    updatedAt?: DateTimeFilter<"Product"> | Date | string
+    isAlertMarked?: BoolFilter<"Product"> | boolean
+    isActive?: BoolFilter<"Product"> | boolean
+    lastCost?: FloatNullableFilter<"Product"> | number | null
+  }
+
+  export type EquivalenceGroupCreateWithoutMembersInput = {
+    id?: string
+    name: string
+    description?: string | null
+    minStock?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductCreateNestedManyWithoutEquivalenceGroupInput
+  }
+
+  export type EquivalenceGroupUncheckedCreateWithoutMembersInput = {
+    id?: string
+    name: string
+    description?: string | null
+    minStock?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductUncheckedCreateNestedManyWithoutEquivalenceGroupInput
+  }
+
+  export type EquivalenceGroupCreateOrConnectWithoutMembersInput = {
+    where: EquivalenceGroupWhereUniqueInput
+    create: XOR<EquivalenceGroupCreateWithoutMembersInput, EquivalenceGroupUncheckedCreateWithoutMembersInput>
+  }
+
+  export type ProductCreateWithoutEquivalenceGroupMembersInput = {
+    id?: string
+    barcode?: string | null
+    sku: string
+    name: string
+    slug: string
+    description: string
+    brand: string
+    provider: string
+    costPrice: number
+    salePrice: number
+    promoPrice: number
+    percentPrice: number
+    stock: number
+    minStock?: number
+    images?: ProductCreateimagesInput | string[]
+    specifications?: InputJsonValue | null
+    attributes?: InputJsonValue | null
+    hasVariants?: boolean
+    category?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isAlertMarked?: boolean
+    isActive?: boolean
+    lastCost?: number | null
+    categoryRel?: CategoryCreateNestedOneWithoutProductsInput
+    subcategoryRel?: SubcategoryCreateNestedOneWithoutProductsInput
+    variants?: ProductVariantCreateNestedManyWithoutProductInput
+    compatibilities?: ProductCompatibilityCreateNestedManyWithoutProductInput
+    equivalenceGroup?: EquivalenceGroupCreateNestedOneWithoutProductsInput
+  }
+
+  export type ProductUncheckedCreateWithoutEquivalenceGroupMembersInput = {
+    id?: string
+    barcode?: string | null
+    sku: string
+    name: string
+    slug: string
+    description: string
+    brand: string
+    provider: string
+    costPrice: number
+    salePrice: number
+    promoPrice: number
+    percentPrice: number
+    stock: number
+    minStock?: number
+    images?: ProductCreateimagesInput | string[]
+    specifications?: InputJsonValue | null
+    attributes?: InputJsonValue | null
+    hasVariants?: boolean
+    categoryId?: string | null
+    subcategoryId?: string | null
+    category?: string | null
+    equivalenceGroupId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isAlertMarked?: boolean
+    isActive?: boolean
+    lastCost?: number | null
+    variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
+    compatibilities?: ProductCompatibilityUncheckedCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductCreateOrConnectWithoutEquivalenceGroupMembersInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutEquivalenceGroupMembersInput, ProductUncheckedCreateWithoutEquivalenceGroupMembersInput>
+  }
+
+  export type EquivalenceGroupUpsertWithoutMembersInput = {
+    update: XOR<EquivalenceGroupUpdateWithoutMembersInput, EquivalenceGroupUncheckedUpdateWithoutMembersInput>
+    create: XOR<EquivalenceGroupCreateWithoutMembersInput, EquivalenceGroupUncheckedCreateWithoutMembersInput>
+    where?: EquivalenceGroupWhereInput
+  }
+
+  export type EquivalenceGroupUpdateToOneWithWhereWithoutMembersInput = {
+    where?: EquivalenceGroupWhereInput
+    data: XOR<EquivalenceGroupUpdateWithoutMembersInput, EquivalenceGroupUncheckedUpdateWithoutMembersInput>
+  }
+
+  export type EquivalenceGroupUpdateWithoutMembersInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    minStock?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUpdateManyWithoutEquivalenceGroupNestedInput
+  }
+
+  export type EquivalenceGroupUncheckedUpdateWithoutMembersInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    minStock?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUncheckedUpdateManyWithoutEquivalenceGroupNestedInput
+  }
+
+  export type ProductUpsertWithoutEquivalenceGroupMembersInput = {
+    update: XOR<ProductUpdateWithoutEquivalenceGroupMembersInput, ProductUncheckedUpdateWithoutEquivalenceGroupMembersInput>
+    create: XOR<ProductCreateWithoutEquivalenceGroupMembersInput, ProductUncheckedCreateWithoutEquivalenceGroupMembersInput>
+    where?: ProductWhereInput
+  }
+
+  export type ProductUpdateToOneWithWhereWithoutEquivalenceGroupMembersInput = {
+    where?: ProductWhereInput
+    data: XOR<ProductUpdateWithoutEquivalenceGroupMembersInput, ProductUncheckedUpdateWithoutEquivalenceGroupMembersInput>
+  }
+
+  export type ProductUpdateWithoutEquivalenceGroupMembersInput = {
+    barcode?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    brand?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    costPrice?: FloatFieldUpdateOperationsInput | number
+    salePrice?: FloatFieldUpdateOperationsInput | number
+    promoPrice?: FloatFieldUpdateOperationsInput | number
+    percentPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: IntFieldUpdateOperationsInput | number
+    minStock?: IntFieldUpdateOperationsInput | number
+    images?: ProductUpdateimagesInput | string[]
+    specifications?: InputJsonValue | InputJsonValue | null
+    attributes?: InputJsonValue | InputJsonValue | null
+    hasVariants?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    categoryRel?: CategoryUpdateOneWithoutProductsNestedInput
+    subcategoryRel?: SubcategoryUpdateOneWithoutProductsNestedInput
+    variants?: ProductVariantUpdateManyWithoutProductNestedInput
+    compatibilities?: ProductCompatibilityUpdateManyWithoutProductNestedInput
+    equivalenceGroup?: EquivalenceGroupUpdateOneWithoutProductsNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutEquivalenceGroupMembersInput = {
+    barcode?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    brand?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    costPrice?: FloatFieldUpdateOperationsInput | number
+    salePrice?: FloatFieldUpdateOperationsInput | number
+    promoPrice?: FloatFieldUpdateOperationsInput | number
+    percentPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: IntFieldUpdateOperationsInput | number
+    minStock?: IntFieldUpdateOperationsInput | number
+    images?: ProductUpdateimagesInput | string[]
+    specifications?: InputJsonValue | InputJsonValue | null
+    attributes?: InputJsonValue | InputJsonValue | null
+    hasVariants?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    equivalenceGroupId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
+    compatibilities?: ProductCompatibilityUncheckedUpdateManyWithoutProductNestedInput
+  }
+
   export type CategoryAttributeCreateWithoutCategoryInput = {
     id?: string
     required?: boolean
@@ -63722,10 +67073,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
     subcategoryRel?: SubcategoryCreateNestedOneWithoutProductsInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
     compatibilities?: ProductCompatibilityCreateNestedManyWithoutProductInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberCreateNestedManyWithoutProductInput
+    equivalenceGroup?: EquivalenceGroupCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutCategoryRelInput = {
@@ -63749,12 +67103,15 @@ export namespace Prisma {
     hasVariants?: boolean
     subcategoryId?: string | null
     category?: string | null
+    equivalenceGroupId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
     compatibilities?: ProductCompatibilityUncheckedCreateNestedManyWithoutProductInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutCategoryRelInput = {
@@ -63839,37 +67196,6 @@ export namespace Prisma {
     data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutCategoryRelInput>
   }
 
-  export type ProductScalarWhereInput = {
-    AND?: ProductScalarWhereInput | ProductScalarWhereInput[]
-    OR?: ProductScalarWhereInput[]
-    NOT?: ProductScalarWhereInput | ProductScalarWhereInput[]
-    id?: StringFilter<"Product"> | string
-    barcode?: StringNullableFilter<"Product"> | string | null
-    sku?: StringFilter<"Product"> | string
-    name?: StringFilter<"Product"> | string
-    slug?: StringFilter<"Product"> | string
-    description?: StringFilter<"Product"> | string
-    brand?: StringFilter<"Product"> | string
-    provider?: StringFilter<"Product"> | string
-    costPrice?: FloatFilter<"Product"> | number
-    salePrice?: FloatFilter<"Product"> | number
-    promoPrice?: FloatFilter<"Product"> | number
-    percentPrice?: FloatFilter<"Product"> | number
-    stock?: IntFilter<"Product"> | number
-    minStock?: IntFilter<"Product"> | number
-    images?: StringNullableListFilter<"Product">
-    specifications?: JsonNullableFilter<"Product">
-    attributes?: JsonNullableFilter<"Product">
-    hasVariants?: BoolFilter<"Product"> | boolean
-    categoryId?: StringNullableFilter<"Product"> | string | null
-    subcategoryId?: StringNullableFilter<"Product"> | string | null
-    category?: StringNullableFilter<"Product"> | string | null
-    createdAt?: DateTimeFilter<"Product"> | Date | string
-    updatedAt?: DateTimeFilter<"Product"> | Date | string
-    isAlertMarked?: BoolFilter<"Product"> | boolean
-    lastCost?: FloatNullableFilter<"Product"> | number | null
-  }
-
   export type CategoryCreateWithoutSubcategoriesInput = {
     id?: string
     name: string
@@ -63945,10 +67271,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
     categoryRel?: CategoryCreateNestedOneWithoutProductsInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
     compatibilities?: ProductCompatibilityCreateNestedManyWithoutProductInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberCreateNestedManyWithoutProductInput
+    equivalenceGroup?: EquivalenceGroupCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutSubcategoryRelInput = {
@@ -63972,12 +67301,15 @@ export namespace Prisma {
     hasVariants?: boolean
     categoryId?: string | null
     category?: string | null
+    equivalenceGroupId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
     compatibilities?: ProductCompatibilityUncheckedCreateNestedManyWithoutProductInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutSubcategoryRelInput = {
@@ -64498,10 +67830,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
     categoryRel?: CategoryCreateNestedOneWithoutProductsInput
     subcategoryRel?: SubcategoryCreateNestedOneWithoutProductsInput
     compatibilities?: ProductCompatibilityCreateNestedManyWithoutProductInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberCreateNestedManyWithoutProductInput
+    equivalenceGroup?: EquivalenceGroupCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutVariantsInput = {
@@ -64526,11 +67861,14 @@ export namespace Prisma {
     categoryId?: string | null
     subcategoryId?: string | null
     category?: string | null
+    equivalenceGroupId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
     compatibilities?: ProductCompatibilityUncheckedCreateNestedManyWithoutProductInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutVariantsInput = {
@@ -64571,10 +67909,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     categoryRel?: CategoryUpdateOneWithoutProductsNestedInput
     subcategoryRel?: SubcategoryUpdateOneWithoutProductsNestedInput
     compatibilities?: ProductCompatibilityUpdateManyWithoutProductNestedInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUpdateManyWithoutProductNestedInput
+    equivalenceGroup?: EquivalenceGroupUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutVariantsInput = {
@@ -64598,11 +67939,14 @@ export namespace Prisma {
     categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    equivalenceGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     compatibilities?: ProductCompatibilityUncheckedUpdateManyWithoutProductNestedInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type DeviceModelCreateWithoutBrandInput = {
@@ -64743,10 +68087,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
     categoryRel?: CategoryCreateNestedOneWithoutProductsInput
     subcategoryRel?: SubcategoryCreateNestedOneWithoutProductsInput
     variants?: ProductVariantCreateNestedManyWithoutProductInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberCreateNestedManyWithoutProductInput
+    equivalenceGroup?: EquivalenceGroupCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutCompatibilitiesInput = {
@@ -64771,11 +68118,14 @@ export namespace Prisma {
     categoryId?: string | null
     subcategoryId?: string | null
     category?: string | null
+    equivalenceGroupId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
     variants?: ProductVariantUncheckedCreateNestedManyWithoutProductInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutCompatibilitiesInput = {
@@ -64833,10 +68183,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     categoryRel?: CategoryUpdateOneWithoutProductsNestedInput
     subcategoryRel?: SubcategoryUpdateOneWithoutProductsNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUpdateManyWithoutProductNestedInput
+    equivalenceGroup?: EquivalenceGroupUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCompatibilitiesInput = {
@@ -64860,11 +68213,14 @@ export namespace Prisma {
     categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    equivalenceGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type DeviceModelUpsertWithoutCompatibilitiesInput = {
@@ -69782,6 +73138,11 @@ export namespace Prisma {
     deviceModelId: string
   }
 
+  export type EquivalenceGroupMemberCreateManyProductInput = {
+    id?: string
+    groupId: string
+  }
+
   export type ProductVariantUpdateWithoutProductInput = {
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
@@ -69869,6 +73230,154 @@ export namespace Prisma {
     deviceModelId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type EquivalenceGroupMemberUpdateWithoutProductInput = {
+    group?: EquivalenceGroupUpdateOneRequiredWithoutMembersNestedInput
+  }
+
+  export type EquivalenceGroupMemberUncheckedUpdateWithoutProductInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EquivalenceGroupMemberUncheckedUpdateManyWithoutProductInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EquivalenceGroupMemberCreateManyGroupInput = {
+    id?: string
+    productId: string
+  }
+
+  export type ProductCreateManyEquivalenceGroupInput = {
+    id?: string
+    barcode?: string | null
+    sku: string
+    name: string
+    slug: string
+    description: string
+    brand: string
+    provider: string
+    costPrice: number
+    salePrice: number
+    promoPrice: number
+    percentPrice: number
+    stock: number
+    minStock?: number
+    images?: ProductCreateimagesInput | string[]
+    specifications?: InputJsonValue | null
+    attributes?: InputJsonValue | null
+    hasVariants?: boolean
+    categoryId?: string | null
+    subcategoryId?: string | null
+    category?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isAlertMarked?: boolean
+    isActive?: boolean
+    lastCost?: number | null
+  }
+
+  export type EquivalenceGroupMemberUpdateWithoutGroupInput = {
+    product?: ProductUpdateOneRequiredWithoutEquivalenceGroupMembersNestedInput
+  }
+
+  export type EquivalenceGroupMemberUncheckedUpdateWithoutGroupInput = {
+    productId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EquivalenceGroupMemberUncheckedUpdateManyWithoutGroupInput = {
+    productId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductUpdateWithoutEquivalenceGroupInput = {
+    barcode?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    brand?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    costPrice?: FloatFieldUpdateOperationsInput | number
+    salePrice?: FloatFieldUpdateOperationsInput | number
+    promoPrice?: FloatFieldUpdateOperationsInput | number
+    percentPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: IntFieldUpdateOperationsInput | number
+    minStock?: IntFieldUpdateOperationsInput | number
+    images?: ProductUpdateimagesInput | string[]
+    specifications?: InputJsonValue | InputJsonValue | null
+    attributes?: InputJsonValue | InputJsonValue | null
+    hasVariants?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    categoryRel?: CategoryUpdateOneWithoutProductsNestedInput
+    subcategoryRel?: SubcategoryUpdateOneWithoutProductsNestedInput
+    variants?: ProductVariantUpdateManyWithoutProductNestedInput
+    compatibilities?: ProductCompatibilityUpdateManyWithoutProductNestedInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutEquivalenceGroupInput = {
+    barcode?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    brand?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    costPrice?: FloatFieldUpdateOperationsInput | number
+    salePrice?: FloatFieldUpdateOperationsInput | number
+    promoPrice?: FloatFieldUpdateOperationsInput | number
+    percentPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: IntFieldUpdateOperationsInput | number
+    minStock?: IntFieldUpdateOperationsInput | number
+    images?: ProductUpdateimagesInput | string[]
+    specifications?: InputJsonValue | InputJsonValue | null
+    attributes?: InputJsonValue | InputJsonValue | null
+    hasVariants?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
+    compatibilities?: ProductCompatibilityUncheckedUpdateManyWithoutProductNestedInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateManyWithoutEquivalenceGroupInput = {
+    barcode?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    brand?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    costPrice?: FloatFieldUpdateOperationsInput | number
+    salePrice?: FloatFieldUpdateOperationsInput | number
+    promoPrice?: FloatFieldUpdateOperationsInput | number
+    percentPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: IntFieldUpdateOperationsInput | number
+    minStock?: IntFieldUpdateOperationsInput | number
+    images?: ProductUpdateimagesInput | string[]
+    specifications?: InputJsonValue | InputJsonValue | null
+    attributes?: InputJsonValue | InputJsonValue | null
+    hasVariants?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
   export type CategoryAttributeCreateManyCategoryInput = {
     id?: string
     attributeId: string
@@ -69907,9 +73416,11 @@ export namespace Prisma {
     hasVariants?: boolean
     subcategoryId?: string | null
     category?: string | null
+    equivalenceGroupId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
   }
 
@@ -69988,10 +73499,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     subcategoryRel?: SubcategoryUpdateOneWithoutProductsNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
     compatibilities?: ProductCompatibilityUpdateManyWithoutProductNestedInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUpdateManyWithoutProductNestedInput
+    equivalenceGroup?: EquivalenceGroupUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCategoryRelInput = {
@@ -70014,12 +73528,15 @@ export namespace Prisma {
     hasVariants?: BoolFieldUpdateOperationsInput | boolean
     subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    equivalenceGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
     compatibilities?: ProductCompatibilityUncheckedUpdateManyWithoutProductNestedInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutCategoryRelInput = {
@@ -70042,9 +73559,11 @@ export namespace Prisma {
     hasVariants?: BoolFieldUpdateOperationsInput | boolean
     subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    equivalenceGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
@@ -70077,9 +73596,11 @@ export namespace Prisma {
     hasVariants?: boolean
     categoryId?: string | null
     category?: string | null
+    equivalenceGroupId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAlertMarked?: boolean
+    isActive?: boolean
     lastCost?: number | null
   }
 
@@ -70140,10 +73661,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     categoryRel?: CategoryUpdateOneWithoutProductsNestedInput
     variants?: ProductVariantUpdateManyWithoutProductNestedInput
     compatibilities?: ProductCompatibilityUpdateManyWithoutProductNestedInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUpdateManyWithoutProductNestedInput
+    equivalenceGroup?: EquivalenceGroupUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutSubcategoryRelInput = {
@@ -70166,12 +73690,15 @@ export namespace Prisma {
     hasVariants?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    equivalenceGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
     variants?: ProductVariantUncheckedUpdateManyWithoutProductNestedInput
     compatibilities?: ProductCompatibilityUncheckedUpdateManyWithoutProductNestedInput
+    equivalenceGroupMembers?: EquivalenceGroupMemberUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutSubcategoryRelInput = {
@@ -70194,9 +73721,11 @@ export namespace Prisma {
     hasVariants?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    equivalenceGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAlertMarked?: BoolFieldUpdateOperationsInput | boolean
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     lastCost?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 

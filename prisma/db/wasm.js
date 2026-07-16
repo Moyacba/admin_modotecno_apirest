@@ -135,10 +135,28 @@ exports.Prisma.ProductScalarFieldEnum = {
   categoryId: 'categoryId',
   subcategoryId: 'subcategoryId',
   category: 'category',
+  equivalenceGroupId: 'equivalenceGroupId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isAlertMarked: 'isAlertMarked',
+  isActive: 'isActive',
   lastCost: 'lastCost'
+};
+
+exports.Prisma.EquivalenceGroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  minStock: 'minStock',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EquivalenceGroupMemberScalarFieldEnum = {
+  id: 'id',
+  groupId: 'groupId',
+  productId: 'productId'
 };
 
 exports.Prisma.CategoryScalarFieldEnum = {
@@ -716,6 +734,8 @@ exports.RepairQuality = exports.$Enums.RepairQuality = {
 
 exports.Prisma.ModelName = {
   Product: 'Product',
+  EquivalenceGroup: 'EquivalenceGroup',
+  EquivalenceGroupMember: 'EquivalenceGroupMember',
   Category: 'Category',
   Subcategory: 'Subcategory',
   AttributeDefinition: 'AttributeDefinition',

@@ -932,8 +932,73 @@ export const getLowStockProducts = async (req, res) => {
         isAlertMarked: v.isAlertMarked
       }));
 
-    // 3. Unir, ordenar y paginar
-    const allResults = [...lowStockProducts, ...lowStockVariants]
+    // 3. Consultar grupos de equivalencia y calcular stock agregado
+    const groups = await prisma.equivalenceGroup.findMany({
+      where: { isActive: true },
+      include: {
+        members: {
+          include: {
+            product: {
+              select: {
+                id: true,
+                sku: true,
+                name: true,
+                stock: true,
+                minStock: true,
+                images: true,
+                provider: true,
+                costPrice: true,
+                category: true,
+                categoryId: true,
+                subcategoryId: true
+              }
+            }
+          }
+        }
+      }
+    });
+
+    const groupMemberProductIds = new Set();
+    const groupAlerts = [];
+
+    for (const group of groups) {
+      const members = group.members || [];
+      if (members.length === 0) continue;
+
+      const totalStock = members.reduce((sum, m) => sum + (m.product?.stock || 0), 0);
+      const totalMemberMinStock = members.reduce((sum, m) => sum + (m.product?.minStock || 0), 0);
+      const effectiveMinStock = group.minStock > 0 ? group.minStock : totalMemberMinStock;
+
+      members.forEach(m => groupMemberProductIds.add(m.productId));
+
+      if (totalStock > effectiveMinStock) continue;
+
+      groupAlerts.push({
+        id: group.id,
+        sku: null,
+        name: group.name,
+        stock: totalStock,
+        minStock: effectiveMinStock,
+        isGroup: true,
+        groupInfo: {
+          groupId: group.id,
+          groupName: group.name,
+          totalStock,
+          totalMinStock: effectiveMinStock,
+          members: members.map(m => ({
+            id: m.product.id,
+            sku: m.product.sku,
+            name: m.product.name,
+            stock: m.product.stock,
+            minStock: m.product.minStock
+          }))
+        }
+      });
+    }
+
+    // 4. Unir alertas individuales (filtrando productos cubiertos por grupos con stock suficiente) y alertas de grupo
+    const filteredLowStockProducts = lowStockProducts.filter(p => !groupMemberProductIds.has(p.id));
+    const allResults = [...filteredLowStockProducts, ...lowStockVariants, ...groupAlerts]
       .sort((a, b) => a.stock - b.stock);
 
     const globalZeroStockCount = allResults.filter(a => a.stock <= 0).length;
@@ -952,7 +1017,9 @@ export const getLowStockProducts = async (req, res) => {
       summary: {
         zeroStockCount: globalZeroStockCount,
         totalInvestment: globalTotalInvestment,
-        uniqueProviders: Array.from(new Set(allResults.map(a => a.provider).filter(Boolean))).sort()
+        uniqueProviders: Array.from(new Set(
+          allResults.map(a => a.provider).filter(Boolean)
+        )).sort()
       }
     });
   } catch (error) {
